@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
+		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
+		521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B425DE7C5B009355BC /* UIView+Extensions.swift */; };
+		521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754BA25DE7DAE009355BC /* TutorialContentView.swift */; };
+		521754C425DE812D009355BC /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754C325DE812D009355BC /* TutorialView.swift */; };
+		521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754CC25DEAD2C009355BC /* SelectAccountViewController.swift */; };
+		521754D125DEAD91009355BC /* AccountManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754D025DEAD91009355BC /* AccountManagement.swift */; };
+		521754DA25DEAE44009355BC /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754D925DEAE44009355BC /* Key.swift */; };
+		521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */; };
 		529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17825DD96FD00635807 /* AppDelegate.swift */; };
 		529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17A25DD96FD00635807 /* SceneDelegate.swift */; };
 		529AE18225DD96FD00635807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 529AE18125DD96FD00635807 /* Assets.xcassets */; };
@@ -19,6 +28,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		521754B425DE7C5B009355BC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		521754BA25DE7DAE009355BC /* TutorialContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialContentView.swift; sourceTree = "<group>"; };
+		521754C325DE812D009355BC /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		521754CC25DEAD2C009355BC /* SelectAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountViewController.swift; sourceTree = "<group>"; };
+		521754D025DEAD91009355BC /* AccountManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManagement.swift; sourceTree = "<group>"; };
+		521754D925DEAE44009355BC /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		529AE17A25DD96FD00635807 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,10 +61,144 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521754A425DE7530009355BC /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				521754A925DE75A9009355BC /* Model */,
+				521754A725DE758C009355BC /* View */,
+				521754A825DE7595009355BC /* View Model */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		521754A525DE7544009355BC /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				529AE18625DD96FD00635807 /* Info.plist */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		521754A625DE7577009355BC /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				529AE17825DD96FD00635807 /* AppDelegate.swift */,
+				529AE18325DD96FD00635807 /* LaunchScreen.storyboard */,
+				529AE17A25DD96FD00635807 /* SceneDelegate.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		521754A725DE758C009355BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				529AE19425DD97C500635807 /* Controllers */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		521754A825DE7595009355BC /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		521754A925DE75A9009355BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		521754AB25DE75E7009355BC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		521754AC25DE75FA009355BC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				521754B125DE79D1009355BC /* UIColor+Extensions.swift */,
+				521754B425DE7C5B009355BC /* UIView+Extensions.swift */,
+				521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		521754AD25DE764B009355BC /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				521754B725DE7D74009355BC /* Controllers */,
+				521754B925DE7D81009355BC /* Views */,
+			);
+			path = Tutorials;
+			sourceTree = "<group>";
+		};
+		521754B725DE7D74009355BC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				521754AE25DE7673009355BC /* TutorialViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		521754B925DE7D81009355BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				521754BA25DE7DAE009355BC /* TutorialContentView.swift */,
+				521754C325DE812D009355BC /* TutorialView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		521754C825DEACC9009355BC /* Select Account */ = {
+			isa = PBXGroup;
+			children = (
+				521754C925DEACF1009355BC /* Controllers */,
+				521754CB25DEAD0D009355BC /* Views */,
+			);
+			path = "Select Account";
+			sourceTree = "<group>";
+		};
+		521754C925DEACF1009355BC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				521754CC25DEAD2C009355BC /* SelectAccountViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		521754CB25DEAD0D009355BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		521754CF25DEAD72009355BC /* Management */ = {
+			isa = PBXGroup;
+			children = (
+				521754D025DEAD91009355BC /* AccountManagement.swift */,
+			);
+			path = Management;
+			sourceTree = "<group>";
+		};
+		521754D825DEAE39009355BC /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				521754D925DEAE44009355BC /* Key.swift */,
+			);
+			path = Key;
+			sourceTree = "<group>";
+		};
 		529AE16C25DD96FD00635807 = {
 			isa = PBXGroup;
 			children = (
 				529AE17725DD96FD00635807 /* KAI Membership */,
+				529AE18125DD96FD00635807 /* Assets.xcassets */,
 				529AE17625DD96FD00635807 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,8 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				529AE19325DD97AD00635807 /* Application */,
-				529AE19425DD97C500635807 /* Controllers */,
-				529AE18125DD96FD00635807 /* Assets.xcassets */,
+				521754AC25DE75FA009355BC /* Extensions */,
+				521754A425DE7530009355BC /* MVVM */,
+				521754AB25DE75E7009355BC /* Services */,
 			);
 			path = "KAI Membership";
 			sourceTree = "<group>";
@@ -72,10 +225,10 @@
 		529AE19325DD97AD00635807 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				529AE17825DD96FD00635807 /* AppDelegate.swift */,
-				529AE18625DD96FD00635807 /* Info.plist */,
-				529AE18325DD96FD00635807 /* LaunchScreen.storyboard */,
-				529AE17A25DD96FD00635807 /* SceneDelegate.swift */,
+				521754D825DEAE39009355BC /* Key */,
+				521754CF25DEAD72009355BC /* Management */,
+				521754A525DE7544009355BC /* Supporting */,
+				521754A625DE7577009355BC /* Window */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -83,10 +236,12 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				529AE1BD25DD9B5D00635807 /* Root */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				529AE1AB25DD997500635807 /* Feeds */,
 				529AE1AA25DD996E00635807 /* News */,
+				529AE1BD25DD9B5D00635807 /* Root */,
+				521754C825DEACC9009355BC /* Select Account */,
+				521754AD25DE764B009355BC /* Tutorials */,
 				529AE1B125DD99B000635807 /* Wallet */,
 			);
 			path = Controllers;
@@ -203,10 +358,19 @@
 			files = (
 				529AE1AD25DD998700635807 /* FeedsViewController.swift in Sources */,
 				529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */,
+				521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */,
+				521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */,
+				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
+				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
 				529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				529AE1A825DD994C00635807 /* NewsViewController.swift in Sources */,
+				521754C425DE812D009355BC /* TutorialView.swift in Sources */,
+				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,
+				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
+				521754DA25DEAE44009355BC /* Key.swift in Sources */,
+				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +513,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NTP6J6Q8BJ;
-				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,7 +535,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NTP6J6Q8BJ;
-				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

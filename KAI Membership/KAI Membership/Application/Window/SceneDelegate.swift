@@ -17,7 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = RootTabbarController()
+        
+        if AccountManagement.isLoggedIn {
+            window?.rootViewController = RootTabbarController()
+        } else {
+            window?.rootViewController = TutorialViewController()
+        }
+        
         window?.makeKeyAndVisible()
     }
 
