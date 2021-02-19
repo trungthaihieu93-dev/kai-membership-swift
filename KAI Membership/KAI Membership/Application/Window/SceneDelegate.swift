@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if AccountManagement.isLoggedIn {
             window?.rootViewController = RootTabbarController()
         } else {
-            window?.rootViewController = TutorialViewController()
+            Navigator.showTutorialVC()
+//            window?.rootViewController = TutorialViewController()
         }
         
         window?.makeKeyAndVisible()

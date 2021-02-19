@@ -25,6 +25,8 @@
 		529AE1AD25DD998700635807 /* FeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1AC25DD998700635807 /* FeedsViewController.swift */; };
 		529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1B225DD99B900635807 /* WalletViewController.swift */; };
 		529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1B725DD9A9300635807 /* BaseViewController.swift */; };
+		52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37C9E25E0001A009F311F /* SignInViewController.swift */; };
+		52F37CA625E0022C009F311F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CA525E0022C009F311F /* Navigator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		529AE1AC25DD998700635807 /* FeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewController.swift; sourceTree = "<group>"; };
 		529AE1B225DD99B900635807 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		529AE1B725DD9A9300635807 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		52F37C9E25E0001A009F311F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		52F37CA525E0022C009F311F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				529AE17725DD96FD00635807 /* KAI Membership */,
-				529AE18125DD96FD00635807 /* Assets.xcassets */,
 				529AE17625DD96FD00635807 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				521754AC25DE75FA009355BC /* Extensions */,
 				521754A425DE7530009355BC /* MVVM */,
 				521754AB25DE75E7009355BC /* Services */,
+				529AE18125DD96FD00635807 /* Assets.xcassets */,
 			);
 			path = "KAI Membership";
 			sourceTree = "<group>";
@@ -225,6 +229,7 @@
 		529AE19325DD97AD00635807 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				52F37CA425E0021C009F311F /* Navigate */,
 				521754D825DEAE39009355BC /* Key */,
 				521754CF25DEAD72009355BC /* Management */,
 				521754A525DE7544009355BC /* Supporting */,
@@ -241,6 +246,7 @@
 				529AE1AA25DD996E00635807 /* News */,
 				529AE1BD25DD9B5D00635807 /* Root */,
 				521754C825DEACC9009355BC /* Select Account */,
+				52F37C9D25E00004009F311F /* Sign In */,
 				521754AD25DE764B009355BC /* Tutorials */,
 				529AE1B125DD99B000635807 /* Wallet */,
 			);
@@ -285,6 +291,30 @@
 				529AE1A425DD98E200635807 /* RootTabbarController.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		52F37C9D25E00004009F311F /* Sign In */ = {
+			isa = PBXGroup;
+			children = (
+				52F37CA125E0001E009F311F /* Controllers */,
+			);
+			path = "Sign In";
+			sourceTree = "<group>";
+		};
+		52F37CA125E0001E009F311F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52F37C9E25E0001A009F311F /* SignInViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		52F37CA425E0021C009F311F /* Navigate */ = {
+			isa = PBXGroup;
+			children = (
+				52F37CA525E0022C009F311F /* Navigator.swift */,
+			);
+			path = Navigate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,9 +393,11 @@
 				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
+				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
 				529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				529AE1A825DD994C00635807 /* NewsViewController.swift in Sources */,
+				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
 				521754C425DE812D009355BC /* TutorialView.swift in Sources */,
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,

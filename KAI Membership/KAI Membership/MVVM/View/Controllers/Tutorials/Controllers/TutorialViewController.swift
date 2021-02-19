@@ -15,12 +15,13 @@ class TutorialViewController: BaseViewController {
         case trial
     }
     
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.delegate = self
         
         return scrollView
     }()
@@ -32,14 +33,47 @@ class TutorialViewController: BaseViewController {
         return view
     }()
     
-    private let pageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.numberOfPages = 3
+        pageControl.isUserInteractionEnabled = false
         pageControl.currentPageIndicatorTintColor = .init(hex: "181E25")
         pageControl.pageIndicatorTintColor = .init(hex: "E6EAEF")
-        pageControl.numberOfPages = 3
+        
+        if #available(iOS 14.0, *) {
+            pageControl.setIndicatorImage(currentIndicatorImage, forPage: currentPageIndex)
+        } else {
+            // Fallback on earlier versions
+        }
         
         return pageControl
+    }()
+    
+    private let currentIndicatorImage: UIImage = {
+        let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 16, height: 9)))
+        view.backgroundColor = .init(hex: "181E25")
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 4.5
+        
+        let renderer = UIGraphicsImageRenderer(bounds: view.frame)
+
+        return renderer.image { ctx in
+            view.layer.render(in: ctx.cgContext)
+        }
+    }()
+    
+    private let indicatorImage: UIImage = {
+        let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 9, height: 9)))
+        view.backgroundColor = .init(hex: "E6EAEF")
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 4.5
+        
+        let renderer = UIGraphicsImageRenderer(bounds: view.frame)
+
+        return renderer.image { ctx in
+            view.layer.render(in: ctx.cgContext)
+        }
     }()
     
     private lazy var nextButton: UIButton = {
@@ -106,9 +140,26 @@ class TutorialViewController: BaseViewController {
         return view
     }()
     
-    private(set) var currentPageIndex: Int = 0
+    var lastContentOffsetX: CGFloat = 0
+    var currentPageIndex: Int = 0 {
+        didSet {
+            guard currentPageIndex != oldValue else { return }
+            
+            pageControl.currentPage = currentPageIndex
+            
+            if #available(iOS 14.0, *) {
+                pageControl.setIndicatorImage(nil, forPage: oldValue)
+                pageControl.setIndicatorImage(currentIndicatorImage, forPage: currentPageIndex)
+                pageControl.currentPageIndicatorTintColor = .init(hex: "181E25")
+                pageControl.pageIndicatorTintColor = .init(hex: "E6EAEF")
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+    }
+    
     private(set) var preCurrentPageIndex: Int = 0
-    private(set) var actionStatus: ActionStatus = .normal {
+    private var actionStatus: ActionStatus = .normal {
         didSet {
             switch actionStatus {
             case .normal:
@@ -216,14 +267,43 @@ class TutorialViewController: BaseViewController {
 extension TutorialViewController {
  
     @objc private func onPressedNext() {
-        actionStatus = .trial
+        if currentPageIndex == pageControl.numberOfPages - 2 {
+            actionStatus = .trial
+            currentPageIndex = 2
+        } else {
+            currentPageIndex = 1
+        }
+        
+        var offset = scrollView.contentOffset
+        offset.x = view.frame.width * CGFloat(currentPageIndex)
+        scrollView.setContentOffset(offset, animated: true)
     }
     
     @objc private func onPressedTrail() {
-        window?.rootViewController = RootTabbarController()
+        Navigator.window?.rootViewController = RootTabbarController()
     }
     
     @objc private func onPressedSignIn() {
-        actionStatus = .normal
+        Navigator.navigateToSignInVC(from: self)
+    }
+}
+
+// MARK: UIScrollViewDelegate
+extension TutorialViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastContentOffsetX = scrollView.contentOffset.x
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let x = scrollView.contentOffset.x
+         
+        if lastContentOffsetX < x { // Right
+            let newIndex = Int((x - 1) / view.frame.width) + 1
+            currentPageIndex = newIndex
+        } else { // Left
+            let newIndex = Int((x + 1) / view.frame.width)
+            currentPageIndex = newIndex
+        }
     }
 }
