@@ -18,7 +18,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     var safeAreaInsets: UIEdgeInsets {
-        return UIApplication.shared.keyWindow?.safeAreaInsets ?? .zero
+        return UIApplication.shared.keyWindow?.safeAreaInsets ?? UIEdgeInsets(top: 44, left: 0, bottom: 34, right: 0)
     }
     
     var tabbarHeight: CGFloat {
@@ -29,9 +29,21 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         return ""
     }
     
-    private let _pageTitleView: UIView = {
+    var pageDiscription: String {
+        return ""
+    }
+    
+    let pageTitleView: UIView = {
         let view = UIView()
         view.backgroundColor = nil
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightText
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -47,27 +59,67 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         return label
     }()
     
+    private let _descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        
+        return label
+    }()
+    
+    private(set) lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "ic_back"), for: .normal)
+        button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 8
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.1
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 8
+        button.layer.shouldRasterize = true // Lưu vào bộ nhớ cache của bóng được hiển thị để nó không cần phải được vẽ lại
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.addTarget(self, action: #selector(_onTouchecBarBackButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        if !pageTitle.isEmpty {
+        if !pageTitle.isEmpty || !pageDiscription.isEmpty {
             _titleLabel.text = pageTitle
             _titleLabel.sizeToFit()
+            _descriptionLabel.attributedText = pageDiscription.setTextWithFormat(font: .systemFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+            _descriptionLabel.sizeToFit()
             
-            view.addSubview(_pageTitleView)
-            _pageTitleView.addSubview(_titleLabel)
+            view.addSubview(pageTitleView)
+            
+            pageTitleView.addSubview(backButton)
+            pageTitleView.addSubview(_titleLabel)
+            pageTitleView.addSubview(_descriptionLabel)
             
             NSLayoutConstraint.activate([
-                _pageTitleView.topAnchor.constraint(equalTo: view.topAnchor),
-                _pageTitleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                _pageTitleView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                pageTitleView.topAnchor.constraint(equalTo: view.topAnchor),
+                pageTitleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                pageTitleView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 
-                _titleLabel.topAnchor.constraint(equalTo: _pageTitleView.topAnchor, constant: statusBarHeight),
-                _titleLabel.leadingAnchor.constraint(equalTo: _pageTitleView.leadingAnchor, constant: 20),
-                _titleLabel.bottomAnchor.constraint(equalTo: _pageTitleView.bottomAnchor),
-                _titleLabel.trailingAnchor.constraint(equalTo: _pageTitleView.trailingAnchor,  constant: -20),
+                backButton.topAnchor.constraint(equalTo: pageTitleView.topAnchor, constant: statusBarHeight + 6),
+                backButton.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: 20),
+                backButton.widthAnchor.constraint(equalToConstant: 32),
+                backButton.heightAnchor.constraint(equalToConstant: 32),
+                
+                _titleLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 6),
+                _titleLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
+                _titleLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
+                
+                _descriptionLabel.topAnchor.constraint(equalTo: _titleLabel.bottomAnchor, constant: 17),
+                _descriptionLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
+                _descriptionLabel.bottomAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: -8),
+                _descriptionLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
             ])
         }
     }
@@ -92,6 +144,11 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.bringSubviewToFront(_pageTitleView)
+        view.bringSubviewToFront(pageTitleView)
+    }
+    
+    // MARK: Handle actions
+    @objc private func _onTouchecBarBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

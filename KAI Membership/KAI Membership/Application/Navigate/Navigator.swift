@@ -33,4 +33,32 @@ final class Navigator {
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    /* Điều hướng sang màn hình đăng ký */
+    class func navigateToSignUpVC(from viewController: UIViewController? = nil) {
+        let vc = SignUpViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng sang màn hình làm mới mật khẩu */
+    class func navigateToResetPasswordVC(from viewController: UIViewController? = nil) {
+        let vc = ResetPasswordViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng sang màn hình quên mật khẩu */
+    class func navigateToForgotPasswordVC(from viewController: UIViewController? = nil) {
+        let vc = ForgotPasswordViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng sang màn hình kiểm tra email */
+    class func navigateToCheckMailVC(from viewController: UIViewController? = nil) {
+        let vc = CheckMailViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

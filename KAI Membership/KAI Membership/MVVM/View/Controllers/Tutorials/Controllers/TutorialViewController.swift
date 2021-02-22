@@ -79,6 +79,9 @@ class TutorialViewController: BaseViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "ic_back"), for: .normal)
+        button.tintColor = .white
+        button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         button.backgroundColor = .init(hex: "181E25")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 24
@@ -92,8 +95,10 @@ class TutorialViewController: BaseViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         button.backgroundColor = .white
-        button.setTitle("Let me take a tour", for: .normal)
-        button.setTitleColor(UIColor.black.withAlphaComponent(0.87), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: "Let me take a tour", attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+        ]), for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.layer.borderWidth = 1
@@ -199,7 +204,7 @@ class TutorialViewController: BaseViewController {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -34),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -safeAreaInsets.bottom),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             actionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
