@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
 		521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B425DE7C5B009355BC /* UIView+Extensions.swift */; };
@@ -17,6 +18,11 @@
 		521754DA25DEAE44009355BC /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754D925DEAE44009355BC /* Key.swift */; };
 		521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */; };
 		525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */; };
+		525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87425E51DA1001491AE /* PasscodeViewController.swift */; };
+		525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87C25E5543E001491AE /* CongratsViewController.swift */; };
+		525DB88625E557BC001491AE /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB88525E557BC001491AE /* MissionViewController.swift */; };
+		525DB89725E5687A001491AE /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB89625E5687A001491AE /* APIServices.swift */; };
+		525DB89B25E56CF5001491AE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB89A25E56CF5001491AE /* Constants.swift */; };
 		5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270BE2625E160AA0046E224 /* String+Extensions.swift */; };
 		529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17825DD96FD00635807 /* AppDelegate.swift */; };
 		529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17A25DD96FD00635807 /* SceneDelegate.swift */; };
@@ -24,7 +30,7 @@
 		529AE18525DD96FD00635807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529AE18325DD96FD00635807 /* LaunchScreen.storyboard */; };
 		529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1A425DD98E200635807 /* RootTabbarController.swift */; };
 		529AE1A825DD994C00635807 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1A725DD994C00635807 /* NewsViewController.swift */; };
-		529AE1AD25DD998700635807 /* FeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1AC25DD998700635807 /* FeedsViewController.swift */; };
+		529AE1AD25DD998700635807 /* UtilitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1AC25DD998700635807 /* UtilitiesViewController.swift */; };
 		529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1B225DD99B900635807 /* WalletViewController.swift */; };
 		529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE1B725DD9A9300635807 /* BaseViewController.swift */; };
 		52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37C9E25E0001A009F311F /* SignInViewController.swift */; };
@@ -39,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EA1B91CAA873600C2D0BB1C /* Pods-KAI Membership.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAI Membership.debug.xcconfig"; path = "Target Support Files/Pods-KAI Membership/Pods-KAI Membership.debug.xcconfig"; sourceTree = "<group>"; };
+		2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KAI_Membership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		521754B425DE7C5B009355BC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -49,6 +57,11 @@
 		521754D925DEAE44009355BC /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMailViewController.swift; sourceTree = "<group>"; };
+		525DB87425E51DA1001491AE /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
+		525DB87C25E5543E001491AE /* CongratsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsViewController.swift; sourceTree = "<group>"; };
+		525DB88525E557BC001491AE /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
+		525DB89625E5687A001491AE /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIServices.swift; path = ../../../../../../../Documents/APIServices.swift; sourceTree = "<group>"; };
+		525DB89A25E56CF5001491AE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../../../../../Documents/Constants.swift; sourceTree = "<group>"; };
 		5270BE2625E160AA0046E224 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +71,7 @@
 		529AE18625DD96FD00635807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		529AE1A425DD98E200635807 /* RootTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabbarController.swift; sourceTree = "<group>"; };
 		529AE1A725DD994C00635807 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		529AE1AC25DD998700635807 /* FeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewController.swift; sourceTree = "<group>"; };
+		529AE1AC25DD998700635807 /* UtilitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesViewController.swift; sourceTree = "<group>"; };
 		529AE1B225DD99B900635807 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		529AE1B725DD9A9300635807 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		52F37C9E25E0001A009F311F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +83,7 @@
 		52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputTextFieldView.swift; sourceTree = "<group>"; };
 		52F37D0525E1581C009F311F /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		52F37D0B25E1596D009F311F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		9C4C8FBECB22AABB90634A9E /* Pods-KAI Membership.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAI Membership.release.xcconfig"; path = "Target Support Files/Pods-KAI Membership/Pods-KAI Membership.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +152,9 @@
 		521754AB25DE75E7009355BC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				525DB89525E56866001491AE /* Services */,
+				525DB89425E56574001491AE /* Gateway Layer */,
+				525DB89325E56565001491AE /* Data & Networking Layer */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -235,11 +253,115 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		525DB87225E51D88001491AE /* Passcode */ = {
+			isa = PBXGroup;
+			children = (
+				525DB87325E51D8F001491AE /* Controllers */,
+			);
+			path = Passcode;
+			sourceTree = "<group>";
+		};
+		525DB87325E51D8F001491AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				525DB87425E51DA1001491AE /* PasscodeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		525DB87A25E55413001491AE /* Congrats */ = {
+			isa = PBXGroup;
+			children = (
+				525DB87B25E55425001491AE /* Controllers */,
+			);
+			path = Congrats;
+			sourceTree = "<group>";
+		};
+		525DB87B25E55425001491AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				525DB87C25E5543E001491AE /* CongratsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		525DB88025E5576F001491AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				529AE1AC25DD998700635807 /* UtilitiesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		525DB88125E55782001491AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				529AE1A725DD994C00635807 /* NewsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		525DB88225E5578F001491AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				529AE1B225DD99B900635807 /* WalletViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		525DB88325E5579E001491AE /* Mission */ = {
+			isa = PBXGroup;
+			children = (
+				525DB88425E557A4001491AE /* Controllers */,
+			);
+			path = Mission;
+			sourceTree = "<group>";
+		};
+		525DB88425E557A4001491AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				525DB88525E557BC001491AE /* MissionViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		525DB89325E56565001491AE /* Data & Networking Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Data & Networking Layer";
+			sourceTree = "<group>";
+		};
+		525DB89425E56574001491AE /* Gateway Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Gateway Layer";
+			sourceTree = "<group>";
+		};
+		525DB89525E56866001491AE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				525DB89625E5687A001491AE /* APIServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		525DB89925E56CE4001491AE /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				525DB89A25E56CF5001491AE /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		529AE16C25DD96FD00635807 = {
 			isa = PBXGroup;
 			children = (
 				529AE17725DD96FD00635807 /* KAI Membership */,
 				529AE17625DD96FD00635807 /* Products */,
+				7AC363A001BC7394CE0F5013 /* Pods */,
+				C2C1FFCAACE62CA8EB4DA26B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -254,6 +376,7 @@
 		529AE17725DD96FD00635807 /* KAI Membership */ = {
 			isa = PBXGroup;
 			children = (
+				525DB89925E56CE4001491AE /* Constants */,
 				529AE19325DD97AD00635807 /* Application */,
 				521754AC25DE75FA009355BC /* Extensions */,
 				521754A425DE7530009355BC /* MVVM */,
@@ -278,11 +401,14 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				525DB88325E5579E001491AE /* Mission */,
+				525DB87A25E55413001491AE /* Congrats */,
+				525DB87225E51D88001491AE /* Passcode */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
 				52F37D0925E15952009F311F /* Forgot Password */,
 				52F37D0325E157F5009F311F /* Reset Password */,
 				529AE1BB25DD9B4B00635807 /* Base */,
-				529AE1AB25DD997500635807 /* Feeds */,
+				529AE1AB25DD997500635807 /* Utilities */,
 				529AE1AA25DD996E00635807 /* News */,
 				529AE1BD25DD9B5D00635807 /* Root */,
 				521754C825DEACC9009355BC /* Select Account */,
@@ -297,23 +423,23 @@
 		529AE1AA25DD996E00635807 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				529AE1A725DD994C00635807 /* NewsViewController.swift */,
+				525DB88125E55782001491AE /* Controllers */,
 			);
 			path = News;
 			sourceTree = "<group>";
 		};
-		529AE1AB25DD997500635807 /* Feeds */ = {
+		529AE1AB25DD997500635807 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				529AE1AC25DD998700635807 /* FeedsViewController.swift */,
+				525DB88025E5576F001491AE /* Controllers */,
 			);
-			path = Feeds;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		529AE1B125DD99B000635807 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				529AE1B225DD99B900635807 /* WalletViewController.swift */,
+				525DB88225E5578F001491AE /* Controllers */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -424,6 +550,23 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		7AC363A001BC7394CE0F5013 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0EA1B91CAA873600C2D0BB1C /* Pods-KAI Membership.debug.xcconfig */,
+				9C4C8FBECB22AABB90634A9E /* Pods-KAI Membership.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C2C1FFCAACE62CA8EB4DA26B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -431,9 +574,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 529AE18925DD96FD00635807 /* Build configuration list for PBXNativeTarget "KAI Membership" */;
 			buildPhases = (
+				5D22186D79841BAF00846F91 /* [CP] Check Pods Manifest.lock */,
 				529AE17125DD96FD00635807 /* Sources */,
 				529AE17225DD96FD00635807 /* Frameworks */,
 				529AE17325DD96FD00635807 /* Resources */,
+				8858CFC392E0AFC308EE6FA4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -488,20 +633,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5D22186D79841BAF00846F91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KAI Membership-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8858CFC392E0AFC308EE6FA4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KAI Membership/Pods-KAI Membership-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KAI Membership/Pods-KAI Membership-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KAI Membership/Pods-KAI Membership-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		529AE17125DD96FD00635807 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				529AE1AD25DD998700635807 /* FeedsViewController.swift in Sources */,
+				529AE1AD25DD998700635807 /* UtilitiesViewController.swift in Sources */,
 				529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */,
 				521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */,
 				525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */,
 				52F37D0625E1581C009F311F /* ResetPasswordViewController.swift in Sources */,
 				521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */,
 				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
+				525DB89B25E56CF5001491AE /* Constants.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
+				525DB88625E557BC001491AE /* MissionViewController.swift in Sources */,
+				525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */,
 				52F37CEB25E031D1009F311F /* SignUpViewController.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
@@ -517,8 +707,10 @@
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
 				521754DA25DEAE44009355BC /* Key.swift in Sources */,
+				525DB89725E5687A001491AE /* APIServices.swift in Sources */,
 				52F37CFA25E0DCDD009F311F /* KAITextFieldView.swift in Sources */,
 				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
+				525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -655,6 +847,7 @@
 		};
 		529AE18A25DD96FD00635807 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EA1B91CAA873600C2D0BB1C /* Pods-KAI Membership.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -677,6 +870,7 @@
 		};
 		529AE18B25DD96FD00635807 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C4C8FBECB22AABB90634A9E /* Pods-KAI Membership.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

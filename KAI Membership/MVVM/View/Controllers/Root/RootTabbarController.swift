@@ -12,8 +12,9 @@ class RootTabbarController: UITabBarController {
     // MARK: Properties
     enum TabbarType: Int, CaseIterable {
         case news = 0
-        case feeds
+        case mission
         case wallet
+        case utilities
     }
     
     // MARK: Life cycle's
@@ -33,17 +34,22 @@ class RootTabbarController: UITabBarController {
             case .news:
                 let news = NewsViewController()
                 let navigationController = UINavigationController(rootViewController: news)
-                navigationController.tabBarItem.title = "Tin tức"
+                navigationController.tabBarItem.title = "News"
                 navigationControllers.append(navigationController)
-            case .feeds:
-                let feeds = FeedsViewController()
-                let navigationController = UINavigationController(rootViewController: feeds)
-                navigationController.tabBarItem.title = "Feeds"
+            case .mission:
+                let mission = MissionViewController()
+                let navigationController = UINavigationController(rootViewController: mission)
+                navigationController.tabBarItem.title = "Mission"
                 navigationControllers.append(navigationController)
             case .wallet:
                 let wallet = WalletViewController()
                 let navigationController = UINavigationController(rootViewController: wallet)
-                navigationController.tabBarItem.title = "Ví"
+                navigationController.tabBarItem.title = "My Wallet"
+                navigationControllers.append(navigationController)
+            case .utilities:
+                let utilities = UtilitiesViewController()
+                let navigationController = UINavigationController(rootViewController: utilities)
+                navigationController.tabBarItem.title = "Utilities"
                 navigationControllers.append(navigationController)
             }
         }
