@@ -7,8 +7,11 @@
 
 import UIKit
 import Alamofire
+import RxSwift
 
 class MissionViewController: BaseViewController {
+    
+    lazy var disposeBag = DisposeBag()
     
     // MARK: Life cycle's
     override func viewDidLoad() {
@@ -19,7 +22,7 @@ class MissionViewController: BaseViewController {
 //            let result = response.data
 //            
 //            do {
-//                let configures = try JSONDecoder().decode([Configure].self, from: result!)
+//                let configures = try JSONDecoder().decode([Test].self, from: result!)
 //                
 //                debugPrint(configures)
 //            } catch {
@@ -27,17 +30,14 @@ class MissionViewController: BaseViewController {
 //            }
 //        }
         
-        let input = APIInput(withDomain: "https://reviewapi.riviu.co", path: "/metadata")
+        AccountRemoteDataSource.get().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] account in
+            debugPrint("")
+        }).disposed(by: disposeBag)
         
-        APIServices.request(input: input, output: APIOutput.self) {
-            debugPrint("Output: \($0.output)")
-            debugPrint("\n\n")
-            debugPrint("Response: \($0.response)")
-        }
     }
 }
 
-struct Configure: Codable {
+struct Test: Codable {
     let key: String
     let value: String
 }

@@ -21,8 +21,13 @@
 		525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87425E51DA1001491AE /* PasscodeViewController.swift */; };
 		525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87C25E5543E001491AE /* CongratsViewController.swift */; };
 		525DB88625E557BC001491AE /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB88525E557BC001491AE /* MissionViewController.swift */; };
-		525DB89725E5687A001491AE /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB89625E5687A001491AE /* APIServices.swift */; };
-		525DB89B25E56CF5001491AE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB89A25E56CF5001491AE /* Constants.swift */; };
+		525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8AA25E6A7D6001491AE /* Constants.swift */; };
+		525DB8AD25E6A7D7001491AE /* ServicesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8AB25E6A7D7001491AE /* ServicesRepository.swift */; };
+		525DB8E725E6B641001491AE /* AccountDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8E625E6B641001491AE /* AccountDataSource.swift */; };
+		525DB8EB25E6B669001491AE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8EA25E6B669001491AE /* Repository.swift */; };
+		525DB8EE25E6B88C001491AE /* AccountLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8ED25E6B88C001491AE /* AccountLocal.swift */; };
+		525DB8F125E6B898001491AE /* AccountRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8F025E6B898001491AE /* AccountRemote.swift */; };
+		525DB8F625E6B91E001491AE /* AccountServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8F525E6B91E001491AE /* AccountServices.swift */; };
 		5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270BE2625E160AA0046E224 /* String+Extensions.swift */; };
 		529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17825DD96FD00635807 /* AppDelegate.swift */; };
 		529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17A25DD96FD00635807 /* SceneDelegate.swift */; };
@@ -60,8 +65,13 @@
 		525DB87425E51DA1001491AE /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		525DB87C25E5543E001491AE /* CongratsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsViewController.swift; sourceTree = "<group>"; };
 		525DB88525E557BC001491AE /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
-		525DB89625E5687A001491AE /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIServices.swift; path = ../../../../../../../Documents/APIServices.swift; sourceTree = "<group>"; };
-		525DB89A25E56CF5001491AE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../../../../../Documents/Constants.swift; sourceTree = "<group>"; };
+		525DB8AA25E6A7D6001491AE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		525DB8AB25E6A7D7001491AE /* ServicesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRepository.swift; sourceTree = "<group>"; };
+		525DB8E625E6B641001491AE /* AccountDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataSource.swift; sourceTree = "<group>"; };
+		525DB8EA25E6B669001491AE /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		525DB8ED25E6B88C001491AE /* AccountLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLocal.swift; sourceTree = "<group>"; };
+		525DB8F025E6B898001491AE /* AccountRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemote.swift; sourceTree = "<group>"; };
+		525DB8F525E6B91E001491AE /* AccountServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServices.swift; sourceTree = "<group>"; };
 		5270BE2625E160AA0046E224 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,18 +155,9 @@
 		521754A925DE75A9009355BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				525DB8BA25E6A885001491AE /* Accounts */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		521754AB25DE75E7009355BC /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				525DB89525E56866001491AE /* Services */,
-				525DB89425E56574001491AE /* Gateway Layer */,
-				525DB89325E56565001491AE /* Data & Networking Layer */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		521754AC25DE75FA009355BC /* Extensions */ = {
@@ -325,34 +326,46 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		525DB89325E56565001491AE /* Data & Networking Layer */ = {
+		525DB8A625E6A78A001491AE /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				525DB8AA25E6A7D6001491AE /* Constants.swift */,
 			);
-			path = "Data & Networking Layer";
+			path = Constants;
 			sourceTree = "<group>";
 		};
-		525DB89425E56574001491AE /* Gateway Layer */ = {
+		525DB8B025E6A80B001491AE /* Gateway Layer */ = {
 			isa = PBXGroup;
 			children = (
+				525DB8AB25E6A7D7001491AE /* ServicesRepository.swift */,
+				525DB8EA25E6B669001491AE /* Repository.swift */,
 			);
 			path = "Gateway Layer";
 			sourceTree = "<group>";
 		};
-		525DB89525E56866001491AE /* Services */ = {
+		525DB8B125E6A813001491AE /* Data & Networking Layer */ = {
 			isa = PBXGroup;
 			children = (
-				525DB89625E5687A001491AE /* APIServices.swift */,
+				525DB8E625E6B641001491AE /* AccountDataSource.swift */,
 			);
-			path = Services;
+			path = "Data & Networking Layer";
 			sourceTree = "<group>";
 		};
-		525DB89925E56CE4001491AE /* Constants */ = {
+		525DB8BA25E6A885001491AE /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
-				525DB89A25E56CF5001491AE /* Constants.swift */,
+				525DB8ED25E6B88C001491AE /* AccountLocal.swift */,
+				525DB8F025E6B898001491AE /* AccountRemote.swift */,
 			);
-			path = Constants;
+			path = Accounts;
+			sourceTree = "<group>";
+		};
+		525DB8F425E6B905001491AE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				525DB8F525E6B91E001491AE /* AccountServices.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		529AE16C25DD96FD00635807 = {
@@ -376,12 +389,14 @@
 		529AE17725DD96FD00635807 /* KAI Membership */ = {
 			isa = PBXGroup;
 			children = (
-				525DB89925E56CE4001491AE /* Constants */,
 				529AE19325DD97AD00635807 /* Application */,
-				521754AC25DE75FA009355BC /* Extensions */,
-				521754A425DE7530009355BC /* MVVM */,
-				521754AB25DE75E7009355BC /* Services */,
 				529AE18125DD96FD00635807 /* Assets.xcassets */,
+				525DB8A625E6A78A001491AE /* Constants */,
+				525DB8B125E6A813001491AE /* Data & Networking Layer */,
+				521754AC25DE75FA009355BC /* Extensions */,
+				525DB8B025E6A80B001491AE /* Gateway Layer */,
+				521754A425DE7530009355BC /* MVVM */,
+				525DB8F425E6B905001491AE /* Services */,
 			);
 			path = "KAI Membership";
 			sourceTree = "<group>";
@@ -687,7 +702,8 @@
 				52F37D0625E1581C009F311F /* ResetPasswordViewController.swift in Sources */,
 				521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */,
 				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
-				525DB89B25E56CF5001491AE /* Constants.swift in Sources */,
+				525DB8F125E6B898001491AE /* AccountRemote.swift in Sources */,
+				525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
 				525DB88625E557BC001491AE /* MissionViewController.swift in Sources */,
@@ -703,15 +719,19 @@
 				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
 				52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				521754C425DE812D009355BC /* TutorialView.swift in Sources */,
+				525DB8AD25E6A7D7001491AE /* ServicesRepository.swift in Sources */,
+				525DB8E725E6B641001491AE /* AccountDataSource.swift in Sources */,
 				52F37CF125E03459009F311F /* SignInView.swift in Sources */,
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
+				525DB8F625E6B91E001491AE /* AccountServices.swift in Sources */,
 				521754DA25DEAE44009355BC /* Key.swift in Sources */,
-				525DB89725E5687A001491AE /* APIServices.swift in Sources */,
+				525DB8EE25E6B88C001491AE /* AccountLocal.swift in Sources */,
 				52F37CFA25E0DCDD009F311F /* KAITextFieldView.swift in Sources */,
 				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
 				525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
+				525DB8EB25E6B669001491AE /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

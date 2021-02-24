@@ -4,9 +4,12 @@
 target 'KAI Membership' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for KAI Membership
   
   pod 'Alamofire', '~> 5.2'
-
+  pod 'RxSwift', '6.1.0'
+  pod 'RxCocoa', '6.1.0'
+  pod 'RealmSwift', '10.0.0'
+  
 end
