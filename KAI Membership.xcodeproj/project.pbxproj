@@ -28,6 +28,8 @@
 		525DB8EE25E6B88C001491AE /* AccountLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8ED25E6B88C001491AE /* AccountLocal.swift */; };
 		525DB8F125E6B898001491AE /* AccountRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8F025E6B898001491AE /* AccountRemote.swift */; };
 		525DB8F625E6B91E001491AE /* AccountServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8F525E6B91E001491AE /* AccountServices.swift */; };
+		525DB8FB25E77734001491AE /* SelectAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8FA25E77734001491AE /* SelectAccountTableViewCell.swift */; };
+		525DB90425E7FE99001491AE /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB90325E7FE99001491AE /* CALayer+Extensions.swift */; };
 		5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270BE2625E160AA0046E224 /* String+Extensions.swift */; };
 		529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17825DD96FD00635807 /* AppDelegate.swift */; };
 		529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17A25DD96FD00635807 /* SceneDelegate.swift */; };
@@ -72,6 +74,8 @@
 		525DB8ED25E6B88C001491AE /* AccountLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLocal.swift; sourceTree = "<group>"; };
 		525DB8F025E6B898001491AE /* AccountRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemote.swift; sourceTree = "<group>"; };
 		525DB8F525E6B91E001491AE /* AccountServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServices.swift; sourceTree = "<group>"; };
+		525DB8FA25E77734001491AE /* SelectAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountTableViewCell.swift; sourceTree = "<group>"; };
+		525DB90325E7FE99001491AE /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		5270BE2625E160AA0046E224 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */,
 				521754B425DE7C5B009355BC /* UIView+Extensions.swift */,
 				521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */,
+				525DB90325E7FE99001491AE /* CALayer+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 		521754CB25DEAD0D009355BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				525DB8FA25E77734001491AE /* SelectAccountTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -416,20 +422,20 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				525DB88325E5579E001491AE /* Mission */,
-				525DB87A25E55413001491AE /* Congrats */,
-				525DB87225E51D88001491AE /* Passcode */,
-				525DB86D25E3F28A001491AE /* Check Mail */,
-				52F37D0925E15952009F311F /* Forgot Password */,
-				52F37D0325E157F5009F311F /* Reset Password */,
 				529AE1BB25DD9B4B00635807 /* Base */,
-				529AE1AB25DD997500635807 /* Utilities */,
+				525DB86D25E3F28A001491AE /* Check Mail */,
+				525DB87A25E55413001491AE /* Congrats */,
+				52F37D0925E15952009F311F /* Forgot Password */,
+				525DB88325E5579E001491AE /* Mission */,
 				529AE1AA25DD996E00635807 /* News */,
+				525DB87225E51D88001491AE /* Passcode */,
+				52F37D0325E157F5009F311F /* Reset Password */,
 				529AE1BD25DD9B5D00635807 /* Root */,
 				521754C825DEACC9009355BC /* Select Account */,
 				52F37C9D25E00004009F311F /* Sign In */,
 				52F37CE825E031B5009F311F /* Sign Up */,
 				521754AD25DE764B009355BC /* Tutorials */,
+				529AE1AB25DD997500635807 /* Utilities */,
 				529AE1B125DD99B000635807 /* Wallet */,
 			);
 			path = Controllers;
@@ -731,6 +737,8 @@
 				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
 				525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
+				525DB90425E7FE99001491AE /* CALayer+Extensions.swift in Sources */,
+				525DB8FB25E77734001491AE /* SelectAccountTableViewCell.swift in Sources */,
 				525DB8EB25E6B669001491AE /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

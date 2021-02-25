@@ -27,6 +27,12 @@ final class Navigator {
         window?.rootViewController = UINavigationController(rootViewController: vc)
     }
     
+    /* Hiện màn hình lựa chọn tài khoản sử dụng */
+    class func showSelectAccountVC() {
+        let vc = SelectAccountViewController()
+        window?.rootViewController = UINavigationController(rootViewController: vc)
+    }
+    
     /* Điều hướng sang màn hình đăng nhập */
     class func navigateToSignInVC(from viewController: UIViewController? = nil) {
         let vc = SignInViewController()
@@ -58,6 +64,26 @@ final class Navigator {
     /* Điều hướng sang màn hình kiểm tra email */
     class func navigateToCheckMailVC(from viewController: UIViewController? = nil) {
         let vc = CheckMailViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /*
+     Điều hướng sang màn hình mật mã
+     - parameter type: Loại hiển thị
+     */
+    class func navigateToPasscodeVC(from viewController: UIViewController? = nil, with type: PasscodeViewController.`Type`) {
+        let vc = PasscodeViewController(with: type)
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /*
+     Điều hướng sang màn hình chúc mừng (đã đăng ký tài khoản hoăc đã cập nhật mật khẩu) thành công
+     - parameter type: Loại hiển thị
+     */
+    class func navigateToCongratsVC(from viewController: UIViewController? = nil, with type: CongratsViewController.`Type`) {
+        let vc = CongratsViewController(with: type)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

@@ -19,4 +19,8 @@ extension UIViewController {
         
         return window
     }
+    
+    var identifier: String {
+        return String(describing: type(of: self))
+    }
 }

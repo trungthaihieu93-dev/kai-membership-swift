@@ -119,7 +119,7 @@ class PasscodeViewController: BaseViewController {
         view.addSubview(confirmButton)
         
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: pageTitleView.topAnchor, constant: 50),
+            containerView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: 50),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.heightAnchor.constraint(equalToConstant: 64),

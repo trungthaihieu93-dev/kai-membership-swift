@@ -79,8 +79,7 @@ class SignInView: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Layout

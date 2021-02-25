@@ -10,8 +10,17 @@ import UIKit
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: Properties
+    private enum NavigateType {
+        case root
+        case child
+        case present
+        case push
+    }
+    
+    private var _navigateType: NavigateType = .child
+    
     let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
-    let pageTitleHeight: CGFloat = UIApplication.shared.statusBarFrame.height + 52
+    let navigationBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height + 52
     
     var marginDefault: CGFloat {
         return 20
@@ -32,6 +41,27 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     var pageDiscription: String {
         return ""
     }
+    
+    var statusBarStyle: UIStatusBarStyle = .default {
+        didSet {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
+    var navigationBarAlphaDefault: CGFloat {
+        return 1
+    }
+    
+    var isHiddenNavigationBar: Bool {
+        return false
+    }
+    
+    let customNavigationBar: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        
+        return view
+    }()
     
     let pageTitleView: UIView = {
         let view = UIView()
@@ -73,58 +103,45 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         button.setImage(UIImage(named: "ic_back"), for: .normal)
         button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.1
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 8
-        button.layer.shouldRasterize = true // Lưu vào bộ nhớ cache của bóng được hiển thị để nó không cần phải được vẽ lại
-        button.layer.rasterizationScale = UIScreen.main.scale
-        button.addTarget(self, action: #selector(_onTouchecBarBackButton), for: .touchUpInside)
+        button.layer.createShadow(radius: 8, color: .black)
+        button.addTarget(self, action: #selector(_onTouchedBarBackButton), for: .touchUpInside)
         
         return button
     }()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarStyle
+    }
     
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        if !pageTitle.isEmpty || !pageDiscription.isEmpty {
-            _titleLabel.text = pageTitle
-            _titleLabel.sizeToFit()
-            _descriptionLabel.attributedText = pageDiscription.setTextWithFormat(font: .systemFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
-            _descriptionLabel.sizeToFit()
-            
-            view.addSubview(pageTitleView)
-            
-            pageTitleView.addSubview(backButton)
-            pageTitleView.addSubview(_titleLabel)
-            pageTitleView.addSubview(_descriptionLabel)
-            
-            NSLayoutConstraint.activate([
-                pageTitleView.topAnchor.constraint(equalTo: view.topAnchor),
-                pageTitleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                pageTitleView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                
-                backButton.topAnchor.constraint(equalTo: pageTitleView.topAnchor, constant: statusBarHeight + 6),
-                backButton.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: 20),
-                backButton.widthAnchor.constraint(equalToConstant: 32),
-                backButton.heightAnchor.constraint(equalToConstant: 32),
-                
-                _titleLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 6),
-                _titleLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
-                _titleLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
-                
-                _descriptionLabel.topAnchor.constraint(equalTo: _titleLabel.bottomAnchor, constant: 17),
-                _descriptionLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
-                _descriptionLabel.bottomAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: -8),
-                _descriptionLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
-            ])
+        if isBeingPresented {
+            _navigateType = .present
+        } else {
+            if let navigationController = self.navigationController {
+                if navigationController.viewControllers.last === self {
+                    if navigationController.viewControllers.count < 2 {
+                        _navigateType = .root
+                    } else {
+                        _navigateType = .push
+                    }
+                } else {
+                    _navigateType = .child
+                }
+            } else {
+                _navigateType = .child
+            }
         }
+        
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        guard _navigateType == .root || _navigateType == .push else { return }
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -145,10 +162,72 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.bringSubviewToFront(pageTitleView)
+        view.bringSubviewToFront(customNavigationBar)
+    }
+    
+    deinit {
+        debugPrint("Deinit \(identifier)")
+    }
+    
+    // MARK: Layouts
+    private func setupView() {
+        view.backgroundColor = .white
+        
+        if !isHiddenNavigationBar && (_navigateType == .root || _navigateType == .push) {
+            view.addSubview(customNavigationBar)
+            customNavigationBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: navigationBarHeight)
+            navigationBarAnimation(withAlpha: navigationBarAlphaDefault)
+            
+            if _navigateType == .push {
+                customNavigationBar.addSubview(backButton)
+                
+                backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: statusBarHeight + 6).isActive = true
+                backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+                backButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
+                backButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
+            }
+        }
+        
+        if !pageTitle.isEmpty || !pageDiscription.isEmpty {
+            _titleLabel.text = pageTitle
+            _titleLabel.sizeToFit()
+            _descriptionLabel.attributedText = pageDiscription.setTextWithFormat(font: .systemFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+            _descriptionLabel.sizeToFit()
+            
+            view.addSubview(pageTitleView)
+            pageTitleView.addSubview(_titleLabel)
+            pageTitleView.addSubview(_descriptionLabel)
+            
+            if !isHiddenNavigationBar && (_navigateType == .root || _navigateType == .push) {
+                pageTitleView.topAnchor.constraint(equalTo: view.topAnchor, constant: navigationBarHeight).isActive = true
+            } else {
+                pageTitleView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            }
+            
+            NSLayoutConstraint.activate([
+                pageTitleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                pageTitleView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                
+                _titleLabel.topAnchor.constraint(equalTo: pageTitleView.topAnchor),
+                _titleLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
+                _titleLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
+                
+                _descriptionLabel.topAnchor.constraint(equalTo: _titleLabel.bottomAnchor, constant: 17),
+                _descriptionLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
+                _descriptionLabel.bottomAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: -8),
+                _descriptionLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
+            ])
+        }
+        
+    }
+    
+    func navigationBarAnimation(withAlpha alpha: CGFloat) {
+        guard !isHiddenNavigationBar else { return }
+
     }
     
     // MARK: Handle actions
-    @objc private func _onTouchecBarBackButton() {
+    @objc private func _onTouchedBarBackButton() {
         self.navigationController?.popViewController(animated: true)
     }
 }
