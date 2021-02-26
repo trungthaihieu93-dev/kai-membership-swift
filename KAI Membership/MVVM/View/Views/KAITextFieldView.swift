@@ -35,7 +35,7 @@ class KAITextFieldView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont(name: "HelveticaNeue-Medium", size: 11) ?? UIFont.systemFont(ofSize: 11, weight: .medium)
+        label.font = .workSansFont(ofSize: 11, weight: .medium)
         label.textColor = UIColor.init(hex: "ee2020")
         
         return label
@@ -45,7 +45,7 @@ class KAITextFieldView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.font = .workSansFont(ofSize: 14, weight: .medium)
         
         return label
     }()
@@ -115,7 +115,7 @@ class KAITextFieldView: UIView {
     weak var delegate: KAITextFieldViewDelegate?
     
     // MARK: Life cycle
-    init(with type: `Type` = .normal, textColor: UIColor = .black, font: UIFont = .systemFont(ofSize: 14, weight: .regular), returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default, placeholder: String? = nil, textAlignment: NSTextAlignment = .left, isSecureTextEntryEnabled: Bool = false, frame: CGRect = .zero) {
+    init(with type: `Type` = .normal, textColor: UIColor = .black, font: UIFont = .workSansFont(ofSize: 14, weight: .medium), returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default, placeholder: String? = nil, textAlignment: NSTextAlignment = .left, isSecureTextEntryEnabled: Bool = false, frame: CGRect = .zero) {
         self.type = type
         self.isSecureTextEntryEnabled = isSecureTextEntryEnabled
         self.isSecureTextEntry = isSecureTextEntryEnabled

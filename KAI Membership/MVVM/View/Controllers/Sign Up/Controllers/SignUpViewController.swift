@@ -15,7 +15,7 @@ class SignUpViewController: BaseViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.setAttributedTitle(NSAttributedString(string: "Let me take a tour", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
         ]), for: .normal)
         button.layer.masksToBounds = true

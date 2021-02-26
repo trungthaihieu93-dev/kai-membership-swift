@@ -37,7 +37,7 @@ class CongratsViewController: BaseViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 28, weight: .regular)
+        label.font = .workSansFont(ofSize: 28, weight: .medium)
         label.textColor = UIColor.black.withAlphaComponent(0.87)
         label.text = "Congrats!"
         
@@ -57,7 +57,7 @@ class CongratsViewController: BaseViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.setAttributedTitle(NSAttributedString(string: "Spin Later", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
         ]), for: .normal)
         button.layer.masksToBounds = true
@@ -110,9 +110,9 @@ class CongratsViewController: BaseViewController {
         
         switch type {
         case .signUp:
-            descriptionLabel.attributedText = "Welcome to Kai membership! \nYou have got 01 lucky spin".setTextWithFormat(font: .systemFont(ofSize: 14, weight: .regular), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+            descriptionLabel.attributedText = "Welcome to Kai membership! \nYou have got 01 lucky spin".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
             spinNowButton.setAttributedTitle(NSAttributedString(string: "Spin Now", attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]), for: .normal)
             
@@ -139,9 +139,9 @@ class CongratsViewController: BaseViewController {
                 spinNowButton.heightAnchor.constraint(equalToConstant: 52)
             ])
         case .passcode:
-            descriptionLabel.attributedText = "Your new Passcode is ready.".setTextWithFormat(font: .systemFont(ofSize: 14, weight: .regular), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+            descriptionLabel.attributedText = "Your new Passcode is ready.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
             spinNowButton.setAttributedTitle(NSAttributedString(string: "Ok, I got it", attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]), for: .normal)
             

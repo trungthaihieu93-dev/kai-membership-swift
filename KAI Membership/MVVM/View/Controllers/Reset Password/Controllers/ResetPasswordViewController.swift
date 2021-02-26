@@ -21,7 +21,7 @@ class ResetPasswordViewController: BaseViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Send Instructions", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
         button.layer.masksToBounds = true

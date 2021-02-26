@@ -37,7 +37,7 @@ class SignInView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Forgot password?", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .medium),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 12, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.init(hex: "94A2B2")
         ]), for: .normal)
         button.contentEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 0)
@@ -50,7 +50,7 @@ class SignInView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Sign in", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
         button.layer.masksToBounds = true
@@ -124,12 +124,12 @@ class SignInView: UIView {
 
     private func configureSignUpLabel() {
         let mutableAttributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: signUpText, attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54)
         ]))
         
         let range = (signUpText as NSString).range(of: detechActionSignUpText)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 14, weight: .regular), range: range)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: range)
         mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "94A2B2"), range: range)
         
         signUpLabel.attributedText = mutableAttributedString

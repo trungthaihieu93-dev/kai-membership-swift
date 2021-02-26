@@ -69,7 +69,7 @@ extension SelectAccountViewController: UITableViewDataSource {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Sign in to another account", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.init(hex: "017CAD")
         ]), for: .normal)
         button.addTarget(self, action: #selector(onPressedSignInAnotherAccount), for: .touchUpInside)

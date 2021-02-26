@@ -61,7 +61,7 @@ class PasscodeViewController: BaseViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
         button.layer.masksToBounds = true
@@ -75,7 +75,7 @@ class PasscodeViewController: BaseViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Show Passcode", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
         ]), for: .normal)
         button.addTarget(self, action: #selector(onPressedShowPasscode), for: .touchUpInside)
@@ -147,13 +147,13 @@ class PasscodeViewController: BaseViewController {
     }
     
     private func configureFooterLabel() {
-        let mutableAttributedString = footerString.setTextWithFormat(font: .systemFont(ofSize: 14, weight: .regular), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+        let mutableAttributedString = footerString.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         let termsAndConditionsRange = (footerString as NSString).range(of: termsAndConditions)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 14, weight: .regular), range: termsAndConditionsRange)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: termsAndConditionsRange)
         mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: termsAndConditionsRange)
         
         let privacyPolicyRange = (footerString as NSString).range(of: privacyPolicy)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 14, weight: .regular), range: privacyPolicyRange)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: privacyPolicyRange)
         mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: privacyPolicyRange)
         
         footerLabel.attributedText = mutableAttributedString

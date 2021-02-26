@@ -14,7 +14,7 @@ class KAIInputTextFieldView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 10, weight: .medium)
+        label.font = .workSansFont(ofSize: 10, weight: .medium)
         
         return label
     }()

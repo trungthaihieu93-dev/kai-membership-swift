@@ -15,7 +15,7 @@ class TutorialContentView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textColor = UIColor.black.withAlphaComponent(0.87)
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.font = UIFont.workSansFont(ofSize: 20, weight: .medium)
         
         return label
     }()
@@ -25,7 +25,7 @@ class TutorialContentView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 4
         label.textColor = UIColor.black.withAlphaComponent(0.54)
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.workSansFont(ofSize: 14, weight: .medium)
         
         return label
     }()

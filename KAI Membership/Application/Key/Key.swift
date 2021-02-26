@@ -10,6 +10,7 @@ import Foundation
 class Key {
     
     struct UserDefault {
-        static let AuthorizationToken = "AuthorizationTokenKey"
+        static let AuthorizationToken = "KAI.UserDefault.AuthorizationToken"
+        static let DarkMode = "KAI.UserDefault.DarkMode"
     }
 }

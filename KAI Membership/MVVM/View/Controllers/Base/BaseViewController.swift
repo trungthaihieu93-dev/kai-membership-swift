@@ -84,7 +84,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textColor = UIColor.black.withAlphaComponent(0.87)
-        label.font = .systemFont(ofSize: 36, weight: .regular)
+        label.font = .workSansFont(ofSize: 36, weight: .regular)
         
         return label
     }()
@@ -191,7 +191,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         if !pageTitle.isEmpty || !pageDiscription.isEmpty {
             _titleLabel.text = pageTitle
             _titleLabel.sizeToFit()
-            _descriptionLabel.attributedText = pageDiscription.setTextWithFormat(font: .systemFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+            _descriptionLabel.attributedText = pageDiscription.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
             _descriptionLabel.sizeToFit()
             
             view.addSubview(pageTitleView)

@@ -53,7 +53,7 @@ class CheckMailViewController: BaseViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Open email app", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
         button.layer.masksToBounds = true
@@ -130,9 +130,9 @@ class CheckMailViewController: BaseViewController {
     }
     
     private func configureFooterLabel() {
-        let mutableAttributedString = footerString.setTextWithFormat(font: .systemFont(ofSize: 14, weight: .regular), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+        let mutableAttributedString = footerString.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         let range = (footerString as NSString).range(of: detectActionFooter)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 14, weight: .regular), range: range)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: range)
         mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "94A2B2"), range: range)
         
         footerLabel.attributedText = mutableAttributedString
