@@ -14,8 +14,6 @@ class SelectAccountViewController: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-//        tableView.estimatedRowHeight = 44
-//        tableView.rowHeight = 100//UITableView.automaticDimension
         tableView.contentInset = .init(top: 20, left: 0, bottom: 34, right: 0)
         tableView.register(SelectAccountTableViewCell.self, forCellReuseIdentifier: SelectAccountTableViewCell.identifier)
         tableView.dataSource = self
@@ -103,4 +101,3 @@ extension SelectAccountViewController: UITableViewDelegate {
         Navigator.navigateToPasscodeVC(from: self, with: .signIn)
     }
 }
-

@@ -75,7 +75,7 @@ class SignInView: UIView {
     // MARK: Life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -83,7 +83,13 @@ class SignInView: UIView {
     }
     
     // MARK: Layout
-    func commonInit() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.signInButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+    }
+    
+    func setupView() {
         addSubview(emailTextField)
         addSubview(passwordTextField)
         addSubview(forgotPasswordButton)
@@ -114,12 +120,6 @@ class SignInView: UIView {
         ])
         
         configureSignUpLabel()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.signInButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
     }
 
     private func configureSignUpLabel() {

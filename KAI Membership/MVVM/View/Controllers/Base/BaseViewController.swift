@@ -56,6 +56,14 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         return false
     }
     
+    var bounds: CGRect {
+        if !isHiddenNavigationBar && (_navigateType == .root || _navigateType == .push) {
+            return CGRect(x: 0, y: navigationBarHeight, width: view.bounds.width, height: view.bounds.height - navigationBarHeight)
+        } else {
+            return view.bounds
+        }
+    }
+    
     let customNavigationBar: UIView = {
         let view = UIView()
         view.clipsToBounds = true
@@ -173,6 +181,11 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     private func setupView() {
         view.backgroundColor = .white
         
+        view.addSubview(pageTitleView)
+        
+        pageTitleView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        pageTitleView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         if !isHiddenNavigationBar && (_navigateType == .root || _navigateType == .push) {
             view.addSubview(customNavigationBar)
             customNavigationBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: navigationBarHeight)
@@ -186,39 +199,45 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
                 backButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
                 backButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
             }
+            
+            pageTitleView.topAnchor.constraint(equalTo: view.topAnchor, constant: navigationBarHeight).isActive = true
+        } else {
+            pageTitleView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         }
         
-        if !pageTitle.isEmpty || !pageDiscription.isEmpty {
-            _titleLabel.text = pageTitle
-            _titleLabel.sizeToFit()
-            _descriptionLabel.attributedText = pageDiscription.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
-            _descriptionLabel.sizeToFit()
+        _setupTitleView()
+    }
+    
+    private func _setupTitleView() {
+        if pageTitle.isEmpty && pageDiscription.isEmpty {
+            pageTitleView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        } else {
+            var topAnchor: NSLayoutYAxisAnchor = pageTitleView.topAnchor
             
-            view.addSubview(pageTitleView)
-            pageTitleView.addSubview(_titleLabel)
-            pageTitleView.addSubview(_descriptionLabel)
-            
-            if !isHiddenNavigationBar && (_navigateType == .root || _navigateType == .push) {
-                pageTitleView.topAnchor.constraint(equalTo: view.topAnchor, constant: navigationBarHeight).isActive = true
-            } else {
-                pageTitleView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            if !pageTitle.isEmpty {
+                _titleLabel.text = pageTitle
+                _titleLabel.sizeToFit()
+                pageTitleView.addSubview(_titleLabel)
+                
+                _titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+                _titleLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault).isActive = true
+                _titleLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault).isActive = true
+                topAnchor = _titleLabel.bottomAnchor
             }
             
-            NSLayoutConstraint.activate([
-                pageTitleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                pageTitleView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            if pageDiscription.isEmpty {
+                _titleLabel.bottomAnchor.constraint(equalTo: pageTitleView.bottomAnchor).isActive = true
+            } else {
+                _descriptionLabel.attributedText = pageDiscription.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+                _descriptionLabel.sizeToFit()
+                pageTitleView.addSubview(_descriptionLabel)
                 
-                _titleLabel.topAnchor.constraint(equalTo: pageTitleView.topAnchor),
-                _titleLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
-                _titleLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
-                
-                _descriptionLabel.topAnchor.constraint(equalTo: _titleLabel.bottomAnchor, constant: 17),
-                _descriptionLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault),
-                _descriptionLabel.bottomAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: -8),
-                _descriptionLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault),
-            ])
+                _descriptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17).isActive = true
+                _descriptionLabel.leadingAnchor.constraint(equalTo: pageTitleView.leadingAnchor, constant: marginDefault).isActive = true
+                _descriptionLabel.bottomAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: -8).isActive = true
+                _descriptionLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault).isActive = true
+            }
         }
-        
     }
     
     func navigationBarAnimation(withAlpha alpha: CGFloat) {

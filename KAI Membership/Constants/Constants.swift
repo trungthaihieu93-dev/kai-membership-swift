@@ -7,6 +7,16 @@
 
 import UIKit
 
+enum CurrencySeparator: String {
+    case dots = "."
+    case comma = ","
+}
+
+enum UnitCurrency: String {
+    case kai = "KAI"
+    case vnd = "VNĐ"
+}
+
 class Constants {
     
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "undefined"
@@ -25,6 +35,7 @@ class Constants {
         static let name: String = UIDevice.current.name.folding(options: .diacriticInsensitive, locale: .current)
         static let model: String = UIDevice.current.model
         static let version: String = UIDevice.current.systemVersion
+        static let screenSize = UIScreen.main.bounds
     }
 }
 

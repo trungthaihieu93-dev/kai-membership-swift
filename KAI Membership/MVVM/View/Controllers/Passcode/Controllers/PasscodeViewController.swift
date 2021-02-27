@@ -49,10 +49,9 @@ class PasscodeViewController: BaseViewController {
     private let termsAndConditions: String = "Terms & Conditions"
     private let privacyPolicy: String = "Privacy Policy"
     
-    private let containerView: UIView = {
-        let view = UIView()
+    private let passcodeView: PasscodeView = {
+        let view = PasscodeView(with: .four)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
         
         return view
     }()
@@ -113,18 +112,17 @@ class PasscodeViewController: BaseViewController {
     
     // MARK: Layout
     private func setupView() {
-        view.addSubview(containerView)
+        view.addSubview(passcodeView)
         view.addSubview(showPasscodeButton)
         view.addSubview(footerLabel)
         view.addSubview(confirmButton)
         
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: 50),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: 64),
+            passcodeView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: 50),
+            passcodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            passcodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            showPasscodeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 18),
+            showPasscodeButton.topAnchor.constraint(equalTo: passcodeView.bottomAnchor, constant: 18),
             showPasscodeButton.leadingAnchor.constraint(lessThanOrEqualTo: view.leadingAnchor, constant: 20),
             showPasscodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             showPasscodeButton.heightAnchor.constraint(equalToConstant: 40),

@@ -11,5 +11,6 @@ target 'KAI Membership' do
   pod 'RxSwift', '6.1.0'
   pod 'RxCocoa', '6.1.0'
   pod 'RealmSwift', '10.0.0'
+  pod 'DZNEmptyDataSet'
   
 end
