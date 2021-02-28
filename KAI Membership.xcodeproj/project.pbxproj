@@ -59,6 +59,8 @@
 		525DB96425EA3B86001491AE /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96325EA3B86001491AE /* PasscodeView.swift */; };
 		525DB96925EA42C0001491AE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96825EA42C0001491AE /* CardView.swift */; };
 		525DB96D25EA4490001491AE /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96C25EA4490001491AE /* Double+Extensions.swift */; };
+		525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */; };
+		525DB97B25EB52A2001491AE /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */; };
 		5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270BE2625E160AA0046E224 /* String+Extensions.swift */; };
 		529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17825DD96FD00635807 /* AppDelegate.swift */; };
 		529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17A25DD96FD00635807 /* SceneDelegate.swift */; };
@@ -134,6 +136,8 @@
 		525DB96325EA3B86001491AE /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
 		525DB96825EA42C0001491AE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		525DB96C25EA4490001491AE /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTransactionsTableViewCell.swift; sourceTree = "<group>"; };
+		525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		5270BE2625E160AA0046E224 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,13 +231,14 @@
 			isa = PBXGroup;
 			children = (
 				525DB90325E7FE99001491AE /* CALayer+Extensions.swift */,
+				525DB96C25EA4490001491AE /* Double+Extensions.swift */,
 				5270BE2625E160AA0046E224 /* String+Extensions.swift */,
 				521754B125DE79D1009355BC /* UIColor+Extensions.swift */,
 				525DB95325E96018001491AE /* UIFont+Extensions.swift */,
+				525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */,
 				52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */,
 				521754B425DE7C5B009355BC /* UIView+Extensions.swift */,
 				521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */,
-				525DB96C25EA4490001491AE /* Double+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				525DB96825EA42C0001491AE /* CardView.swift */,
+				525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -867,7 +873,9 @@
 				525DB96D25EA4490001491AE /* Double+Extensions.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */,
+				525DB97B25EB52A2001491AE /* UITableViewCell+Extensions.swift in Sources */,
 				529AE1A825DD994C00635807 /* NewsViewController.swift in Sources */,
+				525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */,
 				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
 				52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				521754C425DE812D009355BC /* TutorialView.swift in Sources */,

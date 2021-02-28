@@ -9,6 +9,11 @@ import UIKit
 
 class UtilitiesViewController: BaseViewController {
 
+    // MARK: Properties
+    override var pageTitle: String {
+        return "Utilities"
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()

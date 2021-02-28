@@ -15,8 +15,8 @@ class WalletViewController: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.contentInset = .init(top: 10, left: 0, bottom: 34, right: 0)
-        tableView.register(SelectAccountTableViewCell.self, forCellReuseIdentifier: SelectAccountTableViewCell.identifier)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 34, right: 0)
+        tableView.register(RecentTransactionsTableViewCell.self, forCellReuseIdentifier: RecentTransactionsTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.emptyDataSetSource = self
@@ -39,7 +39,6 @@ class WalletViewController: BaseViewController {
         super.viewDidLoad()
         
         setupView()
-//        tableView.tableHeaderView = cardView
         setupTableHeaderView()
     }
     
@@ -56,8 +55,8 @@ class WalletViewController: BaseViewController {
     }
     
     private func setupTableHeaderView() {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenSize.width, height: 200))
-        cardView.frame = CGRect(x: 31, y: 0, width: headerView.frame.width - 62, height: headerView.frame.height)
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenSize.width, height: 252))
+        cardView.frame = CGRect(x: 31, y: 26, width: headerView.frame.width - 62, height: headerView.frame.height - 52)
         headerView.addSubview(cardView)
         cardView.configure(kai: 3002.123, walletAddress: "0x9e991abd0...0e7927dd4b3d58", holder: "AN NGUYEN", memberSince: 1598522428)
         
@@ -69,11 +68,11 @@ class WalletViewController: BaseViewController {
 extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SelectAccountTableViewCell.identifier, for: indexPath) as! SelectAccountTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecentTransactionsTableViewCell.identifier, for: indexPath) as! RecentTransactionsTableViewCell
         
         return cell
     }

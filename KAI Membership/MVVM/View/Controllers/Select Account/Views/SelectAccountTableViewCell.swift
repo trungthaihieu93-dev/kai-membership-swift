@@ -10,8 +10,6 @@ import UIKit
 class SelectAccountTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    static let identifier: String = "SelectAccountTableViewCell"
-    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -80,10 +78,8 @@ class SelectAccountTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-extension SelectAccountTableViewCell {
     
+    // MARK: Layout
     private func setupView() {
         selectionStyle = .none
         
