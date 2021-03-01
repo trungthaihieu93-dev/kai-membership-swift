@@ -11,7 +11,7 @@ class AccountRemoteDataSource {
     
     class func get() -> Observable<AccountRemote> {
         return Observable<AccountRemote>.create({ (observer) -> Disposable in
-            AccountServices.testMetadata()
+//            AccountServices.testMetadata()
             
             // Can hoan chinh
             

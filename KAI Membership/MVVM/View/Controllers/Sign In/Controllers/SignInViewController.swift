@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class SignInViewController: BaseViewController {
 
     // MARK: Properties
+    let viewModel = SignInViewModel()
+    
     private lazy var trialButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +33,6 @@ class SignInViewController: BaseViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .yellow
         
         return scrollView
     }()
@@ -38,18 +40,7 @@ class SignInViewController: BaseViewController {
     private lazy var signInView: SignInView = {
         let view = SignInView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.completion = { [weak self] in
-            guard let this = self else { return }
-            
-            switch $0 {
-            case.forgotPassword:
-                this.forgotPassword()
-            case .signIn:
-                this.signIn()
-            case .createAccount:
-                this.createAccount()
-            }
-        }
+        view.delegate = self
         
         return view
     }()
@@ -102,19 +93,20 @@ class SignInViewController: BaseViewController {
         ])
     }
     
-    // MARK: Forgot password
-    private func forgotPassword() {
-        Navigator.navigateToForgotPasswordVC(from: self)
-    }
-    
-    // MARK: Sign In
-    private func signIn() {
-        Navigator.navigateToResetPasswordVC(from: self)
-    }
-    
-    // MARK: Create account
-    private func createAccount() {
-        Navigator.navigateToSignUpVC(from: self)
+    // MARK: Login
+    func login() {
+        viewModel.login().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] hashtags in
+            guard let this = self else { return }
+            
+            
+        }, onCompleted: { [weak self] in
+            guard let this = self else { return }
+            
+        
+        }).disposed(by: disposeBag)
+        
+        
+//        Navigator.navigateToResetPasswordVC(from: self)
     }
 }
 
@@ -125,9 +117,13 @@ extension SignInViewController {
         if notification.name == UIResponder.keyboardWillShowNotification {
             guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             
-//            self.scrollView.frame.size.height = self.view.frame.height - (self.minY + keyboardFrame.height)
+            let bottomOffset = Constants.Device.screenSize.height - (scrollView.frame.origin.y + signInView.frame.origin.y + signInView.frame.height + 10)
+            
+            if keyboardFrame.height > bottomOffset {
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardFrame.height - bottomOffset), animated: true)
+            }
         } else {
-//            self.scrollView.frame.size.height = self.view.frame.height - self.minY
+            self.scrollView.setContentOffset(.zero, animated: true)
         }
     }
     

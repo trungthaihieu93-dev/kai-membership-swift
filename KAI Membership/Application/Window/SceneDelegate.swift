@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = RootTabbarController()
         } else {
             Navigator.showTutorialVC()
+//            Navigator.showSelectAccountVC()
         }
         
         window?.makeKeyAndVisible()

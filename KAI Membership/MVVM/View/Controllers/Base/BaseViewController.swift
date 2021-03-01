@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -111,11 +112,14 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         button.setImage(UIImage(named: "ic_back"), for: .normal)
         button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         button.backgroundColor = .white
-        button.layer.createShadow(radius: 8, color: .black)
+        button.layer.cornerRadius = 8
+        button.createShadow(radius: 8)
         button.addTarget(self, action: #selector(_onTouchedBarBackButton), for: .touchUpInside)
         
         return button
     }()
+    
+    lazy var disposeBag = DisposeBag()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle

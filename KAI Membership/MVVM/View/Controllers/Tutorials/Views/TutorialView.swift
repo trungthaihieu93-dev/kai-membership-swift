@@ -20,7 +20,6 @@ class TutorialView: UIView {
     private let contentView: TutorialContentView = {
         let view = TutorialContentView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
         view.layer.cornerRadius = 24
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
@@ -30,16 +29,15 @@ class TutorialView: UIView {
     // MARK: Life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupView()
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Layout
-    func commonInit() {
+    func setupView() {
         addSubview(imageView)
         addSubview(contentView)
         
@@ -54,6 +52,14 @@ class TutorialView: UIView {
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 337)
         ])
+        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+//            self.contentView.createShadow(radius: 24)
+//        }
+        
+//        DispatchQueue.main.async {
+//            self.contentView.createShadow(radius: 24)
+//        }
     }
 }
 

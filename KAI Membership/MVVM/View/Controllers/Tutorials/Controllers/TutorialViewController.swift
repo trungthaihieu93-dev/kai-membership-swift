@@ -79,7 +79,7 @@ class TutorialViewController: BaseViewController {
     private lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_back"), for: .normal)
+        button.setImage(UIImage(named: "ic_right_arrow"), for: .normal)
         button.tintColor = .white
         button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         button.backgroundColor = .init(hex: "181E25")

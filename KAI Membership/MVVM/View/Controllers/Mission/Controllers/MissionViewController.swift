@@ -11,8 +11,6 @@ import RxSwift
 
 class MissionViewController: BaseViewController {
     
-    lazy var disposeBag = DisposeBag()
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()

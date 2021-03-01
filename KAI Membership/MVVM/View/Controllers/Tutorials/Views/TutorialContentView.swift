@@ -24,8 +24,6 @@ class TutorialContentView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 4
-        label.textColor = UIColor.black.withAlphaComponent(0.54)
-        label.font = UIFont.workSansFont(ofSize: 14, weight: .medium)
         
         return label
     }()
@@ -64,7 +62,6 @@ extension TutorialContentView {
 
     func configure(title: String? = nil, body: String? = nil) {
         titleLabel.text = title
-        bodyLabel.text = body
-        backgroundColor = .yellow
+        bodyLabel.attributedText = body?.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54), lineHeightMultiple: nil)
     }
 }

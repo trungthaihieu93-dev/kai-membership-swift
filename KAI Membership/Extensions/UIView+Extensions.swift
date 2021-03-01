@@ -26,12 +26,47 @@ extension UIView {
         }
     }
     
+    enum ShadowDirection {
+        case `default`
+        case top
+        case left
+        case bottom
+        case right
+        case adjust(CGSize)
+        
+        var offset: CGSize {
+            switch self {
+            case .default:
+                return .zero
+            case .top:
+                return CGSize(width: 0, height: -10)
+            case .left:
+                return CGSize(width: -10, height: 0)
+            case .bottom:
+                return CGSize(width: 0, height: 10)
+            case .right:
+                return CGSize(width: 10, height: 0)
+            case .adjust(let size):
+                return size
+            }
+        }
+    }
+    
     func removeAllSublayers(withName name: String) {
         layer.sublayers?.forEach {
             if $0.name == name {
                 $0.removeFromSuperlayer()
             }
         }
+    }
+    
+    func createShadow(radius: CGFloat, color: UIColor = .black, direction: ShadowDirection = .default) {
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = 0.1
+        layer.shadowOffset = direction.offset
+        layer.shadowRadius = radius
+        layer.shouldRasterize = true // Lưu vào bộ nhớ cache của bóng được hiển thị để nó không cần phải được vẽ lại
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
     func gradientBackgroundColors(_ colors: [CGColor], direction: GradientDirection) {

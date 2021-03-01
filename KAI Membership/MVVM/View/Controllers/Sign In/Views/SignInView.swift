@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol SignInViewDelegate: class {
+    func signInViewEmailValueChange(_ signInView: SignInView, textField: UITextField)
+    func signInViewPasswordValueChange(_ signInView: SignInView, textField: UITextField)
+    func signInViewDidFinishTouchingAction(_ signInView: SignInView, actionKey: SignInView.ActionKey)
+}
+
 class SignInView: UIView {
 
     // MARK: Properties
@@ -19,16 +25,18 @@ class SignInView: UIView {
     private let signUpText: String = "Not a KAISER yet? Create account"
     private let detechActionSignUpText: String = "Create account"
     
-    private let emailTextField: KAIInputTextFieldView = {
+    private lazy var emailTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "EMAIL", placeholder: "eg. an.nguyen@kardianchain.io")
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         
         return view
     }()
     
-    private let passwordTextField: KAIInputTextFieldView = {
+    private lazy var passwordTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "PASSWORD", placeholder: "Your password", isSecureTextEntryEnabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         
         return view
     }()
@@ -70,7 +78,7 @@ class SignInView: UIView {
         return label
     }()
     
-    var completion: ((ActionKey) -> Void)?
+    weak var delegate: SignInViewDelegate?
     
     // MARK: Life cycle
     override init(frame: CGRect) {
@@ -140,11 +148,11 @@ class SignInView: UIView {
 extension SignInView {
     
     @objc private func onPressedForgotPassword() {
-        completion?(.forgotPassword)
+        delegate?.signInViewDidFinishTouchingAction(self, actionKey: .forgotPassword)
     }
     
     @objc private func onPressedSignIn() {
-        completion?(.signIn)
+        delegate?.signInViewDidFinishTouchingAction(self, actionKey: .signIn)
     }
     
     @objc private func onTapCreateAccount(_ recognizer: UITapGestureRecognizer) {
@@ -152,6 +160,27 @@ extension SignInView {
 
         guard recognizer.didTapAttributedTextInLabel(label: signUpLabel, inRange: range) else { return }
         
-        completion?(.createAccount)
+        delegate?.signInViewDidFinishTouchingAction(self, actionKey: .createAccount)
+    }
+}
+
+// MARK: KAITextFieldViewDelegate
+extension SignInView: KAITextFieldViewDelegate {
+    
+    func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
+        if view == emailTextField {
+            delegate?.signInViewEmailValueChange(self, textField: textField)
+        } else if view == passwordTextField {
+            delegate?.signInViewPasswordValueChange(self, textField: textField)
+        }
+    }
+    
+    func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
+        delegate?.signInViewDidFinishTouchingAction(self, actionKey: .signIn)
+        return false
+    }
+    
+    func kAITextFieldViewShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
+        return true
     }
 }

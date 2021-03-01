@@ -20,7 +20,7 @@ enum UnitCurrency: String {
 class Constants {
     
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "undefined"
-    static let environment = Constants.isDebug ? Environment.development : Environment.production
+    static let environment = Constants.isDebug ? Environment.production : Environment.production
     
     static var isDebug: Bool {
         #if DEBUG
@@ -56,7 +56,7 @@ enum Environment {
 struct API {
     
     enum Domain: String {
-        case production = "https://reviewapi.riviu.co"
-        case development = "https://review-api-development.riviu.co"
+        case production = "https://membership-backend.kardiachain.io"
+        case development = "https://reviewapi.riviu.co"
     }
 }

@@ -29,7 +29,6 @@
 		525DB8F125E6B898001491AE /* AccountRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8F025E6B898001491AE /* AccountRemote.swift */; };
 		525DB8F625E6B91E001491AE /* AccountServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8F525E6B91E001491AE /* AccountServices.swift */; };
 		525DB8FB25E77734001491AE /* SelectAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8FA25E77734001491AE /* SelectAccountTableViewCell.swift */; };
-		525DB90425E7FE99001491AE /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB90325E7FE99001491AE /* CALayer+Extensions.swift */; };
 		525DB90825E91A52001491AE /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB90725E91A52001491AE /* AppSetting.swift */; };
 		525DB93925E959C0001491AE /* WorkSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 525DB92125E959BE001491AE /* WorkSans-SemiBoldItalic.ttf */; };
 		525DB93A25E959C0001491AE /* WorkSans[wght].ttf in Resources */ = {isa = PBXBuildFile; fileRef = 525DB92225E959BE001491AE /* WorkSans[wght].ttf */; };
@@ -61,6 +60,13 @@
 		525DB96D25EA4490001491AE /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96C25EA4490001491AE /* Double+Extensions.swift */; };
 		525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */; };
 		525DB97B25EB52A2001491AE /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */; };
+		525DB98525EB9012001491AE /* RecentTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB98425EB9012001491AE /* RecentTransactionsViewController.swift */; };
+		525DB98925ED2583001491AE /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB98825ED2583001491AE /* LaunchScreenViewController.swift */; };
+		525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9B625ED36E6001491AE /* SelectAccountViewController+DataSource.swift */; };
+		525DB9BD25ED374B001491AE /* NewsViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9BC25ED374B001491AE /* NewsViewController+DataSource.swift */; };
+		525DB9C425ED37FD001491AE /* SelectAccountViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9C325ED37FD001491AE /* SelectAccountViewController+Delegate.swift */; };
+		525DB9C925ED397F001491AE /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9C825ED397F001491AE /* SignInViewModel.swift */; };
+		525DB9CE25ED40FF001491AE /* SignInViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9CD25ED40FF001491AE /* SignInViewController+Delegate.swift */; };
 		5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270BE2625E160AA0046E224 /* String+Extensions.swift */; };
 		529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17825DD96FD00635807 /* AppDelegate.swift */; };
 		529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AE17A25DD96FD00635807 /* SceneDelegate.swift */; };
@@ -106,7 +112,6 @@
 		525DB8F025E6B898001491AE /* AccountRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemote.swift; sourceTree = "<group>"; };
 		525DB8F525E6B91E001491AE /* AccountServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServices.swift; sourceTree = "<group>"; };
 		525DB8FA25E77734001491AE /* SelectAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountTableViewCell.swift; sourceTree = "<group>"; };
-		525DB90325E7FE99001491AE /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		525DB90725E91A52001491AE /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		525DB92125E959BE001491AE /* WorkSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		525DB92225E959BE001491AE /* WorkSans[wght].ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans[wght].ttf"; sourceTree = "<group>"; };
@@ -138,6 +143,13 @@
 		525DB96C25EA4490001491AE /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTransactionsTableViewCell.swift; sourceTree = "<group>"; };
 		525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		525DB98425EB9012001491AE /* RecentTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTransactionsViewController.swift; sourceTree = "<group>"; };
+		525DB98825ED2583001491AE /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		525DB9B625ED36E6001491AE /* SelectAccountViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectAccountViewController+DataSource.swift"; sourceTree = "<group>"; };
+		525DB9BC25ED374B001491AE /* NewsViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+DataSource.swift"; sourceTree = "<group>"; };
+		525DB9C325ED37FD001491AE /* SelectAccountViewController+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SelectAccountViewController+Delegate.swift"; sourceTree = "<group>"; };
+		525DB9C825ED397F001491AE /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		525DB9CD25ED40FF001491AE /* SignInViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInViewController+Delegate.swift"; sourceTree = "<group>"; };
 		5270BE2625E160AA0046E224 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -230,7 +242,6 @@
 		521754AC25DE75FA009355BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				525DB90325E7FE99001491AE /* CALayer+Extensions.swift */,
 				525DB96C25EA4490001491AE /* Double+Extensions.swift */,
 				5270BE2625E160AA0046E224 /* String+Extensions.swift */,
 				521754B125DE79D1009355BC /* UIColor+Extensions.swift */,
@@ -282,6 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				521754CC25DEAD2C009355BC /* SelectAccountViewController.swift */,
+				525DB9B625ED36E6001491AE /* SelectAccountViewController+DataSource.swift */,
+				525DB9C325ED37FD001491AE /* SelectAccountViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -371,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				529AE1A725DD994C00635807 /* NewsViewController.swift */,
+				525DB9BC25ED374B001491AE /* NewsViewController+DataSource.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -492,9 +506,41 @@
 			isa = PBXGroup;
 			children = (
 				525DB96825EA42C0001491AE /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		525DB98125EB8FD9001491AE /* Recent Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				525DB98325EB8FEE001491AE /* Controllers */,
+				525DB98225EB8FE5001491AE /* Views */,
+			);
+			path = "Recent Transactions";
+			sourceTree = "<group>";
+		};
+		525DB98225EB8FE5001491AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		525DB98325EB8FEE001491AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				525DB98425EB9012001491AE /* RecentTransactionsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		525DB9C725ED396A001491AE /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				525DB9C825ED397F001491AE /* SignInViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		529AE16C25DD96FD00635807 = {
@@ -546,6 +592,7 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				525DB98125EB8FD9001491AE /* Recent Transactions */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
 				525DB87A25E55413001491AE /* Congrats */,
@@ -601,6 +648,7 @@
 		529AE1BD25DD9B5D00635807 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				525DB98825ED2583001491AE /* LaunchScreenViewController.swift */,
 				529AE1A425DD98E200635807 /* RootTabbarController.swift */,
 			);
 			path = Root;
@@ -610,6 +658,7 @@
 			isa = PBXGroup;
 			children = (
 				52F37CA125E0001E009F311F /* Controllers */,
+				525DB9C725ED396A001491AE /* View Model */,
 				52F37CEF25E03444009F311F /* Views */,
 			);
 			path = "Sign In";
@@ -619,6 +668,7 @@
 			isa = PBXGroup;
 			children = (
 				52F37C9E25E0001A009F311F /* SignInViewController.swift */,
+				525DB9CD25ED40FF001491AE /* SignInViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -860,25 +910,31 @@
 				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
 				525DB8F125E6B898001491AE /* AccountRemote.swift in Sources */,
 				525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */,
+				525DB98925ED2583001491AE /* LaunchScreenViewController.swift in Sources */,
 				525DB95425E96018001491AE /* UIFont+Extensions.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
 				525DB88625E557BC001491AE /* MissionViewController.swift in Sources */,
 				525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */,
+				525DB9BD25ED374B001491AE /* NewsViewController+DataSource.swift in Sources */,
 				52F37CEB25E031D1009F311F /* SignUpViewController.swift in Sources */,
+				525DB98525EB9012001491AE /* RecentTransactionsViewController.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
 				529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */,
+				525DB9CE25ED40FF001491AE /* SignInViewController+Delegate.swift in Sources */,
 				525DB96D25EA4490001491AE /* Double+Extensions.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */,
+				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
 				525DB97B25EB52A2001491AE /* UITableViewCell+Extensions.swift in Sources */,
 				529AE1A825DD994C00635807 /* NewsViewController.swift in Sources */,
 				525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */,
 				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
 				52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				521754C425DE812D009355BC /* TutorialView.swift in Sources */,
+				525DB9C425ED37FD001491AE /* SelectAccountViewController+Delegate.swift in Sources */,
 				525DB8AD25E6A7D7001491AE /* ServicesRepository.swift in Sources */,
 				525DB8E725E6B641001491AE /* AccountDataSource.swift in Sources */,
 				52F37CF125E03459009F311F /* SignInView.swift in Sources */,
@@ -886,6 +942,7 @@
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
 				525DB8F625E6B91E001491AE /* AccountServices.swift in Sources */,
 				521754DA25DEAE44009355BC /* Key.swift in Sources */,
+				525DB9C925ED397F001491AE /* SignInViewModel.swift in Sources */,
 				525DB8EE25E6B88C001491AE /* AccountLocal.swift in Sources */,
 				52F37CFA25E0DCDD009F311F /* KAITextFieldView.swift in Sources */,
 				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
@@ -893,7 +950,6 @@
 				525DB96425EA3B86001491AE /* PasscodeView.swift in Sources */,
 				525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
-				525DB90425E7FE99001491AE /* CALayer+Extensions.swift in Sources */,
 				525DB8FB25E77734001491AE /* SelectAccountTableViewCell.swift in Sources */,
 				525DB8EB25E6B669001491AE /* Repository.swift in Sources */,
 			);

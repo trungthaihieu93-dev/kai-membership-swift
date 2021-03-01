@@ -8,11 +8,17 @@
 import UIKit
 
 protocol KAITextFieldViewDelegate: class {
-    func kAITextFieldViewDidBeginEditing(_ textField: UITextField, for view: KAITextFieldView)
-    func kAITextFieldViewDidEndEditing(_ textField: UITextField, for view: KAITextFieldView)
-    func kAITextFieldViewDidChange(_ textField: UITextField, for view: KAITextFieldView)
-    func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: KAITextFieldView) -> Bool
-    func kAITextFieldViewShouldClear(_ textField: UITextField, for view: KAITextFieldView) -> Bool
+    func kAITextFieldViewDidBeginEditing(_ textField: UITextField, for view: UIView)
+    func kAITextFieldViewDidEndEditing(_ textField: UITextField, for view: UIView)
+    func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView)
+    func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool
+    func kAITextFieldViewShouldClear(_ textField: UITextField, for view: UIView) -> Bool
+}
+
+extension KAITextFieldViewDelegate {
+    func kAITextFieldViewDidBeginEditing(_ textField: UITextField, for view: UIView) {}
+    func kAITextFieldViewDidEndEditing(_ textField: UITextField, for view: UIView) {}
+    func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {}
 }
 
 class KAITextFieldView: UIView {

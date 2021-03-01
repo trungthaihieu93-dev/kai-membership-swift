@@ -47,7 +47,7 @@ class SelectAccountTableViewCell: UITableViewCell {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
-        view.image = UIImage(named: "ic_back")
+        view.image = UIImage(named: "ic_right_arrow")
         
         return view
     }()
@@ -63,7 +63,8 @@ class SelectAccountTableViewCell: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        view.layer.createShadow(radius: 8, color: .black)
+        view.layer.cornerRadius = 8
+        view.createShadow(radius: 8)
         
         return view
     }()

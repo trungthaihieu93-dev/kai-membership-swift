@@ -33,11 +33,6 @@ enum APIResult<T, E> {
     case failure(E)
 }
 
-enum APIServiceError: Error {
-    case network(String)
-    case message(String)
-}
-
 class APIInput: APIInputBase {
     
     let domain: String
@@ -99,7 +94,23 @@ extension URLContructable where Self: APIInputBase {
     }
 }
 
-struct ErrorResult: Error, Codable {
+enum APIServiceError: Error {
+    case network(String)
+    case message(String)
+    
+    var message: String {
+        switch self {
+        case .network(let message):
+            return message
+        case .message(let message):
+            return message
+        default:
+            return "Có lỗi xảy ra!"
+        }
+    }
+}
+
+struct APIErrorResult: Error, BaseModel {
     
     var code: String?
     var message: String = "Error"
@@ -109,7 +120,7 @@ struct ErrorResult: Error, Codable {
         case message
     }
     
-    init(with code: String? = nil, message: String) {
+    init(with code: String? = nil, message: String = "") {
         self.code = code
         self.message = message
     }
@@ -122,12 +133,95 @@ struct ErrorResult: Error, Codable {
     }
 }
 
+protocol APIBaseDataResults: BaseModel {
+    associatedtype D: BaseModel
+//    associatedtype M: BaseModel
+    
+    var data: D? { get }
+//    var message: M { get }
+    var error: APIErrorResult { get }
+}
+
+protocol APIBaseDataListResults: BaseModel {
+    associatedtype D: BaseModel
+//    associatedtype M: BaseModel
+    
+    var datas: [D] { get }
+//    var message: M { get }
+    var error: APIErrorResult { get }
+}
+
+struct APIDataResults<D: BaseModel>: APIBaseDataResults {
+    var data: D?
+    var error: APIErrorResult
+    
+    enum CodingKeys: String, CodingKey {
+        case data
+        case error
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decodeIfPresent(D.self, forKey: .data)
+        error = try container.decodeIfPresent(APIErrorResult.self, forKey: .error) ?? APIErrorResult()
+    }
+}
+
+//struct APIDataListResults<D: BaseModel>: APIBaseDataListResults {
+//    var datas: [D]
+//    var error: APIErrorResult
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case data
+//        case error
+//    }
+//    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        datas = try container.decodeIfPresent([D].self, forKey: .data) ?? []
+//        error = try container.decodeIfPresent(APIErrorResult.self, forKey: .error) ?? APIErrorResult()
+//    }
+//}
+
 class APIServices {
     
-    class func request<T: APIOutputBase>(input: APIInputBase, output: T.Type, _ completion: @escaping (T) -> Void) {
+    private class func _request<T: APIOutputBase>(input: APIInputBase, output: T.Type, _ completion: @escaping (T) -> Void) {
         AF.request(input.url, method: input.method, parameters: input.params, encoding: input.encoding, headers: input.headers).responseJSON(queue: .main) { response in
             completion(T(response: response))
         }
+    }
+    
+    class func request<T: APIBaseDataResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T,APIErrorResult>) -> ())? = nil) {
+        APIServices._request(input: input, output: output) {
+            let output = $0.output
+            switch output {
+            case .success(let data):
+                do {
+                    let result = try T.decode(data: data)
+                    completion?(.success(result))
+                } catch let error {
+//                    completion?(.failure(.message(getDecodeError(error,input))))
+                    debugPrint(getDecodeError(error, input))
+                }
+            case .failure(let error):
+//                if input.returnErrorData, let data = $0.errorData {
+//                    completion?(.failure(.other(data)))
+//                } else {
+//                    completion?(.failure(error))
+//                }
+//                debug(getErrorDescription(error, input))
+            
+                debugPrint(getErrorDescription(error, input))
+            }
+        }
+    }
+    
+    private class func getDecodeError(_ error: Error, _ input: APIInputBase) -> String {
+        return String(describing: error) + " when request \(input.path) API"
+    }
+    
+    private class func getErrorDescription(_ error: APIServiceError, _ input: APIInputBase) -> String {
+        return error.message + " when request \(input.path) API"
     }
 }
 
@@ -234,5 +328,35 @@ class RealmServices {
     
     func post(_ error: Error) {
         NotificationCenter.default.post(name: Notification.Name("RealmError"), object: error)
+    }
+}
+
+extension Decodable {
+    
+    static func decode(data: Data) throws -> Self {
+        let decoder = JSONDecoder()
+        return try decoder.decode(Self.self, from: data)
+    }
+    
+    static func decode(dictionary: [String: Any]) throws -> Self {
+        //let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+        let data = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+        
+        return try decode(data: data)
+    }
+    
+    static func decodeArray(data: Data) throws -> [Self] {
+        let decoder = JSONDecoder()
+        return try decoder.decode([Self].self, from: data)
+    }
+}
+
+protocol BaseModel: Codable {
+    
+}
+
+extension BaseModel where Self: Hashable {
+    static func ==(lhs: Self , rhs: Self) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
 }

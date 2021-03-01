@@ -7,24 +7,30 @@
 
 import Foundation
 
-class AccountRemote: Codable {
+class AccountRemote: BaseModel {
     
-    var uuid: String?
-    var token: String?
-    var name: String?
-    var phone: String?
-    var gender: String?
+    var accessToken: String?
+    var refreshToken: String?
+    var expiresIn: Double?
+    var isFirst: Bool
     
     enum CodingKeys: String, CodingKey {
-        case uuid
-        case token
-        case name
-        case gender
-        case phone
+        case accessToken = "access_token"
+        case refreshToken = "refresh_token"
+        case expiresIn = "expires_in"
+        case isFirst = "is_first"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        accessToken = try container.decodeIfPresent(String.self, forKey: .accessToken)
+        refreshToken = try container.decodeIfPresent(String.self, forKey: .refreshToken)
+        expiresIn = try container.decodeIfPresent(Double.self, forKey: .expiresIn)
+        isFirst = try container.decodeIfPresent(Bool.self, forKey: .isFirst) ?? false
     }
     
     func toDataLocal() -> AccountLocal {
-        let data = AccountLocal(with: uuid, token: token, name: name, phone: phone, gender: gender)
+        let data = AccountLocal(with: "uuid", token: "token", name: "name", phone: "phone", gender: "gender")
         
         return data
     }

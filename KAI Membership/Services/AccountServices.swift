@@ -9,13 +9,18 @@ import Foundation
 
 class AccountServices {
     
-    class func testMetadata() {
+    class func testMetadata(_ completion: @escaping (APIResult<APIDataResults<AccountRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/metadata")
         
-        APIServices.request(input: input, output: APIOutput.self) {
-            debugPrint("Output: \($0.output)")
-            debugPrint("\n\n")
-            debugPrint("Response: \($0.response)")
-        }
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
+    
+    class func login(email: String, password: String, _ completion: @escaping (APIResult<APIDataResults<AccountRemote>, APIErrorResult>) -> Void) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/auth/login/", method: .post)
+        input.params["os"] = "ios"
+        input.params["username"] = email
+        input.params["password"] = password
+        
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
 }
