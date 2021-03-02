@@ -25,7 +25,7 @@ protocol APIInputBase: URLContructable {
 
 protocol APIOutputBase: class {
     init(response: AFDataResponse<Any>)
-    var output: APIResult<Data, APIServiceError> { get }
+    var output: APIResult<Data, APIErrorResult> { get }
 }
 
 enum APIResult<T, E> {
@@ -48,6 +48,7 @@ class APIInput: APIInputBase {
         HTTPHeader(name: "device_id", value: Constants.Device.id),
         HTTPHeader(name: "device_name", value: Constants.Device.name),
         HTTPHeader(name: "device_model", value: Constants.Device.model),
+        HTTPHeader.authorization(bearerToken: "YmIZpKDVSuGeB90mfRfXYRUSD41SdW")
     ]
     
     var params: Parameters = [:]
@@ -73,16 +74,16 @@ class APIOutput: APIOutputBase {
         self.response = response
     }
     
-    var output: APIResult<Data, APIServiceError> {
+    var output: APIResult<Data, APIErrorResult> {
         switch response.result {
-        case .success(let data):
+        case .success:
             if let records = response.data {
                 return .success(records)
             } else {
-                return .failure(.message("ERROR"))
+                return .failure(.init(with: nil, message: "Error"))
             }
         case .failure(let error):
-            return .failure(.network(error.localizedDescription))
+            return .failure(.init(with: nil, message: "Error"))
         }
     }
 }
@@ -91,22 +92,6 @@ extension URLContructable where Self: APIInputBase {
     
     var url: String {
         return domain + path
-    }
-}
-
-enum APIServiceError: Error {
-    case network(String)
-    case message(String)
-    
-    var message: String {
-        switch self {
-        case .network(let message):
-            return message
-        case .message(let message):
-            return message
-        default:
-            return "Có lỗi xảy ra!"
-        }
     }
 }
 
@@ -120,7 +105,7 @@ struct APIErrorResult: Error, BaseModel {
         case message
     }
     
-    init(with code: String? = nil, message: String = "") {
+    init(with code: String? = nil, message: String = "Error") {
         self.code = code
         self.message = message
     }
@@ -135,53 +120,59 @@ struct APIErrorResult: Error, BaseModel {
 
 protocol APIBaseDataResults: BaseModel {
     associatedtype D: BaseModel
-//    associatedtype M: BaseModel
     
     var data: D? { get }
-//    var message: M { get }
+    var message: String? { get }
     var error: APIErrorResult { get }
 }
 
 protocol APIBaseDataListResults: BaseModel {
     associatedtype D: BaseModel
-//    associatedtype M: BaseModel
     
     var datas: [D] { get }
-//    var message: M { get }
+    var message: String? { get }
     var error: APIErrorResult { get }
 }
 
 struct APIDataResults<D: BaseModel>: APIBaseDataResults {
     var data: D?
+    var message: String?
     var error: APIErrorResult
     
     enum CodingKeys: String, CodingKey {
         case data
+        case message
         case error
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         data = try container.decodeIfPresent(D.self, forKey: .data)
+        message = try container.decodeIfPresent(String.self, forKey: .message)
         error = try container.decodeIfPresent(APIErrorResult.self, forKey: .error) ?? APIErrorResult()
     }
 }
 
-//struct APIDataListResults<D: BaseModel>: APIBaseDataListResults {
-//    var datas: [D]
-//    var error: APIErrorResult
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case data
-//        case error
-//    }
-//    
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        datas = try container.decodeIfPresent([D].self, forKey: .data) ?? []
-//        error = try container.decodeIfPresent(APIErrorResult.self, forKey: .error) ?? APIErrorResult()
-//    }
-//}
+struct APIDataListResults<D: BaseModel>: APIBaseDataListResults {
+    var datas: [D]
+    var message: String?
+    var error: APIErrorResult
+
+    enum CodingKeys: String, CodingKey {
+        case data
+        case message
+        case error
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        datas = try container.decodeIfPresent([D].self, forKey: .data) ?? []
+        message = try container.decodeIfPresent(String.self, forKey: .message)
+        error = try container.decodeIfPresent(APIErrorResult.self, forKey: .error) ?? APIErrorResult()
+    }
+    
+    func encode(to encoder: Encoder) throws { }
+}
 
 class APIServices {
     
@@ -200,18 +191,27 @@ class APIServices {
                     let result = try T.decode(data: data)
                     completion?(.success(result))
                 } catch let error {
-//                    completion?(.failure(.message(getDecodeError(error,input))))
-                    debugPrint(getDecodeError(error, input))
+                    completion?(.failure(.init(with: nil, message: getDecodeError(error, input))))
                 }
             case .failure(let error):
-//                if input.returnErrorData, let data = $0.errorData {
-//                    completion?(.failure(.other(data)))
-//                } else {
-//                    completion?(.failure(error))
-//                }
-//                debug(getErrorDescription(error, input))
-            
-                debugPrint(getErrorDescription(error, input))
+                completion?(.failure(.init(with: nil, message: getErrorDescription(error, input))))
+            }
+        }
+    }
+    
+    class func request<T: APIBaseDataListResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T,APIErrorResult>) -> ())? = nil) {
+        APIServices._request(input: input, output: output) {
+            let output = $0.output
+            switch output {
+            case .success(let data):
+                do {
+                    let result = try T.decode(data: data)
+                    completion?(.success(result))
+                } catch let error {
+                    completion?(.failure(.init(with: nil, message: getDecodeError(error, input))))
+                }
+            case .failure(let error):
+                completion?(.failure(.init(with: nil, message: getErrorDescription(error, input))))
             }
         }
     }
@@ -220,7 +220,7 @@ class APIServices {
         return String(describing: error) + " when request \(input.path) API"
     }
     
-    private class func getErrorDescription(_ error: APIServiceError, _ input: APIInputBase) -> String {
+    private class func getErrorDescription(_ error: APIErrorResult, _ input: APIInputBase) -> String {
         return error.message + " when request \(input.path) API"
     }
 }

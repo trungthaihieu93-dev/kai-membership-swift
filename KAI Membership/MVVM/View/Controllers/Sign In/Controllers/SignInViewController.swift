@@ -95,7 +95,7 @@ class SignInViewController: BaseViewController {
     
     // MARK: Login
     func login() {
-        viewModel.login().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] hashtags in
+        viewModel.login().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] hashtags in
             guard let this = self else { return }
             
             

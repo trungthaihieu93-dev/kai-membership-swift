@@ -7,10 +7,13 @@
 
 import UIKit
 import DZNEmptyDataSet
+import RxSwift
 
 class WalletViewController: BaseViewController {
 
     // MARK: Properties
+    let viewModel = WalletViewModel()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,6 +43,7 @@ class WalletViewController: BaseViewController {
         
         setupView()
         setupTableHeaderView()
+        fetchData()
     }
     
     // MARK: Layout
@@ -56,7 +60,7 @@ class WalletViewController: BaseViewController {
     
     private func setupTableHeaderView() {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenSize.width, height: 252))
-        cardView.frame = CGRect(x: 31, y: 26, width: headerView.frame.width - 62, height: headerView.frame.height - 52)
+        cardView.frame = CGRect(x: 30, y: 25, width: headerView.frame.width - 60, height: headerView.frame.height - 50)
         headerView.addSubview(cardView)
         cardView.configure(kai: 3002.123, walletAddress: "0x9e991abd0...0e7927dd4b3d58", holder: "AN NGUYEN", memberSince: 1598522428)
         
@@ -64,50 +68,19 @@ class WalletViewController: BaseViewController {
     }
 }
 
-// MARK: UITableViewDataSource
-extension WalletViewController: UITableViewDataSource {
+// MARK: Data fetching
+extension WalletViewController {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecentTransactionsTableViewCell.identifier, for: indexPath) as! RecentTransactionsTableViewCell
-        
-        return cell
-    }
-}
-
-// MARK: UITableViewDelegate
-extension WalletViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Navigator.navigateToPasscodeVC(from: self, with: .signIn)
-    }
-}
-
-// MARK: DZNEmptyDataSetSource
-extension WalletViewController: DZNEmptyDataSetSource {
-    
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "placeholder_wallet_emptydata")!
-    }
-    
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "No Transaction", attributes: [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 20, weight: .medium),
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
-        ])
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "Start your first transaction", attributes: [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54)
-        ])
-    }
-    
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return 100
+    private func fetchData() {
+        viewModel.getTransactions().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] transactions in
+            guard let this = self else { return }
+            
+            this.tableView.reloadData()
+        } , onError: { error in
+            debugPrint("")
+        } , onCompleted: { [weak self] in
+            guard let this = self else { return }
+            
+        }).disposed(by: disposeBag)
     }
 }

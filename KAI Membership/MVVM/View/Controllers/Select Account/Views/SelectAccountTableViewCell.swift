@@ -13,10 +13,9 @@ class SelectAccountTableViewCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
-        label.textColor = UIColor.init(hex: "455571")
         label.numberOfLines = 1
-        label.text = "An Nguyễn"
+        label.font = .workSansFont(ofSize: 14, weight: .medium)
+        label.textColor = UIColor.init(hex: "455571")
         
         return label
     }()
@@ -24,10 +23,9 @@ class SelectAccountTableViewCell: UITableViewCell {
     private let gmailLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
-        label.textColor = UIColor.init(hex: "C9CED6")
         label.numberOfLines = 1
-        label.text = "an.nguyen@kardiachain.io"
+        label.font = .workSansFont(ofSize: 10, weight: .medium)
+        label.textColor = UIColor.init(hex: "C9CED6")
         
         return label
     }()
@@ -69,7 +67,7 @@ class SelectAccountTableViewCell: UITableViewCell {
         return view
     }()
     
-    // MARK: Lìe cycle's
+    // MARK: Life cycle's
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

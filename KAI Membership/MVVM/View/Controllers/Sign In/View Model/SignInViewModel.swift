@@ -26,7 +26,7 @@ class SignInViewModel {
     // TODO: Login
     func login() -> Observable<Void> {
         return Observable<Void>.create { (observer) -> Disposable in
-            AccountServices.login(email: "tester", password: "tester321") {
+            UserServices.login(email: "tester", password: "tester321") {
                 switch $0 {
                 case .success(let result):
                     observer.onNext(())

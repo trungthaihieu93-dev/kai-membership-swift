@@ -11,10 +11,17 @@ class CardView: UIView {
     
     // MARK: Properties
     private let cardImageView: UIImageView = {
-        let imageView = UIImageView(image: nil)
+        let imageView = UIImageView(image: UIImage(named: "bg_card"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .red
+        
+        return imageView
+    }()
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "logo_kai_right_white"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()
@@ -130,6 +137,7 @@ class CardView: UIView {
     // MARK: Layout
     func setupView() {
         addSubview(cardImageView)
+        addSubview(logoImageView)
         addSubview(balanceLabel)
         addSubview(kaiLabel)
         addSubview(walletAddressLabel)
@@ -149,11 +157,18 @@ class CardView: UIView {
             cardImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             cardImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
+            logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 26),
+            logoImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            logoImageView.widthAnchor.constraint(equalToConstant: 73.64),
+            logoImageView.heightAnchor.constraint(equalToConstant: 24),
+            
             balanceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 26),
             balanceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            balanceLabel.trailingAnchor.constraint(greaterThanOrEqualTo: logoImageView.leadingAnchor, constant: 20),
             
             kaiLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor),
             kaiLabel.leadingAnchor.constraint(equalTo: balanceLabel.leadingAnchor),
+            kaiLabel.trailingAnchor.constraint(greaterThanOrEqualTo: logoImageView.leadingAnchor, constant: 10),
             
             walletAddressLabel.topAnchor.constraint(greaterThanOrEqualTo: kaiLabel.bottomAnchor, constant: 24),
             walletAddressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),

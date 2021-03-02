@@ -34,5 +34,18 @@ class NewsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+    }
+    
+    // MARK: Layout
+    private func setupView() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
     }
 }
