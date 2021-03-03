@@ -33,8 +33,7 @@ class SelectAccountTableViewCell: UITableViewCell {
     private let avatarImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        view.backgroundColor = .red
+        view.contentMode = .scaleAspectFill
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 6
         
@@ -119,5 +118,12 @@ class SelectAccountTableViewCell: UITableViewCell {
             nextImageView.leadingAnchor.constraint(greaterThanOrEqualTo: infoView.trailingAnchor, constant: 18),
             nextImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant:  -22)
         ])
+    }
+    
+    // MARK: Methods
+    func configure(with user: UserRemote) {
+        avatarImageView.setImage(from: user.avatarLink, placeholder: nil)
+        nameLabel.text = "An Nguyễn"
+        gmailLabel.text = user.email
     }
 }

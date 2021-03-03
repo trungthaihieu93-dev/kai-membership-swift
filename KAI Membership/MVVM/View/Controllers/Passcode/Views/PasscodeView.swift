@@ -15,8 +15,8 @@ class PasscodeView: UIView {
     
     // MARK: Properties
     enum `Type`: Int {
-        case four = 4
-        case six = 6
+        case passcode = 4
+        case verify = 6
     }
     
     enum CodeStatus {
@@ -169,7 +169,7 @@ class PasscodeView: UIView {
         containerStackView.addArrangedSubview(codeThreeLabel)
         containerStackView.addArrangedSubview(codeFourLabel)
         
-        if type == .six {
+        if type == .verify {
             containerStackView.addArrangedSubview(codeFiveLabel)
             containerStackView.addArrangedSubview(codeSixLabel)
         }

@@ -19,8 +19,17 @@ extension NewsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SelectAccountTableViewCell.identifier, for: indexPath) as! SelectAccountTableViewCell
+        guard let sectionType = Section(rawValue: indexPath.section) else { return UITableViewCell() }
         
-        return cell
+        switch sectionType {
+        case .suggestion:
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewsSuggestionTableViewCell.identifier, for: indexPath) as! NewsSuggestionTableViewCell
+            
+            return cell
+        case .lastest:
+            let cell = tableView.dequeueReusableCell(withIdentifier: NewsLastestTableViewCell.identifier, for: indexPath) as! NewsLastestTableViewCell
+            
+            return cell
+        }
     }
 }

@@ -27,9 +27,18 @@ final class Navigator {
         window?.rootViewController = UINavigationController(rootViewController: vc)
     }
     
-    /* Hiện màn hình lựa chọn tài khoản sử dụng */
-    class func showSelectAccountVC() {
-        let vc = SelectAccountViewController()
+    /*
+     Hiện màn hình lựa chọn tài khoản sử dụng
+     - parameter users: Danh sách tài khoản đã đăng nhập
+     */
+    class func showSelectAccountVC(_ users: [UserRemote]) {
+        let vc = SelectAccountViewController(with: users)
+        window?.rootViewController = UINavigationController(rootViewController: vc)
+    }
+    
+    /* Hiện màn hình đăng nhập */
+    class func showSignInVC() {
+        let vc = SignInViewController()
         window?.rootViewController = UINavigationController(rootViewController: vc)
     }
     
@@ -71,9 +80,10 @@ final class Navigator {
     /*
      Điều hướng sang màn hình mật mã
      - parameter type: Loại hiển thị
+     - parameter email: Địa chỉ email
      */
-    class func navigateToPasscodeVC(from viewController: UIViewController? = nil, with type: PasscodeViewController.`Type`) {
-        let vc = PasscodeViewController(with: type)
+    class func navigateToPasscodeVC(from viewController: UIViewController? = nil, with type: PasscodeViewController.`Type`, email: String) {
+        let vc = PasscodeViewController(with: type, email: email)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

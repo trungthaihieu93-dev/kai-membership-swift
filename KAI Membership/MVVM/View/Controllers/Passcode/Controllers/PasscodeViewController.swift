@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class PasscodeViewController: BaseViewController {
 
@@ -18,6 +19,8 @@ class PasscodeViewController: BaseViewController {
     }
     
     private let type: `Type`
+    
+    let viewModel: PasscodeViewModel
     
     override var pageTitle: String {
         switch type {
@@ -49,9 +52,10 @@ class PasscodeViewController: BaseViewController {
     private let termsAndConditions: String = "Terms & Conditions"
     private let privacyPolicy: String = "Privacy Policy"
     
-    private let passcodeView: PasscodeView = {
-        let view = PasscodeView(with: .four)
+    private lazy var passcodeView: PasscodeView = {
+        let view = PasscodeView(with: .passcode)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         
         return view
     }()
@@ -94,8 +98,9 @@ class PasscodeViewController: BaseViewController {
     }()
     
     // MARK: Life cycle's
-    init(with type: `Type`) {
+    init(with type: `Type`, email: String) {
         self.type = type
+        self.viewModel = PasscodeViewModel(email: email)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -108,6 +113,12 @@ class PasscodeViewController: BaseViewController {
         super.viewDidLoad()
         
         setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        passcodeView.inputBecomeFirstResponder()
     }
     
     // MARK: Layout
@@ -162,7 +173,11 @@ class PasscodeViewController: BaseViewController {
 extension PasscodeViewController {
     
     @objc private func onPressedConfirm() {
-        
+        viewModel.loginWithPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
+            Navigator.window?.rootViewController = RootTabbarController()
+        }, onError: { error in
+            debugPrint("ERROR")
+        }).disposed(by: disposeBag)
     }
     
     @objc private func onPressedShowPasscode() {
@@ -180,3 +195,4 @@ extension PasscodeViewController {
         }
     }
 }
+

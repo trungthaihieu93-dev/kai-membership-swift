@@ -10,10 +10,6 @@ import UIKit
 extension UITableViewCell {
     
     class var identifier: String {
-        return String(describing: type(of: self))
+        return NSStringFromClass(self)
     }
-    
-//    class var identifier: String {
-//        return NSStringFromClass(self).components(separatedBy: ".").last!
-//    }
 }

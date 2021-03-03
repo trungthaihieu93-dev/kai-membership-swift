@@ -21,7 +21,7 @@ class KAIInputTextFieldView: UIView {
     
     weak var delegate: KAITextFieldViewDelegate?
     
-    // MARK: Life cycle
+    // MARK: Life cycle's
     init(title: String, placeholder: String? = nil, isSecureTextEntryEnabled: Bool = false, frame: CGRect = .zero) {
         super.init(frame: frame)
         setupView(title: title, placeholder: placeholder, isSecureTextEntryEnabled: isSecureTextEntryEnabled)

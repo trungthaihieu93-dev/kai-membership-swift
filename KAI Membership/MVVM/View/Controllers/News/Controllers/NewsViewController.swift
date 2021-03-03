@@ -15,13 +15,17 @@ class NewsViewController: BaseViewController {
         case lastest
     }
     
+    let viewModel = NewsViewModel()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.contentInset = .init(top: 20, left: 0, bottom: 34, right: 0)
-        tableView.register(SelectAccountTableViewCell.self, forCellReuseIdentifier: SelectAccountTableViewCell.identifier)
+        tableView.register(NewsSuggestionTableViewCell.self, forCellReuseIdentifier: NewsSuggestionTableViewCell.identifier)
+        tableView.register(NewsLastestTableViewCell.self, forCellReuseIdentifier: NewsLastestTableViewCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         
         return tableView
     }()

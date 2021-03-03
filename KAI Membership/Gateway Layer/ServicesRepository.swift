@@ -48,7 +48,7 @@ class APIInput: APIInputBase {
         HTTPHeader(name: "device_id", value: Constants.Device.id),
         HTTPHeader(name: "device_name", value: Constants.Device.name),
         HTTPHeader(name: "device_model", value: Constants.Device.model),
-        HTTPHeader.authorization(bearerToken: "YmIZpKDVSuGeB90mfRfXYRUSD41SdW")
+        HTTPHeader.authorization(bearerToken: "7ho5v8JIue5s3ImJHihR1NKAxcMuqH")
     ]
     
     var params: Parameters = [:]
@@ -182,7 +182,7 @@ class APIServices {
         }
     }
     
-    class func request<T: APIBaseDataResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T,APIErrorResult>) -> ())? = nil) {
+    class func request<T: APIBaseDataResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T, APIErrorResult>) -> ())? = nil) {
         APIServices._request(input: input, output: output) {
             let output = $0.output
             switch output {
@@ -199,7 +199,7 @@ class APIServices {
         }
     }
     
-    class func request<T: APIBaseDataListResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T,APIErrorResult>) -> ())? = nil) {
+    class func request<T: APIBaseDataListResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T, APIErrorResult>) -> ())? = nil) {
         APIServices._request(input: input, output: output) {
             let output = $0.output
             switch output {

@@ -13,4 +13,9 @@ class Key {
         static let AuthorizationToken = "KAI.UserDefault.AuthorizationToken"
         static let DarkMode = "KAI.UserDefault.DarkMode"
     }
+    
+    enum KeyChain: String {
+        case authorizationToken = "KAI.KeyChain.AuthorizationToken"
+        case userID = "KAI.KeyChain.UserID"
+    }
 }

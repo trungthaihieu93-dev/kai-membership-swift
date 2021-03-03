@@ -52,14 +52,6 @@ class TutorialView: UIView {
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 337)
         ])
-        
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
-//            self.contentView.createShadow(radius: 24)
-//        }
-        
-//        DispatchQueue.main.async {
-//            self.contentView.createShadow(radius: 24)
-//        }
     }
 }
 

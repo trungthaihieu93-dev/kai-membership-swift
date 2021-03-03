@@ -120,7 +120,7 @@ class KAITextFieldView: UIView {
     
     weak var delegate: KAITextFieldViewDelegate?
     
-    // MARK: Life cycle
+    // MARK: Life cycle's
     init(with type: `Type` = .normal, textColor: UIColor = .black, font: UIFont = .workSansFont(ofSize: 14, weight: .medium), returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default, placeholder: String? = nil, textAlignment: NSTextAlignment = .left, isSecureTextEntryEnabled: Bool = false, frame: CGRect = .zero) {
         self.type = type
         self.isSecureTextEntryEnabled = isSecureTextEntryEnabled

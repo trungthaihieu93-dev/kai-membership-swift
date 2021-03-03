@@ -124,7 +124,7 @@ class TutorialViewController: BaseViewController {
     private let tutorialView1: TutorialView = {
         let view = TutorialView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.configure(image: nil, title: "KAI membership", body: "A flagship application pushing the frontier of mass adoption. A super app for the general public to earn, store, spend, and invest KAI, focusing on user experience and utilities.")
+        view.configure(image: UIImage(named: "image_tutorial_1"), title: "KAI membership", body: "A flagship application pushing the frontier of mass adoption. A super app for the general public to earn, store, spend, and invest KAI, focusing on user experience and utilities.")
         
         return view
     }()

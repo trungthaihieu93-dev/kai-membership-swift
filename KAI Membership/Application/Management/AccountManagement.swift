@@ -10,19 +10,29 @@ import Foundation
 class AccountManagement {
     
     static var isLoggedIn: Bool {
-        return token != nil
+        return token != nil && userId != nil
     }
     
     static var token: String? {
         get {
-            return UserDefaults.standard.string(forKey: Key.UserDefault.AuthorizationToken)
+            return KeyChain.load(forKey: .authorizationToken)?.to(type: String.self)
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: Key.UserDefault.AuthorizationToken)
+            _ = KeyChain.save(forKey: .authorizationToken, data: Data(from: newValue))
+        }
+    }
+    
+    static var userId: String? {
+        get {
+            return KeyChain.load(forKey: .userID)?.to(type: String.self)
+        }
+        set {
+            _ = KeyChain.save(forKey: .userID, data: Data(from: newValue))
         }
     }
     
     class func refresh() {
         token = nil
+        userId = nil
     }
 }
