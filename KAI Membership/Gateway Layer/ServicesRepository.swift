@@ -39,15 +39,17 @@ class APIInput: APIInputBase {
     let path: String
     
     var headers: HTTPHeaders = [
-        HTTPHeader(name: "Content-Type", value: "application/json"),
-        HTTPHeader(name: "accept", value: "application/json"),
-        HTTPHeader(name: "language", value: "vi-vn"),
-        HTTPHeader(name: "platform", value: "ios"),
-        HTTPHeader(name: "app_version", value: Constants.appVersion),
-        HTTPHeader(name: "os_version", value: Constants.Device.version),
-        HTTPHeader(name: "device_id", value: Constants.Device.id),
-        HTTPHeader(name: "device_name", value: Constants.Device.name),
-        HTTPHeader(name: "device_model", value: Constants.Device.model),
+//        HTTPHeader(name: "Content-Type", value: "application/json"),
+//        HTTPHeader(name: "accept", value: "application/json"),
+//        HTTPHeader(name: "language", value: "vi-vn"),
+//        HTTPHeader(name: "platform", value: "ios"),
+//        HTTPHeader(name: "app_version", value: Constants.appVersion),
+//        HTTPHeader(name: "os_version", value: Constants.Device.version),
+//        HTTPHeader(name: "device_id", value: Constants.Device.id),
+//        HTTPHeader(name: "device_name", value: Constants.Device.name),
+//        HTTPHeader(name: "device_model", value: Constants.Device.model),
+        HTTPHeader(name: "Accept-Encoding", value: "gzip, deflate, br"),
+        HTTPHeader(name: "Connection", value: "keep-alive"),
         HTTPHeader.authorization(bearerToken: "7ho5v8JIue5s3ImJHihR1NKAxcMuqH")
     ]
     

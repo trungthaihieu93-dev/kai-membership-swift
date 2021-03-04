@@ -12,7 +12,7 @@ class RootTabbarController: UITabBarController {
     // MARK: Properties
     enum TabbarType: Int, CaseIterable {
         case news = 0
-        case mission
+        case quest
         case wallet
         case utilities
     }
@@ -36,9 +36,9 @@ class RootTabbarController: UITabBarController {
                 let navigationController = UINavigationController(rootViewController: news)
                 navigationController.tabBarItem.title = "News"
                 navigationControllers.append(navigationController)
-            case .mission:
-                let mission = MissionViewController()
-                let navigationController = UINavigationController(rootViewController: mission)
+            case .quest:
+                let quest = QuestViewController()
+                let navigationController = UINavigationController(rootViewController: quest)
                 navigationController.tabBarItem.title = "Mission"
                 navigationControllers.append(navigationController)
             case .wallet:

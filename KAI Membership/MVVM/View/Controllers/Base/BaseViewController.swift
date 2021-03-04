@@ -27,10 +27,6 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         return 20
     }
     
-    var safeAreaInsets: UIEdgeInsets {
-        return UIApplication.shared.keyWindow?.safeAreaInsets ?? UIEdgeInsets(top: 44, left: 0, bottom: 34, right: 0)
-    }
-    
     var tabbarHeight: CGFloat {
         return self.tabBarController?.tabBar.frame.size.height ?? 0
     }
