@@ -174,7 +174,7 @@ extension PasscodeViewController {
     
     @objc private func onPressedConfirm() {
         viewModel.loginWithPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
-            Navigator.window?.rootViewController = RootTabbarController()
+            Navigator.showRootTabbarController()
         }, onError: { error in
             debugPrint("ERROR")
         }).disposed(by: disposeBag)

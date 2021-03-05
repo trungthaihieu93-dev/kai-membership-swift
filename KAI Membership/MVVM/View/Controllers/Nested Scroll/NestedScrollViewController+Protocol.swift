@@ -61,4 +61,14 @@ extension NestedScrollDataSource {
 
 protocol NestedScrollDelegate: class {
     func selectedIndexChanged(for pagerTabPageController: NestedScrollViewController, previousIndex: Int, currentIndex: Int)
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+    func scrollViewDidScroll(_ scrollView: UIScrollView, didUpdate: NestedScrollViewController.ScrollType)
+    func scrollViewDidLoad(_ scrollView: UIScrollView)
+}
+
+extension NestedScrollDelegate {
+    func selectedIndexChanged(for pagerTabPageController: NestedScrollViewController, previousIndex: Int, currentIndex: Int) {}
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {}
+    func scrollViewDidScroll(_ scrollView: UIScrollView, didUpdate: NestedScrollViewController.ScrollType) {}
+    func scrollViewDidLoad(_ scrollView: UIScrollView) {}
 }

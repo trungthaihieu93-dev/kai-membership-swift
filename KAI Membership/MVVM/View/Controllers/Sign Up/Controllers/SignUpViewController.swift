@@ -59,6 +59,6 @@ class SignUpViewController: BaseViewController {
 extension SignUpViewController {
     
     @objc private func onPressedTrail() {
-        Navigator.window?.rootViewController = RootTabbarController()
+        Navigator.showRootTabbarController()
     }
 }

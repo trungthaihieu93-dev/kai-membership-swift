@@ -21,6 +21,11 @@ final class Navigator {
         return window
     }
     
+    /* Hiện màn hình tương tác chính */
+    class func showRootTabbarController() {
+        Navigator.window?.rootViewController = RootTabbarController()
+    }
+    
     /* Hiện màn hình giới thiệu */
     class func showTutorialVC() {
         let vc = TutorialViewController()

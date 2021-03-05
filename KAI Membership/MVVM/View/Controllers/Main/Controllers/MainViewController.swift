@@ -35,7 +35,9 @@ class MainViewController: UIViewController {
             activityIndicatorView.color = .black
         }
         
-        fetchData()
+//        fetchData()
+        
+        Navigator.showTutorialVC()
     }
     
     // MARK: Fetch data

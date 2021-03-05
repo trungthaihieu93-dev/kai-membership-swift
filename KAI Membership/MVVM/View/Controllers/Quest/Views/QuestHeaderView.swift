@@ -10,13 +10,12 @@ import UIKit
 class QuestHeaderView: UIView {
     
     // MARK: Properties
-    private let coverImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "bg_mission"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+    private let backgroundView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .init(hex: "0A1F44")
         
-        return imageView
+        return view
     }()
     
     private let imageView: UIImageView = {
@@ -66,6 +65,8 @@ class QuestHeaderView: UIView {
         return view
     }()
     
+    private var coverImageTopAnchor: NSLayoutConstraint?
+    
     var selectedSegmentIndexChanged: ((Int) -> Void)?
     
     // MARK: Life cycle's
@@ -83,30 +84,32 @@ class QuestHeaderView: UIView {
     func setupView() {
         backgroundColor = .init(hex: "F7F8F9")
         
-        addSubview(coverImageView)
+        addSubview(backgroundView)
         addSubview(titleLabel)
         addSubview(imageView)
         addSubview(descriptionLabel)
         addSubview(segmentView)
-
+        
+        coverImageTopAnchor = backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        coverImageTopAnchor?.isActive = true
+        
         NSLayoutConstraint.activate([
-            coverImageView.topAnchor.constraint(equalTo: topAnchor),
-            coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            coverImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -22),
-            coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -22),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 44),
+            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 64),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
 
-            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            imageView.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.bottomAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
 
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
             descriptionLabel.widthAnchor.constraint(equalToConstant: 157),
-            
+
             segmentView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
             segmentView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 20),
             segmentView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -118,6 +121,10 @@ class QuestHeaderView: UIView {
     // MARK: Configure
     func configure() {
         
+    }
+    
+    func zoomImage(with value: CGFloat) {
+        coverImageTopAnchor?.constant = value
     }
     
     // MARK: Handle actions

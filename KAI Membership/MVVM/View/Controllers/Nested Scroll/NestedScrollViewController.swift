@@ -10,6 +10,11 @@ import UIKit
 class NestedScrollViewController: UIViewController {
     
     // MARK: Properties
+    enum ScrollType {
+        case parent
+        case child
+    }
+    
     private var pagerTabHeight: CGFloat {
         return dataSource?.pagerTabHeight() ?? 0
     }
@@ -147,6 +152,7 @@ class NestedScrollViewController: UIViewController {
         ])
         
         reloadViewControllers()
+        delegate?.scrollViewDidLoad(overlayScrollView)
     }
     
     private func reloadViewControllers() {
@@ -278,6 +284,8 @@ class NestedScrollViewController: UIViewController {
 extension NestedScrollViewController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging(scrollView)
+        
         guard scrollView === self.containerScrollView else { return }
         
         lastContentOffsetX = scrollView.contentOffset.x
@@ -311,14 +319,14 @@ extension NestedScrollViewController: UIScrollViewDelegate {
 //                                          width: headerView.frame.width,
 //                                          height: originalHeaderHeight)
 //            }
-//
-//            let progress = self.scrollView.contentOffset.y / originalHeaderHeight
-//
-//            if progress < 1 {
-//                self.delegate?.tp_scrollView(self.scrollView, didUpdate: progress)
-//            } else {
-//                self.delegate?.tp_scrollView(self.overlayScrollView, didUpdate: progress)
-//            }
+
+            let progress = self.scrollView.contentOffset.y / originalHeaderHeight
+
+            if progress < 1 {
+                self.delegate?.scrollViewDidScroll(self.scrollView, didUpdate: .parent)
+            } else {
+                self.delegate?.scrollViewDidScroll(self.overlayScrollView, didUpdate: .child)
+            }
         } else {
             guard scrollView === self.containerScrollView && scrollView.contentOffset.x >= 0 && scrollView.contentOffset.x <= (scrollView.contentSize.width - view.frame.width) else { return }
             

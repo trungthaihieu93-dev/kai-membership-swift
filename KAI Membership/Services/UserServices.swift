@@ -10,7 +10,7 @@ import Foundation
 class UserServices {
     
     // MARK: Login
-    class func login(email: String, password: String, _ completion: @escaping (APIResult<APIDataResults<AccountRemote>, APIErrorResult>) -> Void) {
+    class func login(email: String, password: String, _ completion: @escaping (APIResult<APIDataResults<LoginRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/auth/login", method: .post)
         input.params["os"] = "ios"
         input.params["username"] = email

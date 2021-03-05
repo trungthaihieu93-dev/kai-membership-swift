@@ -21,6 +21,7 @@ class TutorialViewController: BaseViewController {
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.delegate = self
         
         return scrollView
@@ -53,7 +54,6 @@ class TutorialViewController: BaseViewController {
     private let currentIndicatorImage: UIImage = {
         let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 16, height: 9)))
         view.backgroundColor = .init(hex: "181E25")
-        view.layer.masksToBounds = true
         view.layer.cornerRadius = 4.5
         
         let renderer = UIGraphicsImageRenderer(bounds: view.frame)
@@ -66,7 +66,6 @@ class TutorialViewController: BaseViewController {
     private let indicatorImage: UIImage = {
         let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 9, height: 9)))
         view.backgroundColor = .init(hex: "E6EAEF")
-        view.layer.masksToBounds = true
         view.layer.cornerRadius = 4.5
         
         let renderer = UIGraphicsImageRenderer(bounds: view.frame)
@@ -83,7 +82,6 @@ class TutorialViewController: BaseViewController {
         button.tintColor = .white
         button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         button.backgroundColor = .init(hex: "181E25")
-        button.layer.masksToBounds = true
         button.layer.cornerRadius = 24
         button.addTarget(self, action: #selector(onPressedNext), for: .touchUpInside)
         
@@ -99,7 +97,6 @@ class TutorialViewController: BaseViewController {
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
         ]), for: .normal)
-        button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.init(hex: "C9CED6").cgColor
@@ -114,7 +111,6 @@ class TutorialViewController: BaseViewController {
         button.isHidden = true
         button.setTitle("Sign in", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedSignIn), for: .touchUpInside)
         
@@ -150,6 +146,7 @@ class TutorialViewController: BaseViewController {
         didSet {
             guard currentPageIndex != oldValue else { return }
             
+            actionStatus = currentPageIndex == 2 ? .trial : .normal
             pageControl.currentPage = currentPageIndex
             
             if #available(iOS 14.0, *) {
@@ -208,7 +205,7 @@ class TutorialViewController: BaseViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             actionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            actionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            actionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -safeAreaInsets.bottom),
             actionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             tutorialView1.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -273,7 +270,6 @@ extension TutorialViewController {
  
     @objc private func onPressedNext() {
         if currentPageIndex == pageControl.numberOfPages - 2 {
-            actionStatus = .trial
             currentPageIndex = 2
         } else {
             currentPageIndex = 1
@@ -285,7 +281,7 @@ extension TutorialViewController {
     }
     
     @objc private func onPressedTrail() {
-        Navigator.window?.rootViewController = RootTabbarController()
+        Navigator.showRootTabbarController()
     }
     
     @objc private func onPressedSignIn() {

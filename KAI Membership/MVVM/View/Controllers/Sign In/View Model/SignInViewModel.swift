@@ -10,8 +10,8 @@ import RxSwift
 class SignInViewModel {
     
     // MARK: Properties
-    private var email: String?
-    private var password: String?
+    private(set) var email: String?
+    private(set) var password: String?
     
     // MARK: Methods
     func updateEmail(_ email: String? = nil) {
@@ -24,12 +24,12 @@ class SignInViewModel {
     }
     
     // TODO: Login
-    func login() -> Observable<Void> {
-        return Observable<Void>.create { (observer) -> Disposable in
-            UserServices.login(email: "tester", password: "tester321") {
+    func login(with email: String, and password: String) -> Observable<LoginRemote?> {
+        return Observable<LoginRemote?>.create { (observer) -> Disposable in
+            UserServices.login(email: email, password: password) {
                 switch $0 {
                 case .success(let result):
-                    observer.onNext(())
+                    observer.onNext(result.data)
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)

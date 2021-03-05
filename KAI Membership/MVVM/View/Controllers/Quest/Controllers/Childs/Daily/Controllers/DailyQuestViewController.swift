@@ -10,6 +10,8 @@ import UIKit
 class DailyQuestViewController: UIViewController {
 
     // MARK: Properties
+    private(set) var quests = [QuestRemote]()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,5 +41,11 @@ class DailyQuestViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    // MARK: Configure
+    func configure(_ quests: [QuestRemote]) {
+        self.quests = quests
+        tableView.reloadData()
     }
 }

@@ -66,7 +66,7 @@ class QuestTableViewCell: UITableViewCell {
         
         setupView()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -122,5 +122,12 @@ class QuestTableViewCell: UITableViewCell {
         
         titleLabel.text = title
         descriptionLabel.text = description
+    }
+    
+    func configure(_ quest: QuestRemote) {
+        contentImageView.image = UIImage(named: "ic_mission_completed")
+        
+        titleLabel.text = "title"
+        descriptionLabel.text = "description"
     }
 }

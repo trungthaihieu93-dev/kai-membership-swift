@@ -20,6 +20,9 @@ class QuestViewController: BaseViewController {
         return childVC
     }()
     
+    let dailyVC = DailyQuestViewController()
+    let monthlyVC = MonthlyQuestViewController()
+    
     private(set) lazy var headerView: QuestHeaderView = {
         let view = QuestHeaderView()
         view.selectedSegmentIndexChanged = { [weak self] in
@@ -44,10 +47,11 @@ class QuestViewController: BaseViewController {
     
     // MARK: Data fetching
     private func fetchData() {
-        viewModel.getTheQuestsList().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] quest in
+        viewModel.getTheQuestsList().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] quests in
             guard let this = self else { return }
             
-            
+            this.dailyVC.configure(this.viewModel.dailyQuests)
+            this.monthlyVC.configure(this.viewModel.monthlyQuests)
         }, onError: { error in
             debugPrint("Get the quests list error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)

@@ -10,8 +10,8 @@ import Foundation
 class Key {
     
     struct UserDefault {
-        static let AuthorizationToken = "KAI.UserDefault.AuthorizationToken"
         static let DarkMode = "KAI.UserDefault.DarkMode"
+        static let HaveUsedTheApplicationOnce = "KAI.UserDefault.HaveUsedTheApplicationOnce"
     }
     
     enum KeyChain: String {

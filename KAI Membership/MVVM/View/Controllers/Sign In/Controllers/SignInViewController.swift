@@ -95,18 +95,18 @@ class SignInViewController: BaseViewController {
     
     // MARK: Login
     func login() {
-        viewModel.login().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] hashtags in
-            guard let this = self else { return }
-            
-            
-        }, onCompleted: { [weak self] in
-            guard let this = self else { return }
-            
+        guard let email = viewModel.email, !email.isEmpty, let password = viewModel.password, !password.isEmpty else {
+            return
+        }
         
+        viewModel.login(with: email, and: password).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] login in
+            guard let this = self else { return }
+            
+            // get info user
+            Navigator.showRootTabbarController()
+        }, onError: { error in
+            debugPrint("Login error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
-        
-        
-//        Navigator.navigateToResetPasswordVC(from: self)
     }
 }
 
@@ -128,7 +128,7 @@ extension SignInViewController {
     }
     
     @objc private func onPressedTrail() {
-        Navigator.window?.rootViewController = RootTabbarController()
+        Navigator.showRootTabbarController()
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {

@@ -11,9 +11,6 @@ import UIKit
 extension QuestViewController: NestedScrollDataSource {
     
     func viewControllers(for pagerTabPageController: NestedScrollViewController) -> [UIViewController] {
-        let dailyVC = DailyQuestViewController()
-        let monthlyVC = MonthlyQuestViewController()
-        
         return [dailyVC, monthlyVC]
     }
     

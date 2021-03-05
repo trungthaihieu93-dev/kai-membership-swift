@@ -6,6 +6,33 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
+
+// MARK: DZNEmptyDataSetSource
+extension WalletViewController: DZNEmptyDataSetSource {
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "image_wallet_empty")!
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "No Transaction", attributes: [
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 20, weight: .medium),
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+        ])
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "Start your first transaction", attributes: [
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54)
+        ])
+    }
+    
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return 100
+    }
+}
 
 // MARK: UITableViewDataSource
 extension WalletViewController: UITableViewDataSource {

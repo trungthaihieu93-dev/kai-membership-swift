@@ -39,6 +39,7 @@ class NewsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupView()
+        fetchData()
     }
     
     // MARK: Layout
@@ -51,5 +52,11 @@ class NewsViewController: BaseViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+    
+    // MARK: Data fetching
+    func fetchData() {
+        viewModel.createData()
+        tableView.reloadData()
     }
 }

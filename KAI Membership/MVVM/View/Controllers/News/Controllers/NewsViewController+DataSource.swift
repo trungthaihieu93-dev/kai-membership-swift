@@ -24,10 +24,12 @@ extension NewsViewController: UITableViewDataSource {
         switch sectionType {
         case .suggestion:
             let cell = tableView.dequeueReusableCell(withIdentifier: NewsSuggestionTableViewCell.identifier, for: indexPath) as! NewsSuggestionTableViewCell
+            cell.reloadWithData(viewModel.suggestions)
             
             return cell
         case .lastest:
             let cell = tableView.dequeueReusableCell(withIdentifier: NewsLastestTableViewCell.identifier, for: indexPath) as! NewsLastestTableViewCell
+            cell.reloadWithData(viewModel.lastests)
             
             return cell
         }

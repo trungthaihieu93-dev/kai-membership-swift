@@ -13,6 +13,7 @@ class TutorialView: UIView {
     private let imageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
         
         return view
     }()
@@ -22,6 +23,7 @@ class TutorialView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 24
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.createShadow(radius: 24)
         
         return view
     }()
@@ -38,6 +40,7 @@ class TutorialView: UIView {
     
     // MARK: Layout
     func setupView() {
+        backgroundColor = .white
         addSubview(imageView)
         addSubview(contentView)
         
@@ -48,7 +51,7 @@ class TutorialView: UIView {
             
             contentView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -24),
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 337)
         ])

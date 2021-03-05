@@ -10,7 +10,10 @@ import RxSwift
 class QuestViewModel {
     
     // MARK: Properties
-    private(set) var quests = [QuestRemote]()
+    private var quests = [QuestRemote]()
+    
+    private(set) var dailyQuests = [QuestRemote]()
+    private(set) var monthlyQuests = [QuestRemote]()
     
     // MARK: Methods
     func getTheQuestsList() -> Observable<[QuestRemote]> {
@@ -18,7 +21,7 @@ class QuestViewModel {
             QuestServices.getList { [weak self] in
                 switch $0 {
                 case .success(let result):
-                    self?.quests = result.datas
+                    self?.setData(result.datas)
                     observer.onNext(result.datas)
                     observer.onCompleted()
                 case .failure(let error):
@@ -28,5 +31,11 @@ class QuestViewModel {
             
             return Disposables.create()
         }
+    }
+        
+    private func setData(_ results: [QuestRemote]) {
+        quests = results
+        dailyQuests = results.filter { $0.type == .daily }
+        monthlyQuests = results.filter { $0.type == .monthly }
     }
 }

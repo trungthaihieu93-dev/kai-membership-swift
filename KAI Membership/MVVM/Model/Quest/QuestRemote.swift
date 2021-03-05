@@ -9,7 +9,7 @@ import Foundation
 
 enum QuestType: String {
     case daily = "DAILY"
-    case month = "MONTH"
+    case monthly = "MONTH"
     case unowned
 }
 

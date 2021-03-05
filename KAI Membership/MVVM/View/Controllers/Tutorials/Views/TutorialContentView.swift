@@ -31,16 +31,17 @@ class TutorialContentView: UIView {
     // MARK: Life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Layout
-    func commonInit() {
+    func setupView() {
+        backgroundColor = .white
+        
         addSubview(titleLabel)
         addSubview(bodyLabel)
         

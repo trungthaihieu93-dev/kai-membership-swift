@@ -14,7 +14,7 @@ extension String: BaseModel {
 class ActivityServices {
     
     // MARK: Activity accounts
-    class func activity(userId: String, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
+    class func activity(userId: String, _ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/activity", method: .post)
         input.params["user_id"] = userId
         input.params["device_id"] = Constants.Device.id
