@@ -176,7 +176,7 @@ extension SignInView: KAITextFieldViewDelegate {
     }
     
     func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
-        delegate?.signInViewDidFinishTouchingAction(self, actionKey: .signIn)
+//        delegate?.signInViewDidFinishTouchingAction(self, actionKey: .signIn)
         return false
     }
     

@@ -13,6 +13,21 @@ class SignInViewController: BaseViewController {
     // MARK: Properties
     let viewModel = SignInViewModel()
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return scrollView
+    }()
+    
+    private lazy var signInView: SignInView = {
+        let view = SignInView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        
+        return view
+    }()
+    
     private lazy var trialButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -28,21 +43,6 @@ class SignInViewController: BaseViewController {
         button.addTarget(self, action: #selector(onPressedTrail), for: .touchUpInside)
         
         return button
-    }()
-    
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return scrollView
-    }()
-    
-    private lazy var signInView: SignInView = {
-        let view = SignInView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = self
-        
-        return view
     }()
     
     override var pageTitle: String {
