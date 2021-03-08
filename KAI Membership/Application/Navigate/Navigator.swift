@@ -61,9 +61,9 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /* Điều hướng sang màn hình làm mới mật khẩu */
-    class func navigateToResetPasswordVC(from viewController: UIViewController? = nil) {
-        let vc = ResetPasswordViewController()
+    /* Điều hướng sang màn hình làm mới passcode */
+    class func navigateToResetPasscodeVC(from viewController: UIViewController? = nil) {
+        let vc = ResetPasscodeViewController()
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

@@ -1,5 +1,5 @@
 //
-//  SignUpView.swift
+//  SignUpInputView.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 07/03/2021.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol SignUpViewDelegate: class {
-    func signUpViewEmailValueChange(_ signUpView: SignUpView, textField: UITextField)
-    func signUpViewPasswordValueChange(_ signUpView: SignUpView, textField: UITextField)
-    func signUpViewConfirmPasswordValueChange(_ signUpView: SignUpView, textField: UITextField)
-    func signUpViewDidFinishTouchingAction(_ signUpView: SignUpView, actionKey: SignUpView.ActionKey)
+protocol SignUpInputViewDelegate: class {
+    func signUpInputViewEmailValueChange(_ signUpInputView: SignUpInputView, textField: UITextField)
+    func signUpInputViewPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField)
+    func signUpInputViewConfirmPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField)
+    func signUpInputViewDidFinishTouchingAction(_ signUpInputView: SignUpInputView, actionKey: SignUpInputView.ActionKey)
 }
 
-class SignUpView: UIView {
+class SignUpInputView: UIView {
 
     // MARK: Properties
     enum ActionKey {
@@ -73,7 +73,7 @@ class SignUpView: UIView {
         return label
     }()
     
-    weak var delegate: SignUpViewDelegate?
+    weak var delegate: SignUpInputViewDelegate?
     
     // MARK: Life cycle
     override init(frame: CGRect) {
@@ -140,10 +140,10 @@ class SignUpView: UIView {
 }
 
 // MARK: Handle actions
-extension SignUpView {
+extension SignUpInputView {
     
     @objc private func onPressedCreateAccount() {
-        delegate?.signUpViewDidFinishTouchingAction(self, actionKey: .createAccount)
+        delegate?.signUpInputViewDidFinishTouchingAction(self, actionKey: .createAccount)
     }
 
     @objc private func onTapSignIn(_ recognizer: UITapGestureRecognizer) {
@@ -151,20 +151,20 @@ extension SignUpView {
 
         guard recognizer.didTapAttributedTextInLabel(label: signInLabel, inRange: range) else { return }
         
-        delegate?.signUpViewDidFinishTouchingAction(self, actionKey: .signIn)
+        delegate?.signUpInputViewDidFinishTouchingAction(self, actionKey: .signIn)
     }
 }
 
 // MARK: KAITextFieldViewDelegate
-extension SignUpView: KAITextFieldViewDelegate {
+extension SignUpInputView: KAITextFieldViewDelegate {
     
     func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
         if textField == emailTextField {
-            delegate?.signUpViewEmailValueChange(self, textField: textField)
+            delegate?.signUpInputViewEmailValueChange(self, textField: textField)
         } else if textField == passwordTextField {
-            delegate?.signUpViewEmailValueChange(self, textField: textField)
+            delegate?.signUpInputViewEmailValueChange(self, textField: textField)
         } else if textField == confirmPasswordTextField {
-            delegate?.signUpViewEmailValueChange(self, textField: textField)
+            delegate?.signUpInputViewEmailValueChange(self, textField: textField)
         }
     }
     

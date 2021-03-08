@@ -20,8 +20,8 @@ class SignInViewController: BaseViewController {
         return scrollView
     }()
     
-    private lazy var signInView: SignInView = {
-        let view = SignInView()
+    private lazy var signInView: SignInInputView = {
+        let view = SignInInputView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         

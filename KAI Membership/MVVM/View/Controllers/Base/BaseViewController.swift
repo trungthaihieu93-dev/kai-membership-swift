@@ -78,8 +78,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightText
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .yellow
         
         return view
     }()
@@ -206,6 +206,15 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         _setupTitleView()
+        
+        view.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     private func _setupTitleView() {

@@ -19,8 +19,8 @@ class SignUpViewController: BaseViewController {
         return scrollView
     }()
     
-    private lazy var signUpView: SignUpView = {
-        let view = SignUpView()
+    private lazy var signUpView: SignUpInputView = {
+        let view = SignUpInputView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         

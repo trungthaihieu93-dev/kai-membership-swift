@@ -7,21 +7,21 @@
 
 import UIKit
 
-extension SignUpViewController: SignUpViewDelegate {
+extension SignUpViewController: SignUpInputViewDelegate {
     
-    func signUpViewEmailValueChange(_ signUpView: SignUpView, textField: UITextField) {
+    func signUpInputViewEmailValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {
         viewModel.updateEmail(textField.text)
     }
     
-    func signUpViewPasswordValueChange(_ signUpView: SignUpView, textField: UITextField) {
+    func signUpInputViewPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {
         viewModel.updatePassword(textField.text)
     }
     
-    func signUpViewConfirmPasswordValueChange(_ signUpView: SignUpView, textField: UITextField) {
+    func signUpInputViewConfirmPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {
         viewModel.confirmPassword(textField.text)
     }
     
-    func signUpViewDidFinishTouchingAction(_ signUpView: SignUpView, actionKey: SignUpView.ActionKey) {
+    func signUpInputViewDidFinishTouchingAction(_ signUpInputView: SignUpInputView, actionKey: SignUpInputView.ActionKey) {
         switch actionKey {
         case .signIn:
             Navigator.navigateToSignUpVC(from: self)

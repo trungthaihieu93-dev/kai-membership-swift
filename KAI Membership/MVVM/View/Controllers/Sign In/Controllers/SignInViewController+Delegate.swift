@@ -7,17 +7,17 @@
 
 import UIKit
 
-extension SignInViewController: SignInViewDelegate {
+extension SignInViewController: SignInInputViewDelegate {
     
-    func signInViewEmailValueChange(_ signInView: SignInView, textField: UITextField) {
+    func signInInputViewEmailValueChange(_ signInInputView: SignInInputView, textField: UITextField) {
         viewModel.updateEmail(textField.text)
     }
     
-    func signInViewPasswordValueChange(_ signInView: SignInView, textField: UITextField) {
+    func signInInputViewPasswordValueChange(_ signInInputView: SignInInputView, textField: UITextField) {
         viewModel.updatePassword(textField.text)
     }
     
-    func signInViewDidFinishTouchingAction(_ signInView: SignInView, actionKey: SignInView.ActionKey) {
+    func signInInputViewDidFinishTouchingAction(_ signInInputView: SignInInputView, actionKey: SignInInputView.ActionKey) {
         switch actionKey {
         case.forgotPassword:
             Navigator.navigateToForgotPasswordVC(from: self)

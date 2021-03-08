@@ -1,5 +1,5 @@
 //
-//  ResetPasswordViewController.swift
+//  ResetPasscodeViewController.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 20/02/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResetPasswordViewController: BaseViewController {
+class ResetPasscodeViewController: BaseViewController {
 
     // MARK: Properties
     private let emailTextField: KAIInputTextFieldView = {
@@ -70,7 +70,7 @@ class ResetPasswordViewController: BaseViewController {
 }
 
 // MARK: Handle actions
-extension ResetPasswordViewController {
+extension ResetPasscodeViewController {
     
     @objc private func onPressedSend() {
         

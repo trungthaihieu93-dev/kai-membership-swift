@@ -50,7 +50,6 @@ class APIInput: APIInputBase {
 //        HTTPHeader(name: "device_model", value: Constants.Device.model),
         HTTPHeader(name: "Accept-Encoding", value: "gzip, deflate, br"),
         HTTPHeader(name: "Connection", value: "keep-alive"),
-        HTTPHeader.authorization(bearerToken: "7ho5v8JIue5s3ImJHihR1NKAxcMuqH")
     ]
     
     var params: Parameters = [:]
@@ -60,6 +59,10 @@ class APIInput: APIInputBase {
     var returnErrorData: Bool = false
     
     init(withDomain domain: String, path: String = "", params: Parameters = [:], method: HTTPMethod = .get) {
+        if let authorizationToken = AccountManagement.token {
+            headers.add(HTTPHeader.authorization(bearerToken: authorizationToken))//"7ho5v8JIue5s3ImJHihR1NKAxcMuqH"
+        }
+         
         self.domain = domain
         self.path = path
         self.params = params

@@ -35,22 +35,30 @@ class MainViewController: UIViewController {
             activityIndicatorView.color = .black
         }
         
-//        fetchData()
-        
-        Navigator.showTutorialVC()
+        fetchData()
     }
     
     // MARK: Fetch data
     private func fetchData() {
-        viewModel.getAccountsLoggedIntoDevice().subscribe(on: MainScheduler.instance).subscribe { device in
+        viewModel.getAccountsLoggedIntoDevice().subscribe(on: MainScheduler.instance).subscribe { [weak self] device in
             if let device = device, !device.users.isEmpty {
                 Navigator.showSelectAccountVC(device.users)
+                AppSetting.haveUsedTheApplicationOnce = true
             } else {
-                Navigator.showSignInVC()
+                self?.showSignInApp()
             }
-        } onError: { error in
+        } onError: { [weak self] error in
             debugPrint("Get accounts logged into device error: \((error as? APIErrorResult)?.message ?? "ERROR")")
-            Navigator.showSignInVC()
+            self?.showSignInApp()
         }.disposed(by: disposeBag)
+    }
+    
+    private func showSignInApp() {
+        if AppSetting.haveUsedTheApplicationOnce {
+            Navigator.showSignInVC()
+        } else {
+            Navigator.showTutorialVC()
+            AppSetting.haveUsedTheApplicationOnce = true
+        }
     }
 }
