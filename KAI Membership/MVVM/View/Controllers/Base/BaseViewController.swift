@@ -8,6 +8,64 @@
 import UIKit
 import RxSwift
 
+class BaseViewController2: UIViewController {
+    
+    // MARK: Properties
+    let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+    
+    var navigationBarHeight: CGFloat {
+        return self.navigationController?.navigationBar.frame.height ?? 0
+    }
+    
+    var tabbarHeight: CGFloat {
+        return self.tabBarController?.tabBar.frame.height ?? 0
+    }
+    
+    var statusBarStyle: UIStatusBarStyle = .default {
+        didSet {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
+    var marginDefault: CGFloat {
+        return 20
+    }
+    
+    var isHiddenNavigationBar: Bool {
+        return false
+    }
+    
+    lazy var disposeBag = DisposeBag()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarStyle
+    }
+    
+    // MARK: Life cycle's
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(isHiddenNavigationBar, animated: true)
+    }
+    
+    // MARK: Layout
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isBeingDismissed || isMovingFromParent {
+            NotificationCenter.default.removeObserver(self)
+        }
+    }
+    
+    deinit {
+        debugPrint("Deinit \(identifier)")
+    }
+}
+
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: Properties

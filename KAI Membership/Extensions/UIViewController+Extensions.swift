@@ -27,7 +27,7 @@ extension UIViewController {
     }
     
     var safeAreaInsets: UIEdgeInsets {
-        return view.safeAreaInsets
+        return UIApplication.shared.keyWindow?.safeAreaInsets ?? view.safeAreaInsets
     }
 }
 

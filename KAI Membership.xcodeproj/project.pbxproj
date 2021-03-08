@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */; };
+		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
 		521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B425DE7C5B009355BC /* UIView+Extensions.swift */; };
@@ -145,6 +146,7 @@
 /* Begin PBXFileReference section */
 		0EA1B91CAA873600C2D0BB1C /* Pods-KAI Membership.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAI Membership.debug.xcconfig"; path = "Target Support Files/Pods-KAI Membership/Pods-KAI Membership.debug.xcconfig"; sourceTree = "<group>"; };
 		2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KAI_Membership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		521754B425DE7C5B009355BC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -294,6 +296,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49E03A0025F6353800119F55 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		521754A425DE7530009355BC /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -976,6 +985,7 @@
 			isa = PBXGroup;
 			children = (
 				5265495A25F5E8F7003AE21A /* Controllers */,
+				49E03A0025F6353800119F55 /* Views */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1062,16 +1072,16 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5265495925F5E8B6003AE21A /* Profile */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
 				525DB87A25E55413001491AE /* Congrats */,
-				52F37D0925E15952009F311F /* Password */,
 				525DBA3D25EFEDCB001491AE /* Main */,
 				525DBA9025F0FDA6001491AE /* Nested Scroll */,
 				529AE1AA25DD996E00635807 /* News */,
 				525DBA8225F0180B001491AE /* Overview */,
 				525DB87225E51D88001491AE /* Passcode */,
+				52F37D0925E15952009F311F /* Password */,
+				5265495925F5E8B6003AE21A /* Profile */,
 				525DB88325E5579E001491AE /* Quest */,
 				525DB98125EB8FD9001491AE /* Recent Transactions */,
 				529AE1BD25DD9B5D00635807 /* Root */,
@@ -1188,6 +1198,7 @@
 		52F37CF825E0DCC5009F311F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
 				525DBA8C25F0190B001491AE /* KAICardCollapseView.swift */,
 				52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */,
 				52F37CF925E0DCDD009F311F /* KAITextFieldView.swift */,
@@ -1214,8 +1225,8 @@
 		52F37D0925E15952009F311F /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				5265496125F5E927003AE21A /* New */,
 				5265496025F5E91D003AE21A /* Forgot */,
+				5265496125F5E927003AE21A /* New */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -1472,6 +1483,7 @@
 				525DB9F725EFD5B7001491AE /* DeviceServices.swift in Sources */,
 				525DBA9D25F137A1001491AE /* QuestHeaderView.swift in Sources */,
 				525DB8EE25E6B88C001491AE /* UserLocal.swift in Sources */,
+				49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */,
 				52F37CFA25E0DCDD009F311F /* KAITextFieldView.swift in Sources */,
 				525DBA3A25EFEB32001491AE /* MainViewController.swift in Sources */,
 				525DBA4A25F002B1001491AE /* PasscodeViewController+Delegate.swift in Sources */,

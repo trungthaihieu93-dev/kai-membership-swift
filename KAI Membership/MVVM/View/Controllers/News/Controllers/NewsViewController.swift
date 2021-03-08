@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsViewController: BaseViewController {
+class NewsViewController: BaseViewController2 {
 
     // MARK: Properties
     enum Section: Int, CaseIterable {
@@ -17,11 +17,18 @@ class NewsViewController: BaseViewController {
     
     let viewModel = NewsViewModel()
     
+    private lazy var rightBarButtonItemView: KAIBarButtonItemView = {
+        let view = KAIBarButtonItemView()
+        view.delegate = self
+        
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.contentInset = .init(top: 20, left: 0, bottom: 34, right: 0)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(NewsSuggestionTableViewCell.self, forCellReuseIdentifier: NewsSuggestionTableViewCell.identifier)
         tableView.register(NewsLastestTableViewCell.self, forCellReuseIdentifier: NewsLastestTableViewCell.identifier)
         tableView.dataSource = self
@@ -30,14 +37,11 @@ class NewsViewController: BaseViewController {
         return tableView
     }()
     
-    override var pageTitle: String {
-        return "Today News"
-    }
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Today News"
+        navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         setupView()
         fetchData()
     }
@@ -47,7 +51,7 @@ class NewsViewController: BaseViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

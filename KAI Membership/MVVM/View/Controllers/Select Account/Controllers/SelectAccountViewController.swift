@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SelectAccountViewController: BaseViewController {
+class SelectAccountViewController: BaseViewController2 {
 
     // MARK: Properties
     let users: [UserRemote]
@@ -20,21 +20,13 @@ class SelectAccountViewController: BaseViewController {
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0.01, height: 0.01))
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0.01, height: 0.01))
         tableView.backgroundColor = .white
-        tableView.contentInset = .init(top: 20, left: 0, bottom: 34, right: 0)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(SelectAccountTableViewCell.self, forCellReuseIdentifier: SelectAccountTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         
         return tableView
     }()
-    
-    override var pageTitle: String {
-        return "Select Account"
-    }
-    
-    override var pageDiscription: String {
-        return "Choose the account you want."
-    }
     
     init(with users: [UserRemote]) {
         self.users = users
@@ -49,7 +41,7 @@ class SelectAccountViewController: BaseViewController {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Select Account"
         setupView()
     }
     
@@ -58,7 +50,7 @@ class SelectAccountViewController: BaseViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)

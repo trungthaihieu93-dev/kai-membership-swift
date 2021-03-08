@@ -102,4 +102,19 @@ final class Navigator {
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    /* Điều hướng sang màn hình tạo mới mật khẩu */
+    class func navigateToNewPasswordVC(from viewController: UIViewController? = nil) {
+        let vc = NewPasswordViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng sang màn hình thông tin tài khoản cá nhân */
+    class func navigateToProfileVC(from viewController: UIViewController? = nil) {
+        let vc = ProfileViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }

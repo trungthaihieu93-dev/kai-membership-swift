@@ -7,6 +7,18 @@
 
 import UIKit
 
+// MARK: KAIBarButtonItemViewDelegate
+extension NewsViewController: KAIBarButtonItemViewDelegate {
+    
+    func kAIBarButtonItemViewDidSelecteSpin(_ kAIBarButtonItemView: KAIBarButtonItemView) {
+        // Web view
+    }
+    
+    func kAIBarButtonItemViewDidSelecteProfile(_ kAIBarButtonItemView: KAIBarButtonItemView) {
+        Navigator.navigateToProfileVC(from: self)
+    }
+}
+
 // MARK: UITableViewDelegate
 extension NewsViewController: UITableViewDelegate {
     

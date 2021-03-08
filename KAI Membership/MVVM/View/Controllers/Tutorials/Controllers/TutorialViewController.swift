@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TutorialViewController: BaseViewController {
+class TutorialViewController: BaseViewController2 {
 
     // MARK: Properties
     enum ActionStatus {
@@ -178,6 +178,10 @@ class TutorialViewController: BaseViewController {
                 signInButton.isHidden = false
             }
         }
+    }
+    
+    override var isHiddenNavigationBar: Bool {
+        return true
     }
     
     // MARK: Life cycle's

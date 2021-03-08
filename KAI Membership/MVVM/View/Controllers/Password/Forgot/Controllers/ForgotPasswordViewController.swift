@@ -103,7 +103,8 @@ class ForgotPasswordViewController: BaseViewController {
 extension ForgotPasswordViewController {
     
     @objc private func onPressedSend() {
-        
+        // Call APi
+        Navigator.navigateToNewPasswordVC(from: self)
     }
     
     @objc private func onTapSendCodeToEmail(_ recognizer: UITapGestureRecognizer) {

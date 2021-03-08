@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class PasscodeViewController: BaseViewController {
+class PasscodeViewController: BaseViewController2 {
 
     // MARK: Properties
     enum `Type` {
@@ -22,35 +22,43 @@ class PasscodeViewController: BaseViewController {
     
     let viewModel: PasscodeViewModel
     
-    override var pageTitle: String {
-        switch type {
-        case .signUp:
-            return "Create Passcode"
-        case .signIn:
-            return "Enter passcode"
-        case .confirm:
-            return "Confirm Passcode"
-        case .reset:
-            return "New Passcode"
-        }
-    }
-    
-    override var pageDiscription: String {
-        switch type {
-        case .signUp:
-            return "This passcode is super handy. It can save your life sometime. Try to remember it."
-        case .signIn:
-            return "Enter your passcode to continue."
-        case .confirm:
-            return "Confirm your passcode again. Just in case."
-        case .reset:
-            return "This passcode is super handy. It can save your life sometime. Try to remember it."
-        }
-    }
+//    override var pageTitle: String {
+//        switch type {
+//        case .signUp:
+//            return "Create Passcode"
+//        case .signIn:
+//            return "Enter passcode"
+//        case .confirm:
+//            return "Confirm Passcode"
+//        case .reset:
+//            return "New Passcode"
+//        }
+//    }
+//
+//    override var pageDiscription: String {
+//        switch type {
+//        case .signUp:
+//            return "This passcode is super handy. It can save your life sometime. Try to remember it."
+//        case .signIn:
+//            return "Enter your passcode to continue."
+//        case .confirm:
+//            return "Confirm your passcode again. Just in case."
+//        case .reset:
+//            return "This passcode is super handy. It can save your life sometime. Try to remember it."
+//        }
+//    }
     
     private let footerString: String = "By creating a passcode, you agree with our \nTerms & Conditions and Privacy Policy"
     private let termsAndConditions: String = "Terms & Conditions"
     private let privacyPolicy: String = "Privacy Policy"
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        
+        return label
+    }()
     
     private lazy var passcodeView: PasscodeView = {
         let view = PasscodeView(with: .passcode)
@@ -111,7 +119,7 @@ class PasscodeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Enter passcode"
         setupView()
     }
     
@@ -123,13 +131,18 @@ class PasscodeViewController: BaseViewController {
     
     // MARK: Layout
     private func setupView() {
+        view.addSubview(descriptionLabel)
         view.addSubview(passcodeView)
         view.addSubview(showPasscodeButton)
         view.addSubview(footerLabel)
         view.addSubview(confirmButton)
         
         NSLayoutConstraint.activate([
-            passcodeView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: 50),
+            descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: safeAreaInsets.top + navigationBarHeight + 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            passcodeView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 52),
             passcodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             passcodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -149,6 +162,8 @@ class PasscodeViewController: BaseViewController {
         ])
         
         configureFooterLabel()
+        
+        descriptionLabel.attributedText = "Enter your passcode to continue.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         
         DispatchQueue.main.async {
             self.confirmButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
