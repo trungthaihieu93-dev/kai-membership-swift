@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SignInViewController: BaseViewController {
+class SignInViewController: BaseViewController2 {
 
     // MARK: Properties
     let viewModel = SignInViewModel()
@@ -18,6 +18,14 @@ class SignInViewController: BaseViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        
+        return label
     }()
     
     private lazy var signInView: SignInInputView = {
@@ -45,18 +53,10 @@ class SignInViewController: BaseViewController {
         return button
     }()
     
-    override var pageTitle: String {
-        return "Welcome!"
-    }
-    
-    override var pageDiscription: String {
-        return "Sign in and start our journey with KAI."
-    }
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Welcome!"
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -70,13 +70,18 @@ class SignInViewController: BaseViewController {
     
     // MARK: Layout
     private func setupView() {
+        view.addSubview(descriptionLabel)
         view.addSubview(scrollView)
-        scrollView.addSubview(signInView)
-        
         view.addSubview(trialButton)
         
+        scrollView.addSubview(signInView)
+        
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            scrollView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -91,18 +96,13 @@ class SignInViewController: BaseViewController {
             trialButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             trialButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        
+        descriptionLabel.attributedText = "Sign in and start our journey with KAI.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
     }
     
     // MARK: Login
     func login() {
-        guard let email = viewModel.email, !email.isEmpty, let password = viewModel.password, !password.isEmpty else {
-            return
-        }
-        
-        viewModel.login(with: email, and: password).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] login in
-            guard let this = self else { return }
-            
-            // get info user
+        viewModel.login(with: signInView.emailTextField.contentInput, and: signInView.passwordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { info in
             Navigator.showRootTabbarController()
         }, onError: { error in
             debugPrint("Login error: \((error as? APIErrorResult)?.message ?? "ERROR")")

@@ -19,6 +19,8 @@ class KAIInputTextFieldView: UIView {
         return label
     }()
     
+    var contentInput: String = ""
+    
     weak var delegate: KAITextFieldViewDelegate?
     
     // MARK: Life cycle's
@@ -33,24 +35,24 @@ class KAIInputTextFieldView: UIView {
     
     // MARK: Layout
     func setupView(title: String, placeholder: String? = nil, isSecureTextEntryEnabled: Bool = false) {
-        let textField: KAITextFieldView = KAITextFieldView(with: .normal, placeholder: placeholder, isSecureTextEntryEnabled: isSecureTextEntryEnabled)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.delegate = self
+        let kaiTextFieldView: KAITextFieldView = KAITextFieldView(with: .normal, placeholder: placeholder, isSecureTextEntryEnabled: isSecureTextEntryEnabled)
+        kaiTextFieldView.translatesAutoresizingMaskIntoConstraints = false
+        kaiTextFieldView.delegate = self
         label.text = title
         
         addSubview(label)
-        addSubview(textField)
+        addSubview(kaiTextFieldView)
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
             label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
             
-            textField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 4),
-            textField.leadingAnchor.constraint(equalTo: leadingAnchor),
-            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor),
-            textField.heightAnchor.constraint(equalToConstant: 44)
+            kaiTextFieldView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 4),
+            kaiTextFieldView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            kaiTextFieldView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            kaiTextFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            kaiTextFieldView.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 }
@@ -67,6 +69,7 @@ extension KAIInputTextFieldView: KAITextFieldViewDelegate {
     }
     
     func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
+        contentInput = textField.text ?? ""
         delegate?.kAITextFieldViewDidChange(textField, for: self)
     }
     

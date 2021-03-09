@@ -13,7 +13,6 @@ class NewPasswordViewController: BaseViewController2 {
     private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
         
         return view
     }()

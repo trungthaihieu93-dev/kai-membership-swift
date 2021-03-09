@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import RxSwift
 
-class SignUpViewController: BaseViewController {
+class SignUpViewController: BaseViewController2 {
 
     // MARK: Properties
     let viewModel = SignUpViewModel()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        
+        return label
+    }()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -44,18 +53,10 @@ class SignUpViewController: BaseViewController {
         return button
     }()
     
-    override var pageTitle: String {
-        return "Be a Member"
-    }
-    
-    override var pageDiscription: String {
-        return "1 step away to be a Kai member. We just need a few details from you."
-    }
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Be a Member"
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -69,13 +70,18 @@ class SignUpViewController: BaseViewController {
     
     // MARK: Layout
     private func setupView() {
+        view.addSubview(descriptionLabel)
         view.addSubview(scrollView)
-        scrollView.addSubview(signUpView)
-        
         view.addSubview(trialButton)
         
+        scrollView.addSubview(signUpView)
+        
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            scrollView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -90,14 +96,20 @@ class SignUpViewController: BaseViewController {
             trialButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             trialButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        
+        descriptionLabel.attributedText = "1 step away to be a Kai member. We just need a few details from you.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
     }
     
     // MARK: Methods
     func createAccount() {
-        guard let email = viewModel.email, !email.isEmpty else { return }
-        // Call API create account
-        // => Create passcode
-        Navigator.navigateToPasscodeVC(from: self, with: .signUp, email: email)
+        let email = signUpView.emailTextField.contentInput
+        viewModel.register(username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
+            guard let this = self else { return }
+            
+            Navigator.navigateToPasscodeVC(from: this, with: .signUp, email: email)
+        }, onError: { error in
+            debugPrint("Register error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
     }
 }
 

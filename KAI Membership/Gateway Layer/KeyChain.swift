@@ -10,30 +10,34 @@ import Security
 
 class KeyChain {
 
-    class func save(forKey key: Key.KeyChain, data: Data) -> OSStatus {
+    class func save(forKey key: Key.KeyChain, data: Data) {
         let query = [
-            kSecClass as String       : kSecClassGenericPassword as String,
-            kSecAttrAccount as String : key,
-            kSecValueData as String   : data ] as [String : Any]
+            kSecClass       : kSecClassGenericPassword,
+//            kSecAttrServer  : "kai.com",
+            kSecAttrAccount : key.rawValue,
+            kSecValueData   : data,
+        ] as CFDictionary
 
-        SecItemDelete(query as CFDictionary)
+        SecItemDelete(query)
 
-        return SecItemAdd(query as CFDictionary, nil)
+        let status = SecItemAdd(query, nil)
+        print("Operation finished with status: \(status)")
     }
 
     class func load(forKey key: Key.KeyChain) -> Data? {
         let query = [
-            kSecClass as String       : kSecClassGenericPassword,
-            kSecAttrAccount as String : key,
-            kSecReturnData as String  : kCFBooleanTrue!,
-            kSecMatchLimit as String  : kSecMatchLimitOne ] as [String : Any]
+            kSecClass       : kSecClassGenericPassword,
+//            kSecAttrServer  : "kai.com",
+            kSecAttrAccount : key.rawValue,
+            kSecReturnData  : true,
+            kSecMatchLimit  : kSecMatchLimitOne
+        ] as CFDictionary
 
         var dataTypeRef: AnyObject? = nil
-
-        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+        let status: OSStatus = SecItemCopyMatching(query, &dataTypeRef)
 
         if status == noErr {
-            return dataTypeRef as! Data?
+            return dataTypeRef as? Data
         } else {
             return nil
         }

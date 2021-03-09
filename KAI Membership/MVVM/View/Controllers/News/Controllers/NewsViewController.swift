@@ -42,6 +42,7 @@ class NewsViewController: BaseViewController2 {
         super.viewDidLoad()
         navigationItem.title = "Today News"
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
+        
         setupView()
         fetchData()
     }

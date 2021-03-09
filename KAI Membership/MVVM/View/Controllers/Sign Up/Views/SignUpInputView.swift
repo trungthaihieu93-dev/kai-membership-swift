@@ -14,6 +14,12 @@ protocol SignUpInputViewDelegate: class {
     func signUpInputViewDidFinishTouchingAction(_ signUpInputView: SignUpInputView, actionKey: SignUpInputView.ActionKey)
 }
 
+extension SignUpInputViewDelegate {
+    func signUpInputViewEmailValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {}
+    func signUpInputViewPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {}
+    func signUpInputViewConfirmPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {}
+}
+
 class SignUpInputView: UIView {
 
     // MARK: Properties
@@ -25,7 +31,7 @@ class SignUpInputView: UIView {
     private let signInText: String = "I’m already a KAISER ! Sign In"
     private let detechActionSignInText: String = "Sign In"
     
-    private lazy var emailTextField: KAIInputTextFieldView = {
+    private(set) lazy var emailTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "EMAIL", placeholder: "eg. an.nguyen@kardianchain.io")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -41,7 +47,7 @@ class SignUpInputView: UIView {
         return view
     }()
     
-    private lazy var confirmPasswordTextField: KAIInputTextFieldView = {
+    private(set) lazy var confirmPasswordTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "CONFIRM PASSWORD", placeholder: "Confirm password", isSecureTextEntryEnabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -56,6 +62,8 @@ class SignUpInputView: UIView {
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
+        button.isEnabled = false
+        button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedCreateAccount), for: .touchUpInside)
@@ -73,6 +81,20 @@ class SignUpInputView: UIView {
         return label
     }()
     
+    var isConfirmEnabled: Bool = false {
+        didSet {
+            guard isConfirmEnabled != oldValue else { return }
+            
+            createAccountButton.isEnabled = isConfirmEnabled
+            
+            if isConfirmEnabled {
+                createAccountButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+            } else {
+                createAccountButton.removeAllSublayers(withName: UIView.gradientLayerKey)
+            }
+        }
+    }
+    
     weak var delegate: SignUpInputViewDelegate?
     
     // MARK: Life cycle
@@ -86,12 +108,6 @@ class SignUpInputView: UIView {
     }
     
     // MARK: Layout
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.createAccountButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
-    }
-    
     func setupView() {
         addSubview(emailTextField)
         addSubview(passwordTextField)
@@ -166,6 +182,9 @@ extension SignUpInputView: KAITextFieldViewDelegate {
         } else if textField == confirmPasswordTextField {
             delegate?.signUpInputViewEmailValueChange(self, textField: textField)
         }
+        
+        let password = passwordTextField.contentInput
+        isConfirmEnabled = !emailTextField.contentInput.isEmpty && password.count >= Constants.lengthPasswordMinimum && (password == confirmPasswordTextField.contentInput)
     }
     
     func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {

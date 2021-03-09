@@ -16,7 +16,6 @@ class CheckMailViewController: BaseViewController {
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
         
         return view
     }()

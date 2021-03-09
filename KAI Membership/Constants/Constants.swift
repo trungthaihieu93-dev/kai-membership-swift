@@ -20,7 +20,8 @@ enum UnitCurrency: String {
 class Constants {
     
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "undefined"
-    static let environment = Constants.isDebug ? Environment.production : Environment.production
+    static let environment = Constants.isDebug ? Environment.development : Environment.development
+    static let lengthPasswordMinimum: Int = 8
     
     static var isDebug: Bool {
         #if DEBUG
@@ -31,7 +32,7 @@ class Constants {
     }
     
     struct Device {
-        static let id: String = "e3a0a9e5a5b5d767"//UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
+        static let id: String = UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
         static let name: String = UIDevice.current.name.folding(options: .diacriticInsensitive, locale: .current)
         static let model: String = UIDevice.current.model
         static let version: String = UIDevice.current.systemVersion
@@ -56,7 +57,7 @@ enum Environment {
 struct API {
     
     enum Domain: String {
-        case production = "https://membership-backend.kardiachain.io"
-        case development = "https://reviewapi.riviu.co"
+        case production = "https://reviewapi.riviu.co"
+        case development = "https://membership-backend.kardiachain.io"
     }
 }

@@ -7,27 +7,32 @@
 
 import UIKit
 
-class UtilitiesViewController: BaseViewController {
+class UtilitiesViewController: BaseViewController2 {
 
     // MARK: Properties
+    private lazy var rightBarButtonItemView: KAIBarButtonItemView = {
+        let view = KAIBarButtonItemView()
+        view.delegate = self
+        
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.contentInset = .init(top: 20, left: 0, bottom: 34, right: 0)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(UtilitiesTableViewCell.self, forCellReuseIdentifier: UtilitiesTableViewCell.identifier)
         tableView.dataSource = self
         
         return tableView
     }()
     
-    override var pageTitle: String {
-        return "Utilities"
-    }
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Utilities"
+        navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         
         setupView()
     }
@@ -37,7 +42,7 @@ class UtilitiesViewController: BaseViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

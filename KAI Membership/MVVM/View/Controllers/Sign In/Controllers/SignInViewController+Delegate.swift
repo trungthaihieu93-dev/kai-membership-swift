@@ -9,14 +9,6 @@ import UIKit
 
 extension SignInViewController: SignInInputViewDelegate {
     
-    func signInInputViewEmailValueChange(_ signInInputView: SignInInputView, textField: UITextField) {
-        viewModel.updateEmail(textField.text)
-    }
-    
-    func signInInputViewPasswordValueChange(_ signInInputView: SignInInputView, textField: UITextField) {
-        viewModel.updatePassword(textField.text)
-    }
-    
     func signInInputViewDidFinishTouchingAction(_ signInInputView: SignInInputView, actionKey: SignInInputView.ActionKey) {
         switch actionKey {
         case.forgotPassword:

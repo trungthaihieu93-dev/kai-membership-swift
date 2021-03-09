@@ -14,94 +14,48 @@ protocol PasscodeViewDelegate: class {
 class PasscodeView: UIView {
     
     // MARK: Properties
-    enum `Type`: Int {
-        case passcode = 4
-        case verify = 6
-    }
-    
     enum CodeStatus {
         case enoughCode
         case haveNotEnoughCode
     }
     
-    private let type: PasscodeView.`Type`
-    
-    private let codeOneLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.font = UIFont(name: "HelveticaNeue", size: 15)
-        label.backgroundColor = .init(hex: "f7f7f7")
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 8
+    private let codeOneView: InputCodeView = {
+        let view = InputCodeView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 8
+        view.createShadow(radius: 8)
         
-        return label
+        return view
     }()
     
-    private let codeTwoLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.font = UIFont(name: "HelveticaNeue", size: 15)
-        label.backgroundColor = .init(hex: "f7f7f7")
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 8
+    private let codeTwoView: InputCodeView = {
+        let view = InputCodeView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.createShadow(radius: 8)
         
-        return label
+        return view
     }()
     
-    private let codeThreeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.font = UIFont(name: "HelveticaNeue", size: 15)
-        label.backgroundColor = .init(hex: "f7f7f7")
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 8
+    private let codeThreeView: InputCodeView = {
+        let view = InputCodeView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.createShadow(radius: 8)
         
-        return label
+        return view
     }()
     
-    private let codeFourLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.font = UIFont(name: "HelveticaNeue", size: 15)
-        label.backgroundColor = .init(hex: "f7f7f7")
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 8
+    private let codeFourView: InputCodeView = {
+        let view = InputCodeView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.createShadow(radius: 8)
         
-        return label
-    }()
-    
-    private let codeFiveLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.font = UIFont(name: "HelveticaNeue", size: 15)
-        label.backgroundColor = .init(hex: "f7f7f7")
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 8
-        
-        return label
-    }()
-    
-    private let codeSixLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.font = UIFont(name: "HelveticaNeue", size: 15)
-        label.backgroundColor = .init(hex: "f7f7f7")
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 8
-        
-        return label
+        return view
     }()
     
     private let containerStackView: UIStackView = {
@@ -109,7 +63,7 @@ class PasscodeView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
         view.distribution = .fillEqually
-        view.spacing = 4
+        view.spacing = 16
         
         return view
     }()
@@ -132,22 +86,28 @@ class PasscodeView: UIView {
         return textField
     }()
     
-    private lazy var codeLables: [UILabel] = [
-        codeOneLabel,
-        codeTwoLabel,
-        codeThreeLabel,
-        codeFourLabel,
-        codeFiveLabel,
-        codeSixLabel
+    private lazy var codeViews: [InputCodeView] = [
+        codeOneView,
+        codeTwoView,
+        codeThreeView,
+        codeFourView
     ]
     
     var code: String = ""
+    var isShowed: Bool = false {
+        didSet {
+            guard isShowed != oldValue else { return }
+            
+            for codeView in codeViews {
+                codeView.isCodeShowed = isShowed
+            }
+        }
+    }
     
     weak var delegate: PasscodeViewDelegate?
     
     // MARK: Life cycle's
-    init(with type: PasscodeView.`Type`, frame: CGRect = .zero) {
-        self.type = type
+    override init(frame: CGRect = .zero) {
         
         super.init(frame: frame)
         
@@ -164,21 +124,17 @@ class PasscodeView: UIView {
         
         addSubview(textField)
         addSubview(containerStackView)
-        containerStackView.addArrangedSubview(codeOneLabel)
-        containerStackView.addArrangedSubview(codeTwoLabel)
-        containerStackView.addArrangedSubview(codeThreeLabel)
-        containerStackView.addArrangedSubview(codeFourLabel)
         
-        if type == .verify {
-            containerStackView.addArrangedSubview(codeFiveLabel)
-            containerStackView.addArrangedSubview(codeSixLabel)
-        }
+        containerStackView.addArrangedSubview(codeOneView)
+        containerStackView.addArrangedSubview(codeTwoView)
+        containerStackView.addArrangedSubview(codeThreeView)
+        containerStackView.addArrangedSubview(codeFourView)
         
         containerStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         containerStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        containerStackView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        codeOneLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        containerStackView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        codeOneView.widthAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
     func inputBecomeFirstResponder() {
@@ -193,7 +149,7 @@ class PasscodeView: UIView {
         guard count > 0 else { return }
         
         let index = code.index(before: code.endIndex)
-        codeLables[count - 1].text = String(code[index])
+        codeViews[count - 1].code = String(code[index])
     }
     
     private func deleteCode() {
@@ -202,15 +158,15 @@ class PasscodeView: UIView {
         guard count > 0 else { return }
         
         code.removeLast()
-        codeLables[count - 1].text = nil
+        codeViews[count - 1].code = nil
     }
     
     func reset() {
         textField.text = nil
         code.removeAll()
         
-        for codeLable in codeLables {
-            codeLable.text = nil
+        for codeView in codeViews {
+            codeView.code = nil
         }
     }
 }
@@ -222,12 +178,12 @@ extension PasscodeView: UITextFieldDelegate {
         let currentString = NSString(string: textField.text ?? "")
         let newString = currentString.replacingCharacters(in: range, with: string)
         
-        if newString.count == type.rawValue {
+        if newString.count == codeViews.count {
             insertCode(string)
             delegate?.passcodeViewDelegateStatusEntered(with: .enoughCode, self)
             
             return true
-        } else if newString.count <= type.rawValue {
+        } else if newString.count <= codeViews.count {
             if string.isEmpty {
                 deleteCode()
             } else {

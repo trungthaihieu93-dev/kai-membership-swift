@@ -60,7 +60,7 @@ class APIInput: APIInputBase {
     
     init(withDomain domain: String, path: String = "", params: Parameters = [:], method: HTTPMethod = .get) {
         if let authorizationToken = AccountManagement.token {
-            headers.add(HTTPHeader.authorization(bearerToken: authorizationToken))//"7ho5v8JIue5s3ImJHihR1NKAxcMuqH"
+            headers.add(HTTPHeader.authorization(bearerToken: authorizationToken))//"3mVfs8jS6CrdsCuETsX6TH3GdTCIHa"
         }
          
         self.domain = domain
@@ -85,10 +85,10 @@ class APIOutput: APIOutputBase {
             if let records = response.data {
                 return .success(records)
             } else {
-                return .failure(.init(with: nil, message: "Error"))
+                return .failure(.init())
             }
         case .failure(let error):
-            return .failure(.init(with: nil, message: "Error"))
+            return .failure(.init(code: nil, message: error.localizedDescription))
         }
     }
 }
@@ -110,9 +110,14 @@ struct APIErrorResult: Error, BaseModel {
         case message
     }
     
-    init(with code: String? = nil, message: String = "Error") {
+    init(code: String? = nil, message: String = "Error") {
         self.code = code
         self.message = message
+    }
+    
+    init(with code: APIErrorResultCode) {
+        self.code = code.rawValue
+        self.message = code.description
     }
     
     init(from decoder: Decoder) throws {
@@ -120,6 +125,17 @@ struct APIErrorResult: Error, BaseModel {
         
         code = try container.decodeIfPresent(String.self, forKey: .code)
         message = try container.decodeIfPresent(String.self, forKey: .message) ?? "Error"
+    }
+}
+
+enum APIErrorResultCode: String {
+    case emptyResults
+    
+    var description: String {
+        switch self {
+        case .emptyResults:
+            return "Empty results"
+        }
     }
 }
 
@@ -196,10 +212,10 @@ class APIServices {
                     let result = try T.decode(data: data)
                     completion?(.success(result))
                 } catch let error {
-                    completion?(.failure(.init(with: nil, message: getDecodeError(error, input))))
+                    completion?(.failure(.init(code: nil, message: getDecodeError(error, input))))
                 }
             case .failure(let error):
-                completion?(.failure(.init(with: nil, message: getErrorDescription(error, input))))
+                completion?(.failure(.init(code: nil, message: getErrorDescription(error, input))))
             }
         }
     }
@@ -213,10 +229,10 @@ class APIServices {
                     let result = try T.decode(data: data)
                     completion?(.success(result))
                 } catch let error {
-                    completion?(.failure(.init(with: nil, message: getDecodeError(error, input))))
+                    completion?(.failure(.init(code: nil, message: getDecodeError(error, input))))
                 }
             case .failure(let error):
-                completion?(.failure(.init(with: nil, message: getErrorDescription(error, input))))
+                completion?(.failure(.init(code: nil, message: getErrorDescription(error, input))))
             }
         }
     }

@@ -9,6 +9,8 @@ import UIKit
 
 extension UIView {
     
+    static let gradientLayerKey: String = "GradientLayerKey"
+    
     enum GradientDirection {
         case horizontal
         case vertical
@@ -70,15 +72,13 @@ extension UIView {
     }
     
     func gradientBackgroundColors(_ colors: [CGColor], direction: GradientDirection) {
-        removeAllSublayers(withName: "GradientLayerKey")
-        backgroundColor = .clear
-        clipsToBounds = true
+        removeAllSublayers(withName: UIView.gradientLayerKey)
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.startPoint = direction.points.start
         gradientLayer.endPoint = direction.points.end
         gradientLayer.colors = colors
-        gradientLayer.name = "GradientLayerKey"
+        gradientLayer.name = UIView.gradientLayerKey
         gradientLayer.cornerRadius = layer.cornerRadius
         layer.insertSublayer(gradientLayer, at: 0)
     }

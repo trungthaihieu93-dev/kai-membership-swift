@@ -22,32 +22,6 @@ class PasscodeViewController: BaseViewController2 {
     
     let viewModel: PasscodeViewModel
     
-//    override var pageTitle: String {
-//        switch type {
-//        case .signUp:
-//            return "Create Passcode"
-//        case .signIn:
-//            return "Enter passcode"
-//        case .confirm:
-//            return "Confirm Passcode"
-//        case .reset:
-//            return "New Passcode"
-//        }
-//    }
-//
-//    override var pageDiscription: String {
-//        switch type {
-//        case .signUp:
-//            return "This passcode is super handy. It can save your life sometime. Try to remember it."
-//        case .signIn:
-//            return "Enter your passcode to continue."
-//        case .confirm:
-//            return "Confirm your passcode again. Just in case."
-//        case .reset:
-//            return "This passcode is super handy. It can save your life sometime. Try to remember it."
-//        }
-//    }
-    
     private let footerString: String = "By creating a passcode, you agree with our \nTerms & Conditions and Privacy Policy"
     private let termsAndConditions: String = "Terms & Conditions"
     private let privacyPolicy: String = "Privacy Policy"
@@ -61,7 +35,7 @@ class PasscodeViewController: BaseViewController2 {
     }()
     
     private lazy var passcodeView: PasscodeView = {
-        let view = PasscodeView(with: .passcode)
+        let view = PasscodeView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -71,10 +45,8 @@ class PasscodeViewController: BaseViewController2 {
     private lazy var confirmButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
-            NSAttributedString.Key.foregroundColor: UIColor.white
-        ]), for: .normal)
+        button.isEnabled = false
+        button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedConfirm), for: .touchUpInside)
@@ -104,6 +76,33 @@ class PasscodeViewController: BaseViewController2 {
         
         return label
     }()
+    
+    var isPasscodeShowed: Bool = false {
+        didSet {
+            guard isPasscodeShowed != oldValue else { return }
+            
+            passcodeView.isShowed = isPasscodeShowed
+            
+            showPasscodeButton.setAttributedTitle(NSAttributedString(string: isPasscodeShowed ? "Hide Passcode" : "Show Passcode", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+            ]), for: .normal)
+        }
+    }
+    
+    var isConfirmEnabled: Bool = false {
+        didSet {
+            guard isConfirmEnabled != oldValue else { return }
+            
+            confirmButton.isEnabled = isConfirmEnabled
+            
+            if isConfirmEnabled {
+                confirmButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+            } else {
+                confirmButton.removeAllSublayers(withName: UIView.gradientLayerKey)
+            }
+        }
+    }
     
     // MARK: Life cycle's
     init(with type: `Type`, email: String) {
@@ -138,7 +137,7 @@ class PasscodeViewController: BaseViewController2 {
         view.addSubview(confirmButton)
         
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: safeAreaInsets.top + navigationBarHeight + 16),
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -165,8 +164,27 @@ class PasscodeViewController: BaseViewController2 {
         
         descriptionLabel.attributedText = "Enter your passcode to continue.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         
-        DispatchQueue.main.async {
-            self.confirmButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+        switch type {
+        case .signUp:
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ]), for: .normal)
+        case .signIn:
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Continue", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ]), for: .normal)
+        case .confirm:
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ]), for: .normal)
+        case .reset:
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ]), for: .normal)
         }
     }
     
@@ -196,7 +214,7 @@ extension PasscodeViewController {
     }
     
     @objc private func onPressedShowPasscode() {
-        
+        isPasscodeShowed = !isPasscodeShowed
     }
     
     @objc private func onTapFooterLabel(_ recognizer: UITapGestureRecognizer) {

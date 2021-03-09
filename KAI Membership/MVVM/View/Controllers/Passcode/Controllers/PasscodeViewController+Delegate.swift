@@ -13,9 +13,9 @@ extension PasscodeViewController: PasscodeViewDelegate {
     func passcodeViewDelegateStatusEntered(with status: PasscodeView.CodeStatus, _ passcodeView: PasscodeView) {
         switch status {
         case .enoughCode:
-            debugPrint("")
+            isConfirmEnabled = true
         case .haveNotEnoughCode:
-            debugPrint("")
+            isConfirmEnabled = false
         }
     }
 }

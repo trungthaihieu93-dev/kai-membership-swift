@@ -1,42 +1,23 @@
 //
-//  WalletViewController+Delegate.swift
+//  ProfileViewController+Delegate.swift
 //  KAI Membership
 //
-//  Created by Anh Kiệt on 02/03/2021.
+//  Created by DAKiet on 09/03/2021.
 //
 
 import UIKit
-import DZNEmptyDataSet
-
-// MARK: DZNEmptyDataSetDelegate
-extension WalletViewController: DZNEmptyDataSetDelegate {
-    
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
-        return true
-    }
-}
-
-// MARK: KAIBarButtonItemViewDelegate
-extension WalletViewController: KAIBarButtonItemViewDelegate {
-    
-    func kAIBarButtonItemViewDidSelecteSpin(_ kAIBarButtonItemView: KAIBarButtonItemView) {
-        // Web view
-    }
-    
-    func kAIBarButtonItemViewDidSelecteProfile(_ kAIBarButtonItemView: KAIBarButtonItemView) {
-        Navigator.navigateToProfileVC(from: self)
-    }
-}
 
 // MARK: UITableViewDelegate
-extension WalletViewController: UITableViewDelegate {
+extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sectionType = Section(rawValue: section) else { return nil }
+        
         let footerView = UIView()
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.attributedText = NSAttributedString(string: "Recent Transactions", attributes: [
+        label.attributedText = NSAttributedString(string: "Lastest News", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 20, weight: .regular),
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
         ])

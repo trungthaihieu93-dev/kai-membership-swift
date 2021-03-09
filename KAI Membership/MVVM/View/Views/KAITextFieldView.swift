@@ -56,7 +56,7 @@ class KAITextFieldView: UIView {
         return label
     }()
     
-    private(set) lazy var textField: UITextField = {
+    private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = nil
@@ -117,6 +117,8 @@ class KAITextFieldView: UIView {
     
     private var inputTrailingAnchor: NSLayoutConstraint?
     private var validTopAnchor: NSLayoutConstraint?
+    
+    var contentInput: String = ""
     
     weak var delegate: KAITextFieldViewDelegate?
     
@@ -298,7 +300,8 @@ extension KAITextFieldView {
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        isHiddenPlaceholder = !(textField.text ?? "").isEmpty
+        contentInput = textField.text ?? ""
+        isHiddenPlaceholder = !contentInput.isEmpty
         delegate?.kAITextFieldViewDidChange(textField, for: self)
     }
 }

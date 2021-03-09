@@ -19,7 +19,6 @@ class KAIBarButtonItemView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "ic_spin_item")?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
@@ -32,7 +31,6 @@ class KAIBarButtonItemView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "ic_profile_item")?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
@@ -63,8 +61,8 @@ class KAIBarButtonItemView: UIView {
             profileButton.topAnchor.constraint(equalTo: topAnchor),
             profileButton.bottomAnchor.constraint(equalTo: bottomAnchor),
             profileButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            profileButton.widthAnchor.constraint(equalToConstant: 38),
-            profileButton.heightAnchor.constraint(equalToConstant: 38),
+            profileButton.widthAnchor.constraint(equalToConstant: 36),
+            profileButton.heightAnchor.constraint(equalToConstant: 36),
             
             spinButton.topAnchor.constraint(equalTo: profileButton.topAnchor),
             spinButton.leadingAnchor.constraint(equalTo: leadingAnchor),

@@ -13,6 +13,11 @@ protocol SignInInputViewDelegate: class {
     func signInInputViewDidFinishTouchingAction(_ signInInputView: SignInInputView, actionKey: SignInInputView.ActionKey)
 }
 
+extension SignInInputViewDelegate {
+    func signInInputViewEmailValueChange(_ signInInputView: SignInInputView, textField: UITextField) {}
+    func signInInputViewPasswordValueChange(_ signInInputView: SignInInputView, textField: UITextField) {}
+}
+
 class SignInInputView: UIView {
 
     // MARK: Properties
@@ -25,7 +30,7 @@ class SignInInputView: UIView {
     private let signUpText: String = "Not a KAISER yet? Create account"
     private let detechActionSignUpText: String = "Create account"
     
-    private lazy var emailTextField: KAIInputTextFieldView = {
+    private(set) lazy var emailTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "EMAIL", placeholder: "eg. an.nguyen@kardianchain.io")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -33,7 +38,7 @@ class SignInInputView: UIView {
         return view
     }()
     
-    private lazy var passwordTextField: KAIInputTextFieldView = {
+    private(set) lazy var passwordTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "PASSWORD", placeholder: "Your password", isSecureTextEntryEnabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -61,6 +66,8 @@ class SignInInputView: UIView {
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
+        button.isEnabled = false
+        button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedSignIn), for: .touchUpInside)
@@ -78,6 +85,20 @@ class SignInInputView: UIView {
         return label
     }()
     
+    var isConfirmEnabled: Bool = false {
+        didSet {
+            guard isConfirmEnabled != oldValue else { return }
+            
+            signInButton.isEnabled = isConfirmEnabled
+            
+            if isConfirmEnabled {
+                signInButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+            } else {
+                signInButton.removeAllSublayers(withName: UIView.gradientLayerKey)
+            }
+        }
+    }
+    
     weak var delegate: SignInInputViewDelegate?
     
     // MARK: Life cycle
@@ -91,12 +112,6 @@ class SignInInputView: UIView {
     }
     
     // MARK: Layout
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.signInButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
-    }
-    
     func setupView() {
         addSubview(emailTextField)
         addSubview(passwordTextField)
@@ -173,6 +188,8 @@ extension SignInInputView: KAITextFieldViewDelegate {
         } else if view == passwordTextField {
             delegate?.signInInputViewPasswordValueChange(self, textField: textField)
         }
+        
+        isConfirmEnabled = !emailTextField.contentInput.isEmpty && passwordTextField.contentInput.count >= Constants.lengthPasswordMinimum
     }
     
     func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {

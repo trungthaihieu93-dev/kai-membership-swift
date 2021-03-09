@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */; };
+		498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */; };
+		498BCFE925F7470800F04160 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE825F7470800F04160 /* Helper.swift */; };
+		498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFEB25F756EE00F04160 /* InputCodeView.swift */; };
+		498BCFEF25F7834500F04160 /* UtilitiesViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFEE25F7834500F04160 /* UtilitiesViewController+Delegate.swift */; };
+		498BCFF225F785F000F04160 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFF125F785F000F04160 /* ProfileHeaderView.swift */; };
+		498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */; };
+		498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFF825F78D5A00F04160 /* ProfileViewController+DataSource.swift */; };
+		498BCFFC25F78D6800F04160 /* ProfileViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
@@ -146,6 +154,14 @@
 /* Begin PBXFileReference section */
 		0EA1B91CAA873600C2D0BB1C /* Pods-KAI Membership.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAI Membership.debug.xcconfig"; path = "Target Support Files/Pods-KAI Membership/Pods-KAI Membership.debug.xcconfig"; sourceTree = "<group>"; };
 		2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KAI_Membership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoRemote.swift; sourceTree = "<group>"; };
+		498BCFE825F7470800F04160 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		498BCFEB25F756EE00F04160 /* InputCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCodeView.swift; sourceTree = "<group>"; };
+		498BCFEE25F7834500F04160 /* UtilitiesViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UtilitiesViewController+Delegate.swift"; sourceTree = "<group>"; };
+		498BCFF125F785F000F04160 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		498BCFF825F78D5A00F04160 /* ProfileViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+DataSource.swift"; sourceTree = "<group>"; };
+		498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -296,9 +312,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		498BCFE225F71B1700F04160 /* Account Info */ = {
+			isa = PBXGroup;
+			children = (
+				498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */,
+			);
+			path = "Account Info";
+			sourceTree = "<group>";
+		};
+		498BCFE725F746F700F04160 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				498BCFE825F7470800F04160 /* Helper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		49E03A0025F6353800119F55 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				498BCFF125F785F000F04160 /* ProfileHeaderView.swift */,
+				498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,7 +342,6 @@
 			children = (
 				521754A925DE75A9009355BC /* Model */,
 				521754A725DE758C009355BC /* View */,
-				521754A825DE7595009355BC /* View Model */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -341,16 +374,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		521754A825DE7595009355BC /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Model";
-			sourceTree = "<group>";
-		};
 		521754A925DE75A9009355BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				498BCFE225F71B1700F04160 /* Account Info */,
 				525DBB0325F2893B001491AE /* Wallet */,
 				525DBAFF25F288FF001491AE /* KAI */,
 				525DBAF625F286A9001491AE /* Login */,
@@ -508,6 +535,7 @@
 			children = (
 				529AE1AC25DD998700635807 /* UtilitiesViewController.swift */,
 				525DB9D025EE8437001491AE /* UtilitiesViewController+DataSource.swift */,
+				498BCFEE25F7834500F04160 /* UtilitiesViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -994,6 +1022,8 @@
 			isa = PBXGroup;
 			children = (
 				5265495B25F5E909003AE21A /* ProfileViewController.swift */,
+				498BCFF825F78D5A00F04160 /* ProfileViewController+DataSource.swift */,
+				498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1059,6 +1089,7 @@
 		529AE19325DD97AD00635807 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				498BCFE725F746F700F04160 /* Helper */,
 				525DB90625E91A3B001491AE /* AppSetting */,
 				521754D825DEAE39009355BC /* Key */,
 				521754CF25DEAD72009355BC /* Management */,
@@ -1202,6 +1233,7 @@
 				525DBA8C25F0190B001491AE /* KAICardCollapseView.swift */,
 				52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */,
 				52F37CF925E0DCDD009F311F /* KAITextFieldView.swift */,
+				498BCFEB25F756EE00F04160 /* InputCodeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1421,6 +1453,7 @@
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
 				525DBA6A25F010BA001491AE /* NewsLastestTableViewCell.swift in Sources */,
+				498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */,
 				525DB88625E557BC001491AE /* QuestViewController.swift in Sources */,
 				525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */,
 				525DB9DB25EE9168001491AE /* TransactionRemote.swift in Sources */,
@@ -1449,9 +1482,12 @@
 				5265495425F53D80003AE21A /* SignUpViewModel.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */,
+				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
+				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
 				525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */,
 				525DBB0125F28917001491AE /* KAIRemote.swift in Sources */,
 				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
+				498BCFE925F7470800F04160 /* Helper.swift in Sources */,
 				525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */,
 				525DBA5725F008E7001491AE /* Data+Extensions.swift in Sources */,
 				525DBAA125F16213001491AE /* QuestTableViewCell.swift in Sources */,
@@ -1461,6 +1497,7 @@
 				525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */,
 				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
 				5265495025F53C4E003AE21A /* SignUpViewController+Delegate.swift in Sources */,
+				498BCFF225F785F000F04160 /* ProfileHeaderView.swift in Sources */,
 				525DB9F425EFD3EB001491AE /* ActivityServices.swift in Sources */,
 				525DBA8D25F0190B001491AE /* KAICardCollapseView.swift in Sources */,
 				52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */,
@@ -1475,6 +1512,7 @@
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,
 				525DB9EC25EE96CD001491AE /* WalletViewController+Delegate.swift in Sources */,
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
+				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
 				5265495C25F5E909003AE21A /* ProfileViewController.swift in Sources */,
 				525DB8F625E6B91E001491AE /* UserServices.swift in Sources */,
 				521754DA25DEAE44009355BC /* Key.swift in Sources */,
@@ -1499,6 +1537,8 @@
 				525DBA7525F016F2001491AE /* QuestViewController+DataSource.swift in Sources */,
 				525DBA5D25F00F2B001491AE /* NewsViewModel.swift in Sources */,
 				525DB8FB25E77734001491AE /* SelectAccountTableViewCell.swift in Sources */,
+				498BCFFC25F78D6800F04160 /* ProfileViewController+Delegate.swift in Sources */,
+				498BCFEF25F7834500F04160 /* UtilitiesViewController+Delegate.swift in Sources */,
 				525DB8EB25E6B669001491AE /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

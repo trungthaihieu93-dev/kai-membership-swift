@@ -23,6 +23,7 @@ class LoginRemote: BaseModel {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
         accessToken = try container.decodeIfPresent(String.self, forKey: .accessToken)
         refreshToken = try container.decodeIfPresent(String.self, forKey: .refreshToken)
         expiresIn = try container.decodeIfPresent(Double.self, forKey: .expiresIn)

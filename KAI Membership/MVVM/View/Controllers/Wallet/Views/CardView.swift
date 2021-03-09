@@ -124,10 +124,11 @@ class CardView: UIView {
     }()
     
     // MARK: Life cycle's
-    override init(frame: CGRect) {
+    init(with kai: KAIRemote? = nil, frame: CGRect = .zero) {
         super.init(frame: frame)
         
         setupView()
+        configure(kai)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -182,20 +183,20 @@ class CardView: UIView {
     }
     
     // MARK: Configure
-    func configure(kai: Double, walletAddress: String, holder: String, memberSince: Double) {
-        kaiLabel.attributedText = kai.formatCurrencyToAttributedString(unit: .kai, groupingSeparator: .dots, decimalSeparator: .comma, font: .workSansFont(ofSize: 20, weight: .medium), unitFont: .workSansFont(ofSize: 20, weight: .light), textColor: .white)
+    func configure(_ kai: KAIRemote? = nil) {
+        kaiLabel.attributedText = kai?.wallet?.balance?.formatCurrencyToAttributedString(unit: .kai, groupingSeparator: .dots, decimalSeparator: .comma, font: .workSansFont(ofSize: 20, weight: .medium), unitFont: .workSansFont(ofSize: 20, weight: .light), textColor: .white)
         
-        walletAddressLabel.attributedText = NSAttributedString(string: walletAddress, attributes: [
+        walletAddressLabel.attributedText = NSAttributedString(string: kai?.wallet?.address ?? "", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .regular),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ])
         
-        holderValueLabel.attributedText = NSAttributedString(string: holder, attributes: [
+        holderValueLabel.attributedText = NSAttributedString(string: kai?.firstName ?? "", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ])
         
-        memberSinceValueLabel.attributedText = NSAttributedString(string: memberSince.formatTimeIntervalToString("MM/YYYY"), attributes: [
+        memberSinceValueLabel.attributedText = NSAttributedString(string: 1598522428.formatTimeIntervalToString("MM/YYYY"), attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ])

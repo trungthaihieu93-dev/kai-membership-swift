@@ -65,7 +65,7 @@ class QuestHeaderView: UIView {
         return view
     }()
     
-    private var coverImageTopAnchor: NSLayoutConstraint?
+    private var bacgroundTopAnchor: NSLayoutConstraint?
     
     var selectedSegmentIndexChanged: ((Int) -> Void)?
     
@@ -90,8 +90,8 @@ class QuestHeaderView: UIView {
         addSubview(descriptionLabel)
         addSubview(segmentView)
         
-        coverImageTopAnchor = backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
-        coverImageTopAnchor?.isActive = true
+        bacgroundTopAnchor = backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        bacgroundTopAnchor?.isActive = true
         
         NSLayoutConstraint.activate([
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -124,7 +124,7 @@ class QuestHeaderView: UIView {
     }
     
     func zoomImage(with value: CGFloat) {
-        coverImageTopAnchor?.constant = value
+        bacgroundTopAnchor?.constant = value
     }
     
     // MARK: Handle actions

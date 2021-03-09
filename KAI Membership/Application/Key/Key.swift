@@ -9,13 +9,14 @@ import Foundation
 
 class Key {
     
-    struct UserDefault {
-        static let DarkMode = "KAI.UserDefault.DarkMode"
-        static let HaveUsedTheApplicationOnce = "KAI.UserDefault.HaveUsedTheApplicationOnce"
+    enum UserDefault: String {
+        case darkMode = "KAI.UserDefault.DarkMode"
+        case haveUsedTheApplicationOnce = "KAI.UserDefault.HaveUsedTheApplicationOnce"
     }
     
     enum KeyChain: String {
         case authorizationToken = "KAI.KeyChain.AuthorizationToken"
         case userID = "KAI.KeyChain.UserID"
+        case kaiInfo = "KAI.KeyChain.KaiInfomation"
     }
 }

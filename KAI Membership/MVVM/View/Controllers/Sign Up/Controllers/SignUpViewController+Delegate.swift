@@ -9,22 +9,11 @@ import UIKit
 
 extension SignUpViewController: SignUpInputViewDelegate {
     
-    func signUpInputViewEmailValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {
-        viewModel.updateEmail(textField.text)
-    }
-    
-    func signUpInputViewPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {
-        viewModel.updatePassword(textField.text)
-    }
-    
-    func signUpInputViewConfirmPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {
-        viewModel.confirmPassword(textField.text)
-    }
-    
     func signUpInputViewDidFinishTouchingAction(_ signUpInputView: SignUpInputView, actionKey: SignUpInputView.ActionKey) {
         switch actionKey {
         case .signIn:
-            Navigator.navigateToSignUpVC(from: self)
+//            navigationController?.viewControllers.removeAll { return $0 is SignInViewController }
+            Navigator.navigateToSignInVC(from: self)
         case .createAccount:
             createAccount()
         }
