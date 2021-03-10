@@ -23,6 +23,7 @@ class RootTabbarController: UITabBarController {
         setViewControllers(viewControllers(), animated: true)
         tabBar.tintColor = .black
         tabBar.isTranslucent = false
+        tabBar.layer.borderWidth = 0
     }
     
     override func viewDidLoad() {
@@ -39,28 +40,28 @@ class RootTabbarController: UITabBarController {
             switch $0 {
             case .news:
                 let news = NewsViewController()
-                let navigationController = UINavigationController(rootViewController: news)
+                let navigationController = RootNavigationController(rootViewController: news)
                 navigationController.tabBarItem.title = "News"
                 navigationController.tabBarItem.image = UIImage(named: "tabbar_news")?.withRenderingMode(.alwaysOriginal)
                 navigationController.tabBarItem.selectedImage = UIImage(named: "tabbar_news_selected")?.withRenderingMode(.alwaysOriginal)
                 navigationControllers.append(navigationController)
             case .quest:
                 let quest = QuestViewController()
-                let navigationController = UINavigationController(rootViewController: quest)
+                let navigationController = RootNavigationController(rootViewController: quest)
                 navigationController.tabBarItem.title = "Mission"
                 navigationController.tabBarItem.image = UIImage(named: "tabbar_quests")?.withRenderingMode(.alwaysOriginal)
                 navigationController.tabBarItem.selectedImage = UIImage(named: "tabbar_quests_selected")?.withRenderingMode(.alwaysOriginal)
                 navigationControllers.append(navigationController)
             case .wallet:
                 let wallet = WalletViewController()
-                let navigationController = UINavigationController(rootViewController: wallet)
+                let navigationController = RootNavigationController(rootViewController: wallet)
                 navigationController.tabBarItem.title = "My Wallet"
                 navigationController.tabBarItem.image = UIImage(named: "tabbar_wallet")?.withRenderingMode(.alwaysOriginal)
                 navigationController.tabBarItem.selectedImage = UIImage(named: "tabbar_wallet_selected")?.withRenderingMode(.alwaysOriginal)
                 navigationControllers.append(navigationController)
             case .utilities:
                 let utilities = UtilitiesViewController()
-                let navigationController = UINavigationController(rootViewController: utilities)
+                let navigationController = RootNavigationController(rootViewController: utilities)
                 navigationController.tabBarItem.title = "Utilities"
                 navigationController.tabBarItem.image = UIImage(named: "tabbar_utilities")?.withRenderingMode(.alwaysOriginal)
                 navigationController.tabBarItem.selectedImage = UIImage(named: "tabbar_utilities_selected")?.withRenderingMode(.alwaysOriginal)

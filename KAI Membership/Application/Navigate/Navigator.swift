@@ -29,7 +29,7 @@ final class Navigator {
     /* Hiện màn hình giới thiệu */
     class func showTutorialVC() {
         let vc = TutorialViewController()
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = RootNavigationController(rootViewController: vc)
     }
     
     /*
@@ -38,13 +38,13 @@ final class Navigator {
      */
     class func showSelectAccountVC(_ users: [UserRemote]) {
         let vc = SelectAccountViewController(with: users)
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = RootNavigationController(rootViewController: vc)
     }
     
     /* Hiện màn hình đăng nhập */
     class func showSignInVC() {
         let vc = SignInViewController()
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = RootNavigationController(rootViewController: vc)
     }
     
     /* Điều hướng sang màn hình đăng nhập */

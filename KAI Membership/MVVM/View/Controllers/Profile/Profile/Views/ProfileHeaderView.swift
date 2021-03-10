@@ -63,6 +63,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingMiddle
         label.font = .workSansFont(ofSize: 10, weight: .medium)
         label.textColor = UIColor.init(hex: "0A1F44")
         
@@ -73,14 +74,15 @@ class ProfileHeaderView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .init(hex: "F7F8F9")
+//        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         button.setImage(UIImage(named: "ic_share_arrow")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.titleEdgeInsets.left = 8
+        button.imageEdgeInsets.right = 8
         button.setAttributedTitle(NSAttributedString(string: "Share", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 12, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.init(hex: "364766")
         ]), for: .normal)
-        button.imageEdgeInsets = .init(top: 0, left: -4, bottom: 0, right: 4)
-        button.titleEdgeInsets = .init(top: 0, left: 4, bottom: 0, right: -4)
-        button.contentEdgeInsets = .init(top: 0, left: 12, bottom: 0, right: 12)
+        button.sizeToFit()
         button.layer.cornerRadius = 8
         
         return button
@@ -135,15 +137,16 @@ class ProfileHeaderView: UIView {
             walletContainerView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             walletContainerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
             walletContainerView.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+
+            shareButton.topAnchor.constraint(equalTo: walletContainerView.topAnchor, constant: 8),
+            shareButton.bottomAnchor.constraint(equalTo: walletContainerView.bottomAnchor, constant: -8),
+            shareButton.trailingAnchor.constraint(equalTo: walletContainerView.trailingAnchor, constant: -12),
+            shareButton.heightAnchor.constraint(equalToConstant: 32),
+            shareButton.widthAnchor.constraint(equalToConstant: 70),
             
             addressWalletLabel.centerYAnchor.constraint(equalTo: walletContainerView.centerYAnchor),
             addressWalletLabel.leadingAnchor.constraint(equalTo: walletContainerView.leadingAnchor, constant: 12),
-
-            shareButton.topAnchor.constraint(equalTo: walletContainerView.topAnchor, constant: 8),
-            shareButton.leadingAnchor.constraint(greaterThanOrEqualTo: addressWalletLabel.trailingAnchor, constant: 10),
-            shareButton.bottomAnchor.constraint(equalTo: walletContainerView.bottomAnchor, constant: -8),
-            shareButton.trailingAnchor.constraint(equalTo: walletContainerView.trailingAnchor, constant: -12),
-            shareButton.heightAnchor.constraint(equalToConstant: 32)
+            addressWalletLabel.trailingAnchor.constraint(lessThanOrEqualTo: shareButton.leadingAnchor, constant: -8),
         ])
         
         configure()
@@ -153,7 +156,7 @@ class ProfileHeaderView: UIView {
     func configure() {
         nameLabel.text = "Bảo Ngọc"
         emailLabel.text = "ngoc.bao@gmail.com"
-        addressWalletLabel.text = "Q24-EUZP-IUGY-935R-P8GH-U7RA...SH5PP6NG-N4W"
+        addressWalletLabel.text = "Q24-EUZP-IUGY-935R-P8GH-U7RASH5PP6NSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NG-N4W"
     }
     
     func zoomImage(with value: CGFloat) {

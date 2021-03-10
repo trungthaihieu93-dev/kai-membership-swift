@@ -111,7 +111,7 @@ class KAITextFieldView: UIView {
             guard isSecureTextEntryEnabled else { return }
             
             textField.isSecureTextEntry = isSecureTextEntry
-            secureTextEntryButton.setImage(UIImage(named: isSecureTextEntry ? "ic_show_password" : "ic_hidden_password")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            secureTextEntryButton.setImage(UIImage(named: isSecureTextEntry ? "ic_show_password" : "ic_hide_password")?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
     

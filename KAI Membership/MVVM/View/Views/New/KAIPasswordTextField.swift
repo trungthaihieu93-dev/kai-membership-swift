@@ -78,21 +78,21 @@ class KAIPasswordTextField: UIView {
                 textField.isSecureTextEntry = isSecureTextEntry
                 secureTextEntryButton.setImage(UIImage(named: isSecureTextEntry ? "ic_show_password" : "ic_hide_password")?.withRenderingMode(.alwaysOriginal), for: .normal)
                 textField.isEnabled = true
-                secureTextEntryButton.isEnabled = true
+//                secureTextEntryButton.isEnabled = true
                 containerView.layer.borderColor = UIColor.init(hex: "E1E4E8").cgColor
                 containerView.backgroundColor = .init(hex: "FAFBFB")
             case .disabled:
                 textField.isSecureTextEntry = true
                 secureTextEntryButton.setImage(UIImage(named: "ic_show_password")?.withRenderingMode(.alwaysOriginal), for: .normal)
                 textField.isEnabled = false
-                secureTextEntryButton.isEnabled = false
+//                secureTextEntryButton.isEnabled = false
                 containerView.layer.borderColor = UIColor.init(hex: "E1E4E8").cgColor
                 containerView.backgroundColor = .init(hex: "F1F2F4")
             case .failed:
                 textField.isSecureTextEntry = true
                 secureTextEntryButton.setImage(UIImage(named: "ic_failed")?.withRenderingMode(.alwaysOriginal), for: .normal)
                 textField.isEnabled = true
-                secureTextEntryButton.isEnabled = false
+//                secureTextEntryButton.isEnabled = false
                 containerView.layer.borderColor = UIColor.init(hex: "C42C15").cgColor
                 containerView.backgroundColor = .init(hex: "FAFBFB")
             }

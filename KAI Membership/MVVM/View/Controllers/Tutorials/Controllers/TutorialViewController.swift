@@ -180,8 +180,8 @@ class TutorialViewController: BaseViewController2 {
         }
     }
     
-    override var isHiddenNavigationBar: Bool {
-        return true
+    override var navigationAlphaDefault: CGFloat {
+        return 0
     }
     
     // MARK: Life cycle's

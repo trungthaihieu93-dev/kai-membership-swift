@@ -44,6 +44,10 @@ class QuestViewController: BaseViewController2 {
         return view
     }()
     
+    override var navigationAlphaDefault: CGFloat {
+        return 0
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()

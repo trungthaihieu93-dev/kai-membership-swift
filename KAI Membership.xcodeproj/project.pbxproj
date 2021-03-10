@@ -135,6 +135,7 @@
 		525DBAF825F286B8001491AE /* LoginRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAF725F286B8001491AE /* LoginRemote.swift */; };
 		525DBB0125F28917001491AE /* KAIRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBB0025F28917001491AE /* KAIRemote.swift */; };
 		525DBB0525F28949001491AE /* WalletRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBB0425F28949001491AE /* WalletRemote.swift */; };
+		525E6B8325F9010C00A7BAC5 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525E6B8225F9010C00A7BAC5 /* RootNavigationController.swift */; };
 		5265494A25F5395B003AE21A /* SignUpInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265494925F5395B003AE21A /* SignUpInputView.swift */; };
 		5265495025F53C4E003AE21A /* SignUpViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265494F25F53C4E003AE21A /* SignUpViewController+Delegate.swift */; };
 		5265495425F53D80003AE21A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265495325F53D80003AE21A /* SignUpViewModel.swift */; };
@@ -292,6 +293,7 @@
 		525DBAF725F286B8001491AE /* LoginRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemote.swift; sourceTree = "<group>"; };
 		525DBB0025F28917001491AE /* KAIRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIRemote.swift; sourceTree = "<group>"; };
 		525DBB0425F28949001491AE /* WalletRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRemote.swift; sourceTree = "<group>"; };
+		525E6B8225F9010C00A7BAC5 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		5265494925F5395B003AE21A /* SignUpInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInputView.swift; sourceTree = "<group>"; };
 		5265494F25F53C4E003AE21A /* SignUpViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+Delegate.swift"; sourceTree = "<group>"; };
 		5265495325F53D80003AE21A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -1287,6 +1289,7 @@
 			isa = PBXGroup;
 			children = (
 				529AE1A425DD98E200635807 /* RootTabbarController.swift */,
+				525E6B8225F9010C00A7BAC5 /* RootNavigationController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1594,6 +1597,7 @@
 				525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
 				525DBAAC25F164C0001491AE /* MonthlyQuestViewController.swift in Sources */,
+				525E6B8325F9010C00A7BAC5 /* RootNavigationController.swift in Sources */,
 				525DBA8025F017BF001491AE /* TopupViewModel.swift in Sources */,
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
 				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,

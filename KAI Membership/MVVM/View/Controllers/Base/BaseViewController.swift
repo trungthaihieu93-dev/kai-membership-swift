@@ -31,9 +31,15 @@ class BaseViewController2: UIViewController {
         return 20
     }
     
-    var isHiddenNavigationBar: Bool {
-        return false
+//    var isHiddenNavigationBar: Bool {
+//        return false
+//    }
+    
+    var navigationAlphaDefault: CGFloat {
+        return 1
     }
+    
+    private lazy var navigationAlpha: CGFloat = navigationAlphaDefault
     
     lazy var disposeBag = DisposeBag()
     
@@ -50,7 +56,9 @@ class BaseViewController2: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(isHiddenNavigationBar, animated: true)
+        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(isHiddenNavigationBar, animated: true)
+        navigationBarAnimation(withAlpha: navigationAlpha)
     }
     
     // MARK: Layout
@@ -64,6 +72,11 @@ class BaseViewController2: UIViewController {
     
     deinit {
         debugPrint("Deinit \(identifier)")
+    }
+    
+    func navigationBarAnimation(withAlpha alpha: CGFloat) {
+        navigationAlpha = alpha
+        (navigationController as? RootNavigationController)?.setBackgroundColor(UIColor.white.withAlphaComponent(alpha))
     }
 }
 
@@ -248,7 +261,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         if !isHiddenNavigationBar && (_navigateType == .root || _navigateType == .push) {
             view.addSubview(customNavigationBar)
             customNavigationBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: navigationBarHeight)
-            navigationBarAnimation(withAlpha: navigationBarAlphaDefault)
+//            navigationBarAnimation(withAlpha: navigationBarAlphaDefault)
             
             if _navigateType == .push {
                 customNavigationBar.addSubview(backButton)
@@ -306,11 +319,6 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
                 _descriptionLabel.trailingAnchor.constraint(equalTo: pageTitleView.trailingAnchor,  constant: -marginDefault).isActive = true
             }
         }
-    }
-    
-    func navigationBarAnimation(withAlpha alpha: CGFloat) {
-        guard !isHiddenNavigationBar else { return }
-
     }
     
     // MARK: Handle actions
