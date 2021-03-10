@@ -36,7 +36,6 @@ class MainViewController: UIViewController {
         }
         
         fetchData()
-//        Navigator.showTutorialVC()
     }
     
     // MARK: Fetch data

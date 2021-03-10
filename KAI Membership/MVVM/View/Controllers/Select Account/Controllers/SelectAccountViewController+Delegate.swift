@@ -17,6 +17,6 @@ extension SelectAccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let email = users[indexPath.row].email else { return }
         
-        Navigator.navigateToPasscodeVC(from: self, with: .signIn, email: email)
+        Navigator.navigateToPasscodeVC(from: self, with: .login, email: email)
     }
 }

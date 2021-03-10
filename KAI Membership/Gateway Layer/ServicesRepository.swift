@@ -39,15 +39,8 @@ class APIInput: APIInputBase {
     let path: String
     
     var headers: HTTPHeaders = [
-//        HTTPHeader(name: "Content-Type", value: "application/json"),
-//        HTTPHeader(name: "accept", value: "application/json"),
-//        HTTPHeader(name: "language", value: "vi-vn"),
-//        HTTPHeader(name: "platform", value: "ios"),
-//        HTTPHeader(name: "app_version", value: Constants.appVersion),
-//        HTTPHeader(name: "os_version", value: Constants.Device.version),
-//        HTTPHeader(name: "device_id", value: Constants.Device.id),
-//        HTTPHeader(name: "device_name", value: Constants.Device.name),
-//        HTTPHeader(name: "device_model", value: Constants.Device.model),
+        HTTPHeader(name: "Content-Type", value: "application/json"),
+        HTTPHeader(name: "Accept", value: "*/*"),
         HTTPHeader(name: "Accept-Encoding", value: "gzip, deflate, br"),
         HTTPHeader(name: "Connection", value: "keep-alive"),
     ]
@@ -59,8 +52,8 @@ class APIInput: APIInputBase {
     var returnErrorData: Bool = false
     
     init(withDomain domain: String, path: String = "", params: Parameters = [:], method: HTTPMethod = .get) {
-        if let authorizationToken = AccountManagement.token {
-            headers.add(HTTPHeader.authorization(bearerToken: authorizationToken))//"3mVfs8jS6CrdsCuETsX6TH3GdTCIHa"
+        if let authorizationToken = AccountManagement.accessToken {
+            headers.add(HTTPHeader.authorization(bearerToken: authorizationToken))
         }
          
         self.domain = domain

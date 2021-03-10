@@ -8,10 +8,17 @@
 import UIKit
 import RxSwift
 
-class QuestViewController: BaseViewController {
+class QuestViewController: BaseViewController2 {
     
     // MARK: Properties
     let viewModel = QuestViewModel()
+    
+    private lazy var rightBarButtonItemView: KAIBarButtonItemView = {
+        let view = KAIBarButtonItemView()
+        view.delegate = self
+        
+        return view
+    }()
     
     private(set) lazy var childViewController: NestedScrollViewController = {
         let childVC = NestedScrollViewController(with: self)
@@ -40,7 +47,8 @@ class QuestViewController: BaseViewController {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         self.add(childViewController)
         fetchData()
     }

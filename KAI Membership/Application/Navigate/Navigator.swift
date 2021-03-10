@@ -117,4 +117,31 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
+    /* Điều hướng sang màn hình cập nhật thông tin tài khoản cá nhân */
+    class func navigateToUpdateProfileVC(from viewController: UIViewController? = nil) {
+        let vc = UpdateProfileViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng sang màn hình quà tặng cá nhân */
+    class func navigateToRewardsVC(from viewController: UIViewController? = nil) {
+        let vc = RewardsViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng sang màn hình nhiệm vụ */
+    class func navigateToQuestVC(from viewController: UIViewController? = nil) {
+        let vc = QuestViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng sang màn hình top up */
+    class func navigateToTopupVC(from viewController: UIViewController? = nil) {
+        let vc = TopupViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

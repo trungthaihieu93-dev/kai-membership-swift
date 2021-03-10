@@ -7,12 +7,13 @@
 
 import UIKit
 
-class CongratsViewController: BaseViewController {
+class CongratsViewController: BaseViewController2 {
 
     // MARK: Properties
     enum `Type` {
         case signUp
         case passcode
+        case password
     }
     
     private let type: `Type`
@@ -25,9 +26,9 @@ class CongratsViewController: BaseViewController {
     }()
     
     private let imageView: UIImageView = {
-        let view = UIImageView(image: nil)
+        let view = UIImageView(image: UIImage(named: "image_congrats"))
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
+        view.contentMode = .scaleAspectFit
         
         return view
     }()
@@ -93,6 +94,7 @@ class CongratsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never
         setupView()
     }
     
@@ -138,7 +140,7 @@ class CongratsViewController: BaseViewController {
                 spinNowButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
                 spinNowButton.heightAnchor.constraint(equalToConstant: 52)
             ])
-        case .passcode:
+        case .passcode, .password:
             descriptionLabel.attributedText = "Your new Passcode is ready.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
             spinNowButton.setAttributedTitle(NSAttributedString(string: "Ok, I got it", attributes: [
                 NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
@@ -150,8 +152,7 @@ class CongratsViewController: BaseViewController {
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
                 imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-                imageView.widthAnchor.constraint(equalToConstant: 104),
-                imageView.heightAnchor.constraint(equalToConstant: 104),
+                imageView.leadingAnchor.constraint(greaterThanOrEqualTo: containerView.leadingAnchor),
                 
                 titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32),
                 titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
@@ -179,15 +180,15 @@ class CongratsViewController: BaseViewController {
 extension CongratsViewController {
     
     @objc private func onPressedSpinLater() {
-        
+        debugPrint("Spin Late")
     }
     
     @objc private func onPressedSpinNow() {
         switch type {
         case .signUp:
             debugPrint("Spin Now")
-        case .passcode:
-            debugPrint("Ok, I got it")
+        case .passcode, .password:
+            Navigator.showRootTabbarController()
         }
     }
 }

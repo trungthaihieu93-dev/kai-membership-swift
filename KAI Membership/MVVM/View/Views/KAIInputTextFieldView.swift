@@ -19,6 +19,8 @@ class KAIInputTextFieldView: UIView {
         return label
     }()
     
+    private var kaiTextFieldView: KAITextFieldView!
+    
     var contentInput: String = ""
     
     weak var delegate: KAITextFieldViewDelegate?
@@ -34,8 +36,8 @@ class KAIInputTextFieldView: UIView {
     }
     
     // MARK: Layout
-    func setupView(title: String, placeholder: String? = nil, isSecureTextEntryEnabled: Bool = false) {
-        let kaiTextFieldView: KAITextFieldView = KAITextFieldView(with: .normal, placeholder: placeholder, isSecureTextEntryEnabled: isSecureTextEntryEnabled)
+    private func setupView(title: String, placeholder: String? = nil, isSecureTextEntryEnabled: Bool = false) {
+        kaiTextFieldView = KAITextFieldView(with: .normal, placeholder: placeholder, isSecureTextEntryEnabled: isSecureTextEntryEnabled)
         kaiTextFieldView.translatesAutoresizingMaskIntoConstraints = false
         kaiTextFieldView.delegate = self
         label.text = title
@@ -54,6 +56,14 @@ class KAIInputTextFieldView: UIView {
             kaiTextFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
             kaiTextFieldView.heightAnchor.constraint(equalToConstant: 44)
         ])
+    }
+    
+    func reset() {
+        kaiTextFieldView.reset()
+    }
+    
+    func inputBecomeFirstResponder() {
+        kaiTextFieldView.inputBecomeFirstResponder()
     }
 }
 

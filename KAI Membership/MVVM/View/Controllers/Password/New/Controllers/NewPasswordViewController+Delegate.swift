@@ -9,16 +9,8 @@ import UIKit
 
 extension NewPasswordViewController: KAITextFieldViewDelegate {
     
-    func kAITextFieldViewDidBeginEditing(_ textField: UITextField, for view: UIView) {
-        
-    }
-    
-    func kAITextFieldViewDidEndEditing(_ textField: UITextField, for view: UIView) {
-        
-    }
-    
     func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
-        
+        isConfirmEnabled = (inputPasswordView.contentInput.count >= Constants.lengthPasswordMinimum) && !inputTokenView.contentInput.isEmpty && (confirmPasswordView.contentInput.count >= Constants.lengthPasswordMinimum)
     }
     
     func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {

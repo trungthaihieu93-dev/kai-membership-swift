@@ -28,7 +28,7 @@ class RootTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ActivityServices.activity(userId: AccountManagement.userId ?? "guest")
+        ActivityServices.activity(userId: AccountManagement.userID ?? "guest")
     }
     
     // MARK: Handle UI

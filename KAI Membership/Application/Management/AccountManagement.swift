@@ -10,10 +10,10 @@ import Foundation
 class AccountManagement {
     
     static var isLoggedIn: Bool {
-        return AccountManagement.token != nil //&& AccountManagement.userId != nil
+        return AccountManagement.accessToken != nil //&& AccountManagement.userId != nil
     }
     
-    static var token: String? {
+    static var accessToken: String? {
         get {
             guard let data = KeyChain.load(forKey: .authorizationToken) else { return nil }
 
@@ -26,16 +26,20 @@ class AccountManagement {
         }
     }
     
-//    static var token: String? {
-//        get {
-//            return KeyChain.load(forKey: .authorizationToken)?.to(type: String.self)
-//        }
-//        set {
-//            KeyChain.save(forKey: .authorizationToken, data: Data(from: newValue))
-//        }
-//    }
+    static var refreshToken: String? {
+        get {
+            guard let data = KeyChain.load(forKey: .refreshToken) else { return nil }
+
+            return String(data: data, encoding: .utf8)
+        }
+        set {
+            guard let data = newValue?.data(using: .utf8) else { return }
+
+            KeyChain.save(forKey: .refreshToken, data: data)
+        }
+    }
     
-    static var userId: String? {
+    static var userID: String? {
         get {
             guard let data = KeyChain.load(forKey: .userID) else { return nil }
 
@@ -62,8 +66,9 @@ class AccountManagement {
     }
     
     class func refresh() {
-        AccountManagement.token = nil
-        AccountManagement.userId = nil
+        AccountManagement.accessToken = nil
+        AccountManagement.refreshToken = nil
+        AccountManagement.userID = nil
     }
     
     class func getInfoUser(_ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
@@ -71,7 +76,7 @@ class AccountManagement {
             switch $0 {
             case .success(let result):
                 if let data = result.data {
-                    AccountManagement.userId = data.user?.id
+                    AccountManagement.userID = data.user?.id
                     AccountManagement.kai = data.kai
                     completion(.success(data))
                 } else {
@@ -88,7 +93,8 @@ class AccountManagement {
             switch $0 {
             case .success(let result):
                 if let data = result.data {
-                    AccountManagement.token = data.accessToken
+                    AccountManagement.accessToken = data.accessToken
+                    AccountManagement.refreshToken = data.refreshToken
                     AccountManagement.getInfoUser {
                         switch $0 {
                         case .success(let info):
@@ -111,7 +117,8 @@ class AccountManagement {
             switch $0 {
             case .success(let result):
                 if let data = result.data {
-                    AccountManagement.token = data.accessToken
+                    AccountManagement.accessToken = data.accessToken
+                    AccountManagement.refreshToken = data.refreshToken
                     AccountManagement.getInfoUser {
                         switch $0 {
                         case .success(let info):

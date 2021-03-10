@@ -18,7 +18,7 @@ class KAIBarButtonItemView: UIView {
     private lazy var spinButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_spin_item")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "ic_spin")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
@@ -30,7 +30,7 @@ class KAIBarButtonItemView: UIView {
     private lazy var profileButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_profile_item")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)

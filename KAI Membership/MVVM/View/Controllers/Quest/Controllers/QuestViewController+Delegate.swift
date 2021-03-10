@@ -7,6 +7,18 @@
 
 import UIKit
 
+// MARK: KAIBarButtonItemViewDelegate
+extension QuestViewController: KAIBarButtonItemViewDelegate {
+    
+    func kAIBarButtonItemViewDidSelecteSpin(_ kAIBarButtonItemView: KAIBarButtonItemView) {
+        // Web view
+    }
+    
+    func kAIBarButtonItemViewDidSelecteProfile(_ kAIBarButtonItemView: KAIBarButtonItemView) {
+        Navigator.navigateToProfileVC(from: self)
+    }
+}
+
 // MARK: NestedScrollDelegate
 extension QuestViewController: NestedScrollDelegate {
     

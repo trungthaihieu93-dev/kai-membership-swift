@@ -6,16 +6,29 @@
 //
 
 import UIKit
+import RxSwift
 
-class ForgotPasswordViewController: BaseViewController {
-
+class ForgotPasswordViewController: BaseViewController2 {
+    
     // MARK: Properties
+    let viewModel = ForgotPasswordViewModel()
+    
     private let sendCodeToEmail: String = "Did not receive any email?\nCheck your spam filter, or resend another mail"
     private let detectActionSendCodeToEmail: String = "resend another mail"
     
-    private let emailTextField: KAIInputTextFieldView = {
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.attributedText = "We will send an instruction to your email.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+        
+        return label
+    }()
+    
+    private lazy var emailTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "EMAIL", placeholder: "Enter your email")
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         
         return view
     }()
@@ -27,6 +40,8 @@ class ForgotPasswordViewController: BaseViewController {
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
+        button.isEnabled = false
+        button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedSend), for: .touchUpInside)
@@ -45,29 +60,47 @@ class ForgotPasswordViewController: BaseViewController {
         return label
     }()
     
-    override var pageTitle: String {
-        return "Forgot Password"
-    }
-    
-    override var pageDiscription: String {
-        return "We will send an instruction to your email."
+    var isConfirmEnabled: Bool = false {
+        didSet {
+            guard isConfirmEnabled != oldValue else { return }
+            
+            sendButton.isEnabled = isConfirmEnabled
+            
+            if isConfirmEnabled {
+                sendButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+            } else {
+                sendButton.removeAllSublayers(withName: UIView.gradientLayerKey)
+            }
+        }
     }
     
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Forgot Password"
         setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        emailTextField.inputBecomeFirstResponder()
     }
     
     // MARK: Layout
     private func setupView() {
+        view.addSubview(descriptionLabel)
         view.addSubview(emailTextField)
         view.addSubview(sendButton)
         view.addSubview(sendCodeToEmailLabel)
         
         NSLayoutConstraint.activate([
-            emailTextField.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: 32),
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            emailTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 32),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -83,10 +116,6 @@ class ForgotPasswordViewController: BaseViewController {
         ])
         
         configureSendCodeToEmailLabel()
-        
-        DispatchQueue.main.async {
-            self.sendButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
-        }
     }
     
     private func configureSendCodeToEmailLabel() {
@@ -103,14 +132,20 @@ class ForgotPasswordViewController: BaseViewController {
 extension ForgotPasswordViewController {
     
     @objc private func onPressedSend() {
-        // Call APi
-        Navigator.navigateToNewPasswordVC(from: self)
+        viewModel.requestChangePassword(with: emailTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let this = self else { return }
+            
+            Navigator.navigateToNewPasswordVC(from: this)
+        }, onError: { error in
+            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
     }
     
     @objc private func onTapSendCodeToEmail(_ recognizer: UITapGestureRecognizer) {
         let range = (sendCodeToEmail as NSString).range(of: detectActionSendCodeToEmail)
-
+        
         guard recognizer.didTapAttributedTextInLabel(label: sendCodeToEmailLabel, inRange: range) else { return }
         
+        emailTextField.reset()
     }
 }

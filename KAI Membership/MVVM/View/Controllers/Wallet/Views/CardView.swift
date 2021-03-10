@@ -184,7 +184,7 @@ class CardView: UIView {
     
     // MARK: Configure
     func configure(_ kai: KAIRemote? = nil) {
-        kaiLabel.attributedText = kai?.wallet?.balance?.formatCurrencyToAttributedString(unit: .kai, groupingSeparator: .dots, decimalSeparator: .comma, font: .workSansFont(ofSize: 20, weight: .medium), unitFont: .workSansFont(ofSize: 20, weight: .light), textColor: .white)
+        kaiLabel.attributedText = kai?.wallet?.balance?.formatCurrencyToAttributedString(unit: .kai, font: .workSansFont(ofSize: 20, weight: .medium), unitFont: .workSansFont(ofSize: 20, weight: .light), textColor: .white)
         
         walletAddressLabel.attributedText = NSAttributedString(string: kai?.wallet?.address ?? "", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .regular),

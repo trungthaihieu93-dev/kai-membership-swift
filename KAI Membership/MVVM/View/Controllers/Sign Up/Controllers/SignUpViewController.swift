@@ -102,11 +102,17 @@ class SignUpViewController: BaseViewController2 {
     
     // MARK: Methods
     func createAccount() {
+        guard signUpView.confirmPasswordTextField.contentInput == signUpView.passwordTextField.contentInput else {
+            debugPrint("Xác nhận lại mật khẩu không đúng")
+            
+            return
+        }
+        
         let email = signUpView.emailTextField.contentInput
         viewModel.register(username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
             guard let this = self else { return }
             
-            Navigator.navigateToPasscodeVC(from: this, with: .signUp, email: email)
+            Navigator.navigateToPasscodeVC(from: this, with: .register, email: email)
         }, onError: { error in
             debugPrint("Register error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)

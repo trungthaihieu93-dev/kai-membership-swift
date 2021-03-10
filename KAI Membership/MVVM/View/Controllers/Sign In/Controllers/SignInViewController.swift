@@ -24,6 +24,7 @@ class SignInViewController: BaseViewController2 {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
+        label.attributedText = "Sign in and start our journey with KAI.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         
         return label
     }()
@@ -96,8 +97,6 @@ class SignInViewController: BaseViewController2 {
             trialButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             trialButton.heightAnchor.constraint(equalToConstant: 52),
         ])
-        
-        descriptionLabel.attributedText = "Sign in and start our journey with KAI.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
     }
     
     // MARK: Login

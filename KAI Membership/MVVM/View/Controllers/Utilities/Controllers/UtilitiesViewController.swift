@@ -51,6 +51,6 @@ class UtilitiesViewController: BaseViewController2 {
     
     // MARK: Methods
     func mobileTopup() {
-        
+        Navigator.navigateToTopupVC(from: self)
     }
 }

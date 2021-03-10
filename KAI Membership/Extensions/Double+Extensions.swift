@@ -22,7 +22,7 @@ extension Double {
         return dateFormatter.string(from: day)
     }
     
-    func formatCurrencyToAttributedString(unit: UnitCurrency = .kai, groupingSeparator: CurrencySeparator = .dots, decimalSeparator: CurrencySeparator = .comma, font: UIFont, unitFont: UIFont? = nil, textColor: UIColor) -> NSAttributedString {
+    func formatCurrencyToAttributedString(unit: UnitCurrency = .kai, groupingSeparator: CurrencySeparator = .comma, decimalSeparator: CurrencySeparator = .dots, font: UIFont, unitFont: UIFont? = nil, textColor: UIColor) -> NSAttributedString {
         let formatter = NumberFormatter()
         formatter.groupingSeparator = groupingSeparator.rawValue
         formatter.decimalSeparator = decimalSeparator.rawValue

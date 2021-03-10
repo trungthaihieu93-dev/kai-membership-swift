@@ -16,6 +16,7 @@ class Key {
     
     enum KeyChain: String {
         case authorizationToken = "KAI.KeyChain.AuthorizationToken"
+        case refreshToken = "KAI.KeyChain.refreshToken"
         case userID = "KAI.KeyChain.UserID"
         case kaiInfo = "KAI.KeyChain.KaiInfomation"
     }

@@ -290,6 +290,12 @@ class KAITextFieldView: UIView {
             }
         }
     }
+    
+    func reset() {
+        textField.text = nil
+        textField.becomeFirstResponder()
+        updateState(.typing)
+    }
 }
 
 // MARK: Handle actions

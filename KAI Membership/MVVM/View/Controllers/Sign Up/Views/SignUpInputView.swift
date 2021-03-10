@@ -39,7 +39,7 @@ class SignUpInputView: UIView {
         return view
     }()
     
-    private lazy var passwordTextField: KAIInputTextFieldView = {
+    private(set) lazy var passwordTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "PASSWORD", placeholder: "Your password", isSecureTextEntryEnabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -183,8 +183,7 @@ extension SignUpInputView: KAITextFieldViewDelegate {
             delegate?.signUpInputViewEmailValueChange(self, textField: textField)
         }
         
-        let password = passwordTextField.contentInput
-        isConfirmEnabled = !emailTextField.contentInput.isEmpty && password.count >= Constants.lengthPasswordMinimum && (password == confirmPasswordTextField.contentInput)
+        isConfirmEnabled = !emailTextField.contentInput.isEmpty && (passwordTextField.contentInput.count >= Constants.lengthPasswordMinimum) && (confirmPasswordTextField.contentInput.count >= Constants.lengthPasswordMinimum)
     }
     
     func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {

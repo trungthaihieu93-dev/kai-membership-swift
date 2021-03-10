@@ -6,15 +6,20 @@
 //
 
 import UIKit
+import RxSwift
 
 class NewPasswordViewController: BaseViewController2 {
 
     // MARK: Properties
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+    let viewModel = NewPasswordViewModel()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.attributedText = "Your new password must be different from previous used one. Try to remember it this time.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         
-        return view
+        return label
     }()
     
     private let scrollView: UIScrollView = {
@@ -24,15 +29,7 @@ class NewPasswordViewController: BaseViewController2 {
         return scrollView
     }()
     
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
-        
-        return label
-    }()
-    
-    private lazy var passwordTextField: KAIInputTextFieldView = {
+    private(set) lazy var inputPasswordView: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "NEW PASSWORD", placeholder: "New password", isSecureTextEntryEnabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -40,7 +37,7 @@ class NewPasswordViewController: BaseViewController2 {
         return view
     }()
     
-    private lazy var confirmPasswordTextField: KAIInputTextFieldView = {
+    private(set) lazy var confirmPasswordView: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "CONFIRM PASSWORD", placeholder: "Confirm password", isSecureTextEntryEnabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -48,7 +45,7 @@ class NewPasswordViewController: BaseViewController2 {
         return view
     }()
     
-    private lazy var tokenTextField: KAIInputTextFieldView = {
+    private(set) lazy var inputTokenView: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(title: "PASTE YOUR TOKEN HERE", placeholder: "Paste your token here", isSecureTextEntryEnabled: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -63,6 +60,8 @@ class NewPasswordViewController: BaseViewController2 {
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
+        button.isEnabled = false
+        button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedSetNew), for: .touchUpInside)
@@ -70,89 +69,116 @@ class NewPasswordViewController: BaseViewController2 {
         return button
     }()
     
+    private var confirmBottomAnchor: NSLayoutConstraint?
+    
+    var isConfirmEnabled: Bool = false {
+        didSet {
+            guard isConfirmEnabled != oldValue else { return }
+            
+            setNewPasswordButton.isEnabled = isConfirmEnabled
+            
+            if isConfirmEnabled {
+                setNewPasswordButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+            } else {
+                setNewPasswordButton.removeAllSublayers(withName: UIView.gradientLayerKey)
+            }
+        }
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "New Password"
         
+        navigationItem.title = "New Password"
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupView()
+        
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
+        singleTap.numberOfTapsRequired = 1
+        singleTap.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(singleTap)
     }
     
     // MARK: Layout
     private func setupView() {
-        view.addSubview(contentView)
+        view.addSubview(descriptionLabel)
+        view.addSubview(scrollView)
+        view.addSubview(setNewPasswordButton)
         
-        contentView.addSubview(scrollView)
-        contentView.addSubview(setNewPasswordButton)
-        
-        scrollView.addSubview(descriptionLabel)
-        scrollView.addSubview(passwordTextField)
-        scrollView.addSubview(confirmPasswordTextField)
-        scrollView.addSubview(tokenTextField)
+        scrollView.addSubview(inputPasswordView)
+        scrollView.addSubview(confirmPasswordView)
+        scrollView.addSubview(inputTokenView)
         
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: view.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            scrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            descriptionLabel.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            descriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -40),
+            inputPasswordView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            inputPasswordView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            inputPasswordView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            inputPasswordView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
             
-            passwordTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
-            passwordTextField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor),
-            passwordTextField.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor),
+            confirmPasswordView.topAnchor.constraint(equalTo: inputPasswordView.bottomAnchor, constant: 8),
+            confirmPasswordView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor),
+            confirmPasswordView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor),
             
-            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
-            confirmPasswordTextField.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
-            confirmPasswordTextField.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
-            
-            tokenTextField.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 8),
-            tokenTextField.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
-            tokenTextField.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            tokenTextField.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
+            inputTokenView.topAnchor.constraint(equalTo: confirmPasswordView.bottomAnchor, constant: 8),
+            inputTokenView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor),
+            inputTokenView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor),
+            inputTokenView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor),
             
             setNewPasswordButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 32),
-            setNewPasswordButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            setNewPasswordButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -(safeAreaInsets.bottom + 24)),
-            setNewPasswordButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            setNewPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            setNewPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             setNewPasswordButton.heightAnchor.constraint(equalToConstant: 52),
         ])
         
-        descriptionLabel.attributedText = "Your new password must be different from previous used one. Try to remember it this time.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
-        
-        DispatchQueue.main.async {
-            self.setNewPasswordButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
-        }
+        confirmBottomAnchor = setNewPasswordButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 20))
+        confirmBottomAnchor?.isActive = true
     }
 }
 
 // MARK: Handle actions
 extension NewPasswordViewController {
     
-    @objc private func onPressedSetNew() {
+    @objc private func handleKeyboardNotification(_ notification: NSNotification) {
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+            
+            confirmBottomAnchor?.constant = -(keyboardFrame.height + 20)
+        } else {
+            confirmBottomAnchor?.constant = -(safeAreaInsets.bottom + 20)
+        }
         
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
-    @objc private func handleKeyboardNotification(_ notification: NSNotification) {
-//        if notification.name == UIResponder.keyboardWillShowNotification {
-//            guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-//            
-//            let bottomOffset = Constants.Device.screenSize.height - (scrollView.frame.origin.y + signInView.frame.origin.y + signInView.frame.height + 10)
-//            
-//            if keyboardFrame.height > bottomOffset {
-//                self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardFrame.height - bottomOffset), animated: true)
-//            }
-//        } else {
-//            self.scrollView.setContentOffset(.zero, animated: true)
-//        }
+    @objc private func onPressedSetNew() {
+        guard confirmPasswordView.contentInput == inputPasswordView.contentInput else {
+            debugPrint("Xác nhận lại mật khẩu không đúng")
+            
+            return
+        }
+        
+        viewModel.confirmPassword(with: inputTokenView.contentInput, password: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let this = self else { return }
+            
+            Navigator.navigateToCongratsVC(from: this, with: .password)
+        }, onError: { error in
+            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
+    }
+    
+    @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }
