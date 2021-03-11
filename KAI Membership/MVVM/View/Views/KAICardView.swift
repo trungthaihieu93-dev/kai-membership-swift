@@ -1,5 +1,5 @@
 //
-//  CardView.swift
+//  KAICardView.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 27/02/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CardView: UIView {
+class KAICardView: UIView {
     
     // MARK: Properties
     private let cardImageView: UIImageView = {

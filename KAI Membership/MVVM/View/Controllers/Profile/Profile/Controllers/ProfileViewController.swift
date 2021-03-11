@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: BaseViewController2 {
+class ProfileViewController: BaseViewController {
 
     // MARK: Properties
     enum Section: Int, CaseIterable {
@@ -75,6 +75,7 @@ class ProfileViewController: BaseViewController2 {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(UIBarButtonItem(customView: cameraButton), animated: true)
         setupView()

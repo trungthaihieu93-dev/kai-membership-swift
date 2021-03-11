@@ -6,13 +6,26 @@
 //
 
 import UIKit
+import RxSwift
 
 class ResetPasscodeViewController: BaseViewController {
 
     // MARK: Properties
-    private let emailTextField: KAIInputTextFieldView = {
+    let viewModel = ResetPasswordViewModel()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.attributedText = "We will send an email with instructions to your registed email.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+        
+        return label
+    }()
+    
+    private lazy var emailTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(with: .default, title: "EMAIL", placeholder: "an.nguyen@kardiachain.io", keyboardType: .emailAddress)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         
         return view
     }()
@@ -24,6 +37,8 @@ class ResetPasscodeViewController: BaseViewController {
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
+        button.isEnabled = false
+        button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedSend), for: .touchUpInside)
@@ -31,28 +46,40 @@ class ResetPasscodeViewController: BaseViewController {
         return button
     }()
     
-    override var pageTitle: String {
-        return "Reset Passcode"
-    }
-    
-    override var pageDiscription: String {
-        return "We will send an email with instructions to your registed email. "
+    var isConfirmEnabled: Bool = false {
+        didSet {
+            guard isConfirmEnabled != oldValue else { return }
+            
+            sendButton.isEnabled = isConfirmEnabled
+            
+            if isConfirmEnabled {
+                sendButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+            } else {
+                sendButton.removeAllSublayers(withName: UIView.gradientLayerKey)
+            }
+        }
     }
     
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Reset Passcode"
         setupView()
     }
     
     // MARK: Layout
     private func setupView() {
+        view.addSubview(descriptionLabel)
         view.addSubview(emailTextField)
         view.addSubview(sendButton)
         
         NSLayoutConstraint.activate([
-            emailTextField.topAnchor.constraint(equalTo: pageTitleView.bottomAnchor, constant: 32),
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            emailTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -62,10 +89,6 @@ class ResetPasscodeViewController: BaseViewController {
             sendButton.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             sendButton.heightAnchor.constraint(equalToConstant: 52),
         ])
-        
-        DispatchQueue.main.async {
-            self.sendButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
-        }
     }
 }
 
@@ -73,6 +96,12 @@ class ResetPasscodeViewController: BaseViewController {
 extension ResetPasscodeViewController {
     
     @objc private func onPressedSend() {
-        
+        viewModel.requestResetPassword(with: emailTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let this = self else { return }
+            
+            Navigator.navigateToCheckMailVC(from: self)
+        }, onError: { error in
+            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
     }
 }

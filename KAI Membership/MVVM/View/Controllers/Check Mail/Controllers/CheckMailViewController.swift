@@ -142,7 +142,7 @@ class CheckMailViewController: BaseViewController {
 extension CheckMailViewController {
     
     @objc private func onPressedOpenEmailApp() {
-        
+        Helper.openSafari(AccountManagement.email)
     }
     
     @objc private func onTapResendAnotherMail(_ recognizer: UITapGestureRecognizer) {

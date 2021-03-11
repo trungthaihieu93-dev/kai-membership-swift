@@ -9,13 +9,15 @@ import UIKit
 import RxSwift
 import DZNEmptyDataSet
 
-class RewardsViewController: BaseViewController2 {
+class RewardsViewController: BaseViewController {
 
     // MARK: Properties
     enum Section: Int, CaseIterable {
         case rewards
         case history
     }
+    
+    let viewModel = RewardsViewModel()
     
     private(set) lazy var emptyView: RewardsEmptyView = {
         let view = RewardsEmptyView()
@@ -32,6 +34,7 @@ class RewardsViewController: BaseViewController2 {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .init(hex: "E5E5E5")
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.dataSource = self
@@ -48,9 +51,14 @@ class RewardsViewController: BaseViewController2 {
         return view
     }()
     
+    override var navigationColorDefault: UIColor {
+        return .init(hex: "E5E5E5")
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "My reward"
         setupView()
         fetchData()
@@ -67,9 +75,18 @@ class RewardsViewController: BaseViewController2 {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+}
+
+// MARK: Data fetching
+extension RewardsViewController {
     
-    // MARK: Data fetching
-    func fetchData() {
-        tableView.reloadData()
+    private func fetchData() {
+        viewModel.getHistories().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] histories in
+            guard let this = self else { return }
+            
+            this.tableView.reloadData()
+        }, onError: { error in
+            debugPrint("Get histories errror: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CongratsViewController: BaseViewController2 {
+class CongratsViewController: BaseViewController {
 
     // MARK: Properties
     enum `Type` {

@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class QuestViewController: BaseViewController2 {
+class QuestViewController: BaseViewController {
     
     // MARK: Properties
     let viewModel = QuestViewModel()
@@ -51,6 +51,7 @@ class QuestViewController: BaseViewController2 {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         self.add(childViewController)

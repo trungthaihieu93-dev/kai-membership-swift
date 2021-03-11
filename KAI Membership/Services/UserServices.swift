@@ -55,4 +55,10 @@ class UserServices {
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
     
+    // MARK: Get histories
+    class func getHistories(_ completion: @escaping (APIResult<APIDataListResults<HistoryRemote>, APIErrorResult>) -> Void) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/history", method: .get)
+        
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
 }

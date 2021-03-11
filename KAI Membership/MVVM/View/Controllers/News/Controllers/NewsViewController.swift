@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsViewController: BaseViewController2 {
+class NewsViewController: BaseViewController {
 
     // MARK: Properties
     enum Section: Int, CaseIterable {
@@ -40,6 +40,7 @@ class NewsViewController: BaseViewController2 {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Today News"
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         

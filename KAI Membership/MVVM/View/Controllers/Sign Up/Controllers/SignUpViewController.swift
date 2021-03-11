@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SignUpViewController: BaseViewController2 {
+class SignUpViewController: BaseViewController {
 
     // MARK: Properties
     let viewModel = SignUpViewModel()
@@ -17,6 +17,7 @@ class SignUpViewController: BaseViewController2 {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
+        label.attributedText = "1 step away to be a Kai member. We just need a few details from you.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         
         return label
     }()
@@ -56,6 +57,7 @@ class SignUpViewController: BaseViewController2 {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Be a Member"
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -96,8 +98,6 @@ class SignUpViewController: BaseViewController2 {
             trialButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             trialButton.heightAnchor.constraint(equalToConstant: 52),
         ])
-        
-        descriptionLabel.attributedText = "1 step away to be a Kai member. We just need a few details from you.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
     }
     
     // MARK: Methods

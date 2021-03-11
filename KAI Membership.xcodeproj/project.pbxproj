@@ -19,6 +19,14 @@
 		493043FD25F8AFA200EED242 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */; };
 		4930440125F8B82C00EED242 /* NewPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930440025F8B82C00EED242 /* NewPasswordViewModel.swift */; };
 		494C0AB525F9EE0400E30115 /* KAITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AB425F9EE0300E30115 /* KAITextField.swift */; };
+		494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0ACE25FA094800E30115 /* CardCollapseTableViewCell.swift */; };
+		494C0AD525FA09E400E30115 /* TopupViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AD425FA09E400E30115 /* TopupViewController+DataSource.swift */; };
+		494C0AD825FA0A5300E30115 /* TopupViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AD725FA0A5300E30115 /* TopupViewController+Delegate.swift */; };
+		494C0ADB25FA0E9A00E30115 /* TopupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0ADA25FA0E9A00E30115 /* TopupTableViewCell.swift */; };
+		494C0ADF25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0ADE25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift */; };
+		494C0AE325FA147A00E30115 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AE225FA147A00E30115 /* ResetPasswordViewModel.swift */; };
+		494C0AEC25FA249900E30115 /* HistoryRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AEB25FA249900E30115 /* HistoryRemote.swift */; };
+		494C0AF025FA284800E30115 /* RewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AEF25FA284800E30115 /* RewardsViewModel.swift */; };
 		498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */; };
 		498BCFE925F7470800F04160 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE825F7470800F04160 /* Helper.swift */; };
 		498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFEB25F756EE00F04160 /* InputCodeView.swift */; };
@@ -76,7 +84,7 @@
 		525DB95025E959C0001491AE /* WorkSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 525DB93825E959C0001491AE /* WorkSans-ExtraLightItalic.ttf */; };
 		525DB95425E96018001491AE /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB95325E96018001491AE /* UIFont+Extensions.swift */; };
 		525DB96425EA3B86001491AE /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96325EA3B86001491AE /* PasscodeView.swift */; };
-		525DB96925EA42C0001491AE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96825EA42C0001491AE /* CardView.swift */; };
+		525DB96925EA42C0001491AE /* KAICardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96825EA42C0001491AE /* KAICardView.swift */; };
 		525DB96D25EA4490001491AE /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB96C25EA4490001491AE /* Double+Extensions.swift */; };
 		525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */; };
 		525DB97B25EB52A2001491AE /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */; };
@@ -176,6 +184,14 @@
 		493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		4930440025F8B82C00EED242 /* NewPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewModel.swift; sourceTree = "<group>"; };
 		494C0AB425F9EE0300E30115 /* KAITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAITextField.swift; sourceTree = "<group>"; };
+		494C0ACE25FA094800E30115 /* CardCollapseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollapseTableViewCell.swift; sourceTree = "<group>"; };
+		494C0AD425FA09E400E30115 /* TopupViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopupViewController+DataSource.swift"; sourceTree = "<group>"; };
+		494C0AD725FA0A5300E30115 /* TopupViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopupViewController+Delegate.swift"; sourceTree = "<group>"; };
+		494C0ADA25FA0E9A00E30115 /* TopupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopupTableViewCell.swift; sourceTree = "<group>"; };
+		494C0ADE25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResetPasscodeViewController+Delegate.swift"; sourceTree = "<group>"; };
+		494C0AE225FA147A00E30115 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		494C0AEB25FA249900E30115 /* HistoryRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRemote.swift; sourceTree = "<group>"; };
+		494C0AEF25FA284800E30115 /* RewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsViewModel.swift; sourceTree = "<group>"; };
 		498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoRemote.swift; sourceTree = "<group>"; };
 		498BCFE825F7470800F04160 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		498BCFEB25F756EE00F04160 /* InputCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCodeView.swift; sourceTree = "<group>"; };
@@ -233,7 +249,7 @@
 		525DB93825E959C0001491AE /* WorkSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		525DB95325E96018001491AE /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		525DB96325EA3B86001491AE /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
-		525DB96825EA42C0001491AE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		525DB96825EA42C0001491AE /* KAICardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAICardView.swift; sourceTree = "<group>"; };
 		525DB96C25EA4490001491AE /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		525DB97725EB5276001491AE /* RecentTransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTransactionsTableViewCell.swift; sourceTree = "<group>"; };
 		525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
@@ -373,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				493043E625F88C2C00EED242 /* Controllers */,
+				494C0AEE25FA283600E30115 /* View Model */,
 				493043E725F88C4600EED242 /* Views */,
 			);
 			path = Rewards;
@@ -434,6 +451,7 @@
 			children = (
 				525DBA7925F01774001491AE /* Controllers */,
 				525DBA7A25F0177C001491AE /* View Model */,
+				494C0ACD25FA092000E30115 /* Views */,
 			);
 			path = Topup;
 			sourceTree = "<group>";
@@ -445,6 +463,38 @@
 				525DBA8425F0181B001491AE /* View Model */,
 			);
 			path = Overview;
+			sourceTree = "<group>";
+		};
+		494C0ACD25FA092000E30115 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				494C0ADA25FA0E9A00E30115 /* TopupTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		494C0AE125FA143B00E30115 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				494C0AE225FA147A00E30115 /* ResetPasswordViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		494C0AEA25FA248800E30115 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				494C0AEB25FA249900E30115 /* HistoryRemote.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		494C0AEE25FA283600E30115 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				494C0AEF25FA284800E30115 /* RewardsViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		498BCFE225F71B1700F04160 /* Account Info */ = {
@@ -513,14 +563,15 @@
 			isa = PBXGroup;
 			children = (
 				498BCFE225F71B1700F04160 /* Account Info */,
-				525DBB0325F2893B001491AE /* Wallet */,
+				525DB9FA25EFD8D2001491AE /* Device */,
+				494C0AEA25FA248800E30115 /* History */,
 				525DBAFF25F288FF001491AE /* KAI */,
 				525DBAF625F286A9001491AE /* Login */,
-				525DBABD25F17592001491AE /* Quest */,
-				525DB9FA25EFD8D2001491AE /* Device */,
 				525DBA5A25F00F0F001491AE /* News */,
+				525DBABD25F17592001491AE /* Quest */,
 				525DB9D925EE9125001491AE /* Transactions */,
 				525DB8BA25E6A885001491AE /* User */,
+				525DBB0325F2893B001491AE /* Wallet */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -809,14 +860,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		525DB96725EA42A8001491AE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				525DB96825EA42C0001491AE /* CardView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		525DB98125EB8FD9001491AE /* Recent Transactions */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,6 +1032,8 @@
 			isa = PBXGroup;
 			children = (
 				525DBA7C25F017AA001491AE /* TopupViewController.swift */,
+				494C0AD425FA09E400E30115 /* TopupViewController+DataSource.swift */,
+				494C0AD725FA0A5300E30115 /* TopupViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1262,7 +1307,6 @@
 			children = (
 				525DB88225E5578F001491AE /* Controllers */,
 				525DB9E225EE95EE001491AE /* View Model */,
-				525DB96725EA42A8001491AE /* Views */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1341,9 +1385,11 @@
 		52F37CF825E0DCC5009F311F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				494C0ACE25FA094800E30115 /* CardCollapseTableViewCell.swift */,
 				498BCFEB25F756EE00F04160 /* InputCodeView.swift */,
 				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
 				525DBA8C25F0190B001491AE /* KAICardCollapseView.swift */,
+				525DB96825EA42C0001491AE /* KAICardView.swift */,
 				52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */,
 				494C0AB425F9EE0300E30115 /* KAITextField.swift */,
 			);
@@ -1354,6 +1400,7 @@
 			isa = PBXGroup;
 			children = (
 				52F37D0425E15808009F311F /* Controllers */,
+				494C0AE125FA143B00E30115 /* View Model */,
 			);
 			path = Reset;
 			sourceTree = "<group>";
@@ -1362,6 +1409,7 @@
 			isa = PBXGroup;
 			children = (
 				52F37D0525E1581C009F311F /* ResetPasswordViewController.swift */,
+				494C0ADE25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1541,6 +1589,8 @@
 			files = (
 				525DBA4625EFF48A001491AE /* UIImageView+Extensions.swift in Sources */,
 				529AE1AD25DD998700635807 /* UtilitiesViewController.swift in Sources */,
+				494C0AD825FA0A5300E30115 /* TopupViewController+Delegate.swift in Sources */,
+				494C0ADF25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift in Sources */,
 				529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */,
 				525DBA4E25F0036D001491AE /* PasscodeViewModel.swift in Sources */,
 				493043F325F89D4800EED242 /* RewardsViewController+Delegate.swift in Sources */,
@@ -1553,8 +1603,9 @@
 				525DBA4225EFEE2F001491AE /* MainViewModel.swift in Sources */,
 				525DBAC425F17802001491AE /* QuestServices.swift in Sources */,
 				493043E025F87FA800EED242 /* UpdateProfileViewModel.swift in Sources */,
+				494C0AD525FA09E400E30115 /* TopupViewController+DataSource.swift in Sources */,
 				521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */,
-				525DB96925EA42C0001491AE /* CardView.swift in Sources */,
+				525DB96925EA42C0001491AE /* KAICardView.swift in Sources */,
 				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
 				525DB8F125E6B898001491AE /* UserRemote.swift in Sources */,
 				525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */,
@@ -1592,6 +1643,7 @@
 				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
+				494C0AEC25FA249900E30115 /* HistoryRemote.swift in Sources */,
 				529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */,
 				525DB9CE25ED40FF001491AE /* SignInViewController+Delegate.swift in Sources */,
 				4930440125F8B82C00EED242 /* NewPasswordViewModel.swift in Sources */,
@@ -1607,6 +1659,7 @@
 				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
 				498BCFE925F7470800F04160 /* Helper.swift in Sources */,
 				525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */,
+				494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */,
 				525DBA5725F008E7001491AE /* Data+Extensions.swift in Sources */,
 				525DBAA125F16213001491AE /* QuestTableViewCell.swift in Sources */,
 				525DB9DF25EE92EF001491AE /* TransactionServices.swift in Sources */,
@@ -1630,11 +1683,13 @@
 				525DBAA825F164AA001491AE /* DailyQuestViewController.swift in Sources */,
 				525DB8E725E6B641001491AE /* UserDataSource.swift in Sources */,
 				52F37CF125E03459009F311F /* SignInInputView.swift in Sources */,
+				494C0ADB25FA0E9A00E30115 /* TopupTableViewCell.swift in Sources */,
 				525DBA9425F0FDA6001491AE /* TabPageView.swift in Sources */,
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,
 				493043FD25F8AFA200EED242 /* ForgotPasswordViewModel.swift in Sources */,
 				525DB9EC25EE96CD001491AE /* WalletViewController+Delegate.swift in Sources */,
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
+				494C0AE325FA147A00E30115 /* ResetPasswordViewModel.swift in Sources */,
 				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
 				5265495C25F5E909003AE21A /* ProfileViewController.swift in Sources */,
 				525DB8F625E6B91E001491AE /* UserServices.swift in Sources */,
@@ -1653,6 +1708,7 @@
 				525DB90825E91A52001491AE /* AppSetting.swift in Sources */,
 				525DB9D125EE8437001491AE /* UtilitiesViewController+DataSource.swift in Sources */,
 				525DB96425EA3B86001491AE /* PasscodeView.swift in Sources */,
+				494C0AF025FA284800E30115 /* RewardsViewModel.swift in Sources */,
 				525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
 				525DBA6125F00F70001491AE /* NewRemote.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UtilitiesViewController: BaseViewController2 {
+class UtilitiesViewController: BaseViewController {
 
     // MARK: Properties
     private lazy var rightBarButtonItemView: KAIBarButtonItemView = {

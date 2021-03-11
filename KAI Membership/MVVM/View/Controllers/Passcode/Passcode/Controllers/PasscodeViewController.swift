@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class PasscodeViewController: BaseViewController2 {
+class PasscodeViewController: BaseViewController {
 
     // MARK: Properties
     enum `Type` {

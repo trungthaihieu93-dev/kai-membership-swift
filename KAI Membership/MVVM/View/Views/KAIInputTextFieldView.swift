@@ -49,6 +49,7 @@ class KAIInputTextFieldView: UIView {
     private func setupView(with type: KAITextField.`Type`, title: String, placeholder: String? = nil, returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default) {
         textFieldView = KAITextField(with: type, returnKeyType: returnKeyType, keyboardType: keyboardType, placeholder: placeholder)
         textFieldView.translatesAutoresizingMaskIntoConstraints = false
+        textFieldView.delegate = self
         titleLabel.text = title
         
         addSubview(titleLabel)

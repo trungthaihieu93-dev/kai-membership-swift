@@ -13,14 +13,10 @@ class OverviewTopupViewController: BaseViewController {
     // MARK: Properties
     let viewModel = OverviewTopupViewModel()
     
-    override var pageTitle: String {
-        return "Overview"
-    }
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        navigationItem.title = "Overview"
     }
 }

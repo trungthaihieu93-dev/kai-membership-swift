@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SelectAccountViewController: BaseViewController2 {
+class SelectAccountViewController: BaseViewController {
 
     // MARK: Properties
     let users: [UserRemote]
@@ -41,6 +41,7 @@ class SelectAccountViewController: BaseViewController2 {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Select Account"
         setupView()
     }

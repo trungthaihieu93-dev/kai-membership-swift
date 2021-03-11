@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum ProfitStatus {
+    case up
+    case down
+}
+
 class KAIRemote: BaseModel {
     
     var username: String?

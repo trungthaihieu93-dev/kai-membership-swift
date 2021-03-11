@@ -9,15 +9,10 @@ import UIKit
 
 class RecentTransactionsViewController: BaseViewController {
     
-    // MARK: Properties
-    override var pageTitle: String {
-        return "Utilities"
-    }
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        navigationItem.title = "Recent Transactions"
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import DZNEmptyDataSet
 import RxSwift
 
-class WalletViewController: BaseViewController2 {
+class WalletViewController: BaseViewController {
 
     // MARK: Properties
     let viewModel = WalletViewModel()
@@ -37,8 +37,8 @@ class WalletViewController: BaseViewController2 {
         return tableView
     }()
     
-    private lazy var cardView: CardView = {
-        let view = CardView(with: kaiInfo)
+    private lazy var cardView: KAICardView = {
+        let view = KAICardView(with: kaiInfo)
         
         return view
     }()
@@ -46,9 +46,9 @@ class WalletViewController: BaseViewController2 {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "My Wallet"
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
-        
         setupView()
         setupTableHeaderView()
         fetchData()
@@ -84,7 +84,7 @@ extension WalletViewController {
             
             this.tableView.reloadData()
         }, onError: { error in
-            debugPrint("Get trna")
+            debugPrint("Get transaction errror: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
     }
 }

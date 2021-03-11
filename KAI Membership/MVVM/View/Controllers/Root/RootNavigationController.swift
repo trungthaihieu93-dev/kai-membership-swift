@@ -29,12 +29,21 @@ class RootNavigationController: UINavigationController {
             backgroundStatusBarView.heightAnchor.constraint(equalToConstant: UIApplication.shared.statusBarFrame.height)
         ])
         
-        navigationBar.backIndicatorImage = UIImage(named: "ic_back")?.withRenderingMode(.alwaysOriginal)//backIndicatorImage.withRenderingMode(.alwaysOriginal)
-        navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "ic_back")?.withRenderingMode(.alwaysOriginal)//backIndicatorImage.withRenderingMode(.alwaysOriginal)
+        let backIndicatorImage = UIImage(named: "ic_back")?.withRenderingMode(.alwaysOriginal)
+        navigationBar.backIndicatorImage = backIndicatorImage
+        navigationBar.backIndicatorTransitionMaskImage = backIndicatorImage
         navigationBar.isTranslucent = true
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.setBackgroundImage(UIImage(), for: .compact)
         navigationBar.shadowImage = UIImage()
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 20, weight: .regular),
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+        ]
+        navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 36, weight: .regular),
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+        ]
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -12), for: .default)
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -12), for: .compact)
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TutorialViewController: BaseViewController2 {
+class TutorialViewController: BaseViewController {
 
     // MARK: Properties
     enum ActionStatus {
@@ -193,8 +193,6 @@ class TutorialViewController: BaseViewController2 {
     
     // MARK: Layout
     private func setupView() {
-        view.backgroundColor = .white
-        
         view.addSubview(scrollView)
         view.addSubview(actionView)
         

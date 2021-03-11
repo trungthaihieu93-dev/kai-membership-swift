@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class SignInViewController: BaseViewController2 {
+class SignInViewController: BaseViewController {
 
     // MARK: Properties
     let viewModel = SignInViewModel()
@@ -57,6 +57,7 @@ class SignInViewController: BaseViewController2 {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Welcome!"
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)

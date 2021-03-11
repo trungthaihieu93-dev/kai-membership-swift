@@ -124,7 +124,7 @@ class SignUpInputView: UIView {
             passwordTextField.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
             passwordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             
-            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
+            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 12),
             confirmPasswordTextField.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
             confirmPasswordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             

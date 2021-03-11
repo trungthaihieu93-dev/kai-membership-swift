@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class NewPasswordViewController: BaseViewController2 {
+class NewPasswordViewController: BaseViewController {
 
     // MARK: Properties
     let viewModel = NewPasswordViewModel()

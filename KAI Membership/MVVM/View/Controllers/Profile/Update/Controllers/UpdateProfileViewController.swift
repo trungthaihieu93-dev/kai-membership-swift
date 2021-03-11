@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class UpdateProfileViewController: BaseViewController2 {
+class UpdateProfileViewController: BaseViewController {
     
     // MARK: Properties
     let viewModel = UpdateProfileViewModel()
@@ -38,7 +38,7 @@ class UpdateProfileViewController: BaseViewController2 {
     }()
     
     private lazy var inputPhoneNumberView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(with: .default, title: "PHONE NO.", placeholder: "e.g 0903509786")
+        let view = KAIInputTextFieldView(with: .default, title: "PHONE NO.", placeholder: "e.g 0903509786", keyboardType: .phonePad)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         

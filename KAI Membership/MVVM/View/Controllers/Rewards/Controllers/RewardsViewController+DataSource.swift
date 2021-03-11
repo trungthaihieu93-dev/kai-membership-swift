@@ -24,7 +24,7 @@ extension RewardsViewController: DZNEmptyDataSetSource {
 extension RewardsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0//Section.allCases.count
+        return viewModel.histories.count > 0 ? Section.allCases.count : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,7 +34,7 @@ extension RewardsViewController: UITableViewDataSource {
         case .rewards:
             return 1
         case .history:
-            return 10
+            return viewModel.histories.count
         }
     }
     

@@ -42,6 +42,8 @@ extension RewardsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let sectionType = Section(rawValue: section), sectionType == .history else { return 0 }
+        
         return 40
     }
     

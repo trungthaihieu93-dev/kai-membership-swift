@@ -5,7 +5,7 @@
 //  Created by DAKiet on 09/03/2021.
 //
 
-import Foundation
+import UIKit
 
 class Helper {
     
@@ -25,7 +25,7 @@ class Helper {
     
     class func toObject<T: BaseModel>(ofType type: T.Type, jsonString: String) -> T? {
         guard let data = jsonString.data(using: .utf8) else { return nil }
-            
+        
         do {
             let object = try JSONDecoder().decode(type, from: data)
             
@@ -38,7 +38,7 @@ class Helper {
     
     class func toObjects<T: BaseModel>(ofType type: [T].Type, jsonString: String) -> [T]? {
         guard let data = jsonString.data(using: .utf8) else { return nil }
-            
+        
         do {
             let objects = try JSONDecoder().decode(type, from: data)
             
@@ -47,6 +47,15 @@ class Helper {
             debugPrint("JSONEncoder Error: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    class func openSafari(_ link: String?) {
+        guard let link = link, let url = URL(string: link) else {
+            debugPrint("Error: Invalid link")
+            return
+        }
+        
+        UIApplication.shared.open(url)
     }
 }
 
