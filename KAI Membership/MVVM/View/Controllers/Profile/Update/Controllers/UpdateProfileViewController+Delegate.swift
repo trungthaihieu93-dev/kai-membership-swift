@@ -7,25 +7,18 @@
 
 import UIKit
 
-extension UpdateProfileViewController: KAITextFieldViewDelegate {
+// MARK: KAITextFieldDelegate
+extension UpdateProfileViewController: KAITextFieldDelegate {
     
-    func kAITextFieldViewDidBeginEditing(_ textField: UITextField, for view: UIView) {
+    func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
         
     }
     
-    func kAITextFieldViewDidEndEditing(_ textField: UITextField, for view: UIView) {
-        
-    }
-    
-    func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
-        
-    }
-    
-    func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
+    func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
         return false
     }
     
-    func kAITextFieldViewShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
+    func kAITextFieldShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
         return true
     }
 }

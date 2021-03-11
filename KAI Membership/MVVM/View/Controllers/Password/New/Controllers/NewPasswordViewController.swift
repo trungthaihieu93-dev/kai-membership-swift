@@ -30,7 +30,7 @@ class NewPasswordViewController: BaseViewController2 {
     }()
     
     private(set) lazy var inputPasswordView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "NEW PASSWORD", placeholder: "New password", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .password, title: "NEW PASSWORD", placeholder: "New password")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -38,7 +38,7 @@ class NewPasswordViewController: BaseViewController2 {
     }()
     
     private(set) lazy var confirmPasswordView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "CONFIRM PASSWORD", placeholder: "Confirm password", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .password, title: "CONFIRM PASSWORD", placeholder: "Confirm password")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -46,7 +46,7 @@ class NewPasswordViewController: BaseViewController2 {
     }()
     
     private(set) lazy var inputTokenView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "PASTE YOUR TOKEN HERE", placeholder: "Paste your token here", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .default, title: "PASTE YOUR TOKEN HERE", placeholder: "Paste your token here")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -97,7 +97,7 @@ class NewPasswordViewController: BaseViewController2 {
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
         singleTap.numberOfTapsRequired = 1
-        singleTap.cancelsTouchesInView = false
+        singleTap.cancelsTouchesInView = true
         scrollView.addGestureRecognizer(singleTap)
     }
     

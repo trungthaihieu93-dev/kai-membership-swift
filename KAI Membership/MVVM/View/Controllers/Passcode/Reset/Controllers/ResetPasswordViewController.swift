@@ -11,7 +11,7 @@ class ResetPasscodeViewController: BaseViewController {
 
     // MARK: Properties
     private let emailTextField: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "EMAIL", placeholder: "an.nguyen@kardiachain.io")
+        let view = KAIInputTextFieldView(with: .default, title: "EMAIL", placeholder: "an.nguyen@kardiachain.io", keyboardType: .emailAddress)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

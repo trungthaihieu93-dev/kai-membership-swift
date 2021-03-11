@@ -18,6 +18,7 @@ class Key {
         case authorizationToken = "KAI.KeyChain.AuthorizationToken"
         case refreshToken = "KAI.KeyChain.refreshToken"
         case userID = "KAI.KeyChain.UserID"
+        case email = "KAI.KeyChain.Email"
         case kaiInfo = "KAI.KeyChain.KaiInfomation"
     }
 }

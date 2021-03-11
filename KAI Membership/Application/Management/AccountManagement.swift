@@ -52,6 +52,19 @@ class AccountManagement {
         }
     }
     
+    static var email: String? {
+        get {
+            guard let data = KeyChain.load(forKey: .email) else { return nil }
+
+            return String(data: data, encoding: .utf8)
+        }
+        set {
+            guard let data = newValue?.data(using: .utf8) else { return }
+
+            KeyChain.save(forKey: .email, data: data)
+        }
+    }
+    
     static var kai: KAIRemote? {
         get {
             guard let data = KeyChain.load(forKey: .kaiInfo), let jsonString = String(data: data, encoding: .utf8) else { return nil }
@@ -68,7 +81,12 @@ class AccountManagement {
     class func refresh() {
         AccountManagement.accessToken = nil
         AccountManagement.refreshToken = nil
+    }
+    
+    class func logout() {
+        AccountManagement.email = nil
         AccountManagement.userID = nil
+        refresh()
     }
     
     class func getInfoUser(_ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {

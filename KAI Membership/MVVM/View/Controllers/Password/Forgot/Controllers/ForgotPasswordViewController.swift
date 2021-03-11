@@ -26,7 +26,7 @@ class ForgotPasswordViewController: BaseViewController2 {
     }()
     
     private lazy var emailTextField: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "EMAIL", placeholder: "Enter your email")
+        let view = KAIInputTextFieldView(with: .default, title: "EMAIL", placeholder: "Enter your email", keyboardType: .emailAddress)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         

@@ -65,7 +65,7 @@ class SignInViewController: BaseViewController2 {
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
         singleTap.numberOfTapsRequired = 1
-        singleTap.cancelsTouchesInView = false
+        singleTap.cancelsTouchesInView = true
         scrollView.addGestureRecognizer(singleTap)
     }
     

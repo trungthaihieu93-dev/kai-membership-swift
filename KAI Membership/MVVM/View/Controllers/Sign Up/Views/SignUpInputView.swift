@@ -32,7 +32,7 @@ class SignUpInputView: UIView {
     private let detechActionSignInText: String = "Sign In"
     
     private(set) lazy var emailTextField: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "EMAIL", placeholder: "eg. an.nguyen@kardianchain.io")
+        let view = KAIInputTextFieldView(with: .default, title: "EMAIL", placeholder: "eg. an.nguyen@kardianchain.io", keyboardType: .emailAddress)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -40,7 +40,7 @@ class SignUpInputView: UIView {
     }()
     
     private(set) lazy var passwordTextField: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "PASSWORD", placeholder: "Your password", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .password, title: "PASSWORD", placeholder: "Your password")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -48,7 +48,7 @@ class SignUpInputView: UIView {
     }()
     
     private(set) lazy var confirmPasswordTextField: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "CONFIRM PASSWORD", placeholder: "Confirm password", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .password, title: "CONFIRM PASSWORD", placeholder: "Confirm password")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -171,10 +171,10 @@ extension SignUpInputView {
     }
 }
 
-// MARK: KAITextFieldViewDelegate
-extension SignUpInputView: KAITextFieldViewDelegate {
+// MARK: KAITextFieldDelegate
+extension SignUpInputView: KAITextFieldDelegate {
     
-    func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
+    func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
         if textField == emailTextField {
             delegate?.signUpInputViewEmailValueChange(self, textField: textField)
         } else if textField == passwordTextField {
@@ -186,11 +186,11 @@ extension SignUpInputView: KAITextFieldViewDelegate {
         isConfirmEnabled = !emailTextField.contentInput.isEmpty && (passwordTextField.contentInput.count >= Constants.lengthPasswordMinimum) && (confirmPasswordTextField.contentInput.count >= Constants.lengthPasswordMinimum)
     }
     
-    func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
+    func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
         return false
     }
     
-    func kAITextFieldViewShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
+    func kAITextFieldShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
         return true
     }
 }

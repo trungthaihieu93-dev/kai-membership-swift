@@ -22,7 +22,7 @@ class UpdateProfileViewController: BaseViewController2 {
     }()
     
     private lazy var inputFullNameView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "FULL NAME", placeholder: "Full Name", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .default, title: "FULL NAME", placeholder: "Full Name")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -30,7 +30,7 @@ class UpdateProfileViewController: BaseViewController2 {
     }()
     
     private lazy var inputDOBView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "DATE OF BIRTH", placeholder: "01/01/1988", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .default, title: "DATE OF BIRTH", placeholder: "01/01/1988")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -38,7 +38,7 @@ class UpdateProfileViewController: BaseViewController2 {
     }()
     
     private lazy var inputPhoneNumberView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(title: "PHONE NO.", placeholder: "e.g 0903509786", isSecureTextEntryEnabled: true)
+        let view = KAIInputTextFieldView(with: .default, title: "PHONE NO.", placeholder: "e.g 0903509786")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -89,7 +89,7 @@ class UpdateProfileViewController: BaseViewController2 {
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
         singleTap.numberOfTapsRequired = 1
-        singleTap.cancelsTouchesInView = false
+        singleTap.cancelsTouchesInView = true
         scrollView.addGestureRecognizer(singleTap)
     }
     

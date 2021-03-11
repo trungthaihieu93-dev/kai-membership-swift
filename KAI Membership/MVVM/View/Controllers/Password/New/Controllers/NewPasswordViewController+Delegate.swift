@@ -7,17 +7,17 @@
 
 import UIKit
 
-extension NewPasswordViewController: KAITextFieldViewDelegate {
+extension NewPasswordViewController: KAITextFieldDelegate {
     
-    func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
+    func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
         isConfirmEnabled = (inputPasswordView.contentInput.count >= Constants.lengthPasswordMinimum) && !inputTokenView.contentInput.isEmpty && (confirmPasswordView.contentInput.count >= Constants.lengthPasswordMinimum)
     }
     
-    func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
+    func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
         return false
     }
     
-    func kAITextFieldViewShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
+    func kAITextFieldShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
         return true
     }
 }

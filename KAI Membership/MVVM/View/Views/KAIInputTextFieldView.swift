@@ -10,25 +10,35 @@ import UIKit
 class KAIInputTextFieldView: UIView {
 
     // MARK: Properties
-    private let label: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.font = .workSansFont(ofSize: 10, weight: .medium)
+        label.textColor = .init(hex: "364766")
         
         return label
     }()
     
-    private var kaiTextFieldView: KAITextFieldView!
+    private let messageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        
+        return label
+    }()
+    
+    private var textFieldView: KAITextField!
     
     var contentInput: String = ""
     
-    weak var delegate: KAITextFieldViewDelegate?
+    weak var delegate: KAITextFieldDelegate?
     
     // MARK: Life cycle's
-    init(title: String, placeholder: String? = nil, isSecureTextEntryEnabled: Bool = false, frame: CGRect = .zero) {
+    init(with type: KAITextField.`Type`, title: String, placeholder: String? = nil, returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default, frame: CGRect = .zero) {
         super.init(frame: frame)
-        setupView(title: title, placeholder: placeholder, isSecureTextEntryEnabled: isSecureTextEntryEnabled)
+        
+        setupView(with: type, title: title, placeholder: placeholder, returnKeyType: returnKeyType, keyboardType: keyboardType)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -36,58 +46,71 @@ class KAIInputTextFieldView: UIView {
     }
     
     // MARK: Layout
-    private func setupView(title: String, placeholder: String? = nil, isSecureTextEntryEnabled: Bool = false) {
-        kaiTextFieldView = KAITextFieldView(with: .normal, placeholder: placeholder, isSecureTextEntryEnabled: isSecureTextEntryEnabled)
-        kaiTextFieldView.translatesAutoresizingMaskIntoConstraints = false
-        kaiTextFieldView.delegate = self
-        label.text = title
+    private func setupView(with type: KAITextField.`Type`, title: String, placeholder: String? = nil, returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default) {
+        textFieldView = KAITextField(with: type, returnKeyType: returnKeyType, keyboardType: keyboardType, placeholder: placeholder)
+        textFieldView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = title
         
-        addSubview(label)
-        addSubview(kaiTextFieldView)
+        addSubview(titleLabel)
+        addSubview(textFieldView)
+//        addSubview(messageLabel)
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
             
-            kaiTextFieldView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 4),
-            kaiTextFieldView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            kaiTextFieldView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            kaiTextFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            kaiTextFieldView.heightAnchor.constraint(equalToConstant: 44)
+            textFieldView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            textFieldView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            textFieldView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+//            messageLabel.topAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: 8),
+//            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
+    func setMessage(_ message: String? = nil) {
+        guard let message = message, !message.isEmpty else {
+            messageLabel.attributedText = nil
+            return
+        }
+        
+        messageLabel.attributedText = message.setTextWithFormat(font: .workSansFont(ofSize: 12, weight: .medium), lineHeight: 20, textColor: UIColor.black.withAlphaComponent(0.26))
+    }
+    
     func reset() {
-        kaiTextFieldView.reset()
+        textFieldView.reset()
     }
     
     func inputBecomeFirstResponder() {
-        kaiTextFieldView.inputBecomeFirstResponder()
+        textFieldView.inputBecomeFirstResponder()
     }
 }
 
-// MARK: KAITextFieldViewDelegate
-extension KAIInputTextFieldView: KAITextFieldViewDelegate {
+// MARK: KAITextFieldDelegate
+extension KAIInputTextFieldView: KAITextFieldDelegate {
     
-    func kAITextFieldViewDidBeginEditing(_ textField: UITextField, for view: UIView) {
-        delegate?.kAITextFieldViewDidBeginEditing(textField, for: self)
+    func kAITextFieldDidBeginEditing(_ textField: UITextField, for view: UIView) {
+        delegate?.kAITextFieldDidBeginEditing(textField, for: self)
     }
     
-    func kAITextFieldViewDidEndEditing(_ textField: UITextField, for view: UIView) {
-        delegate?.kAITextFieldViewDidEndEditing(textField, for: self)
+    func kAITextFieldDidEndEditing(_ textField: UITextField, for view: UIView) {
+        delegate?.kAITextFieldDidEndEditing(textField, for: self)
     }
     
-    func kAITextFieldViewDidChange(_ textField: UITextField, for view: UIView) {
+    func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
         contentInput = textField.text ?? ""
-        delegate?.kAITextFieldViewDidChange(textField, for: self)
+        delegate?.kAITextFieldDidChange(textField, for: self)
     }
     
-    func kAITextFieldViewShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
-        return delegate?.kAITextFieldViewShouldReturn(textField, for: self) ?? false
+    func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
+        return delegate?.kAITextFieldShouldReturn(textField, for: self) ?? false
     }
     
-    func kAITextFieldViewShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
-        return delegate?.kAITextFieldViewShouldClear(textField, for: self) ?? true
+    func kAITextFieldShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
+        return delegate?.kAITextFieldShouldClear(textField, for: self) ?? true
     }
 }

@@ -18,7 +18,7 @@
 		493043F925F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043F825F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift */; };
 		493043FD25F8AFA200EED242 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */; };
 		4930440125F8B82C00EED242 /* NewPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930440025F8B82C00EED242 /* NewPasswordViewModel.swift */; };
-		4930441525F8D1CC00EED242 /* KAIPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930441425F8D1CC00EED242 /* KAIPasswordTextField.swift */; };
+		494C0AB525F9EE0400E30115 /* KAITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AB425F9EE0300E30115 /* KAITextField.swift */; };
 		498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */; };
 		498BCFE925F7470800F04160 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE825F7470800F04160 /* Helper.swift */; };
 		498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFEB25F756EE00F04160 /* InputCodeView.swift */; };
@@ -157,7 +157,6 @@
 		52F37CEB25E031D1009F311F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CEA25E031D1009F311F /* SignUpViewController.swift */; };
 		52F37CF125E03459009F311F /* SignInInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CF025E03459009F311F /* SignInInputView.swift */; };
 		52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */; };
-		52F37CFA25E0DCDD009F311F /* KAITextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CF925E0DCDD009F311F /* KAITextFieldView.swift */; };
 		52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */; };
 		52F37D0625E1581C009F311F /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37D0525E1581C009F311F /* ResetPasswordViewController.swift */; };
 		52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37D0B25E1596D009F311F /* ForgotPasswordViewController.swift */; };
@@ -176,7 +175,7 @@
 		493043F825F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForgotPasswordViewController+Delegate.swift"; sourceTree = "<group>"; };
 		493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		4930440025F8B82C00EED242 /* NewPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewModel.swift; sourceTree = "<group>"; };
-		4930441425F8D1CC00EED242 /* KAIPasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIPasswordTextField.swift; sourceTree = "<group>"; };
+		494C0AB425F9EE0300E30115 /* KAITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAITextField.swift; sourceTree = "<group>"; };
 		498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoRemote.swift; sourceTree = "<group>"; };
 		498BCFE825F7470800F04160 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		498BCFEB25F756EE00F04160 /* InputCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCodeView.swift; sourceTree = "<group>"; };
@@ -317,7 +316,6 @@
 		52F37CEA25E031D1009F311F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		52F37CF025E03459009F311F /* SignInInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInputView.swift; sourceTree = "<group>"; };
 		52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
-		52F37CF925E0DCDD009F311F /* KAITextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAITextFieldView.swift; sourceTree = "<group>"; };
 		52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputTextFieldView.swift; sourceTree = "<group>"; };
 		52F37D0525E1581C009F311F /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		52F37D0B25E1596D009F311F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -447,14 +445,6 @@
 				525DBA8425F0181B001491AE /* View Model */,
 			);
 			path = Overview;
-			sourceTree = "<group>";
-		};
-		4930441325F8D1A300EED242 /* New */ = {
-			isa = PBXGroup;
-			children = (
-				4930441425F8D1CC00EED242 /* KAIPasswordTextField.swift */,
-			);
-			path = New;
 			sourceTree = "<group>";
 		};
 		498BCFE225F71B1700F04160 /* Account Info */ = {
@@ -1351,12 +1341,11 @@
 		52F37CF825E0DCC5009F311F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4930441325F8D1A300EED242 /* New */,
 				498BCFEB25F756EE00F04160 /* InputCodeView.swift */,
 				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
 				525DBA8C25F0190B001491AE /* KAICardCollapseView.swift */,
 				52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */,
-				52F37CF925E0DCDD009F311F /* KAITextFieldView.swift */,
+				494C0AB425F9EE0300E30115 /* KAITextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1626,6 +1615,7 @@
 				493043EF25F89D2F00EED242 /* RewardsViewController+DataSource.swift in Sources */,
 				525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */,
 				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
+				494C0AB525F9EE0400E30115 /* KAITextField.swift in Sources */,
 				493043E925F88C5E00EED242 /* RewardsViewController.swift in Sources */,
 				5265495025F53C4E003AE21A /* SignUpViewController+Delegate.swift in Sources */,
 				493043E325F8818200EED242 /* UpdateProfileViewController+Delegate.swift in Sources */,
@@ -1647,7 +1637,6 @@
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
 				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
 				5265495C25F5E909003AE21A /* ProfileViewController.swift in Sources */,
-				4930441525F8D1CC00EED242 /* KAIPasswordTextField.swift in Sources */,
 				525DB8F625E6B91E001491AE /* UserServices.swift in Sources */,
 				521754DA25DEAE44009355BC /* Key.swift in Sources */,
 				525DBA5125F007CB001491AE /* KeyChain.swift in Sources */,
@@ -1656,7 +1645,6 @@
 				525DBA9D25F137A1001491AE /* QuestHeaderView.swift in Sources */,
 				525DB8EE25E6B88C001491AE /* UserLocal.swift in Sources */,
 				49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */,
-				52F37CFA25E0DCDD009F311F /* KAITextFieldView.swift in Sources */,
 				493043DC25F87F2600EED242 /* UpdateProfileViewController.swift in Sources */,
 				525DBA3A25EFEB32001491AE /* MainViewController.swift in Sources */,
 				525DBA4A25F002B1001491AE /* PasscodeViewController+Delegate.swift in Sources */,
