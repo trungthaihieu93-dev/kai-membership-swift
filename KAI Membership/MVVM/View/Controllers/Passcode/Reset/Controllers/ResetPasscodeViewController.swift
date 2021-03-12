@@ -11,7 +11,7 @@ import RxSwift
 class ResetPasscodeViewController: BaseViewController {
 
     // MARK: Properties
-    let viewModel = ResetPasswordViewModel()
+    let viewModel = ResetPasscodeViewModel()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -79,7 +79,7 @@ class ResetPasscodeViewController: BaseViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            emailTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            emailTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -96,12 +96,12 @@ class ResetPasscodeViewController: BaseViewController {
 extension ResetPasscodeViewController {
     
     @objc private func onPressedSend() {
-        viewModel.requestResetPassword(with: emailTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+        viewModel.requestResetPasscode(with: emailTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
             guard let this = self else { return }
             
-            Navigator.navigateToCheckMailVC(from: self)
+            Navigator.navigateToCheckMailVC(from: this)
         }, onError: { error in
-            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            debugPrint("Request forgot passcode by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
     }
 }

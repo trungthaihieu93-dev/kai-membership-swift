@@ -128,7 +128,7 @@ class TutorialViewController: BaseViewController {
     private let tutorialView2: TutorialView = {
         let view = TutorialView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.configure(image: nil, title: "Play & Earn", body: "Sign in to entertain with plenty of interesting games and receive real KAI, mobile cards, and many lucky gifts.")
+        view.configure(image: UIImage(named: "image_tutorial_2"), title: "Play & Earn", body: "Sign in to entertain with plenty of interesting games and receive real KAI, mobile cards, and many lucky gifts.", imageBackgroundColor: .init(hex: "9A77FF"))
         
         return view
     }()
@@ -136,7 +136,7 @@ class TutorialViewController: BaseViewController {
     private let tutorialView3: TutorialView = {
         let view = TutorialView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.configure(image: nil, title: "Social Mining", body: "Contribute your unlimited creativity and complete the tokenized project missions to receive KAI rewards.")
+        view.configure(image: UIImage(named: "image_tutorial_3"), title: "Social Mining", body: "Contribute your unlimited creativity and complete the tokenized project missions to receive KAI rewards.")
         
         return view
     }()

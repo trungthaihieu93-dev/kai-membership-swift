@@ -108,7 +108,7 @@ class KAITextField: UIView {
     weak var delegate: KAITextFieldDelegate?
     
     // MARK: Life cycle's
-    init(with type: `Type`, isEnabled: Bool = false, returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default, placeholder: String? = nil, textAlignment: NSTextAlignment = .left, frame: CGRect = .zero) {
+    init(with type: `Type`, isEnabled: Bool = false, isSelected: Bool = true, returnKeyType: UIReturnKeyType = .default, keyboardType: UIKeyboardType = .default, placeholder: String? = nil, textAlignment: NSTextAlignment = .left, frame: CGRect = .zero) {
         self.type = type
         self.state = isEnabled ? .disabled : .normal
         self.isSecureTextEntry = type == .password
@@ -121,6 +121,8 @@ class KAITextField: UIView {
         textField.textAlignment = textAlignment
         textField.returnKeyType = returnKeyType
         textField.keyboardType = keyboardType
+        textField.isUserInteractionEnabled = isSelected
+        actionButton.isUserInteractionEnabled = isSelected
         setupView()
     }
     
@@ -249,6 +251,12 @@ class KAITextField: UIView {
         textField.text = nil
         textField.becomeFirstResponder()
         state = .normal
+    }
+    
+    func setText(_ text: String) {
+        textField.text = text
+        contentInput = text
+        placeholderLabel.isHidden = !text.isEmpty
     }
     
     // MARK: Handle actions

@@ -22,7 +22,7 @@ class TopupViewController: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .init(hex: "E5E5E5")
+        tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(CardCollapseTableViewCell.self, forCellReuseIdentifier: CardCollapseTableViewCell.identifier)
         tableView.register(TopupTableViewCell.self, forCellReuseIdentifier: TopupTableViewCell.identifier)
@@ -31,10 +31,6 @@ class TopupViewController: BaseViewController {
         
         return tableView
     }()
-    
-    override var navigationColorDefault: UIColor {
-        return .init(hex: "E5E5E5")
-    }
     
     // MARK: Life cycle's
     override func viewDidLoad() {

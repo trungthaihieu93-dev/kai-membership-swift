@@ -32,7 +32,7 @@ class DeviceServices {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/passcodes/register", method: .post)
         input.params["device_id"] = Constants.Device.id
         input.params["passcode"] = passcode
-        input.params["refresh_token"] = AccountManagement.accessToken
+        input.params["refresh_token"] = AccountManagement.refreshToken
         input.params["email"] = email
         input.params["os"] = "ios"
         

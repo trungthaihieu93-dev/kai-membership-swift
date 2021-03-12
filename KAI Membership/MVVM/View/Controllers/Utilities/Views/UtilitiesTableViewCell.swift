@@ -77,7 +77,7 @@ class UtilitiesTableViewCell: UITableViewCell {
     // MARK: Layout
     private func setupView() {
         selectionStyle = .none
-        
+        backgroundColor = .clear
         contentView.addSubview(containerView)
         containerView.addSubview(contentImageView)
         containerView.addSubview(titleLabel)

@@ -10,7 +10,7 @@ import RxSwift
 class PasscodeViewModel {
     
     // MARK: Properties
-    private let email: String
+    let email: String
     
     // MARK: Life cycle's
     init(email: String) {

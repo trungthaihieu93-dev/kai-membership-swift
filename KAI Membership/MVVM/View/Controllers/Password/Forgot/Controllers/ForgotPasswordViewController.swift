@@ -147,5 +147,6 @@ extension ForgotPasswordViewController {
         guard recognizer.didTapAttributedTextInLabel(label: sendCodeToEmailLabel, inRange: range) else { return }
         
         emailTextField.reset()
+        isConfirmEnabled = false
     }
 }

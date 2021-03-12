@@ -1,5 +1,5 @@
 //
-//  ResetPasswordViewModel.swift
+//  ResetPasscodeViewModel.swift
 //  KAI Membership
 //
 //  Created by DAKiet on 11/03/2021.
@@ -7,12 +7,12 @@
 
 import RxSwift
 
-class ResetPasswordViewModel {
+class ResetPasscodeViewModel {
     
     // MARK: Methods
-    func requestResetPassword(with email: String) -> Observable<Void> {
+    func requestResetPasscode(with email: String) -> Observable<Void> {
         return Observable.create { (observer) -> Disposable in
-            UserServices.requestChangePassword(with: email) {
+            PasscodeServices.requestResetPasscode(with: email) {
                 switch $0 {
                 case .success:
                     observer.onNext(())

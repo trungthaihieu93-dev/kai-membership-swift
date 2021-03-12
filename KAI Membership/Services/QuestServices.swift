@@ -15,4 +15,19 @@ class QuestServices {
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
+    
+    // MARK: Get the quests list of user
+    class func getUserQuests(_ completion: @escaping (APIResult<APIDataListResults<UserQuestRemote>, APIErrorResult>) -> Void) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/quests/users", method: .get)
+        
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
+    
+    // MARK: Get the quests list of user
+    class func requestUserQuest(with key: QuestKey, _ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/quests", method: .post)
+        input.params["key"] = key.rawValue
+
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
 }

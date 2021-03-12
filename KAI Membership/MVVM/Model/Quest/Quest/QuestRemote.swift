@@ -10,7 +10,13 @@ import Foundation
 enum QuestType: String {
     case daily = "DAILY"
     case monthly = "MONTH"
-    case unowned
+}
+
+enum QuestKey: String {
+    case highestScores = "HIGHEST_SCORES"// Web
+    case thiryMinutes = "THIRTY_MINUTES" // play game 30' // Web
+    case inviteFriend = "INVITE_FRIEND" // share // mobile
+    case signIn = "SIGN_IN" // activity => done
 }
 
 class QuestRemote: BaseModel {
@@ -19,22 +25,19 @@ class QuestRemote: BaseModel {
     var createdDate: String?
     var updatedDate: String?
     var name: String?
-    var screenName: String?
-    var key: String?
-    var type: QuestType = .unowned
-    var process: Int = 0
-    var status: Bool = false
+    var key: QuestKey = .signIn
+    var type: QuestType = .daily
+    var progress: Double?
+    var userQuest: UserQuestRemote?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case createdDate = "created_date"
         case updatedDate = "updated_date"
         case name = "mission"
-        case screenName = "screen_name"
         case key
         case type
-        case process
-        case status
+        case progress = "process"
     }
     
     required init(from decoder: Decoder) throws {
@@ -44,18 +47,22 @@ class QuestRemote: BaseModel {
         createdDate = try container.decodeIfPresent(String.self, forKey: .createdDate)
         updatedDate = try container.decodeIfPresent(String.self, forKey: .updatedDate)
         name = try container.decodeIfPresent(String.self, forKey: .name)
-        screenName = try container.decodeIfPresent(String.self, forKey: .screenName)
-        key = try container.decodeIfPresent(String.self, forKey: .key)
         
-        if let type = try container.decodeIfPresent(String.self, forKey: .type) {
-            self.type = QuestType(rawValue: type) ?? .unowned
+        if let key = try container.decodeIfPresent(String.self, forKey: .key) {
+            self.key = QuestKey(rawValue: key) ?? .signIn
         } else {
-            self.type = .unowned
+            self.key = .signIn
         }
         
-        process = try container.decodeIfPresent(Int.self, forKey: .process) ?? 0
-        status = try container.decodeIfPresent(Bool.self, forKey: .status) ?? false
+        if let type = try container.decodeIfPresent(String.self, forKey: .type) {
+            self.type = QuestType(rawValue: type) ?? .daily
+        } else {
+            self.type = .daily
+        }
+        
+        progress = try container.decodeIfPresent(Double.self, forKey: .progress)
     }
     
     func encode(to encoder: Encoder) throws { }
 }
+

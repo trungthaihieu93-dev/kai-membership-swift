@@ -7,10 +7,6 @@
 
 import Foundation
 
-extension String: BaseModel {
-    
-}
-
 class ActivityServices {
     
     // MARK: Activity accounts

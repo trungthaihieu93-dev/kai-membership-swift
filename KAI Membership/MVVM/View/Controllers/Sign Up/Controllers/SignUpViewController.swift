@@ -126,7 +126,7 @@ extension SignUpViewController {
         if notification.name == UIResponder.keyboardWillShowNotification {
             guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             
-            let bottomOffset = Constants.Device.screenSize.height - (scrollView.frame.origin.y + signUpView.frame.origin.y + signUpView.frame.height + 10)
+            let bottomOffset = Constants.Device.screenBounds.height - (scrollView.frame.origin.y + signUpView.frame.origin.y + signUpView.frame.height + 10)
             
             if keyboardFrame.height > bottomOffset {
                 self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardFrame.height - bottomOffset), animated: true)

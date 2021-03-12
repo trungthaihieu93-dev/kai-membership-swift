@@ -34,7 +34,7 @@ class RewardsViewController: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .init(hex: "E5E5E5")
+        tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.dataSource = self
@@ -50,10 +50,6 @@ class RewardsViewController: BaseViewController {
         
         return view
     }()
-    
-    override var navigationColorDefault: UIColor {
-        return .init(hex: "E5E5E5")
-    }
     
     // MARK: Life cycle's
     override func viewDidLoad() {

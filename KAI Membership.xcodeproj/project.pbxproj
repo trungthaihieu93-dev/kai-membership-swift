@@ -24,7 +24,7 @@
 		494C0AD825FA0A5300E30115 /* TopupViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AD725FA0A5300E30115 /* TopupViewController+Delegate.swift */; };
 		494C0ADB25FA0E9A00E30115 /* TopupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0ADA25FA0E9A00E30115 /* TopupTableViewCell.swift */; };
 		494C0ADF25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0ADE25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift */; };
-		494C0AE325FA147A00E30115 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AE225FA147A00E30115 /* ResetPasswordViewModel.swift */; };
+		494C0AE325FA147A00E30115 /* ResetPasscodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AE225FA147A00E30115 /* ResetPasscodeViewModel.swift */; };
 		494C0AEC25FA249900E30115 /* HistoryRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AEB25FA249900E30115 /* HistoryRemote.swift */; };
 		494C0AF025FA284800E30115 /* RewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AEF25FA284800E30115 /* RewardsViewModel.swift */; };
 		498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */; };
@@ -35,6 +35,12 @@
 		498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */; };
 		498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFF825F78D5A00F04160 /* ProfileViewController+DataSource.swift */; };
 		498BCFFC25F78D6800F04160 /* ProfileViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */; };
+		49CAC0E025FB1F0B00577D33 /* KAICombobox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */; };
+		49CAC0F325FB435100577D33 /* KAIComboboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC0F225FB435100577D33 /* KAIComboboxView.swift */; };
+		49CAC10225FB51FD00577D33 /* RequestQuestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10125FB51FD00577D33 /* RequestQuestUser.swift */; };
+		49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */; };
+		49CAC10C25FB6B9A00577D33 /* TrackingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */; };
+		49CAC11025FB74C900577D33 /* PasscodeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10F25FB74C900577D33 /* PasscodeServices.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
@@ -166,7 +172,7 @@
 		52F37CF125E03459009F311F /* SignInInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CF025E03459009F311F /* SignInInputView.swift */; };
 		52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */; };
 		52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */; };
-		52F37D0625E1581C009F311F /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37D0525E1581C009F311F /* ResetPasswordViewController.swift */; };
+		52F37D0625E1581C009F311F /* ResetPasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37D0525E1581C009F311F /* ResetPasscodeViewController.swift */; };
 		52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F37D0B25E1596D009F311F /* ForgotPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -189,7 +195,7 @@
 		494C0AD725FA0A5300E30115 /* TopupViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopupViewController+Delegate.swift"; sourceTree = "<group>"; };
 		494C0ADA25FA0E9A00E30115 /* TopupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopupTableViewCell.swift; sourceTree = "<group>"; };
 		494C0ADE25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResetPasscodeViewController+Delegate.swift"; sourceTree = "<group>"; };
-		494C0AE225FA147A00E30115 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		494C0AE225FA147A00E30115 /* ResetPasscodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasscodeViewModel.swift; sourceTree = "<group>"; };
 		494C0AEB25FA249900E30115 /* HistoryRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRemote.swift; sourceTree = "<group>"; };
 		494C0AEF25FA284800E30115 /* RewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsViewModel.swift; sourceTree = "<group>"; };
 		498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoRemote.swift; sourceTree = "<group>"; };
@@ -200,6 +206,12 @@
 		498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		498BCFF825F78D5A00F04160 /* ProfileViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+DataSource.swift"; sourceTree = "<group>"; };
 		498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Delegate.swift"; sourceTree = "<group>"; };
+		49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAICombobox.swift; sourceTree = "<group>"; };
+		49CAC0F225FB435100577D33 /* KAIComboboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIComboboxView.swift; sourceTree = "<group>"; };
+		49CAC10125FB51FD00577D33 /* RequestQuestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestQuestUser.swift; sourceTree = "<group>"; };
+		49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestRemote.swift; sourceTree = "<group>"; };
+		49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServices.swift; sourceTree = "<group>"; };
+		49CAC10F25FB74C900577D33 /* PasscodeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeServices.swift; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -333,7 +345,7 @@
 		52F37CF025E03459009F311F /* SignInInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInputView.swift; sourceTree = "<group>"; };
 		52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputTextFieldView.swift; sourceTree = "<group>"; };
-		52F37D0525E1581C009F311F /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		52F37D0525E1581C009F311F /* ResetPasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasscodeViewController.swift; sourceTree = "<group>"; };
 		52F37D0B25E1596D009F311F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		9C4C8FBECB22AABB90634A9E /* Pods-KAI Membership.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAI Membership.release.xcconfig"; path = "Target Support Files/Pods-KAI Membership/Pods-KAI Membership.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -439,13 +451,6 @@
 			path = Passcode;
 			sourceTree = "<group>";
 		};
-		4930440425F8C43500EED242 /* Confirm */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Confirm;
-			sourceTree = "<group>";
-		};
 		4930440F25F8CBBD00EED242 /* Topup */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,7 +481,7 @@
 		494C0AE125FA143B00E30115 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				494C0AE225FA147A00E30115 /* ResetPasswordViewModel.swift */,
+				494C0AE225FA147A00E30115 /* ResetPasscodeViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -511,6 +516,91 @@
 				498BCFE825F7470800F04160 /* Helper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		49CAC0EB25FB42C000577D33 /* Combobox */ = {
+			isa = PBXGroup;
+			children = (
+				49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */,
+				49CAC0F225FB435100577D33 /* KAIComboboxView.swift */,
+			);
+			path = Combobox;
+			sourceTree = "<group>";
+		};
+		49CAC0EC25FB42CC00577D33 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				49CAC0F825FB472A00577D33 /* Contact */,
+				49CAC0EF25FB42F600577D33 /* Text */,
+				49CAC0EE25FB42ED00577D33 /* Code */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		49CAC0ED25FB42DC00577D33 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				494C0ACE25FA094800E30115 /* CardCollapseTableViewCell.swift */,
+				525DBA8C25F0190B001491AE /* KAICardCollapseView.swift */,
+				525DB96825EA42C0001491AE /* KAICardView.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		49CAC0EE25FB42ED00577D33 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				498BCFEB25F756EE00F04160 /* InputCodeView.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		49CAC0EF25FB42F600577D33 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */,
+				494C0AB425F9EE0300E30115 /* KAITextField.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		49CAC0F025FB430900577D33 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		49CAC0F825FB472A00577D33 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		49CAC0FA25FB51CB00577D33 /* Quest */ = {
+			isa = PBXGroup;
+			children = (
+				525DBABE25F175A3001491AE /* QuestRemote.swift */,
+			);
+			path = Quest;
+			sourceTree = "<group>";
+		};
+		49CAC0FC25FB51D500577D33 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				49CAC10125FB51FD00577D33 /* RequestQuestUser.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		49CAC10625FB5C5300577D33 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		49E03A0025F6353800119F55 /* Views */ = {
@@ -683,7 +773,6 @@
 		525DB87225E51D88001491AE /* Passcode */ = {
 			isa = PBXGroup;
 			children = (
-				4930440425F8C43500EED242 /* Confirm */,
 				4930440325F8C42C00EED242 /* Passcode */,
 				52F37D0325E157F5009F311F /* Reset */,
 			);
@@ -807,8 +896,10 @@
 				525DB9F325EFD3EB001491AE /* ActivityServices.swift */,
 				525DB9F625EFD5B7001491AE /* DeviceServices.swift */,
 				525DBAC325F17802001491AE /* QuestServices.swift */,
+				49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */,
 				525DB9DE25EE92EF001491AE /* TransactionServices.swift */,
 				525DB8F525E6B91E001491AE /* UserServices.swift */,
+				49CAC10F25FB74C900577D33 /* PasscodeServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1118,7 +1209,9 @@
 		525DBABD25F17592001491AE /* Quest */ = {
 			isa = PBXGroup;
 			children = (
-				525DBABE25F175A3001491AE /* QuestRemote.swift */,
+				49CAC10625FB5C5300577D33 /* User */,
+				49CAC0FA25FB51CB00577D33 /* Quest */,
+				49CAC0FC25FB51D500577D33 /* Request */,
 			);
 			path = Quest;
 			sourceTree = "<group>";
@@ -1385,13 +1478,10 @@
 		52F37CF825E0DCC5009F311F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				494C0ACE25FA094800E30115 /* CardCollapseTableViewCell.swift */,
-				498BCFEB25F756EE00F04160 /* InputCodeView.swift */,
-				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
-				525DBA8C25F0190B001491AE /* KAICardCollapseView.swift */,
-				525DB96825EA42C0001491AE /* KAICardView.swift */,
-				52F37CFE25E0E05E009F311F /* KAIInputTextFieldView.swift */,
-				494C0AB425F9EE0300E30115 /* KAITextField.swift */,
+				49CAC0F025FB430900577D33 /* Button */,
+				49CAC0ED25FB42DC00577D33 /* Card */,
+				49CAC0EB25FB42C000577D33 /* Combobox */,
+				49CAC0EC25FB42CC00577D33 /* Input */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1408,7 +1498,7 @@
 		52F37D0425E15808009F311F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				52F37D0525E1581C009F311F /* ResetPasswordViewController.swift */,
+				52F37D0525E1581C009F311F /* ResetPasscodeViewController.swift */,
 				494C0ADE25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift */,
 			);
 			path = Controllers;
@@ -1594,21 +1684,25 @@
 				529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */,
 				525DBA4E25F0036D001491AE /* PasscodeViewModel.swift in Sources */,
 				493043F325F89D4800EED242 /* RewardsViewController+Delegate.swift in Sources */,
+				49CAC0F325FB435100577D33 /* KAIComboboxView.swift in Sources */,
 				525DBA8A25F01868001491AE /* OverviewTopupViewModel.swift in Sources */,
 				521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */,
 				525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */,
-				52F37D0625E1581C009F311F /* ResetPasswordViewController.swift in Sources */,
+				52F37D0625E1581C009F311F /* ResetPasscodeViewController.swift in Sources */,
 				493043F625F8A0CF00EED242 /* RewardsEmptyView.swift in Sources */,
 				525DBA9525F0FDA6001491AE /* NestedScrollViewController+Protocol.swift in Sources */,
 				525DBA4225EFEE2F001491AE /* MainViewModel.swift in Sources */,
 				525DBAC425F17802001491AE /* QuestServices.swift in Sources */,
 				493043E025F87FA800EED242 /* UpdateProfileViewModel.swift in Sources */,
+				49CAC10225FB51FD00577D33 /* RequestQuestUser.swift in Sources */,
 				494C0AD525FA09E400E30115 /* TopupViewController+DataSource.swift in Sources */,
 				521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */,
+				49CAC10C25FB6B9A00577D33 /* TrackingServices.swift in Sources */,
 				525DB96925EA42C0001491AE /* KAICardView.swift in Sources */,
 				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
 				525DB8F125E6B898001491AE /* UserRemote.swift in Sources */,
 				525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */,
+				49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */,
 				5265494A25F5395B003AE21A /* SignUpInputView.swift in Sources */,
 				525DB95425E96018001491AE /* UIFont+Extensions.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
@@ -1669,6 +1763,7 @@
 				525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */,
 				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
 				494C0AB525F9EE0400E30115 /* KAITextField.swift in Sources */,
+				49CAC0E025FB1F0B00577D33 /* KAICombobox.swift in Sources */,
 				493043E925F88C5E00EED242 /* RewardsViewController.swift in Sources */,
 				5265495025F53C4E003AE21A /* SignUpViewController+Delegate.swift in Sources */,
 				493043E325F8818200EED242 /* UpdateProfileViewController+Delegate.swift in Sources */,
@@ -1686,10 +1781,11 @@
 				494C0ADB25FA0E9A00E30115 /* TopupTableViewCell.swift in Sources */,
 				525DBA9425F0FDA6001491AE /* TabPageView.swift in Sources */,
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,
+				49CAC11025FB74C900577D33 /* PasscodeServices.swift in Sources */,
 				493043FD25F8AFA200EED242 /* ForgotPasswordViewModel.swift in Sources */,
 				525DB9EC25EE96CD001491AE /* WalletViewController+Delegate.swift in Sources */,
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
-				494C0AE325FA147A00E30115 /* ResetPasswordViewModel.swift in Sources */,
+				494C0AE325FA147A00E30115 /* ResetPasscodeViewModel.swift in Sources */,
 				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
 				5265495C25F5E909003AE21A /* ProfileViewController.swift in Sources */,
 				525DB8F625E6B91E001491AE /* UserServices.swift in Sources */,

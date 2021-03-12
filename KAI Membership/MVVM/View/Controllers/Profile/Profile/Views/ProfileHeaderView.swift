@@ -73,7 +73,7 @@ class ProfileHeaderView: UIView {
     private lazy var shareButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .init(hex: "F7F8F9")
+        button.backgroundColor = Constants.backroundColorDefault
 //        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         button.setImage(UIImage(named: "ic_share_arrow")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.titleEdgeInsets.left = 8

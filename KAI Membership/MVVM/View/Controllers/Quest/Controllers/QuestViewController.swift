@@ -63,8 +63,8 @@ class QuestViewController: BaseViewController {
         viewModel.getTheQuestsList().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] quests in
             guard let this = self else { return }
             
-            this.dailyVC.configure(this.viewModel.dailyQuests)
-            this.monthlyVC.configure(this.viewModel.monthlyQuests)
+            this.dailyVC.configure(quests.filter { $0.type == .daily })
+            this.monthlyVC.configure(quests.filter { $0.type == .monthly })
         }, onError: { error in
             debugPrint("Get the quests list error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)

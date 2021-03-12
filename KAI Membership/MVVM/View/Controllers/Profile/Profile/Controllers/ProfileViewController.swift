@@ -102,7 +102,7 @@ class ProfileViewController: BaseViewController {
     }
     
     private func setupTableHeaderView() {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenSize.width, height: 361))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: 361))
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 337)
         view.addSubview(headerView)
         

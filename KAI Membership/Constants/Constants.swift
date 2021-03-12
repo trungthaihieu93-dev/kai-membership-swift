@@ -22,6 +22,7 @@ class Constants {
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "undefined"
     static let environment = Constants.isDebug ? Environment.development : Environment.development
     static let lengthPasswordMinimum: Int = 8
+    static let backroundColorDefault: UIColor = .init(hex: "F7F8F9")
     
     static var isDebug: Bool {
         #if DEBUG
@@ -32,11 +33,11 @@ class Constants {
     }
     
     struct Device {
-        static let id: String = UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
+        static let id: String = "Device_TEST"//UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
         static let name: String = UIDevice.current.name.folding(options: .diacriticInsensitive, locale: .current)
         static let model: String = UIDevice.current.model
         static let version: String = UIDevice.current.systemVersion
-        static let screenSize = UIScreen.main.bounds
+        static let screenBounds = UIScreen.main.bounds
     }
 }
 

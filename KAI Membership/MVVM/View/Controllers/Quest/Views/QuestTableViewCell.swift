@@ -112,22 +112,20 @@ class QuestTableViewCell: UITableViewCell {
     }
     
     // MARK: Methods
-    func configure(with type: `Type`, title: String, description: String) {
-        switch type {
-        case .inProgress:
-            contentImageView.image = UIImage(named: "ic_mission_progress")
-        case .completed:
+    
+    func configure(_ quest: QuestRemote) {
+        switch quest.key {
+        case .highestScores:
+            contentImageView.image = UIImage(named: "ic_mission_completed")
+            descriptionLabel.text = "description"
+        case .thiryMinutes:
+            contentImageView.image = UIImage(named: "ic_mission_completed")
+        case .inviteFriend:
+            contentImageView.image = UIImage(named: "ic_mission_completed")
+        case .signIn:
             contentImageView.image = UIImage(named: "ic_mission_completed")
         }
         
-        titleLabel.text = title
-        descriptionLabel.text = description
-    }
-    
-    func configure(_ quest: QuestRemote) {
-        contentImageView.image = UIImage(named: "ic_mission_completed")
-        
-        titleLabel.text = "title"
-        descriptionLabel.text = "description"
+        titleLabel.text = quest.name
     }
 }

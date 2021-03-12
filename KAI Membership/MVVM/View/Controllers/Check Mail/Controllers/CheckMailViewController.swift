@@ -149,5 +149,8 @@ extension CheckMailViewController {
         let range = (footerString as NSString).range(of: detectActionFooter)
 
         guard recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: range) else { return }
+        
+        navigationController?.viewControllers.removeAll { ($0 is ResetPasscodeViewController) || ($0 is CheckMailViewController) }
+        Navigator.navigateToResetPasscodeVC(from: self)
     }
 }

@@ -14,10 +14,6 @@ extension RewardsViewController: DZNEmptyDataSetSource {
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
         return emptyView
     }
-    
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return -(safeAreaInsets.top + navigationBarHeight)
-    }
 }
 
 // MARK: UITableViewDataSource

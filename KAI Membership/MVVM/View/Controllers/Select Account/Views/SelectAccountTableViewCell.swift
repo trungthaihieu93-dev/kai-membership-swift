@@ -80,6 +80,7 @@ class SelectAccountTableViewCell: UITableViewCell {
     // MARK: Layout
     private func setupView() {
         selectionStyle = .none
+        backgroundColor = .clear
         
         contentView.addSubview(containerView)
         containerView.addSubview(avatarImageView)
@@ -123,7 +124,7 @@ class SelectAccountTableViewCell: UITableViewCell {
     // MARK: Methods
     func configure(with user: UserRemote) {
         avatarImageView.setImage(from: user.avatarLink, placeholder: nil)
-        nameLabel.text = "An Nguyễn"
+        nameLabel.text = user.email
         gmailLabel.text = user.email
     }
 }

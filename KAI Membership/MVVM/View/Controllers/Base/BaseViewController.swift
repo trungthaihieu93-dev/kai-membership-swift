@@ -39,8 +39,8 @@ class BaseViewController: UIViewController {
         return 1
     }
     
-    var navigationColorDefault: UIColor {
-        return .white
+    var backroundColorDefault: UIColor {
+        return Constants.backroundColorDefault
     }
     
     private lazy var navigationAlpha: CGFloat = navigationAlphaDefault
@@ -54,7 +54,7 @@ class BaseViewController: UIViewController {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = Constants.backroundColorDefault
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
     }
@@ -62,7 +62,7 @@ class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        navigationController?.setNavigationBarHidden(isHiddenNavigationBar, animated: true)
-        navigationBarAnimation(withAlpha: navigationAlpha, backgroundColor: navigationColorDefault)
+        navigationBarAnimation(withAlpha: navigationAlpha, backgroundColor: backroundColorDefault)
     }
     
     // MARK: Layout

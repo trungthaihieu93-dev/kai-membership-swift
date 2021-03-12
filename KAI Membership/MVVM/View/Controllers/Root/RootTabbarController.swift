@@ -29,6 +29,10 @@ class RootTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if AccountManagement.accessToken != nil {
+            QuestServices.requestUserQuest(with: .signIn)
+        }
+        
         ActivityServices.activity(userId: AccountManagement.userID ?? "guest")
     }
     

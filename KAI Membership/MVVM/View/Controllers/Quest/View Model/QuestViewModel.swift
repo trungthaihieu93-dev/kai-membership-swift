@@ -10,20 +10,35 @@ import RxSwift
 class QuestViewModel {
     
     // MARK: Properties
-    private var quests = [QuestRemote]()
-    
-    private(set) var dailyQuests = [QuestRemote]()
-    private(set) var monthlyQuests = [QuestRemote]()
+    private(set) var quests = [QuestRemote]()
     
     // MARK: Methods
     func getTheQuestsList() -> Observable<[QuestRemote]> {
         return Observable<[QuestRemote]>.create { (observer) -> Disposable in
             QuestServices.getList { [weak self] in
                 switch $0 {
-                case .success(let result):
-                    self?.setData(result.datas)
-                    observer.onNext(result.datas)
-                    observer.onCompleted()
+                case .success(let questResult):
+                    if !questResult.datas.isEmpty, AccountManagement.isLoggedIn {
+                        QuestServices.getUserQuests { [weak self] in
+                            guard let this = self else {
+                                observer.onCompleted()
+                                return
+                            }
+                            
+                            switch $0 {
+                            case .success(let result):
+                                this.quests = this.mapQuest(quests: questResult.datas, userQuests: result.datas)
+                                observer.onNext(this.quests)
+                                observer.onCompleted()
+                            case .failure(let error):
+                                observer.onError(error)
+                            }
+                        }
+                    } else {
+                        self?.quests = questResult.datas
+                        observer.onNext(questResult.datas)
+                        observer.onCompleted()
+                    }
                 case .failure(let error):
                     observer.onError(error)
                 }
@@ -33,9 +48,17 @@ class QuestViewModel {
         }
     }
         
-    private func setData(_ results: [QuestRemote]) {
-        quests = results
-        dailyQuests = results.filter { $0.type == .daily }
-        monthlyQuests = results.filter { $0.type == .monthly }
+    private func mapQuest(quests: [QuestRemote], userQuests: [UserQuestRemote]) -> [QuestRemote] {
+        var newValue: [QuestRemote] = []
+        
+        for userQuest in userQuests {
+            for i in 0..<quests.count where quests[i].id == userQuest.id {
+                let tmp = quests[i]
+                tmp.userQuest = userQuest
+                newValue.append(tmp)
+            }
+        }
+        
+        return newValue
     }
 }

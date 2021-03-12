@@ -117,7 +117,7 @@ extension SignInViewController {
         if notification.name == UIResponder.keyboardWillShowNotification {
             guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             
-            let bottomOffset = Constants.Device.screenSize.height - (scrollView.frame.origin.y + signInView.frame.origin.y + signInView.frame.height + 10)
+            let bottomOffset = Constants.Device.screenBounds.height - (scrollView.frame.origin.y + signInView.frame.origin.y + signInView.frame.height + 10)
             
             if keyboardFrame.height > bottomOffset {
                 self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardFrame.height - bottomOffset), animated: true)

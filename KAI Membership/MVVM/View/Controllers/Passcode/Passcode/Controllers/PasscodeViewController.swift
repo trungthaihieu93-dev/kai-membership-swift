@@ -11,21 +11,29 @@ import RxSwift
 class PasscodeViewController: BaseViewController {
 
     // MARK: Properties
+    enum ConfirmType {
+        case create(String)
+        case reset(String)
+    }
+    
     enum `Type` {
         case register
         case login
         case reset
-        case password
-        case profile
+        case changePassword
+        case updateProfile
+        case confirm(ConfirmType)
     }
     
     private let type: `Type`
     
     let viewModel: PasscodeViewModel
     
-    private let footerString: String = "By creating a passcode, you agree with our \nTerms & Conditions and Privacy Policy"
-    private let termsAndConditions: String = "Terms & Conditions"
-    private let privacyPolicy: String = "Privacy Policy"
+    let footerString1: String = "By creating a passcode, you agree with our \nTerms & Conditions and Privacy Policy"
+    let footerString2: String = "Can’t remember my code. Click here"
+    let termsAndConditions: String = "Terms & Conditions"
+    let privacyPolicy: String = "Privacy Policy"
+    let clickHere: String = " Click here"
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -139,10 +147,12 @@ class PasscodeViewController: BaseViewController {
             navigationItem.title = "Enter Passcode"
         case .reset:
             navigationItem.title = "New Passcode"
-        case .password:
+        case .changePassword:
             navigationItem.title = "Passcode"
-        case .profile:
+        case .updateProfile:
             navigationItem.title = "Enter Passcode"
+        case .confirm:
+            navigationItem.title = "Confirm Passcode"
         }
     }
     
@@ -183,7 +193,7 @@ class PasscodeViewController: BaseViewController {
         
         switch type {
         case .register:
-            confirmButton.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Set Passcode", attributes: [
                 NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]), for: .normal)
@@ -193,11 +203,21 @@ class PasscodeViewController: BaseViewController {
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]), for: .normal)
         case .reset:
-            confirmButton.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Set Passcode", attributes: [
                 NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]), for: .normal)
-        default:
+        case .changePassword:
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Continue", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ]), for: .normal)
+        case .updateProfile:
+            confirmButton.setAttributedTitle(NSAttributedString(string: "Finish update", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.white
+            ]), for: .normal)
+        case .confirm:
             confirmButton.setAttributedTitle(NSAttributedString(string: "Confirm", attributes: [
                 NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
                 NSAttributedString.Key.foregroundColor: UIColor.white
@@ -206,16 +226,28 @@ class PasscodeViewController: BaseViewController {
     }
     
     private func configureFooterLabel() {
-        let mutableAttributedString = footerString.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
-        let termsAndConditionsRange = (footerString as NSString).range(of: termsAndConditions)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: termsAndConditionsRange)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: termsAndConditionsRange)
-        
-        let privacyPolicyRange = (footerString as NSString).range(of: privacyPolicy)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: privacyPolicyRange)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: privacyPolicyRange)
-        
-        footerLabel.attributedText = mutableAttributedString
+        switch type {
+        case .register, .reset, .confirm:
+            let mutableAttributedString = footerString1.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+            let termsAndConditionsRange = (footerString1 as NSString).range(of: termsAndConditions)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: termsAndConditionsRange)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: termsAndConditionsRange)
+            
+            let privacyPolicyRange = (footerString1 as NSString).range(of: privacyPolicy)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: privacyPolicyRange)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: privacyPolicyRange)
+            
+            footerLabel.attributedText = mutableAttributedString
+        case .login, .updateProfile:
+            let mutableAttributedString = footerString2.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+            let detectRange = (footerString2 as NSString).range(of: clickHere)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: detectRange)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: detectRange)
+            
+            footerLabel.attributedText = mutableAttributedString
+        case .changePassword:
+            footerLabel.attributedText = nil
+        }
     }
 }
 
@@ -225,11 +257,7 @@ extension PasscodeViewController {
     @objc private func onPressedConfirm() {
         switch type {
         case .register:
-            viewModel.createPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
-                Navigator.showRootTabbarController()
-            }, onError: { error in
-                debugPrint("Create passcode error: \((error as? APIErrorResult)?.message ?? "")")
-            }).disposed(by: disposeBag)
+            Navigator.navigateToPasscodeVC(from: self, with: .confirm(.create(passcodeView.code)), email: viewModel.email)
         case .login:
             viewModel.loginWithPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
                 Navigator.showRootTabbarController()
@@ -237,9 +265,32 @@ extension PasscodeViewController {
                 debugPrint("Login with passcode error: \((error as? APIErrorResult)?.message ?? "")")
             }).disposed(by: disposeBag)
         case .reset:
+            Navigator.navigateToPasscodeVC(from: self, with: .confirm(.reset(passcodeView.code)), email: viewModel.email)
+        case .changePassword:
             debugPrint("")
-        default:
+        case .updateProfile:
             debugPrint("")
+        case .confirm(let type):
+            switch type {
+            case .create(let passcode):
+                guard passcodeView.code == passcode else {
+                    debugPrint("Xác nhận passcode không chính xác")
+                    return
+                }
+                
+                viewModel.createPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
+                    Navigator.showRootTabbarController()
+                }, onError: { error in
+                    debugPrint("Create passcode error: \((error as? APIErrorResult)?.message ?? "")")
+                }).disposed(by: disposeBag)
+            case .reset(let passcode):
+                guard passcodeView.code == passcode else {
+                    debugPrint("Xác nhận passcode không chính xác")
+                    return
+                }
+                
+                debugPrint("")
+            }
         }
     }
     
@@ -248,13 +299,24 @@ extension PasscodeViewController {
     }
     
     @objc private func onTapFooterLabel(_ recognizer: UITapGestureRecognizer) {
-        let termsAndConditionsRange = (footerString as NSString).range(of: termsAndConditions)
-        let privacyPolicyRange = (footerString as NSString).range(of: privacyPolicy)
+        switch type {
+        case .register, .reset, .confirm:
+            let termsAndConditionsRange = (footerString1 as NSString).range(of: "Terms & Conditions")
+            let privacyPolicyRange = (footerString1 as NSString).range(of: privacyPolicy)
 
-        if recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: termsAndConditionsRange) {
-            
-        } else if recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: privacyPolicyRange) {
-            
+            if recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: termsAndConditionsRange) {
+                
+            } else if recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: privacyPolicyRange) {
+                
+            }
+        case .login, .updateProfile:
+            let clickHereRange = (footerString2 as NSString).range(of: clickHere)
+
+            if recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: clickHereRange) {
+                Navigator.navigateToResetPasscodeVC(from: self)
+            }
+        case .changePassword:
+            break
         }
     }
 }

@@ -120,8 +120,6 @@ class PasscodeView: UIView {
     
     // MARK: Layout
     func setupView() {
-        backgroundColor = .white
-        
         addSubview(textField)
         addSubview(containerStackView)
         

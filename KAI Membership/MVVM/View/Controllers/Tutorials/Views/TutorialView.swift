@@ -47,9 +47,10 @@ class TutorialView: UIView {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            contentView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -24),
+//            contentView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -24),
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -61,8 +62,9 @@ class TutorialView: UIView {
 // MARK: Configure
 extension TutorialView {
 
-    func configure(image: UIImage? = nil, title: String? = nil, body: String? = nil) {
+    func configure(image: UIImage? = nil, title: String? = nil, body: String? = nil, imageBackgroundColor: UIColor? = nil) {
         imageView.image = image
         contentView.configure(title: title, body: body)
+        imageView.backgroundColor = imageBackgroundColor
     }
 }

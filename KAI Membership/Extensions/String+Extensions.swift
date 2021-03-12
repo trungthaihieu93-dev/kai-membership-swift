@@ -7,6 +7,8 @@
 
 import UIKit
 
+extension String: BaseModel { }
+
 extension String {
     
     func setTextWithFormat(font: UIFont, textAlignment: NSTextAlignment = .left, letterSpacing: CGFloat = 0, lineHeight: CGFloat = 18, textColor: UIColor = .black, lineHeightMultiple: CGFloat? = nil) -> NSMutableAttributedString {

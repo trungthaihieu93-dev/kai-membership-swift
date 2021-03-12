@@ -27,6 +27,7 @@ class WalletViewController: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(RecentTransactionsTableViewCell.self, forCellReuseIdentifier: RecentTransactionsTableViewCell.identifier)
         tableView.dataSource = self
@@ -67,7 +68,7 @@ class WalletViewController: BaseViewController {
     }
     
     private func setupTableHeaderView() {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenSize.width, height: 252))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: 252))
         cardView.frame = CGRect(x: 30, y: 25, width: headerView.frame.width - 60, height: headerView.frame.height - 50)
         headerView.addSubview(cardView)
         
