@@ -7,6 +7,25 @@
 
 import UIKit
 
+// MARK: UIImagePickerControllerDelegate & UINavigationControllerDelegate
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 1)], for: UIControl.State())
+        picker.dismiss(animated: true) {
+            guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+            
+            debugPrint("")
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 1)], for: UIControl.State())
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
 // MARK: UIScrollViewDelegate
 extension ProfileViewController {
     
@@ -82,9 +101,20 @@ extension ProfileViewController: UITableViewDelegate {
             
             switch itemType {
             case .switchAccount:
-                debugPrint("")
+                fetchAccountsLoggedIntoDevice()
             case .signOut:
-                debugPrint("")
+                let alertController = UIAlertController(title: "Logout", message: "Do you want to logout?", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [weak self] action in
+                    AccountManagement.logout()
+                    self?.fetchAccountsLoggedIntoDevice()
+                }))
+                alertController.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in }))
+                
+                if traitCollection.userInterfaceIdiom == .pad {
+                    alertController.popoverPresentationController?.sourceView = view
+                }
+                
+                present(alertController, animated: true, completion: nil)
             }
         }
     }

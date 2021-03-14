@@ -9,6 +9,9 @@ import RxSwift
 
 class UpdateProfileViewModel {
     
+    // MARK: Properties
+    var birthday: Double?
+    
     // MARK: Methods
     func login(with email: String, and password: String) -> Observable<AccountInfoRemote> {
         return Observable<AccountInfoRemote>.create { (observer) -> Disposable in

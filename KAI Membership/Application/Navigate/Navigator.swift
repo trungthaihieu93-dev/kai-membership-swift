@@ -144,4 +144,14 @@ final class Navigator {
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    /*
+     Điều hướng tới màn hình WebKit
+     - parameter url: đường dẫn của trang web
+     */
+    class func navigateToWebKitVC(from viewController: UIViewController? = nil, url: URL) {
+        let vc = WebViewController(with: url)
+        vc.modalPresentationStyle = .fullScreen
+        viewController?.present(vc, animated: true, completion: nil)
+    }
 }

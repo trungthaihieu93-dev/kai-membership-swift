@@ -29,12 +29,33 @@ class UpdateProfileViewController: BaseViewController {
         return view
     }()
     
-    private lazy var inputDOBView: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(with: .default, title: "DATE OF BIRTH", placeholder: "01/01/1988")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = self
+    private let inputDOBLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = .workSansFont(ofSize: 10, weight: .medium)
+        label.textColor = .init(hex: "364766")
+        label.text = "DATE OF BIRTH"
         
-        return view
+        return label
+    }()
+    
+    private lazy var inputDOBButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .init(hex: "FAFBFB")
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
+        button.setAttributedTitle(NSAttributedString(string: "01/01/1988", attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium)
+        ]), for: .normal)
+        button.layer.cornerRadius = 8
+        button.layer.borderColor = UIColor.init(hex: "E1E4E8").cgColor
+        button.layer.borderWidth = 1
+        button.addTarget(self, action: #selector(onPressedBirthDay), for: .touchUpInside)
+        
+        return button
     }()
     
     private lazy var inputPhoneNumberView: KAIInputTextFieldView = {
@@ -99,7 +120,8 @@ class UpdateProfileViewController: BaseViewController {
         view.addSubview(updateButton)
         
         scrollView.addSubview(inputFullNameView)
-        scrollView.addSubview(inputDOBView)
+        scrollView.addSubview(inputDOBLabel)
+        scrollView.addSubview(inputDOBButton)
         scrollView.addSubview(inputPhoneNumberView)
         
         NSLayoutConstraint.activate([
@@ -117,11 +139,16 @@ class UpdateProfileViewController: BaseViewController {
             inputFullNameView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
             inputFullNameView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
             
-            inputDOBView.topAnchor.constraint(equalTo: inputFullNameView.bottomAnchor, constant: 12),
-            inputDOBView.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
-            inputDOBView.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
+            inputDOBLabel.topAnchor.constraint(equalTo: inputFullNameView.bottomAnchor, constant: 12),
+            inputDOBLabel.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
+            inputDOBLabel.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
             
-            inputPhoneNumberView.topAnchor.constraint(equalTo: inputDOBView.bottomAnchor, constant: 12),
+            inputDOBButton.topAnchor.constraint(equalTo: inputDOBLabel.bottomAnchor, constant: 4),
+            inputDOBButton.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
+            inputDOBButton.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
+            inputDOBButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            inputPhoneNumberView.topAnchor.constraint(equalTo: inputDOBButton.bottomAnchor, constant: 12),
             inputPhoneNumberView.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
             inputPhoneNumberView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor),
             inputPhoneNumberView.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
@@ -155,5 +182,9 @@ extension UpdateProfileViewController {
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+    
+    @objc private func onPressedBirthDay() {
+        
     }
 }

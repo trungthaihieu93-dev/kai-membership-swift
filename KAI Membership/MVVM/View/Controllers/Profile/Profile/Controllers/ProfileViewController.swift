@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxSwift
+import MobileCoreServices
 
 class ProfileViewController: BaseViewController {
-
+    
     // MARK: Properties
     enum Section: Int, CaseIterable {
         case personal = 0
@@ -25,6 +27,8 @@ class ProfileViewController: BaseViewController {
         case switchAccount = 0
         case signOut
     }
+    
+    let viewModel = ProfileViewModel()
     
     private lazy var cameraButton: UIButton = {
         let button = UIButton(type: .system)
@@ -114,8 +118,54 @@ class ProfileViewController: BaseViewController {
         tableView.reloadData()
     }
     
+    func fetchAccountsLoggedIntoDevice() {
+        viewModel.getAccountsLoggedIntoDevice().subscribe(on: MainScheduler.instance).subscribe { device in
+            if let device = device, !device.users.isEmpty {
+                Navigator.showSelectAccountVC(device.users)
+            } else {
+                Navigator.showSignInVC()
+            }
+        } onError: { error in
+            debugPrint("Get accounts logged into device error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            Navigator.showSignInVC()
+        }.disposed(by: disposeBag)
+    }
+    
+    // MARK: Methods
+    func changeAvatar(_ image: UIImage? = nil) {
+        let alertC = UIAlertController(title: "Profile picture", message: nil, preferredStyle: .actionSheet)
+        alertC.addAction(UIAlertAction(title: "New photo", style: .default, handler: { [weak self] action in
+            guard let this = self else { return }
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .camera
+            imagePicker.mediaTypes = [kUTTypeImage as String]
+            imagePicker.delegate = self
+            imagePicker.navigationBar.tintColor = UIColor.blue
+            imagePicker.modalPresentationStyle = .fullScreen
+            
+            this.present(imagePicker, animated: true, completion: nil)
+        }))
+        alertC.addAction(UIAlertAction(title: "Choose picture from library", style: .default, handler: { [weak self] action in
+            guard let this = self else { return }
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.mediaTypes = [kUTTypeImage as String]
+            imagePicker.delegate = self
+            imagePicker.navigationItem.rightBarButtonItem?.title = "Exit"
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)], for: UIControl.State())
+            imagePicker.modalPresentationStyle = .fullScreen
+            
+            this.present(imagePicker, animated: true, completion: nil)
+        }))
+        alertC.addAction(UIAlertAction(title: "Cancel request", style: .cancel, handler: nil))
+        
+        present(alertC, animated: true, completion: nil)
+    }
+    
     // MARK: Handle actions
     @objc private func onPressedCamera() {
-        
+        changeAvatar()
     }
 }

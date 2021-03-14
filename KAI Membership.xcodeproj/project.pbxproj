@@ -150,6 +150,8 @@
 		525DBB0125F28917001491AE /* KAIRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBB0025F28917001491AE /* KAIRemote.swift */; };
 		525DBB0525F28949001491AE /* WalletRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBB0425F28949001491AE /* WalletRemote.swift */; };
 		525E6B8325F9010C00A7BAC5 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525E6B8225F9010C00A7BAC5 /* RootNavigationController.swift */; };
+		525E6BD825FE087200A7BAC5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525E6BD725FE087200A7BAC5 /* WebViewController.swift */; };
+		525E6BE525FE0DC600A7BAC5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525E6BE425FE0DC600A7BAC5 /* ProfileViewModel.swift */; };
 		5265494A25F5395B003AE21A /* SignUpInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265494925F5395B003AE21A /* SignUpInputView.swift */; };
 		5265495025F53C4E003AE21A /* SignUpViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265494F25F53C4E003AE21A /* SignUpViewController+Delegate.swift */; };
 		5265495425F53D80003AE21A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265495325F53D80003AE21A /* SignUpViewModel.swift */; };
@@ -321,6 +323,8 @@
 		525DBB0025F28917001491AE /* KAIRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIRemote.swift; sourceTree = "<group>"; };
 		525DBB0425F28949001491AE /* WalletRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRemote.swift; sourceTree = "<group>"; };
 		525E6B8225F9010C00A7BAC5 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		525E6BD725FE087200A7BAC5 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		525E6BE425FE0DC600A7BAC5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5265494925F5395B003AE21A /* SignUpInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInputView.swift; sourceTree = "<group>"; };
 		5265494F25F53C4E003AE21A /* SignUpViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+Delegate.swift"; sourceTree = "<group>"; };
 		5265495325F53D80003AE21A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -366,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				5265495A25F5E8F7003AE21A /* Controllers */,
+				525E6BE325FE0DB700A7BAC5 /* View Model */,
 				49E03A0025F6353800119F55 /* Views */,
 			);
 			path = Profile;
@@ -1240,6 +1245,22 @@
 			path = Wallet;
 			sourceTree = "<group>";
 		};
+		525E6BD625FE086200A7BAC5 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				525E6BD725FE087200A7BAC5 /* WebViewController.swift */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		525E6BE325FE0DB700A7BAC5 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				525E6BE425FE0DC600A7BAC5 /* ProfileViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		5265494825F53949003AE21A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1372,6 +1393,7 @@
 				521754AD25DE764B009355BC /* Tutorials */,
 				529AE1AB25DD997500635807 /* Utilities */,
 				529AE1B125DD99B000635807 /* Wallet */,
+				525E6BD625FE086200A7BAC5 /* Web */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1746,6 +1768,7 @@
 				5265495425F53D80003AE21A /* SignUpViewModel.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */,
+				525E6BE525FE0DC600A7BAC5 /* ProfileViewModel.swift in Sources */,
 				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
 				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
 				525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */,
@@ -1800,6 +1823,7 @@
 				525DBA3A25EFEB32001491AE /* MainViewController.swift in Sources */,
 				525DBA4A25F002B1001491AE /* PasscodeViewController+Delegate.swift in Sources */,
 				5265496425F5E947003AE21A /* NewPasswordViewController.swift in Sources */,
+				525E6BD825FE087200A7BAC5 /* WebViewController.swift in Sources */,
 				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
 				525DB90825E91A52001491AE /* AppSetting.swift in Sources */,
 				525DB9D125EE8437001491AE /* UtilitiesViewController+DataSource.swift in Sources */,
