@@ -74,9 +74,10 @@ class UserServices {
         APIServices.upload(input: input, output: APIOutput.self, completion: completion)
 
     // MARK: Change password
-    class func changePassword(_ password: String, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
+    class func changePassword(password: String, newPassword: String, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/change-password", method: .post)
         input.params["password"] = password
+        input.params["new_password"] = newPassword
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
