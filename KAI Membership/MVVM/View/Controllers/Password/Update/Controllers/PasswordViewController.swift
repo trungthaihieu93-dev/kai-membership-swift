@@ -201,7 +201,7 @@ extension PasswordViewController {
                 debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
             }).disposed(by: disposeBag)
         case .change:
-            viewModel.changePassword(confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            viewModel.changePassword(password: "", newPassword: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 guard let this = self else { return }
                 
                 //

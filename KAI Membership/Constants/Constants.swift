@@ -34,7 +34,7 @@ class Constants {
     }
     
     struct Device {
-        static let id: String = "Device_TEST"//UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
+        static let id: String = UIDevice.current.identifierForVendor?.uuidString ?? "undefined"//"Device_TEST"
         static let name: String = UIDevice.current.name.folding(options: .diacriticInsensitive, locale: .current)
         static let model: String = UIDevice.current.model
         static let version: String = UIDevice.current.systemVersion
