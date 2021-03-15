@@ -1,5 +1,5 @@
 //
-//  NewPasswordViewController.swift
+//  PasswordViewController.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 08/03/2021.
@@ -8,10 +8,17 @@
 import UIKit
 import RxSwift
 
-class NewPasswordViewController: BaseViewController {
+class PasswordViewController: BaseViewController {
 
     // MARK: Properties
-    let viewModel = NewPasswordViewModel()
+    enum `Type` {
+        case new
+        case change
+    }
+    
+    private let type: `Type`
+    
+    let viewModel = PasswordViewModel()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -86,6 +93,16 @@ class NewPasswordViewController: BaseViewController {
     }
     
     // MARK: Life cycle's
+    init(with type: `Type`) {
+        self.type = type
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,7 +126,6 @@ class NewPasswordViewController: BaseViewController {
         
         scrollView.addSubview(inputPasswordView)
         scrollView.addSubview(confirmPasswordView)
-        scrollView.addSubview(inputTokenView)
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -129,16 +145,22 @@ class NewPasswordViewController: BaseViewController {
             confirmPasswordView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor),
             confirmPasswordView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor),
             
-            inputTokenView.topAnchor.constraint(equalTo: confirmPasswordView.bottomAnchor, constant: 8),
-            inputTokenView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor),
-            inputTokenView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor),
-            inputTokenView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor),
-            
             setNewPasswordButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 32),
             setNewPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             setNewPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             setNewPasswordButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        
+        if type == .new {
+            scrollView.addSubview(inputTokenView)
+            
+            inputTokenView.topAnchor.constraint(equalTo: confirmPasswordView.bottomAnchor, constant: 8).isActive = true
+            inputTokenView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor).isActive = true
+            inputTokenView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor).isActive = true
+            inputTokenView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor).isActive = true
+        } else {
+            confirmPasswordView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor).isActive = true
+        }
         
         confirmBottomAnchor = setNewPasswordButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 20))
         confirmBottomAnchor?.isActive = true
@@ -146,7 +168,7 @@ class NewPasswordViewController: BaseViewController {
 }
 
 // MARK: Handle actions
-extension NewPasswordViewController {
+extension PasswordViewController {
     
     @objc private func handleKeyboardNotification(_ notification: NSNotification) {
         if notification.name == UIResponder.keyboardWillShowNotification {
@@ -169,13 +191,24 @@ extension NewPasswordViewController {
             return
         }
         
-        viewModel.confirmPassword(with: inputTokenView.contentInput, password: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-            guard let this = self else { return }
-            
-            Navigator.navigateToCongratsVC(from: this, with: .password)
-        }, onError: { error in
-            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
-        }).disposed(by: disposeBag)
+        switch type {
+        case .new:
+            viewModel.confirmPassword(with: inputTokenView.contentInput, password: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                guard let this = self else { return }
+                
+                Navigator.navigateToCongratsVC(from: this, with: .password)
+            }, onError: { error in
+                debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            }).disposed(by: disposeBag)
+        case .change:
+            viewModel.changePassword(confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                guard let this = self else { return }
+                
+                //
+            }, onError: { error in
+                debugPrint("Change password error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            }).disposed(by: disposeBag)
+        }
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {

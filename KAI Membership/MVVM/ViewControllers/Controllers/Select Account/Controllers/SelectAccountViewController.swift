@@ -28,6 +28,7 @@ class SelectAccountViewController: BaseViewController {
         return tableView
     }()
     
+    // MARK: Life cycle's
     init(with users: [UserRemote]) {
         self.users = users
         
@@ -38,7 +39,6 @@ class SelectAccountViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         

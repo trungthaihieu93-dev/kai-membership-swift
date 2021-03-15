@@ -22,7 +22,7 @@ class PasscodeViewModel {
         let email = self.email
         
         return Observable<Void>.create { (observer) -> Disposable in
-            DeviceServices.loginWithPasscode(passcode, email: email) {
+            AccountManagement.loginWithPascode(with: email, and: passcode) {
                 switch $0 {
                 case .success:
                     observer.onNext(())
@@ -41,6 +41,22 @@ class PasscodeViewModel {
         
         return Observable<Void>.create { (observer) -> Disposable in
             DeviceServices.createPasscode(with: email, passcode: passcode) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func checkPasscode(_ passcode: String) -> Observable<Void> {
+        return Observable<Void>.create { (observer) -> Disposable in
+            DeviceServices.checkPasscode(passcode) {
                 switch $0 {
                 case .success:
                     observer.onNext(())

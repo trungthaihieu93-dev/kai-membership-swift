@@ -14,8 +14,6 @@ class WalletViewController: BaseViewController {
     // MARK: Properties
     let viewModel = WalletViewModel()
     
-    private let kaiInfo: KAIRemote? = AccountManagement.kai
-    
     private lazy var rightBarButtonItemView: KAIBarButtonItemView = {
         let view = KAIBarButtonItemView()
         view.delegate = self
@@ -39,7 +37,7 @@ class WalletViewController: BaseViewController {
     }()
     
     private lazy var cardView: KAICardView = {
-        let view = KAICardView(with: kaiInfo)
+        let view = KAICardView(with: AccountManagement.kai)
         
         return view
     }()
@@ -80,9 +78,10 @@ class WalletViewController: BaseViewController {
 extension WalletViewController {
     
     private func fetchData() {
-        viewModel.getTransactions().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] transactions in
+        viewModel.fetchData().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] transactions, user in
             guard let this = self else { return }
             
+            this.cardView.configure(user.kai)
             this.tableView.reloadData()
         }, onError: { error in
             debugPrint("Get transaction errror: \((error as? APIErrorResult)?.message ?? "ERROR")")

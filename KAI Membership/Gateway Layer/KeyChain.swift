@@ -10,6 +10,15 @@ import Security
 
 class KeyChain {
 
+    class func delete(forKey key: Key.KeyChain) {
+        let query = [
+            kSecClass       : kSecClassGenericPassword,
+            kSecAttrAccount : key.rawValue,
+        ] as CFDictionary
+
+        SecItemDelete(query)
+    }
+    
     class func save(forKey key: Key.KeyChain, data: Data) {
         let query = [
             kSecClass       : kSecClassGenericPassword,

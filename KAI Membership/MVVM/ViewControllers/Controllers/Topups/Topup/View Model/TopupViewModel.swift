@@ -11,4 +11,6 @@ class TopupViewModel {
     
     // MARK: Properties
     var phoneNumber: String = ""
+    var serviceProvider: String = "viettel"
+    var amount: Double = 20000
 }

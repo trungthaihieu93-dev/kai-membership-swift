@@ -54,6 +54,8 @@ class SignInViewController: BaseViewController {
         return button
     }()
     
+    var completion: (() -> Void)?
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,8 +104,15 @@ class SignInViewController: BaseViewController {
     
     // MARK: Login
     func login() {
-        viewModel.login(with: signInView.emailTextField.contentInput, and: signInView.passwordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { info in
-            Navigator.showRootTabbarController()
+        viewModel.login(with: signInView.emailTextField.contentInput, and: signInView.passwordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
+            guard let this = self else { return }
+            
+            if let completion = this.completion {
+                completion()
+                this.navigationController?.popViewController(animated: true)
+            } else {
+                Navigator.showRootTabbarController()
+            }
         }, onError: { error in
             debugPrint("Login error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)

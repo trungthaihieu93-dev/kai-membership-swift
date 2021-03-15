@@ -11,11 +11,19 @@ import UIKit
 extension QuestViewController: KAIBarButtonItemViewDelegate {
     
     func kAIBarButtonItemViewDidSelecteSpin(_ kAIBarButtonItemView: KAIBarButtonItemView) {
-        // Web view
+        Navigator.openSpin(from: self)
     }
     
     func kAIBarButtonItemViewDidSelecteProfile(_ kAIBarButtonItemView: KAIBarButtonItemView) {
-        Navigator.navigateToProfileVC(from: self)
+        if AccountManagement.isLoggedIn {
+            Navigator.navigateToProfileVC(from: self)
+        } else {
+            Navigator.navigateToSignInVC(from: self) { [weak self] in
+                guard let this = self else { return }
+                
+                Navigator.navigateToProfileVC(from: this)
+            }
+        }
     }
 }
 

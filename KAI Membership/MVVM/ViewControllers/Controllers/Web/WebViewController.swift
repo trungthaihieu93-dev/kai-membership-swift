@@ -25,9 +25,11 @@ class WebViewController: BaseViewController {
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_delete"), for: .normal)
-        button.tintColor = .black
-        button.addTarget(self, action: #selector(onPressedCloseButton), for: .touchUpInside)
+        button.setImage(UIImage(named: "ic_delete")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 8
+        button.createShadow(radius: 8)
+        button.addTarget(self, action: #selector(onPressedClose), for: .touchUpInside)
         
         return button
     }()
@@ -49,20 +51,36 @@ class WebViewController: BaseViewController {
         view.addSubview(webView)
         view.addSubview(closeButton)
         
-        let views = [
-            "close": closeButton,
-            "web": webView
-        ]
-        
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[close(40)]|", options: [.alignAllLeading], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-top-[close(40)]-[web]|", options: [], metrics: ["top": safeAreaInsets.top], views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[web]|", options: [], metrics: nil, views: views))
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: statusBarHeight),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            closeButton.widthAnchor.constraint(equalToConstant: 32),
+            closeButton.heightAnchor.constraint(equalToConstant: 32),
+        ])
         
         webView.load(URLRequest(url: url))
+        webView.navigationDelegate = self
     }
     
     // MARK: Handle actions
-    @objc private func onPressedCloseButton() {
+    @objc private func onPressedClose() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: WKNavigationDelegate
+extension WebViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        decisionHandler(.allow)
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(.allow)
     }
 }

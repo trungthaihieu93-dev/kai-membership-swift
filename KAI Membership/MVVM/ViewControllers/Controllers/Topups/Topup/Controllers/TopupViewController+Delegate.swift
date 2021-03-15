@@ -46,4 +46,26 @@ extension TopupViewController: TopupTableViewCellDelegate {
         viewModel.phoneNumber = textField.text ?? ""
         isConfirmEnabled = !viewModel.phoneNumber.isEmpty
     }
+    
+    func topupTableViewCellDidSelectProvider(_ topupTableViewCell: TopupTableViewCell, providerType: TopupTableViewCell.ProviderType) {
+        viewModel.serviceProvider = providerType.name
+    }
+    
+    func topupTableViewCellDidValueMoney(_ topupTableViewCell: TopupTableViewCell, amount: Double) {
+        viewModel.amount = amount
+    }
+}
+
+// MARK: UIGestureRecognizerDelegate
+extension TopupViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: Section.setting.rawValue)) as? TopupTableViewCell else { return true }
+        
+        if touch.view?.isDescendant(of: cell.providerCollectionView) == true {
+            return false
+        }
+        
+        return true
+    }
 }

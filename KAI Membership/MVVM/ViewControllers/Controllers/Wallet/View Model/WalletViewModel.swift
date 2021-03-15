@@ -13,9 +13,7 @@ class WalletViewModel {
     private(set) var transactions = [TransactionRemote]()
     
     // MARK: Methods
-
-    // TODO: Get transactions
-    func getTransactions() -> Observable<[TransactionRemote]> {
+    private func getTransactions() -> Observable<[TransactionRemote]> {
         return Observable<[TransactionRemote]>.create { [weak self] observer -> Disposable in
             TransactionServices.getTransactions() {
                 switch $0 {
@@ -30,5 +28,29 @@ class WalletViewModel {
             
             return Disposables.create()
         }
+    }
+    
+    private func getUserInfo() -> Observable<AccountInfoRemote> {
+        return Observable<AccountInfoRemote>.create { [weak self] observer -> Disposable in
+            AccountManagement.getInfoUser {
+                switch $0 {
+                case .success(let info):
+                    observer.onNext(info)
+                case .failure(let error):
+                    debugPrint("Error get user infomation: \(error.localizedDescription)")
+                }
+                
+                observer.onCompleted()
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func fetchData() -> Observable<([TransactionRemote], AccountInfoRemote)> {
+        let transactions = getTransactions()
+        let user = getUserInfo()
+        
+        return Observable.combineLatest(transactions, user)
     }
 }
