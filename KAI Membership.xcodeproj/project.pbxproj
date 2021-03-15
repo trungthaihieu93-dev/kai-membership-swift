@@ -31,6 +31,7 @@
 		4963D07B25FEF8CD00720B34 /* ConfigServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D07A25FEF8CD00720B34 /* ConfigServices.swift */; };
 		4963D08725FF165500720B34 /* ProviderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */; };
 		4963D08A25FF2D5700720B34 /* RewardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D08925FF2D5700720B34 /* RewardsTableViewCell.swift */; };
+		4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA8925F01868001491AE /* OverviewViewModel.swift */; };
 		498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */; };
 		498BCFE925F7470800F04160 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE825F7470800F04160 /* Helper.swift */; };
 		498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFEB25F756EE00F04160 /* InputCodeView.swift */; };
@@ -131,7 +132,6 @@
 		525DBA7D25F017AA001491AE /* TopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA7C25F017AA001491AE /* TopupViewController.swift */; };
 		525DBA8025F017BF001491AE /* TopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA7F25F017BF001491AE /* TopupViewModel.swift */; };
 		525DBA8725F01842001491AE /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA8625F01842001491AE /* OverviewViewController.swift */; };
-		525DBA8A25F01868001491AE /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA8925F01868001491AE /* OverviewViewModel.swift */; };
 		525DBA8D25F0190B001491AE /* KAICardCollapseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA8C25F0190B001491AE /* KAICardCollapseView.swift */; };
 		525DBA9425F0FDA6001491AE /* TabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA9125F0FDA6001491AE /* TabPageView.swift */; };
 		525DBA9525F0FDA6001491AE /* NestedScrollViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA9225F0FDA6001491AE /* NestedScrollViewController+Protocol.swift */; };
@@ -1707,7 +1707,6 @@
 				529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */,
 				525DBA4E25F0036D001491AE /* PasscodeViewModel.swift in Sources */,
 				493043F325F89D4800EED242 /* RewardsViewController+Delegate.swift in Sources */,
-				525DBA8A25F01868001491AE /* OverviewViewModel.swift in Sources */,
 				521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */,
 				525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */,
 				52F37D0625E1581C009F311F /* ResetPasscodeViewController.swift in Sources */,
@@ -1754,6 +1753,7 @@
 				525DB9E425EE9600001491AE /* WalletViewModel.swift in Sources */,
 				525DBA8725F01842001491AE /* OverviewViewController.swift in Sources */,
 				525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */,
+				4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
 				525DBAAC25F164C0001491AE /* MonthlyQuestViewController.swift in Sources */,
 				525E6B8325F9010C00A7BAC5 /* RootNavigationController.swift in Sources */,

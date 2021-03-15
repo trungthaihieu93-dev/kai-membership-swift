@@ -112,7 +112,7 @@ extension TopupViewController {
     }
     
     @objc private func onPressedTopup() {
-        Navigator
+        
     }
     
     @objc private func handleKeyboardNotification(_ notification: NSNotification) {
