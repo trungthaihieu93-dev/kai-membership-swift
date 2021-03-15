@@ -9,8 +9,8 @@ import Foundation
 
 class TrackingServices {
     
-    // MARK: Get a list of accounts that have been logged in to the device
-    class func getAccountsLoggedIntoDevice(_ completion: @escaping (APIResult<APIDataResults<DeviceRemote>, APIErrorResult>) -> Void) {
+    // MARK: Tracking game spin
+    class func gameSpin(_ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/trackings", method: .post)
         input.params["type_tracking"] = "GAME"
         input.params["description"] = "Flying bird"

@@ -23,6 +23,7 @@ class Constants {
     static let environment = Constants.isDebug ? Environment.development : Environment.development
     static let lengthPasswordMinimum: Int = 8
     static let backroundColorDefault: UIColor = .init(hex: "F7F8F9")
+    static let spinLink: String = "https://game-003-tego022.bcms.tech?token=$%@&lang=$%@&device=$%@"
     
     static var isDebug: Bool {
         #if DEBUG
@@ -38,6 +39,7 @@ class Constants {
         static let model: String = UIDevice.current.model
         static let version: String = UIDevice.current.systemVersion
         static let screenBounds = UIScreen.main.bounds
+        static let languageCode = Locale.current.languageCode == "vi" ? "VN" : "EN"
     }
 }
 

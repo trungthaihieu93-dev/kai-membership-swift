@@ -22,14 +22,19 @@ extension Double {
         return dateFormatter.string(from: day)
     }
     
-    func formatCurrencyToAttributedString(unit: UnitCurrency = .kai, groupingSeparator: CurrencySeparator = .comma, decimalSeparator: CurrencySeparator = .dots, font: UIFont, unitFont: UIFont? = nil, textColor: UIColor) -> NSAttributedString {
+    func formatCurrencyToString(unit: UnitCurrency = .kai, groupingSeparator: CurrencySeparator = .comma, decimalSeparator: CurrencySeparator = .dots) -> String {
         let formatter = NumberFormatter()
         formatter.groupingSeparator = groupingSeparator.rawValue
         formatter.decimalSeparator = decimalSeparator.rawValue
         formatter.numberStyle = .decimal
         
         let numberStr: String = formatter.string(for: self) ?? "0"
-        let groupString: String = "\(numberStr) \(unit.rawValue)"
+        
+        return "\(numberStr) \(unit.rawValue)"
+    }
+    
+    func formatCurrencyToAttributedString(unit: UnitCurrency = .kai, groupingSeparator: CurrencySeparator = .comma, decimalSeparator: CurrencySeparator = .dots, font: UIFont, unitFont: UIFont? = nil, textColor: UIColor = .black) -> NSAttributedString {
+        let groupString: String = formatCurrencyToString(unit: unit, groupingSeparator: groupingSeparator, decimalSeparator: decimalSeparator)
         let mutableAttributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: groupString, attributes: [
             NSAttributedString.Key.foregroundColor: textColor,
             NSAttributedString.Key.font: font

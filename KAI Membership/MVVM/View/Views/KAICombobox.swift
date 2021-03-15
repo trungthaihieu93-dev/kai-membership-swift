@@ -7,14 +7,18 @@
 
 import UIKit
 
+protocol KAIComboboxDelegate: class {
+    func kaiCombobox(_ kaiCombobox: KAICombobox, didSelectIndex index: Int)
+}
+
+struct ComboboxData {
+    var title: String
+    var subTitle: String? = nil
+}
+
 class KAICombobox: UIView {
     
     // MARK: Properties
-    struct ComboboxData {
-        var title: String
-        var subTitle: String? = nil
-    }
-    
     private let itemHeight: CGFloat = 56
     private let maxItemShow: CGFloat = 5
     private let transparentView = UIView()
@@ -61,9 +65,9 @@ class KAICombobox: UIView {
         return tableView
     }()
     
-    private let dataSources: [ComboboxData]
+    private var dataSources: [ComboboxData]
     
-    private(set) var selectedIndex: Int = 0 {
+    private var selectedIndex: Int = 0 {
         didSet {
             guard selectedIndex != oldValue else { return }
             
@@ -76,12 +80,15 @@ class KAICombobox: UIView {
             }
             
             valueLabel.text = dataSources[selectedIndex].title
+            delegate?.kaiCombobox(self, didSelectIndex: selectedIndex)
             removeTransparentView()
         }
     }
     
+    weak var delegate: KAIComboboxDelegate?
+    
     // MARK: Life cycle's
-    init(with dataSources: [ComboboxData], frame: CGRect = .zero) {
+    init(with dataSources: [ComboboxData] = [], frame: CGRect = .zero) {
         self.dataSources = dataSources
         
         super.init(frame: frame)
@@ -141,6 +148,12 @@ class KAICombobox: UIView {
             self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: height > maxHeight ? maxHeight : height)
             self.dropdownImageView.transform = CGAffineTransform(rotationAngle: .pi)
         }, completion: nil)
+    }
+    
+    // MARK: Methods
+    func configure(with dataSources: [ComboboxData]) {
+        self.dataSources = dataSources
+        self.tableView.reloadData()
     }
     
     // MARK: Handle actions

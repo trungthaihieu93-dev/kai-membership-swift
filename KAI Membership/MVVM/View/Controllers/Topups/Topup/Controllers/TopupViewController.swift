@@ -112,7 +112,8 @@ extension TopupViewController {
     }
     
     @objc private func onPressedTopup() {
-        
+        Navigator.navigateToOverviewVC(from: self, phoneNumber: viewModel.phoneNumber, serviceProvider: viewModel.serviceProvider, amount: viewModel.amount)
+        view.endEditing(true)
     }
     
     @objc private func handleKeyboardNotification(_ notification: NSNotification) {

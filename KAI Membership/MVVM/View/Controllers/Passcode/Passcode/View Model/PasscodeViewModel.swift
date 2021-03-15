@@ -53,4 +53,20 @@ class PasscodeViewModel {
             return Disposables.create()
         }
     }
+    
+    func checkPasscode(_ passcode: String) -> Observable<Void> {
+        return Observable<Void>.create { (observer) -> Disposable in
+            DeviceServices.checkPasscode(passcode) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
 }

@@ -46,6 +46,14 @@ extension TopupViewController: TopupTableViewCellDelegate {
         viewModel.phoneNumber = textField.text ?? ""
         isConfirmEnabled = !viewModel.phoneNumber.isEmpty
     }
+    
+    func topupTableViewCellDidSelectProvider(_ topupTableViewCell: TopupTableViewCell, providerType: TopupTableViewCell.ProviderType) {
+        viewModel.serviceProvider = providerType.name
+    }
+    
+    func topupTableViewCellDidValueMoney(_ topupTableViewCell: TopupTableViewCell, amount: Double) {
+        viewModel.amount = amount
+    }
 }
 
 // MARK: UIGestureRecognizerDelegate

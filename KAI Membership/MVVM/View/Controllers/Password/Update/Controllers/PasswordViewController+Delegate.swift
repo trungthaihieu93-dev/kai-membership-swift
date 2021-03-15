@@ -1,5 +1,5 @@
 //
-//  NewPasswordViewController+Delegate.swift
+//  PasswordViewController+Delegate.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 08/03/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension NewPasswordViewController: KAITextFieldDelegate {
+extension PasswordViewController: KAITextFieldDelegate {
     
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
         isConfirmEnabled = (inputPasswordView.contentInput.count >= Constants.lengthPasswordMinimum) && !inputTokenView.contentInput.isEmpty && (confirmPasswordView.contentInput.count >= Constants.lengthPasswordMinimum)

@@ -267,7 +267,11 @@ extension PasscodeViewController {
         case .reset:
             Navigator.navigateToPasscodeVC(from: self, with: .confirm(.reset(passcodeView.code)), email: viewModel.email)
         case .changePassword:
-            debugPrint("")
+            viewModel.checkPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
+                Navigator.showRootTabbarController()
+            }, onError: { error in
+                debugPrint("Check passcode error: \((error as? APIErrorResult)?.message ?? "")")
+            }).disposed(by: disposeBag)
         case .updateProfile:
             debugPrint("")
         case .confirm(let type):

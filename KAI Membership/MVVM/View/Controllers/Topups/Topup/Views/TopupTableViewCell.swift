@@ -9,6 +9,8 @@ import UIKit
 
 protocol TopupTableViewCellDelegate: class {
     func topupTableViewCellPhoneValueChange(_ topupTableViewCell: TopupTableViewCell, textField: UITextField)
+    func topupTableViewCellDidSelectProvider(_ topupTableViewCell: TopupTableViewCell, providerType: TopupTableViewCell.ProviderType)
+    func topupTableViewCellDidValueMoney(_ topupTableViewCell: TopupTableViewCell, amount: Double)
 }
 
 class TopupTableViewCell: UITableViewCell {
@@ -18,11 +20,34 @@ class TopupTableViewCell: UITableViewCell {
         case viettel
         case mobifone
         case vinaphone
+        
+        var name: String {
+            switch self {
+            case .viettel:
+                return "viettel"
+            case .mobifone:
+                return "mobifone"
+            case .vinaphone:
+                return "vinaphone"
+            }
+        }
+    }
+    
+    struct MoneyValue {
+        var money: Double
+        var value: Double
     }
     
     private let sectionInsets: UIEdgeInsets = .init(top: 2, left: 16, bottom: 2, right: 16)
     private let minimumLineSpacing: CGFloat = 12
     private let itemHeight: CGFloat = 60
+    
+    private let moneyValues: [MoneyValue] = [
+        MoneyValue(money: 20000, value: 66.6666),
+        MoneyValue(money: 50000, value: 166.6666),
+        MoneyValue(money: 100000, value: 266.66666),
+        MoneyValue(money: 200000, value: 366.66666)
+    ]
     
     private let containerView: UIView = {
         let view = UIView()
@@ -93,14 +118,16 @@ class TopupTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let combobox: KAICombobox = {
-        let view = KAICombobox(with: [
-            KAICombobox.ComboboxData(title: "20.000 VND", subTitle: "(66.6666 KAI)"),
-            KAICombobox.ComboboxData(title: "50.000 VND", subTitle: "(166.6666 KAI)"),
-            KAICombobox.ComboboxData(title: "100.000 VND", subTitle: "(266.66666 KAI)"),
-            KAICombobox.ComboboxData(title: "200.000 VND", subTitle: "(366.66666 KAI)")
-        ])
+    private lazy var combobox: KAICombobox = {
+        let comboboxData: [ComboboxData] = moneyValues.map { item -> ComboboxData in
+            let title = item.money.formatCurrencyToString(unit: .vnd, groupingSeparator: .comma, decimalSeparator: .dots)
+            let sub = item.value.formatCurrencyToString(unit: .kai, groupingSeparator: .comma, decimalSeparator: .dots)
+            
+            return ComboboxData(title: title, subTitle: sub)
+        }
+        let view = KAICombobox(with: comboboxData)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         
         return view
     }()
@@ -116,11 +143,9 @@ class TopupTableViewCell: UITableViewCell {
             if let newCell = providerCollectionView.cellForItem(at: IndexPath(row: providerSelectedIndex, section: 0)) as? ProviderCollectionViewCell {
                 newCell.isProviderSelected = true
             }
+            
+            delegate?.topupTableViewCellDidSelectProvider(self, providerType: ProviderType(rawValue: providerSelectedIndex) ?? .viettel)
         }
-    }
-    
-    var comboboxSelectedIndex: Int {
-        return combobox.selectedIndex
     }
     
     weak var delegate: TopupTableViewCellDelegate?
@@ -183,11 +208,6 @@ class TopupTableViewCell: UITableViewCell {
             combobox.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
         ])
     }
-    
-    // MARK: Layout
-    func configure() {
-        
-    }
 }
 
 // MARK: KAITextFieldDelegate
@@ -244,5 +264,14 @@ extension TopupTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         providerSelectedIndex = indexPath.row
+    }
+}
+
+// MARK: KAIComboboxDelegate
+extension TopupTableViewCell: KAIComboboxDelegate {
+    
+    func kaiCombobox(_ kaiCombobox: KAICombobox, didSelectIndex index: Int) {
+        let amount = moneyValues[index].money
+        delegate?.topupTableViewCellDidValueMoney(self, amount: amount)
     }
 }

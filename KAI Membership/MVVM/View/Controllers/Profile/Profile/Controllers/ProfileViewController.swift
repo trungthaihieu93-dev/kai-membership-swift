@@ -133,7 +133,7 @@ class ProfileViewController: BaseViewController {
     
     // MARK: Methods
     func changeAvatar(_ image: UIImage? = nil) {
-        let alertC = UIAlertController(title: "Profile picture", message: nil, preferredStyle: .actionSheet)
+        let alertC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertC.addAction(UIAlertAction(title: "New photo", style: .default, handler: { [weak self] action in
             guard let this = self else { return }
             
@@ -159,7 +159,7 @@ class ProfileViewController: BaseViewController {
             
             this.present(imagePicker, animated: true, completion: nil)
         }))
-        alertC.addAction(UIAlertAction(title: "Cancel request", style: .cancel, handler: nil))
+        alertC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertC, animated: true, completion: nil)
     }

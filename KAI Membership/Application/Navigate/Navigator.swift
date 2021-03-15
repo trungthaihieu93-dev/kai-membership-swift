@@ -48,7 +48,7 @@ final class Navigator {
     }
     
     /* Điều hướng sang màn hình đăng nhập */
-    class func navigateToSignInVC(from viewController: UIViewController? = nil) {
+    class func navigateToSignInVC(from viewController: UIViewController? = nil, _ completion: (() -> Void)? = nil) {
         let vc = SignInViewController()
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
@@ -103,9 +103,12 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /* Điều hướng sang màn hình tạo mới mật khẩu */
-    class func navigateToNewPasswordVC(from viewController: UIViewController? = nil) {
-        let vc = NewPasswordViewController()
+    /*
+     Điều hướng sang màn hình tạo mới mật khẩu
+     - parameter type: Loại hiển thị
+     */
+    class func navigateToPasswordVC(from viewController: UIViewController? = nil, with type: PasswordViewController.`Type) {
+        let vc = PasswordViewController(with: type)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -153,5 +156,44 @@ final class Navigator {
         let vc = WebViewController(with: url)
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true, completion: nil)
+    }
+    
+    /*
+     Điều hướng tới màn hình xem tổng quát topup
+     - parameter address: địa chỉ ví
+     - parameter amount: giá trị
+     */
+    class func navigateToOverviewVC(from viewController: UIViewController? = nil, address: String, amount: Double) {
+        let vc = OverviewViewController(address: address, amount: amount)
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /*
+     Điều hướng tới màn hình xem tổng quát topup
+     - parameter phoneNumber: số điện thoại
+     - parameter serviceProvider: nhà cung cấp dịch vụ
+     - parameter phoneNumber: mệnh giá
+     */
+    class func navigateToOverviewVC(from viewController: UIViewController? = nil, phoneNumber: String, serviceProvider: String, amount: Double) {
+        let vc = OverviewViewController(phoneNumber: phoneNumber, serviceProvider: serviceProvider, amount: amount)
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Show màn hình game vòng quay */
+    class func openSpin(from viewController: UIViewController) {
+        if let token = AccountManagement.accessToken {
+            guard let url = URL(string: String(format: Constants.spinLink, arguments: [token, Constants.Device.languageCode, Constants.Device.id])) else { return }
+            
+            TrackingServices.gameSpin()
+            let vc = WebViewController(with: url)
+            vc.modalPresentationStyle = .fullScreen
+            viewController.present(vc, animated: true, completion: nil)
+        } else {
+            Navigator.navigateToSignInVC(from: viewController) {
+                Navigator.openSpin(from: viewController)
+            }
+        }
     }
 }
