@@ -15,7 +15,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true) {
             guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
             
-            debugPrint("")
+            self.uploadImage(image)
         }
     }
     

@@ -196,6 +196,39 @@ class APIServices {
         }
     }
     
+    private class func _upload<T: APIOutputBase>(input: APIInputBase, output: T.Type, completion: @escaping (T) -> Void) {
+        AF.upload(multipartFormData: { multipartFormData in
+            for (key, value) in input.params {
+                if let image = (value as? UIImage) {
+                    multipartFormData.append(image.pngData()!, withName: key)
+                } else {
+                    multipartFormData.append(Data(from: value), withName: key)
+                }
+                
+            }
+        }, to: input.url).responseJSON { (response) in
+            completion(T(response: response))
+        }
+    }
+    
+    class func upload<T: APIBaseDataResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T, APIErrorResult>) ->())? = nil) {
+        APIServices._upload(input: input, output: output) {
+            let output = $0.output
+            
+            switch output {
+            case .success(let data):
+                do {
+                    let result = try T.decode(data: data)
+                    completion?(.success(result))
+                } catch let error {
+                    completion?(.failure(.init(code: nil, message: getDecodeError(error, input))))
+                }
+            case .failure(let error):
+                completion?(.failure(.init(code: nil, message: getErrorDescription(error, input))))
+            }
+        }
+    }
+    
     class func request<T: APIBaseDataResults, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((APIResult<T, APIErrorResult>) -> ())? = nil) {
         APIServices._request(input: input, output: output) {
             let output = $0.output

@@ -164,6 +164,17 @@ class ProfileViewController: BaseViewController {
         present(alertC, animated: true, completion: nil)
     }
     
+    func uploadImage(_ image: UIImage) {
+        UserServices.updateAvatar(image) { (result) in
+            switch result {
+            case .success(let string):
+                print(string)
+            case .failure(let error):
+                print(error.message)
+            }
+        }
+    }
+    
     // MARK: Handle actions
     @objc private func onPressedCamera() {
         changeAvatar()

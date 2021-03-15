@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UserServices {
     
@@ -60,5 +61,16 @@ class UserServices {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/history", method: .get)
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
+    
+    // MARK: Update avatar
+    class func updateAvatar(_ image: UIImage, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/avatar", method: .post)
+        
+        input.params = [
+            "avatar" : image
+        ]
+        
+        APIServices.upload(input: input, output: APIOutput.self, completion: completion)
     }
 }
