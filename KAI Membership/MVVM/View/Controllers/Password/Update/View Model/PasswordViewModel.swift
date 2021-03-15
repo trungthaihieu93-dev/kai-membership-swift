@@ -26,9 +26,9 @@ class PasswordViewModel {
         }
     }
     
-    func changePassword(password: String, newPassword: String) -> Observable<Void> {
+    func changePassword(_ password: String) -> Observable<Void> {
         return Observable.create { (observer) -> Disposable in
-            UserServices.newPassword(password: password, newPassword: newPassword) {
+            UserServices.changePassword(password) {
                 switch $0 {
                 case .success:
                     observer.onNext(())

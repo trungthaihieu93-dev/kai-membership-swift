@@ -107,7 +107,7 @@ final class Navigator {
      Điều hướng sang màn hình tạo mới mật khẩu
      - parameter type: Loại hiển thị
      */
-    class func navigateToPasswordVC(from viewController: UIViewController? = nil, with type: PasswordViewController.`Type) {
+    class func navigateToPasswordVC(from viewController: UIViewController? = nil, with type: PasswordViewController.`Type`) {
         let vc = PasswordViewController(with: type)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)

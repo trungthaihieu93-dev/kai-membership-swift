@@ -18,7 +18,7 @@ class PasswordViewController: BaseViewController {
     
     private let type: `Type`
     
-    let viewModel = NewPasswordViewModel()
+    let viewModel = PasswordViewModel()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()

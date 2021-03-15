@@ -135,7 +135,7 @@ extension ForgotPasswordViewController {
         viewModel.requestChangePassword(with: emailTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             guard let this = self else { return }
             
-            Navigator.navigateToNewPasswordVC(from: this)
+            Navigator.navigateToPasswordVC(from: this, with: .new)
         }, onError: { error in
             debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
