@@ -72,6 +72,7 @@ class UserServices {
         ]
         
         APIServices.upload(input: input, output: APIOutput.self, completion: completion)
+    }
 
     // MARK: Change password
     class func changePassword(password: String, newPassword: String, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
