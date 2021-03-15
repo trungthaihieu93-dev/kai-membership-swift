@@ -10,7 +10,12 @@ import UIKit
 class KAICombobox: UIView {
     
     // MARK: Properties
-    private let itemHeight: CGFloat = 40
+    struct ComboboxData {
+        var title: String
+        var subTitle: String? = nil
+    }
+    
+    private let itemHeight: CGFloat = 56
     private let maxItemShow: CGFloat = 5
     private let transparentView = UIView()
     
@@ -56,7 +61,7 @@ class KAICombobox: UIView {
         return tableView
     }()
     
-    private let dataSources: [String]
+    private let dataSources: [ComboboxData]
     
     private(set) var selectedIndex: Int = 0 {
         didSet {
@@ -70,18 +75,18 @@ class KAICombobox: UIView {
                 newCell.isDropdownSelected = true
             }
             
-            valueLabel.text = dataSources[selectedIndex]
+            valueLabel.text = dataSources[selectedIndex].title
             removeTransparentView()
         }
     }
     
     // MARK: Life cycle's
-    init(with dataSources: [String], frame: CGRect = .zero) {
+    init(with dataSources: [ComboboxData], frame: CGRect = .zero) {
         self.dataSources = dataSources
         
         super.init(frame: frame)
         
-        valueLabel.text = dataSources.first
+        valueLabel.text = dataSources.first?.title
         setupView()
     }
 
@@ -146,7 +151,10 @@ class KAICombobox: UIView {
             self.transparentView.alpha = 0
             self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
             self.dropdownImageView.transform = CGAffineTransform.identity
-        }, completion: nil)
+        }, completion: { finish in
+            self.tableView.removeFromSuperview()
+            self.transparentView.removeFromSuperview()
+        })
     }
     
     @objc private func onPressedDropdown() {
@@ -164,7 +172,7 @@ extension KAICombobox: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ComboboxTableViewCell.identifier, for: indexPath) as! ComboboxTableViewCell
-        cell.configure(dataSources[indexPath.row])
+        cell.configure(with: dataSources[indexPath.row].title, and: dataSources[indexPath.row].subTitle)
         cell.isDropdownSelected = selectedIndex == indexPath.row
         
         return cell
@@ -186,27 +194,42 @@ extension KAICombobox: UITableViewDelegate {
 class ComboboxTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    private let titleButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.numberOfLines = 1
-        button.titleLabel?.font = UIFont.workSansFont(ofSize: 14, weight: .medium)
-        button.isEnabled = false
-        button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = .init(top: 5, left: 16, bottom: 5, right: 16)
-        button.layer.cornerRadius = 8
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = UIFont.workSansFont(ofSize: 14, weight: .medium)
+        label.textColor = UIColor.black.withAlphaComponent(0.87)
         
-        return button
+        return label
+    }()
+    
+    private let subTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = UIFont.workSansFont(ofSize: 14, weight: .medium)
+        label.textColor = UIColor.black.withAlphaComponent(0.54)
+        
+        return label
+    }()
+    
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 8
+        
+        return view
     }()
     
     var isDropdownSelected: Bool = false {
         didSet {
             if isDropdownSelected {
-                titleButton.backgroundColor = .init(hex: "F7F8F9")
-                titleButton.setTitleColor(UIColor.black.withAlphaComponent(0.87), for: .normal)
+                containerView.backgroundColor = .init(hex: "F7F8F9")
+                titleLabel.textColor = UIColor.black.withAlphaComponent(0.87)
             } else {
-                titleButton.backgroundColor = nil
-                titleButton.setTitleColor(UIColor.black.withAlphaComponent(0.54), for: .normal)
+                containerView.backgroundColor = nil
+                titleLabel.textColor = UIColor.black.withAlphaComponent(0.54)
             }
         }
     }
@@ -227,18 +250,31 @@ class ComboboxTableViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .clear
         
-        contentView.addSubview(titleButton)
+        contentView.addSubview(containerView)
+        
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(subTitleLabel)
         
         NSLayoutConstraint.activate([
-            titleButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            titleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            
+            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            subTitleLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -5),
+            subTitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
         ])
     }
     
     // MARK: Methods
-    func configure(_ text: String) {
-        titleButton.setTitle(text, for: .normal)
+    func configure(with title: String, and subTitle: String? = nil) {
+        titleLabel.text = title
+        subTitleLabel.text = subTitle
     }
 }

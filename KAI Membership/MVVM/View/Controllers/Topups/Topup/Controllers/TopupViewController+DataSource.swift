@@ -29,7 +29,7 @@ extension TopupViewController: UITableViewDataSource {
             return cell
         case .setting:
             let cell = tableView.dequeueReusableCell(withIdentifier: TopupTableViewCell.identifier, for: indexPath) as! TopupTableViewCell
-            cell.configure()
+            cell.delegate = self
             
             return cell
         }

@@ -43,7 +43,8 @@ extension RewardsViewController: UITableViewDataSource {
             
             return cell
         case .history:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as! ProfileTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: RewardsTableViewCell.identifier, for: indexPath) as! RewardsTableViewCell
+            cell.configure("10 KAI received")
             
             return cell
         }

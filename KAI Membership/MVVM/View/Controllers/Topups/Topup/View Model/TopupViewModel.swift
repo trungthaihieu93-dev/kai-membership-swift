@@ -9,4 +9,6 @@ import RxSwift
 
 class TopupViewModel {
     
+    // MARK: Properties
+    var phoneNumber: String = ""
 }

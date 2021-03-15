@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
     
     // MARK: Fetch data
     private func fetchData() {
-        viewModel.getAccountsLoggedIntoDevice().subscribe(on: MainScheduler.instance).subscribe { [weak self] device in
+        viewModel.getData().subscribe(on: MainScheduler.instance).subscribe { [weak self] configs, device in
             if let device = device, !device.users.isEmpty {
                 Navigator.showSelectAccountVC(device.users)
                 AppSetting.haveUsedTheApplicationOnce = true
@@ -48,7 +48,6 @@ class MainViewController: UIViewController {
                 self?.showSignInApp()
             }
         } onError: { [weak self] error in
-            debugPrint("Get accounts logged into device error: \((error as? APIErrorResult)?.message ?? "ERROR")")
             self?.showSignInApp()
         }.disposed(by: disposeBag)
     }

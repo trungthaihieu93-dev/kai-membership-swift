@@ -26,4 +26,29 @@ class AppSetting {
             return UserDefaults.standard.bool(forKey: Key.UserDefault.haveUsedTheApplicationOnce.rawValue)
         }
     }
+    
+    static var configures: [ConfigGroupRemote] {
+        set {
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(newValue)
+                UserDefaults.standard.set(data, forKey: Key.UserDefault.configure.rawValue)
+            } catch {
+                debugPrint("Unable to Encode Configs (\(error))")
+            }
+        }
+        get {
+            guard let data = UserDefaults.standard.data(forKey: Key.UserDefault.configure.rawValue) else { return [] }
+            
+            do {
+                let decoder = JSONDecoder()
+                let results = try decoder.decode([ConfigGroupRemote].self, from: data)
+                
+                return results
+            } catch {
+                debugPrint("Unable to Decode Configs (\(error))")
+                return []
+            }
+        }
+    }
 }

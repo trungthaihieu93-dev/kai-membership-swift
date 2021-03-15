@@ -38,3 +38,12 @@ extension TopupViewController: UITableViewDelegate {
         return 56
     }
 }
+
+// MARK: TopupTableViewCellDelegate
+extension TopupViewController: TopupTableViewCellDelegate {
+    
+    func topupTableViewCellPhoneValueChange(_ topupTableViewCell: TopupTableViewCell, textField: UITextField) {
+        viewModel.phoneNumber = textField.text ?? ""
+        isConfirmEnabled = !viewModel.phoneNumber.isEmpty
+    }
+}

@@ -9,6 +9,7 @@ import UIKit
 
 class NewsLastestCollectionViewCell: UICollectionViewCell {
     
+    // MARK: Properties
     private let coverImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false

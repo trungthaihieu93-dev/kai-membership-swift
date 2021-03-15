@@ -67,14 +67,16 @@ class KAICardCollapseView: UIView {
         return button
     }()
     
-    var profit: Double = 35.5 {
+    var profit: Double = 0 {
         didSet {
+            profitStatusButton.setTitle("\(profit)%", for: .normal)
+            
             if profit == 0 {
-                profitStatusButton.tintColor = UIColor.black.withAlphaComponent(0.87)
+                profitStatusButton.setTitleColor(UIColor.black.withAlphaComponent(0.87), for: .normal)
             } else if profit < 0 {
-                profitStatusButton.tintColor = .init(hex: "DD3832")
+                profitStatusButton.setTitleColor(UIColor.init(hex: "DD3832"), for: .normal)
             } else {
-                profitStatusButton.tintColor = .init(hex: "0E8C31")
+                profitStatusButton.setTitleColor(UIColor.init(hex: "0E8C31"), for: .normal)
             }
         }
     }
@@ -122,16 +124,16 @@ class KAICardCollapseView: UIView {
             monetaryValueLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             monetaryValueLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -12),
             
-            profitStatusButton.centerXAnchor.constraint(equalTo: monetaryValueLabel.centerXAnchor),
+            profitStatusButton.centerYAnchor.constraint(equalTo: monetaryValueLabel.centerYAnchor),
             profitStatusButton.leadingAnchor.constraint(equalTo: monetaryValueLabel.trailingAnchor, constant: 4),
-            profitStatusButton.trailingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor),
+            profitStatusButton.trailingAnchor.constraint(lessThanOrEqualTo: imageView.leadingAnchor),
         ])
     }
     
     // MARK: Methods
     func configure() {
-        kaiLabel.attributedText = 3002123.formatCurrencyToAttributedString(unit: .kai, font: .workSansFont(ofSize: 28, weight: .medium), textColor: .init(hex: "67798E"))
+        kaiLabel.attributedText = AccountManagement.kai?.wallet?.balance?.formatCurrencyToAttributedString(unit: .kai, font: .workSansFont(ofSize: 28, weight: .medium), textColor: .init(hex: "67798E"))
         monetaryValueLabel.text = "0,033 USD/ KAI"
-        profitStatusButton.setTitle("\(profit)%", for: .normal)
+        profit = 35.5
     }
 }
