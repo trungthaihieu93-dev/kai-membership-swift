@@ -17,7 +17,7 @@ class DeviceServices {
     }
     
     // MARK: Login with passcode
-    class func loginWithPasscode(_ passcode: String, email: String, _ completion: @escaping (APIResult<APIDataResults<DeviceRemote>, APIErrorResult>) -> Void) {
+    class func loginWithPasscode(_ passcode: String, email: String, _ completion: @escaping (APIResult<APIDataResults<LoginRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/passcodes/login", method: .post)
         input.params["passcode"] = passcode
         input.params["email"] = email

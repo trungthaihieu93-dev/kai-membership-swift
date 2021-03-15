@@ -22,7 +22,7 @@ class PasscodeViewModel {
         let email = self.email
         
         return Observable<Void>.create { (observer) -> Disposable in
-            DeviceServices.loginWithPasscode(passcode, email: email) {
+            AccountManagement.loginWithPascode(with: email, and: passcode) {
                 switch $0 {
                 case .success:
                     observer.onNext(())

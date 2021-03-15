@@ -153,4 +153,28 @@ class AccountManagement {
             }
         }
     }
+    
+    class func loginWithPascode(with email: String, and passcode: String, _ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
+        DeviceServices.loginWithPasscode(passcode, email: email) {
+            switch $0 {
+            case .success(let result):
+                if let data = result.data {
+                    AccountManagement.accessToken = data.accessToken
+                    AccountManagement.refreshToken = data.refreshToken
+                    AccountManagement.getInfoUser {
+                        switch $0 {
+                        case .success(let info):
+                            completion(.success(info))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    completion(.failure(APIErrorResult(with: .emptyResults)))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

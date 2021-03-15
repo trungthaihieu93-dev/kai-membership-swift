@@ -18,10 +18,12 @@ class TopupViewController: BaseViewController {
     
     let viewModel = TopupViewModel()
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+    private(set) lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0.01, height: 0.01))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0.01, height: 0.01))
         tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(CardCollapseTableViewCell.self, forCellReuseIdentifier: CardCollapseTableViewCell.identifier)
@@ -77,6 +79,7 @@ class TopupViewController: BaseViewController {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
         singleTap.numberOfTapsRequired = 1
         singleTap.cancelsTouchesInView = true
+        singleTap.delegate = self
         tableView.addGestureRecognizer(singleTap)
     }
     
@@ -109,7 +112,7 @@ extension TopupViewController {
     }
     
     @objc private func onPressedTopup() {
-        
+        Navigator
     }
     
     @objc private func handleKeyboardNotification(_ notification: NSNotification) {
