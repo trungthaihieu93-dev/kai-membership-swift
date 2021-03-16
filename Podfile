@@ -13,5 +13,7 @@ target 'KAI Membership' do
   pod 'RealmSwift', '10.0.0'
   pod 'DZNEmptyDataSet'
   pod 'Kingfisher'
+  pod 'QRCode'
+  pod 'Toast-Swift'
   
 end

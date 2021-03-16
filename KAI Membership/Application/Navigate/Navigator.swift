@@ -181,6 +181,24 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
+    /*
+     Điều hướng tới màn hình Receive
+     */
+    class func navigateToReceiveVC(from viewController: UIViewController? = nil) {
+        let vc = ReceiveViewController()
+        vc.modalPresentationStyle = . fullScreen
+        viewController?.present(vc, animated: true, completion: nil)
+    }
+    
+    /*
+     Điều hướng tới màn hình Buy
+     */
+    class func navigateToBuyVC(from viewController: UIViewController? = nil) {
+        let vc = BuyViewController()
+        vc.modalPresentationStyle = . fullScreen
+        viewController?.present(vc, animated: true, completion: nil)
+    }
+    
     /* Show màn hình game vòng quay */
     class func openSpin(from viewController: UIViewController) {
         if let token = AccountManagement.accessToken {

@@ -217,7 +217,7 @@ extension PasswordViewController {
             viewModel.changePassword(password: "", newPassword: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 guard let this = self else { return }
                 
-                //
+                // TODO: Kiet continue here
             }, onError: { error in
                 debugPrint("Change password error: \((error as? APIErrorResult)?.message ?? "ERROR")")
             }).disposed(by: disposeBag)

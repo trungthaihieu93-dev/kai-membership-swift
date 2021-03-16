@@ -50,6 +50,7 @@ class WalletViewController: BaseViewController {
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         setupView()
         setupTableHeaderView()
+        setupFloatyButton()
         fetchData()
     }
     
@@ -65,6 +66,37 @@ class WalletViewController: BaseViewController {
         ])
     }
     
+    private func setupFloatyButton() {
+        let floaty = Floaty()
+        
+        floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send")) { [weak self] (_) in
+            
+        }
+        floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive")) { [weak self] (_) in
+            Navigator.navigateToReceiveVC(from: self)
+        }
+        floaty.addItem("BUY", icon: UIImage(named : "ic_floaty_buy")) { [weak self] (_) in
+            Navigator.navigateToBuyVC(from: self)
+        }
+        
+        floaty.size = 48
+        
+        for item in floaty.items {
+            item.titleLabel.font = UIFont.workSansFont(ofSize: 10, weight: .semiBold)
+            item.titleLabel.layer.cornerRadius = 8.0
+            item.titleLabel.layer.masksToBounds = true
+            item.titleLabel.textColor = UIColor.init(hex: "455571")
+            item.titleLabel.backgroundColor = UIColor.white
+            item.titleLabel.textAlignment = .center
+        }
+        
+        self.view.addSubview(floaty)
+        
+        floaty.buttonColor = UIColor.init(hex: "67798E")
+        floaty.buttonShadowColor = .clear
+        floaty.plusColor = .white
+    }
+    
     private func setupTableHeaderView() {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: 252))
         cardView.frame = CGRect(x: 30, y: 25, width: headerView.frame.width - 60, height: headerView.frame.height - 50)
@@ -76,7 +108,6 @@ class WalletViewController: BaseViewController {
 
 // MARK: Data fetching
 extension WalletViewController {
-    
     private func fetchData() {
         viewModel.fetchData().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] transactions, user in
             guard let this = self else { return }
