@@ -75,7 +75,9 @@ class WalletViewController: BaseViewController {
         floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive")) { [weak self] (_) in
             Navigator.navigateToReceiveVC(from: self)
         }
-        floaty.addItem("BUY", icon: UIImage(named : "ic_floaty_buy"))
+        floaty.addItem("BUY", icon: UIImage(named : "ic_floaty_buy")) { [weak self] (_) in
+            Navigator.navigateToBuyVC(from: self)
+        }
         
         floaty.size = 48
         
@@ -106,7 +108,6 @@ class WalletViewController: BaseViewController {
 
 // MARK: Data fetching
 extension WalletViewController {
-    
     private func fetchData() {
         viewModel.fetchData().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] transactions, user in
             guard let this = self else { return }

@@ -190,6 +190,15 @@ final class Navigator {
         viewController?.present(vc, animated: true, completion: nil)
     }
     
+    /*
+     Điều hướng tới màn hình Buy
+     */
+    class func navigateToBuyVC(from viewController: UIViewController? = nil) {
+        let vc = BuyViewController()
+        vc.modalPresentationStyle = . fullScreen
+        viewController?.present(vc, animated: true, completion: nil)
+    }
+    
     /* Show màn hình game vòng quay */
     class func openSpin(from viewController: UIViewController) {
         if let token = AccountManagement.accessToken {
