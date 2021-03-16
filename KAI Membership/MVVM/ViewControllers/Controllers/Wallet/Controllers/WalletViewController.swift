@@ -50,6 +50,7 @@ class WalletViewController: BaseViewController {
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         setupView()
         setupTableHeaderView()
+        setupFloatyButton()
         fetchData()
     }
     
@@ -63,6 +64,30 @@ class WalletViewController: BaseViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+    
+    private func setupFloatyButton() {
+        let floaty = Floaty()
+        floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send"))
+        floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive"))
+        floaty.addItem("BUY", icon: UIImage(named : "ic_floaty_buy"))
+        
+        floaty.size = 48
+        
+        for item in floaty.items {
+            item.titleLabel.font = UIFont.workSansFont(ofSize: 10, weight: .semiBold)
+            item.titleLabel.layer.cornerRadius = 8.0
+            item.titleLabel.layer.masksToBounds = true
+            item.titleLabel.textColor = UIColor.init(hex: "455571")
+            item.titleLabel.backgroundColor = UIColor.white
+            item.titleLabel.textAlignment = .center
+        }
+        
+        self.view.addSubview(floaty)
+        
+        floaty.buttonColor = UIColor.init(hex: "67798E")
+        floaty.buttonShadowColor = .clear
+        floaty.plusColor = .white
     }
     
     private func setupTableHeaderView() {

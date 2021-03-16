@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		226DA3F82600750A009BC8CC /* FloatyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA3F12600750A009BC8CC /* FloatyWindow.swift */; };
+		226DA3F92600750A009BC8CC /* FloatyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA3F22600750A009BC8CC /* FloatyManager.swift */; };
+		226DA3FA2600750A009BC8CC /* FloatyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA3F32600750A009BC8CC /* FloatyItem.swift */; };
+		226DA3FB2600750A009BC8CC /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA3F42600750A009BC8CC /* UIView+Draggable.swift */; };
+		226DA3FC2600750A009BC8CC /* FloatyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA3F52600750A009BC8CC /* FloatyViewController.swift */; };
+		226DA3FD2600750A009BC8CC /* Floaty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA3F62600750A009BC8CC /* Floaty.swift */; };
+		226DA3FE2600750A009BC8CC /* FloatyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA3F72600750A009BC8CC /* FloatyDelegate.swift */; };
+		226DA40226008BB4009BC8CC /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA40126008BB4009BC8CC /* PaddingLabel.swift */; };
 		3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */; };
 		493043DC25F87F2600EED242 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */; };
 		493043E025F87FA800EED242 /* UpdateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043DF25F87FA800EED242 /* UpdateProfileViewModel.swift */; };
@@ -183,6 +191,14 @@
 
 /* Begin PBXFileReference section */
 		0EA1B91CAA873600C2D0BB1C /* Pods-KAI Membership.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAI Membership.debug.xcconfig"; path = "Target Support Files/Pods-KAI Membership/Pods-KAI Membership.debug.xcconfig"; sourceTree = "<group>"; };
+		226DA3F12600750A009BC8CC /* FloatyWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyWindow.swift; sourceTree = "<group>"; };
+		226DA3F22600750A009BC8CC /* FloatyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyManager.swift; sourceTree = "<group>"; };
+		226DA3F32600750A009BC8CC /* FloatyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyItem.swift; sourceTree = "<group>"; };
+		226DA3F42600750A009BC8CC /* UIView+Draggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Draggable.swift"; sourceTree = "<group>"; };
+		226DA3F52600750A009BC8CC /* FloatyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyViewController.swift; sourceTree = "<group>"; };
+		226DA3F62600750A009BC8CC /* Floaty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floaty.swift; sourceTree = "<group>"; };
+		226DA3F72600750A009BC8CC /* FloatyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyDelegate.swift; sourceTree = "<group>"; };
+		226DA40126008BB4009BC8CC /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KAI_Membership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		493043DF25F87FA800EED242 /* UpdateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewModel.swift; sourceTree = "<group>"; };
@@ -372,6 +388,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		226DA3EE260074FA009BC8CC /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				226DA3EF2600750A009BC8CC /* Floaty */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		226DA3EF2600750A009BC8CC /* Floaty */ = {
+			isa = PBXGroup;
+			children = (
+				226DA3F12600750A009BC8CC /* FloatyWindow.swift */,
+				226DA3F22600750A009BC8CC /* FloatyManager.swift */,
+				226DA3F32600750A009BC8CC /* FloatyItem.swift */,
+				226DA3F42600750A009BC8CC /* UIView+Draggable.swift */,
+				226DA3F52600750A009BC8CC /* FloatyViewController.swift */,
+				226DA3F62600750A009BC8CC /* Floaty.swift */,
+				226DA3F72600750A009BC8CC /* FloatyDelegate.swift */,
+				226DA40126008BB4009BC8CC /* PaddingLabel.swift */,
+			);
+			path = Floaty;
+			sourceTree = "<group>";
+		};
 		493043D825F87EE900EED242 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1344,8 +1383,9 @@
 		529AE17725DD96FD00635807 /* KAI Membership */ = {
 			isa = PBXGroup;
 			children = (
-				529AE19325DD97AD00635807 /* Application */,
 				525DB8A625E6A78A001491AE /* Constants */,
+				226DA3EE260074FA009BC8CC /* Vendors */,
+				529AE19325DD97AD00635807 /* Application */,
 				525DB8B125E6A813001491AE /* Data & Networking Layer */,
 				521754AC25DE75FA009355BC /* Extensions */,
 				525DB8B025E6A80B001491AE /* Gateway Layer */,
@@ -1736,6 +1776,7 @@
 				525DBAF825F286B8001491AE /* LoginRemote.swift in Sources */,
 				525DBB0525F28949001491AE /* WalletRemote.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
+				226DA3FD2600750A009BC8CC /* Floaty.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
 				525DBA6A25F010BA001491AE /* NewsLastestTableViewCell.swift in Sources */,
 				498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */,
@@ -1751,6 +1792,7 @@
 				525DBAB825F16921001491AE /* MonthlyQuestViewController+DataSource.swift in Sources */,
 				525DB98525EB9012001491AE /* RecentTransactionsViewController.swift in Sources */,
 				525DB9E425EE9600001491AE /* WalletViewModel.swift in Sources */,
+				226DA3FC2600750A009BC8CC /* FloatyViewController.swift in Sources */,
 				525DBA8725F01842001491AE /* OverviewViewController.swift in Sources */,
 				525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */,
 				4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */,
@@ -1762,6 +1804,7 @@
 				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
+				226DA3FB2600750A009BC8CC /* UIView+Draggable.swift in Sources */,
 				494C0AEC25FA249900E30115 /* HistoryRemote.swift in Sources */,
 				529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */,
 				525DB9CE25ED40FF001491AE /* SignInViewController+Delegate.swift in Sources */,
@@ -1774,7 +1817,9 @@
 				525E6BE525FE0DC600A7BAC5 /* ProfileViewModel.swift in Sources */,
 				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
 				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
+				226DA3FE2600750A009BC8CC /* FloatyDelegate.swift in Sources */,
 				525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */,
+				226DA3F82600750A009BC8CC /* FloatyWindow.swift in Sources */,
 				525DBB0125F28917001491AE /* KAIRemote.swift in Sources */,
 				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
 				498BCFE925F7470800F04160 /* Helper.swift in Sources */,
@@ -1811,6 +1856,7 @@
 				493043FD25F8AFA200EED242 /* ForgotPasswordViewModel.swift in Sources */,
 				525DB9EC25EE96CD001491AE /* WalletViewController+Delegate.swift in Sources */,
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
+				226DA3F92600750A009BC8CC /* FloatyManager.swift in Sources */,
 				4963D07725FEF8AB00720B34 /* ConfigRemote.swift in Sources */,
 				494C0AE325FA147A00E30115 /* ResetPasscodeViewModel.swift in Sources */,
 				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
@@ -1834,6 +1880,7 @@
 				525DB96425EA3B86001491AE /* PasscodeView.swift in Sources */,
 				494C0AF025FA284800E30115 /* RewardsViewModel.swift in Sources */,
 				525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */,
+				226DA40226008BB4009BC8CC /* PaddingLabel.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
 				525DBA6125F00F70001491AE /* NewRemote.swift in Sources */,
 				5265497125F5ED9C003AE21A /* PasswordViewController+Delegate.swift in Sources */,
@@ -1844,6 +1891,7 @@
 				493043F925F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift in Sources */,
 				498BCFEF25F7834500F04160 /* UtilitiesViewController+Delegate.swift in Sources */,
 				525DB8EB25E6B669001491AE /* Repository.swift in Sources */,
+				226DA3FA2600750A009BC8CC /* FloatyItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
