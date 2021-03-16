@@ -68,8 +68,13 @@ class WalletViewController: BaseViewController {
     
     private func setupFloatyButton() {
         let floaty = Floaty()
-        floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send"))
-        floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive"))
+        
+        floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send")) { [weak self] (_) in
+            
+        }
+        floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive")) { [weak self] (_) in
+            Navigator.navigateToReceiveVC(from: self)
+        }
         floaty.addItem("BUY", icon: UIImage(named : "ic_floaty_buy"))
         
         floaty.size = 48
