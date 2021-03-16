@@ -8,16 +8,9 @@
 import UIKit
 
 protocol SignUpInputViewDelegate: class {
-    func signUpInputViewEmailValueChange(_ signUpInputView: SignUpInputView, textField: UITextField)
-    func signUpInputViewPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField)
-    func signUpInputViewConfirmPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField)
+    func signUpInputViewTextFieldValueChange(_ signUpInputView: SignUpInputView, textField: UITextField, inputType: SignUpInputView.InputType)
     func signUpInputViewDidFinishTouchingAction(_ signUpInputView: SignUpInputView, actionKey: SignUpInputView.ActionKey)
-}
-
-extension SignUpInputViewDelegate {
-    func signUpInputViewEmailValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {}
-    func signUpInputViewPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {}
-    func signUpInputViewConfirmPasswordValueChange(_ signUpInputView: SignUpInputView, textField: UITextField) {}
+    func signUpInputViewRequestCaptcha(_ signUpInputView: SignUpInputView)
 }
 
 class SignUpInputView: UIView {
@@ -26,6 +19,13 @@ class SignUpInputView: UIView {
     enum ActionKey {
         case signIn
         case createAccount
+    }
+    
+    enum InputType {
+        case email
+        case password
+        case confirm
+        case captcha
     }
     
     private let signInText: String = "I’m already a KAISER ! Sign In"
@@ -49,6 +49,48 @@ class SignUpInputView: UIView {
     
     private(set) lazy var confirmPasswordTextField: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(with: .password, title: "CONFIRM PASSWORD", placeholder: "Confirm password")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        
+        return view
+    }()
+    
+    private let captchaContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private let captchaImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    private let activityCaptchaView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .gray)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Constants.backroundColorDefault.withAlphaComponent(0.5)
+        view.hidesWhenStopped = true
+        view.startAnimating()
+        
+        return view
+    }()
+    
+    private lazy var refreshCaptchaButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "ic_refresh_rotate")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        button.addTarget(self, action: #selector(onPressedRefreshCaptcha), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    private(set) lazy var captchaTextField: KAIInputTextFieldView = {
+        let view = KAIInputTextFieldView(with: .password, title: "CONFIRM CAPTCHA", placeholder: "Confirm captcha")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -112,8 +154,14 @@ class SignUpInputView: UIView {
         addSubview(emailTextField)
         addSubview(passwordTextField)
         addSubview(confirmPasswordTextField)
+        addSubview(captchaContainerView)
+        addSubview(refreshCaptchaButton)
+        addSubview(captchaTextField)
         addSubview(createAccountButton)
         addSubview(signInLabel)
+        
+        captchaContainerView.addSubview(captchaImageView)
+        captchaContainerView.addSubview(activityCaptchaView)
         
         NSLayoutConstraint.activate([
             emailTextField.topAnchor.constraint(equalTo: topAnchor),
@@ -128,7 +176,31 @@ class SignUpInputView: UIView {
             confirmPasswordTextField.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
             confirmPasswordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             
-            createAccountButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 32),
+            refreshCaptchaButton.centerYAnchor.constraint(equalTo: captchaContainerView.centerYAnchor),
+            refreshCaptchaButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            refreshCaptchaButton.widthAnchor.constraint(equalToConstant: 56),
+            refreshCaptchaButton.heightAnchor.constraint(equalToConstant: 56),
+            
+            captchaContainerView.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 12),
+            captchaContainerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            captchaContainerView.trailingAnchor.constraint(equalTo: refreshCaptchaButton.leadingAnchor),
+            captchaContainerView.heightAnchor.constraint(equalToConstant: 80),
+            
+            captchaImageView.topAnchor.constraint(equalTo: captchaContainerView.topAnchor),
+            captchaImageView.leadingAnchor.constraint(equalTo: captchaContainerView.leadingAnchor),
+            captchaImageView.bottomAnchor.constraint(equalTo: captchaContainerView.bottomAnchor),
+            captchaImageView.trailingAnchor.constraint(equalTo: captchaContainerView.trailingAnchor),
+            
+            activityCaptchaView.topAnchor.constraint(equalTo: captchaContainerView.topAnchor),
+            activityCaptchaView.leadingAnchor.constraint(equalTo: captchaContainerView.leadingAnchor),
+            activityCaptchaView.bottomAnchor.constraint(equalTo: captchaContainerView.bottomAnchor),
+            activityCaptchaView.trailingAnchor.constraint(equalTo: captchaContainerView.trailingAnchor),
+            
+            captchaTextField.topAnchor.constraint(equalTo: captchaContainerView.bottomAnchor, constant: 12),
+            captchaTextField.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
+            captchaTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
+            
+            createAccountButton.topAnchor.constraint(equalTo: captchaTextField.bottomAnchor, constant: 32),
             createAccountButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             createAccountButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             createAccountButton.heightAnchor.constraint(equalToConstant: 52),
@@ -153,6 +225,12 @@ class SignUpInputView: UIView {
         
         signInLabel.attributedText = mutableAttributedString
     }
+    
+    // MARK: Methods
+    func setCaptchaImage(_ url: URL) {
+        captchaImageView.setImage(from: url)
+        activityCaptchaView.isHidden = true
+    }
 }
 
 // MARK: Handle actions
@@ -169,6 +247,13 @@ extension SignUpInputView {
         
         delegate?.signUpInputViewDidFinishTouchingAction(self, actionKey: .signIn)
     }
+    
+    @objc private func onPressedRefreshCaptcha() {
+        guard activityCaptchaView.isHidden else { return }
+        
+        delegate?.signUpInputViewRequestCaptcha(self)
+        activityCaptchaView.isHidden = false
+    }
 }
 
 // MARK: KAITextFieldDelegate
@@ -176,14 +261,16 @@ extension SignUpInputView: KAITextFieldDelegate {
     
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
         if textField == emailTextField {
-            delegate?.signUpInputViewEmailValueChange(self, textField: textField)
+            delegate?.signUpInputViewTextFieldValueChange(self, textField: textField, inputType: .email)
         } else if textField == passwordTextField {
-            delegate?.signUpInputViewEmailValueChange(self, textField: textField)
+            delegate?.signUpInputViewTextFieldValueChange(self, textField: textField, inputType: .password)
         } else if textField == confirmPasswordTextField {
-            delegate?.signUpInputViewEmailValueChange(self, textField: textField)
+            delegate?.signUpInputViewTextFieldValueChange(self, textField: textField, inputType: .confirm)
+        } else if textField == captchaTextField {
+            delegate?.signUpInputViewTextFieldValueChange(self, textField: textField, inputType: .captcha)
         }
         
-        isConfirmEnabled = !emailTextField.contentInput.isEmpty && (passwordTextField.contentInput.count >= Constants.lengthPasswordMinimum) && (confirmPasswordTextField.contentInput.count >= Constants.lengthPasswordMinimum)
+        isConfirmEnabled = !emailTextField.contentInput.isEmpty && (passwordTextField.contentInput.count >= Constants.lengthPasswordMinimum) && (confirmPasswordTextField.contentInput.count >= Constants.lengthPasswordMinimum) && !(captchaTextField.contentInput.isEmpty)
     }
     
     func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {

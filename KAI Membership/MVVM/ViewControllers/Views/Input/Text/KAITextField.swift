@@ -254,9 +254,15 @@ class KAITextField: UIView {
     }
     
     func setText(_ text: String) {
-        textField.text = text
         contentInput = text
+        textField.text = text
         placeholderLabel.isHidden = !text.isEmpty
+    }
+    
+    func setAttributedText(_ attributedText: NSAttributedString) {
+        contentInput = attributedText.string
+        textField.attributedText = attributedText
+        placeholderLabel.isHidden = !contentInput.isEmpty
     }
     
     // MARK: Handle actions

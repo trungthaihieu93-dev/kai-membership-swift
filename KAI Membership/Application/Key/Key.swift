@@ -12,7 +12,7 @@ class Key {
     enum UserDefault: String {
         case darkMode = "KAI.UserDefault.DarkMode"
         case haveUsedTheApplicationOnce = "KAI.UserDefault.HaveUsedTheApplicationOnce"
-//        case topupServiceProviders = "KAI.UserDefault.TopupServiceProviders"
+        case serviceProviders = "KAI.UserDefault.ServiceProviders"
 //        case linkBuyApp = "KAI.UserDefault.LinkBuyApp"
         case configure = "KAI.UserDefault.Configure"
     }

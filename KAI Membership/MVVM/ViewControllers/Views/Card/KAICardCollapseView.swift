@@ -54,6 +54,7 @@ class KAICardCollapseView: UIView {
         label.numberOfLines = 1
         label.textColor = UIColor.black.withAlphaComponent(0.87)
         label.font = .workSansFont(ofSize: 14, weight: .medium)
+        label.isHidden = true
         
         return label
     }()
@@ -63,6 +64,7 @@ class KAICardCollapseView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
         button.titleLabel?.font = .workSansFont(ofSize: 12, weight: .medium)
+        button.isHidden = true
         
         return button
     }()
@@ -133,7 +135,7 @@ class KAICardCollapseView: UIView {
     // MARK: Methods
     func configure() {
         kaiLabel.attributedText = AccountManagement.kai?.wallet?.balance?.formatCurrencyToAttributedString(unit: .kai, font: .workSansFont(ofSize: 28, weight: .medium), textColor: .init(hex: "67798E"))
-        monetaryValueLabel.text = "0,033 USD/ KAI"
-        profit = 35.5
+//        monetaryValueLabel.text = "0,033 USD/ KAI"
+//        profit = 35.5
     }
 }

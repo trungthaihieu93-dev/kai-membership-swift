@@ -25,4 +25,25 @@ class SignUpViewModel {
             return Disposables.create()
         }
     }
+    
+    func generateCaptcha() -> Observable<URL> {
+        return Observable<URL>.create { (observer) -> Disposable in
+            CaptchaServices.generateCaptcha {
+                switch $0 {
+                case .success(let result):
+                    if let captchaID = result.data?.id, !captchaID.isEmpty, let url = URL(string: CaptchaServices.getCaptchaImageLink(with: captchaID)) {
+                        observer.onNext(url)
+                        observer.onCompleted()
+                    } else {
+                        let error = APIErrorResult(code: "1", message: "ERROR")
+                        observer.onError(error)
+                    }
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+
+            return Disposables.create()
+        }
+    }
 }

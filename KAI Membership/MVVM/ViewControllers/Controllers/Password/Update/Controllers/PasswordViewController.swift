@@ -126,6 +126,7 @@ class PasswordViewController: BaseViewController {
         
         scrollView.addSubview(inputPasswordView)
         scrollView.addSubview(confirmPasswordView)
+        scrollView.addSubview(inputTokenView)
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -145,22 +146,16 @@ class PasswordViewController: BaseViewController {
             confirmPasswordView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor),
             confirmPasswordView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor),
             
+            inputTokenView.topAnchor.constraint(equalTo: confirmPasswordView.bottomAnchor, constant: 8),
+            inputTokenView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor),
+            inputTokenView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor),
+            inputTokenView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor),
+            
             setNewPasswordButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 32),
             setNewPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             setNewPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             setNewPasswordButton.heightAnchor.constraint(equalToConstant: 52),
         ])
-        
-        if type == .new {
-            scrollView.addSubview(inputTokenView)
-            
-            inputTokenView.topAnchor.constraint(equalTo: confirmPasswordView.bottomAnchor, constant: 8).isActive = true
-            inputTokenView.leadingAnchor.constraint(equalTo: inputPasswordView.leadingAnchor).isActive = true
-            inputTokenView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor).isActive = true
-            inputTokenView.trailingAnchor.constraint(equalTo: inputPasswordView.trailingAnchor).isActive = true
-        } else {
-            confirmPasswordView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor).isActive = true
-        }
         
         confirmBottomAnchor = setNewPasswordButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 20))
         confirmBottomAnchor?.isActive = true
@@ -191,7 +186,25 @@ extension PasswordViewController {
             return
         }
         
-        switch type {
+        viewModel.confirmPassword(with: inputTokenView.contentInput, password: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let this = self else { return }
+            
+            switch this.type {
+            case .new:
+                Navigator.navigateToCongratsVC(from: this, with: .password)
+            case .change:
+                debugPrint("Show Alert thay đổi mật khẩu thành công")
+                if let profileVC = this.navigationController?.viewControllers.first(where: { $0 is ProfileViewController }) {
+                    this.navigationController?.popToViewController(profileVC, animated: true)
+                } else {
+                    this.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        }, onError: { error in
+            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
+        
+        /*switch type {
         case .new:
             viewModel.confirmPassword(with: inputTokenView.contentInput, password: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 guard let this = self else { return }
@@ -208,7 +221,7 @@ extension PasswordViewController {
             }, onError: { error in
                 debugPrint("Change password error: \((error as? APIErrorResult)?.message ?? "ERROR")")
             }).disposed(by: disposeBag)
-        }
+        }*/
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {

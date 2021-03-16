@@ -9,44 +9,23 @@ import UIKit
 
 protocol TopupTableViewCellDelegate: class {
     func topupTableViewCellPhoneValueChange(_ topupTableViewCell: TopupTableViewCell, textField: UITextField)
-    func topupTableViewCellDidSelectProvider(_ topupTableViewCell: TopupTableViewCell, providerType: TopupTableViewCell.ProviderType)
-    func topupTableViewCellDidValueMoney(_ topupTableViewCell: TopupTableViewCell, amount: Double)
+    func topupTableViewCellProvider(_ topupTableViewCell: TopupTableViewCell, didSelectIndex index: Int)
+    func topupTableViewCellDidValueMoney(_ topupTableViewCell: TopupTableViewCell, amount: Amount)
 }
 
 class TopupTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    enum ProviderType: Int, CaseIterable {
-        case viettel
-        case mobifone
-        case vinaphone
-        
-        var name: String {
-            switch self {
-            case .viettel:
-                return "viettel"
-            case .mobifone:
-                return "mobifone"
-            case .vinaphone:
-                return "vinaphone"
-            }
-        }
-    }
-    
-    struct MoneyValue {
-        var money: Double
-        var value: Double
-    }
-    
     private let sectionInsets: UIEdgeInsets = .init(top: 2, left: 16, bottom: 2, right: 16)
     private let minimumLineSpacing: CGFloat = 12
     private let itemHeight: CGFloat = 60
+    private let serviceProviders = AppSetting.serviceProviders
     
-    private let moneyValues: [MoneyValue] = [
-        MoneyValue(money: 20000, value: 66.6666),
-        MoneyValue(money: 50000, value: 166.6666),
-        MoneyValue(money: 100000, value: 266.66666),
-        MoneyValue(money: 200000, value: 366.66666)
+    private let amounts: [Amount] = [
+        Amount(money: 20000, kai: 66.6666),
+        Amount(money: 50000, kai: 166.6666),
+        Amount(money: 100000, kai: 266.66666),
+        Amount(money: 200000, kai: 366.66666)
     ]
     
     private let containerView: UIView = {
@@ -119,9 +98,9 @@ class TopupTableViewCell: UITableViewCell {
     }()
     
     private lazy var combobox: KAICombobox = {
-        let comboboxData: [ComboboxData] = moneyValues.map { item -> ComboboxData in
+        let comboboxData: [ComboboxData] = amounts.map { item -> ComboboxData in
             let title = item.money.formatCurrencyToString(unit: .vnd, groupingSeparator: .comma, decimalSeparator: .dots)
-            let sub = item.value.formatCurrencyToString(unit: .kai, groupingSeparator: .comma, decimalSeparator: .dots)
+            let sub = item.kai.formatCurrencyToString(unit: .kai, groupingSeparator: .comma, decimalSeparator: .dots)
             
             return ComboboxData(title: title, subTitle: sub)
         }
@@ -144,7 +123,7 @@ class TopupTableViewCell: UITableViewCell {
                 newCell.isProviderSelected = true
             }
             
-            delegate?.topupTableViewCellDidSelectProvider(self, providerType: ProviderType(rawValue: providerSelectedIndex) ?? .viettel)
+            delegate?.topupTableViewCellProvider(self, didSelectIndex: providerSelectedIndex)
         }
     }
     
@@ -230,21 +209,19 @@ extension TopupTableViewCell: KAITextFieldDelegate {
 extension TopupTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ProviderType.allCases.count
+        return serviceProviders.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProviderCollectionViewCell.identifier, for: indexPath) as! ProviderCollectionViewCell
         
-        if let providerType = ProviderType(rawValue: indexPath.row) {
-            switch providerType {
-            case .viettel:
-                cell.configure(UIImage(named: "logo_viettel"))
-            case .mobifone:
-                cell.configure(UIImage(named: "logo_mobifone"))
-            case .vinaphone:
-                cell.configure(UIImage(named: "logo_vinaphone"))
-            }
+        switch indexPath.row {
+        case 1:
+            cell.configure(UIImage(named: "logo_mobifone"))
+        case 2:
+            cell.configure(UIImage(named: "logo_vinaphone"))
+        default:
+            cell.configure(UIImage(named: "logo_viettel"))
         }
         
         cell.isProviderSelected = providerSelectedIndex == indexPath.row
@@ -271,7 +248,7 @@ extension TopupTableViewCell: UICollectionViewDelegateFlowLayout {
 extension TopupTableViewCell: KAIComboboxDelegate {
     
     func kaiCombobox(_ kaiCombobox: KAICombobox, didSelectIndex index: Int) {
-        let amount = moneyValues[index].money
+        let amount = amounts[index]
         delegate?.topupTableViewCellDidValueMoney(self, amount: amount)
     }
 }

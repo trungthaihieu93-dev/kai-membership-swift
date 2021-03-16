@@ -54,7 +54,7 @@ class BaseViewController: UIViewController {
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.backroundColorDefault
+        view.backgroundColor = backroundColorDefault
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
     }

@@ -27,6 +27,11 @@
 		494C0AE325FA147A00E30115 /* ResetPasscodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AE225FA147A00E30115 /* ResetPasscodeViewModel.swift */; };
 		494C0AEC25FA249900E30115 /* HistoryRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AEB25FA249900E30115 /* HistoryRemote.swift */; };
 		494C0AF025FA284800E30115 /* RewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AEF25FA284800E30115 /* RewardsViewModel.swift */; };
+		4951731526008D8D0063AEF7 /* CaptchaServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951731426008D8D0063AEF7 /* CaptchaServices.swift */; };
+		4951731926008F200063AEF7 /* CaptchaRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951731826008F200063AEF7 /* CaptchaRemote.swift */; };
+		495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173222600A80B0063AEF7 /* OverviewViewController+DataSource.swift */; };
+		495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173252600AA800063AEF7 /* OverviewViewController+Delegate.swift */; };
+		4951732A2600AAF90063AEF7 /* OverviewTopupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */; };
 		4963D07725FEF8AB00720B34 /* ConfigRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D07625FEF8AB00720B34 /* ConfigRemote.swift */; };
 		4963D07B25FEF8CD00720B34 /* ConfigServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D07A25FEF8CD00720B34 /* ConfigServices.swift */; };
 		4963D08725FF165500720B34 /* ProviderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */; };
@@ -203,6 +208,11 @@
 		494C0AE225FA147A00E30115 /* ResetPasscodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasscodeViewModel.swift; sourceTree = "<group>"; };
 		494C0AEB25FA249900E30115 /* HistoryRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRemote.swift; sourceTree = "<group>"; };
 		494C0AEF25FA284800E30115 /* RewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsViewModel.swift; sourceTree = "<group>"; };
+		4951731426008D8D0063AEF7 /* CaptchaServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaServices.swift; sourceTree = "<group>"; };
+		4951731826008F200063AEF7 /* CaptchaRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaRemote.swift; sourceTree = "<group>"; };
+		495173222600A80B0063AEF7 /* OverviewViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OverviewViewController+DataSource.swift"; sourceTree = "<group>"; };
+		495173252600AA800063AEF7 /* OverviewViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OverviewViewController+Delegate.swift"; sourceTree = "<group>"; };
+		495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTopupTableViewCell.swift; sourceTree = "<group>"; };
 		4963D07625FEF8AB00720B34 /* ConfigRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigRemote.swift; sourceTree = "<group>"; };
 		4963D07A25FEF8CD00720B34 /* ConfigServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServices.swift; sourceTree = "<group>"; };
 		4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -463,21 +473,12 @@
 			path = Passcode;
 			sourceTree = "<group>";
 		};
-		4930440F25F8CBBD00EED242 /* Topup */ = {
-			isa = PBXGroup;
-			children = (
-				525DBA7925F01774001491AE /* Controllers */,
-				525DBA7A25F0177C001491AE /* View Model */,
-				494C0ACD25FA092000E30115 /* Views */,
-			);
-			path = Topup;
-			sourceTree = "<group>";
-		};
 		4930441125F8CBC600EED242 /* Overview */ = {
 			isa = PBXGroup;
 			children = (
 				525DBA8325F01815001491AE /* Controllers */,
 				525DBA8425F0181B001491AE /* View Model */,
+				495173282600AAD30063AEF7 /* Views */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -512,6 +513,22 @@
 				494C0AEF25FA284800E30115 /* RewardsViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		4951731726008F030063AEF7 /* Captcha */ = {
+			isa = PBXGroup;
+			children = (
+				4951731826008F200063AEF7 /* CaptchaRemote.swift */,
+			);
+			path = Captcha;
+			sourceTree = "<group>";
+		};
+		495173282600AAD30063AEF7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4963D07925FEF8B300720B34 /* Config */ = {
@@ -656,6 +673,7 @@
 			isa = PBXGroup;
 			children = (
 				498BCFE225F71B1700F04160 /* Account Info */,
+				4951731726008F030063AEF7 /* Captcha */,
 				4963D07925FEF8B300720B34 /* Config */,
 				525DB9FA25EFD8D2001491AE /* Device */,
 				494C0AEA25FA248800E30115 /* History */,
@@ -898,6 +916,7 @@
 			isa = PBXGroup;
 			children = (
 				525DB9F325EFD3EB001491AE /* ActivityServices.swift */,
+				4951731426008D8D0063AEF7 /* CaptchaServices.swift */,
 				4963D07A25FEF8CD00720B34 /* ConfigServices.swift */,
 				525DB9F625EFD5B7001491AE /* DeviceServices.swift */,
 				49CAC10F25FB74C900577D33 /* PasscodeServices.swift */,
@@ -1115,12 +1134,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		525DBA7825F01765001491AE /* Topups */ = {
+		525DBA7825F01765001491AE /* Topup */ = {
 			isa = PBXGroup;
 			children = (
-				4930440F25F8CBBD00EED242 /* Topup */,
+				525DBA7925F01774001491AE /* Controllers */,
+				525DBA7A25F0177C001491AE /* View Model */,
+				494C0ACD25FA092000E30115 /* Views */,
 			);
-			path = Topups;
+			path = Topup;
 			sourceTree = "<group>";
 		};
 		525DBA7925F01774001491AE /* Controllers */ = {
@@ -1145,6 +1166,8 @@
 			isa = PBXGroup;
 			children = (
 				525DBA8625F01842001491AE /* OverviewViewController.swift */,
+				495173222600A80B0063AEF7 /* OverviewViewController+DataSource.swift */,
+				495173252600AA800063AEF7 /* OverviewViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1389,7 +1412,7 @@
 				521754C825DEACC9009355BC /* Select Account */,
 				52F37C9D25E00004009F311F /* Sign In */,
 				52F37CE825E031B5009F311F /* Sign Up */,
-				525DBA7825F01765001491AE /* Topups */,
+				525DBA7825F01765001491AE /* Topup */,
 				521754AD25DE764B009355BC /* Tutorials */,
 				529AE1AB25DD997500635807 /* Utilities */,
 				529AE1B125DD99B000635807 /* Wallet */,
@@ -1728,10 +1751,12 @@
 				49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */,
 				5265494A25F5395B003AE21A /* SignUpInputView.swift in Sources */,
 				525DB95425E96018001491AE /* UIFont+Extensions.swift in Sources */,
+				495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
 				525DBAE325F2399B001491AE /* NewsLastestCollectionViewCell.swift in Sources */,
 				525DBA6F25F0121F001491AE /* NewsViewController+ Delegate.swift in Sources */,
 				4963D08A25FF2D5700720B34 /* RewardsTableViewCell.swift in Sources */,
+				4951731926008F200063AEF7 /* CaptchaRemote.swift in Sources */,
 				525DB9F025EFD254001491AE /* SelectAccountViewModel.swift in Sources */,
 				525DBAF825F286B8001491AE /* LoginRemote.swift in Sources */,
 				525DBB0525F28949001491AE /* WalletRemote.swift in Sources */,
@@ -1761,6 +1786,7 @@
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
 				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
+				495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
 				494C0AEC25FA249900E30115 /* HistoryRemote.swift in Sources */,
 				529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */,
@@ -1771,6 +1797,7 @@
 				5265495425F53D80003AE21A /* SignUpViewModel.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */,
+				4951732A2600AAF90063AEF7 /* OverviewTopupTableViewCell.swift in Sources */,
 				525E6BE525FE0DC600A7BAC5 /* ProfileViewModel.swift in Sources */,
 				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
 				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
@@ -1795,6 +1822,7 @@
 				493043E325F8818200EED242 /* UpdateProfileViewController+Delegate.swift in Sources */,
 				498BCFF225F785F000F04160 /* ProfileHeaderView.swift in Sources */,
 				525DB9F425EFD3EB001491AE /* ActivityServices.swift in Sources */,
+				4951731526008D8D0063AEF7 /* CaptchaServices.swift in Sources */,
 				525DBA8D25F0190B001491AE /* KAICardCollapseView.swift in Sources */,
 				52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				525DBA7D25F017AA001491AE /* TopupViewController.swift in Sources */,

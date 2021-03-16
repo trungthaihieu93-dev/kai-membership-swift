@@ -55,12 +55,21 @@ class PasscodeViewModel {
     }
     
     func checkPasscode(_ passcode: String) -> Observable<Void> {
+        let email = self.email
+        
         return Observable<Void>.create { (observer) -> Disposable in
             DeviceServices.checkPasscode(passcode) {
                 switch $0 {
                 case .success:
-                    observer.onNext(())
-                    observer.onCompleted()
+                    UserServices.requestChangePassword(with: email) {
+                        switch $0 {
+                        case .success:
+                            observer.onNext(())
+                            observer.onCompleted()
+                        case .failure(let error):
+                            observer.onError(error)
+                        }
+                    }
                 case .failure(let error):
                     observer.onError(error)
                 }

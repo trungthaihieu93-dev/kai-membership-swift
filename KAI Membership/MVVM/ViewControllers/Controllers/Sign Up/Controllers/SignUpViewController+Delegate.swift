@@ -9,6 +9,8 @@ import UIKit
 
 extension SignUpViewController: SignUpInputViewDelegate {
     
+    func signUpInputViewTextFieldValueChange(_ signUpInputView: SignUpInputView, textField: UITextField, inputType: SignUpInputView.InputType) {}
+    
     func signUpInputViewDidFinishTouchingAction(_ signUpInputView: SignUpInputView, actionKey: SignUpInputView.ActionKey) {
         switch actionKey {
         case .signIn:
@@ -17,5 +19,9 @@ extension SignUpViewController: SignUpInputViewDelegate {
         case .createAccount:
             createAccount()
         }
+    }
+    
+    func signUpInputViewRequestCaptcha(_ signUpInputView: SignUpInputView) {
+        generateCaptcha()
     }
 }

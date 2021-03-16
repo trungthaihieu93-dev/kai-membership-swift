@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ConfigGroupKey: String {
+enum ConfigKey: String {
     case missionType = "Mission Type"
     case missionKey = "Mission Key"
     case mobileCard = "Mobile Card"
@@ -35,7 +35,7 @@ class ConfigGroupRemote: BaseModel {
 class ConfigRemote: BaseModel {
     
     var key: String?
-    var value: String?
+    var value: String
     
     enum CodingKeys: String, CodingKey {
         case key
@@ -46,7 +46,7 @@ class ConfigRemote: BaseModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         key = try container.decodeIfPresent(String.self, forKey: .key)
-        value = try container.decodeIfPresent(String.self, forKey: .value)
+        value = try container.decodeIfPresent(String.self, forKey: .value) ?? ""
     }
     
     func encode(to encoder: Encoder) throws {
@@ -54,5 +54,10 @@ class ConfigRemote: BaseModel {
         
         try container.encode(key, forKey: .key)
         try container.encode(value, forKey: .value)
+    }
+    
+    init(with key: String, value: String) {
+        self.key = key
+        self.value = value
     }
 }

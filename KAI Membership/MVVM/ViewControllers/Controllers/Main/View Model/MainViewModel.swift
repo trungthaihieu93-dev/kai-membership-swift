@@ -32,6 +32,7 @@ class MainViewModel {
             ConfigServices.get {
                 switch $0 {
                 case .success(let result):
+                    AppSetting.serviceProviders = result.datas.first(where: { $0.name == ConfigKey.mobileCard.rawValue })?.configs ?? []
                     AppSetting.configures = result.datas
                     observer.onNext(result.datas)
                     observer.onCompleted()

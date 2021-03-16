@@ -58,7 +58,7 @@ class Helper {
         UIApplication.shared.open(url)
     }
     
-    class func getConfig(forKey key: ConfigGroupKey) -> [ConfigRemote] {
+    class func getConfig(forKey key: ConfigKey) -> [ConfigRemote] {
         return AppSetting.configures.first(where: { $0.name == key.rawValue })?.configs ?? []
     }
 }

@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
     
     // MARK: Properties
     private let backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "bg_profile"))
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         
@@ -154,6 +154,7 @@ class ProfileHeaderView: UIView {
     
     // MARK: Configure
     func configure() {
+        backgroundImageView.image = UIImage(named: "bg_profile")
         nameLabel.text = "Bảo Ngọc"
         emailLabel.text = "ngoc.bao@gmail.com"
         addressWalletLabel.text = "Q24-EUZP-IUGY-935R-P8GH-U7RASH5PP6NSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NG-N4W"
