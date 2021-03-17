@@ -177,7 +177,8 @@ extension UpdateProfileViewController {
     }
     
     @objc private func onPressedUpdateProfile() {
-        
+        // TODO: API here
+        AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .topx, from: self)
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
@@ -185,6 +186,6 @@ extension UpdateProfileViewController {
     }
     
     @objc private func onPressedBirthDay() {
-        
+        // TODO: Show Date picker here
     }
 }

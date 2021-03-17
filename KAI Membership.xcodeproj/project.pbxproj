@@ -18,6 +18,7 @@
 		226DA4062600974B009BC8CC /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA4052600974B009BC8CC /* ReceiveViewController.swift */; };
 		226DA41E2600ACC6009BC8CC /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA41D2600ACC6009BC8CC /* UIButton+Extensions.swift */; };
 		226DA42E2600B5E2009BC8CC /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA42D2600B5E2009BC8CC /* BuyViewController.swift */; };
+		22FA81A62601B18200E3C460 /* AlertManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA81A52601B18200E3C460 /* AlertManagement.swift */; };
 		3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */; };
 		4928737826020493002BAE39 /* OverviewSendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */; };
 		493043DC25F87F2600EED242 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */; };
@@ -217,6 +218,7 @@
 		226DA4052600974B009BC8CC /* ReceiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewController.swift; sourceTree = "<group>"; };
 		226DA41D2600ACC6009BC8CC /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		226DA42D2600B5E2009BC8CC /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
+		22FA81A52601B18200E3C460 /* AlertManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManagement.swift; sourceTree = "<group>"; };
 		2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KAI_Membership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSendTableViewCell.swift; sourceTree = "<group>"; };
 		493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
@@ -886,6 +888,7 @@
 			isa = PBXGroup;
 			children = (
 				521754D025DEAD91009355BC /* AccountManagement.swift */,
+				22FA81A52601B18200E3C460 /* AlertManagement.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -1896,6 +1899,7 @@
 				525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */,
 				525DB9DB25EE9168001491AE /* TransactionRemote.swift in Sources */,
 				525DBA9625F0FDA6001491AE /* NestedScrollViewController.swift in Sources */,
+				22FA81A62601B18200E3C460 /* AlertManagement.swift in Sources */,
 				525DBAC725F178E0001491AE /* QuestViewModel.swift in Sources */,
 				525DB9BD25ED374B001491AE /* NewsViewController+DataSource.swift in Sources */,
 				226DA4062600974B009BC8CC /* ReceiveViewController.swift in Sources */,

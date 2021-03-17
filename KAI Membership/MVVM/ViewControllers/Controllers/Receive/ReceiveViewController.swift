@@ -188,9 +188,7 @@ extension ReceiveViewController {
     }
     
     @objc private func tapCopyButton() {
-        var style = ToastStyle()
-        style.messageColor = UIColor.white
-        style.backgroundColor = UIColor.init(hex: "0A7833")
-        self.view.makeToast("Copied", duration: 2.0, position: .bottom, style: style)
+        // TODO: show toast here
+        AlertManagement.shared.showToast(with: "Copied!", from: self)
     }
 }

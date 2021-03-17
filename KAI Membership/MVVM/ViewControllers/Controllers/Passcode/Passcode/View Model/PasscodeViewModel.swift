@@ -55,7 +55,8 @@ class PasscodeViewModel {
     }
     
     func checkPasscode(_ passcode: String) -> Observable<Void> {
-        let email = self.email
+//        let email = self.email
+        let email = "peihsen.doyle@gmail.com"
         
         return Observable<Void>.create { (observer) -> Disposable in
             DeviceServices.checkPasscode(passcode) {
