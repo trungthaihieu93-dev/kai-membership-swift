@@ -178,7 +178,7 @@ extension UpdateProfileViewController {
     
     @objc private func onPressedUpdateProfile() {
         // TODO: API here
-        AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .topx, from: self)
+        AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top, from: self)
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
