@@ -18,7 +18,7 @@ class KAIBarButtonItemView: UIView {
     private lazy var spinButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_spin")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: AccountManagement.user.spinTurn > 0 ? "ic_spin_original" : "ic_spin")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
@@ -27,10 +27,22 @@ class KAIBarButtonItemView: UIView {
         return button
     }()
     
+    private let dotView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .init(hex: "C42C15")
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 2
+        view.layer.cornerRadius = 7
+        view.isHidden = AccountManagement.user.spinTurn <= 0
+        
+        return view
+    }()
+    
     private lazy var profileButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(from: AccountManagement.user.avatarLink, placeholder: UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
         button.contentEdgeInsets = .init(top: 2, left: 2, bottom: 2, right: 2)
         button.imageView?.layer.cornerRadius = 8
@@ -58,6 +70,7 @@ class KAIBarButtonItemView: UIView {
     func setupView() {
         addSubview(spinButton)
         addSubview(profileButton)
+        addSubview(dotView)
         
         NSLayoutConstraint.activate([
             profileButton.topAnchor.constraint(equalTo: topAnchor),
@@ -72,14 +85,19 @@ class KAIBarButtonItemView: UIView {
             spinButton.trailingAnchor.constraint(equalTo: profileButton.leadingAnchor, constant: -4),
             spinButton.widthAnchor.constraint(equalTo: profileButton.widthAnchor),
             spinButton.heightAnchor.constraint(equalTo: profileButton.heightAnchor),
+            
+            dotView.topAnchor.constraint(equalTo: spinButton.topAnchor, constant: -4),
+            dotView.trailingAnchor.constraint(equalTo: spinButton.trailingAnchor, constant: 4),
+            dotView.widthAnchor.constraint(equalToConstant: 14),
+            dotView.heightAnchor.constraint(equalToConstant: 14),
         ])
-        
-        refresh()
     }
     
     // MARK: Methods
     func refresh() {
         profileButton.setImage(from: AccountManagement.user.avatarLink, placeholder: UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        dotView.isHidden = AccountManagement.user.spinTurn <= 0
+        spinButton.setImage(UIImage(named: AccountManagement.user.spinTurn > 0 ? "ic_spin_original" : "ic_spin")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     // MARK: Handle actions
