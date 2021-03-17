@@ -126,8 +126,13 @@ class SignUpViewController: BaseViewController {
             return
         }
         
+        guard !signUpView.captchaTextField.contentInput.isEmpty else {
+            debugPrint("Vui lòng xác nhận captcha")
+            return
+        }
+        
         let email = signUpView.emailTextField.contentInput
-        viewModel.register(username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
+        viewModel.register(captcha: signUpView.captchaTextField.contentInput, username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
             guard let this = self else { return }
             
             Navigator.navigateToPasscodeVC(from: this, with: .register, email: email)

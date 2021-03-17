@@ -16,12 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        let secItemClasses = [kSecClassGenericPassword, kSecClassInternetPassword, kSecClassCertificate, kSecClassKey, kSecClassIdentity]
-//        for itemClass in secItemClasses {
-//            let spec: NSDictionary = [kSecClass: itemClass]
-//            SecItemDelete(spec)
-//        }
-        
         return true
     }
 

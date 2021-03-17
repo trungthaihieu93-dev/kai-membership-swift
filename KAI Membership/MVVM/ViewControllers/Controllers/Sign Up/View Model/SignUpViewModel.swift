@@ -14,6 +14,7 @@ class SignUpViewModel {
     
     // MARK: Methods
     func register(captcha: String, username: String, email: String, password: String) -> Observable<AccountInfoRemote> {
+        let captchaID = self.captchaID
         return Observable<AccountInfoRemote>.create { (observer) -> Disposable in
             CaptchaServices.verifyCaptcha(with: captchaID, captcha: captcha) {
                 switch $0 {
