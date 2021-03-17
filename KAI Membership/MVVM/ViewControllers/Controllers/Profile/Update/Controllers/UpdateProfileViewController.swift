@@ -177,7 +177,7 @@ extension UpdateProfileViewController {
     }
     
     @objc private func onPressedUpdateProfile() {
-        
+        // TODO: API here
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
@@ -185,6 +185,6 @@ extension UpdateProfileViewController {
     }
     
     @objc private func onPressedBirthDay() {
-        
+        // TODO: Show Date picker here
     }
 }

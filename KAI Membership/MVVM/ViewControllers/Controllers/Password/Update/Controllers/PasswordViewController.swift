@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 class PasswordViewController: BaseViewController {
-
+    
     // MARK: Properties
     enum `Type` {
         case new
@@ -98,7 +98,7 @@ class PasswordViewController: BaseViewController {
         
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -182,9 +182,10 @@ extension PasswordViewController {
     @objc private func onPressedSetNew() {
         guard confirmPasswordView.contentInput == inputPasswordView.contentInput else {
             debugPrint("Xác nhận lại mật khẩu không đúng")
-            
             return
         }
+        
+        view.endEditing(true)
         
         viewModel.confirmPassword(with: inputTokenView.contentInput, password: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             guard let this = self else { return }
@@ -193,35 +194,19 @@ extension PasswordViewController {
             case .new:
                 Navigator.navigateToCongratsVC(from: this, with: .password)
             case .change:
-                debugPrint("Show Alert thay đổi mật khẩu thành công")
-                if let profileVC = this.navigationController?.viewControllers.first(where: { $0 is ProfileViewController }) {
-                    this.navigationController?.popToViewController(profileVC, animated: true)
-                } else {
-                    this.navigationController?.popToRootViewController(animated: true)
-                }
+                AlertManagement.shared.showBulletin(with: "Password changed", image: UIImage(named: "ic_change_password_success"), descriptionText: "Your new password is now applied.\nKeep it safe & sound", fromController: this, primaryButtonTitle: "OK, I got it", secondaryButtonTitle: nil, primaryHandler: { [weak self] item in
+                    guard let this = self else { return }
+                    
+                    if let profileVC = this.navigationController?.viewControllers.first(where: { $0 is ProfileViewController }) {
+                        this.navigationController?.popToViewController(profileVC, animated: true)
+                    } else {
+                        this.navigationController?.popToRootViewController(animated: true)
+                    }
+                }, secondaryHandler: nil)
             }
         }, onError: { error in
             debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
-        
-        /*switch type {
-        case .new:
-            viewModel.confirmPassword(with: inputTokenView.contentInput, password: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-                guard let this = self else { return }
-                
-                Navigator.navigateToCongratsVC(from: this, with: .password)
-            }, onError: { error in
-                debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
-            }).disposed(by: disposeBag)
-        case .change:
-            viewModel.changePassword(password: "", newPassword: confirmPasswordView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-                guard let this = self else { return }
-                
-                // TODO: Kiet continue here
-            }, onError: { error in
-                debugPrint("Change password error: \((error as? APIErrorResult)?.message ?? "ERROR")")
-            }).disposed(by: disposeBag)
-        }*/
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {

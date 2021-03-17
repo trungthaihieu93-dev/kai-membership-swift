@@ -11,6 +11,23 @@ extension String: BaseModel { }
 
 extension String {
     
+    func toImage(with size: CGSize, font: UIFont) -> UIImage? {
+        let frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+         let nameLabel = UILabel(frame: frame)
+         nameLabel.textAlignment = .center
+         nameLabel.backgroundColor = .clear
+         nameLabel.textColor = .white
+         nameLabel.font = font
+         nameLabel.text = self
+         UIGraphicsBeginImageContext(frame.size)
+          if let currentContext = UIGraphicsGetCurrentContext() {
+             nameLabel.layer.render(in: currentContext)
+             let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+             return nameImage
+          }
+          return nil
+    }
+    
     private func isAllDigits() -> Bool {
         let charcterSet  = NSCharacterSet(charactersIn: "0123456789").inverted
         let inputString = self.components(separatedBy: charcterSet)
