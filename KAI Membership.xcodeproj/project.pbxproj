@@ -637,7 +637,6 @@
 		49CAC0EC25FB42CC00577D33 /* Input */ = {
 			isa = PBXGroup;
 			children = (
-				49CAC0F825FB472A00577D33 /* Contact */,
 				49CAC0EF25FB42F600577D33 /* Text */,
 				49CAC0EE25FB42ED00577D33 /* Code */,
 			);
@@ -669,13 +668,6 @@
 				494C0AB425F9EE0300E30115 /* KAITextField.swift */,
 			);
 			path = Text;
-			sourceTree = "<group>";
-		};
-		49CAC0F825FB472A00577D33 /* Contact */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Contact;
 			sourceTree = "<group>";
 		};
 		49CAC0FA25FB51CB00577D33 /* Quest */ = {
