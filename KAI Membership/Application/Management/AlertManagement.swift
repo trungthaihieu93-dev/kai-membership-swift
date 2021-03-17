@@ -7,6 +7,7 @@
 
 import Foundation
 import BLTNBoard
+import Toast_Swift
 
 class AlertManagement {
     
@@ -64,5 +65,12 @@ class AlertManagement {
         bulletin?.backgroundViewStyle = .blurredDark
         
         bulletin?.showBulletin(above: fromController, animated: true, completion: nil)
+    }
+    
+    func showToast(with text: String, textColor: UIColor? = nil, backgroundColor: UIColor? = nil, position: ToastPosition = ToastManager.shared.position, from controller: UIViewController? = nil) {
+        var style = ToastStyle()
+        style.messageColor = textColor ?? .black
+        style.backgroundColor = backgroundColor ?? .white
+        controller?.view.makeToast("Copied", duration: 2.0, position: position, style: style)
     }
 }
