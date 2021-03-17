@@ -104,15 +104,11 @@ class SignInViewController: BaseViewController {
     
     // MARK: Login
     func login() {
-        viewModel.login(with: signInView.emailTextField.contentInput, and: signInView.passwordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
+        let email = signInView.emailTextField.contentInput
+        viewModel.login(with: email, and: signInView.passwordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
             guard let this = self else { return }
             
-            if let completion = this.completion {
-                completion()
-                this.navigationController?.popViewController(animated: true)
-            } else {
-                Navigator.showRootTabbarController()
-            }
+            Navigator.navigateToPasscodeVC(from: this, with: .login, email: email, this.completion)
         }, onError: { error in
             debugPrint("Login error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)

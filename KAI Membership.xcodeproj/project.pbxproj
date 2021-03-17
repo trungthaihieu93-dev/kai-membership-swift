@@ -19,6 +19,7 @@
 		226DA41E2600ACC6009BC8CC /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA41D2600ACC6009BC8CC /* UIButton+Extensions.swift */; };
 		226DA42E2600B5E2009BC8CC /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DA42D2600B5E2009BC8CC /* BuyViewController.swift */; };
 		3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */; };
+		4928737826020493002BAE39 /* OverviewSendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */; };
 		493043DC25F87F2600EED242 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */; };
 		493043E025F87FA800EED242 /* UpdateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043DF25F87FA800EED242 /* UpdateProfileViewModel.swift */; };
 		493043E325F8818200EED242 /* UpdateProfileViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043E225F8818200EED242 /* UpdateProfileViewController+Delegate.swift */; };
@@ -63,6 +64,11 @@
 		49CAC11025FB74C900577D33 /* PasscodeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10F25FB74C900577D33 /* PasscodeServices.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		49F5FE862601AD5700D53D82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */; };
+		49F5FE8C2601E73400D53D82 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8B2601E73400D53D82 /* SendViewController.swift */; };
+		49F5FE902601E93F00D53D82 /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */; };
+		49F5FE932601EAF200D53D82 /* SendViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE922601EAF200D53D82 /* SendViewController+DataSource.swift */; };
+		49F5FE962601EB4D00D53D82 /* SendViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE952601EB4D00D53D82 /* SendViewController+Delegate.swift */; };
+		49F5FE9A2601EC1200D53D82 /* SendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
 		521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B425DE7C5B009355BC /* UIView+Extensions.swift */; };
@@ -212,6 +218,7 @@
 		226DA41D2600ACC6009BC8CC /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		226DA42D2600B5E2009BC8CC /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
 		2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KAI_Membership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSendTableViewCell.swift; sourceTree = "<group>"; };
 		493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		493043DF25F87FA800EED242 /* UpdateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewModel.swift; sourceTree = "<group>"; };
 		493043E225F8818200EED242 /* UpdateProfileViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateProfileViewController+Delegate.swift"; sourceTree = "<group>"; };
@@ -255,6 +262,11 @@
 		49CAC10F25FB74C900577D33 /* PasscodeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeServices.swift; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		49F5FE8B2601E73400D53D82 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
+		49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
+		49F5FE922601EAF200D53D82 /* SendViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SendViewController+DataSource.swift"; sourceTree = "<group>"; };
+		49F5FE952601EB4D00D53D82 /* SendViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SendViewController+Delegate.swift"; sourceTree = "<group>"; };
+		49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTableViewCell.swift; sourceTree = "<group>"; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		521754B425DE7C5B009355BC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -440,7 +452,7 @@
 		226DA42C2600B5DB009BC8CC /* Buy */ = {
 			isa = PBXGroup;
 			children = (
-				226DA42D2600B5E2009BC8CC /* BuyViewController.swift */,
+				49F5FE892601E6A700D53D82 /* Controllers */,
 			);
 			path = Buy;
 			sourceTree = "<group>";
@@ -591,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */,
+				4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -692,6 +705,50 @@
 			children = (
 				498BCFF125F785F000F04160 /* ProfileHeaderView.swift */,
 				498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		49F5FE882601E6A100D53D82 /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				49F5FE8A2601E6B200D53D82 /* Controllers */,
+				49F5FE8E2601E93400D53D82 /* View Model */,
+				49F5FE982601EC0100D53D82 /* Views */,
+			);
+			path = Send;
+			sourceTree = "<group>";
+		};
+		49F5FE892601E6A700D53D82 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				226DA42D2600B5E2009BC8CC /* BuyViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		49F5FE8A2601E6B200D53D82 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49F5FE8B2601E73400D53D82 /* SendViewController.swift */,
+				49F5FE922601EAF200D53D82 /* SendViewController+DataSource.swift */,
+				49F5FE952601EB4D00D53D82 /* SendViewController+Delegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		49F5FE8E2601E93400D53D82 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		49F5FE982601EC0100D53D82 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1461,9 +1518,9 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				226DA42C2600B5DB009BC8CC /* Buy */,
-				226DA40426009741009BC8CC /* Receive */,
+				49F5FE882601E6A100D53D82 /* Send */,
 				529AE1BB25DD9B4B00635807 /* Base */,
+				226DA42C2600B5DB009BC8CC /* Buy */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
 				525DB87A25E55413001491AE /* Congrats */,
 				525DBA3D25EFEDCB001491AE /* Main */,
@@ -1474,6 +1531,7 @@
 				52F37D0925E15952009F311F /* Password */,
 				5265495925F5E8B6003AE21A /* Profile */,
 				525DB88325E5579E001491AE /* Quest */,
+				226DA40426009741009BC8CC /* Receive */,
 				525DB98125EB8FD9001491AE /* Recent Transactions */,
 				493043E525F88C2000EED242 /* Rewards */,
 				529AE1BD25DD9B5D00635807 /* Root */,
@@ -1828,6 +1886,7 @@
 				525DB9F025EFD254001491AE /* SelectAccountViewModel.swift in Sources */,
 				525DBAF825F286B8001491AE /* LoginRemote.swift in Sources */,
 				525DBB0525F28949001491AE /* WalletRemote.swift in Sources */,
+				49F5FE9A2601EC1200D53D82 /* SendTableViewCell.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
 				226DA3FD2600750A009BC8CC /* Floaty.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
@@ -1900,10 +1959,14 @@
 				525DB9F425EFD3EB001491AE /* ActivityServices.swift in Sources */,
 				4951731526008D8D0063AEF7 /* CaptchaServices.swift in Sources */,
 				525DBA8D25F0190B001491AE /* KAICardCollapseView.swift in Sources */,
+				49F5FE932601EAF200D53D82 /* SendViewController+DataSource.swift in Sources */,
 				52F37CF425E0385A009F311F /* UITapGestureRecognizer+Extensions.swift in Sources */,
+				49F5FE8C2601E73400D53D82 /* SendViewController.swift in Sources */,
 				525DBA7D25F017AA001491AE /* TopupViewController.swift in Sources */,
+				49F5FE902601E93F00D53D82 /* SendViewModel.swift in Sources */,
 				521754C425DE812D009355BC /* TutorialView.swift in Sources */,
 				525DB9C425ED37FD001491AE /* SelectAccountViewController+Delegate.swift in Sources */,
+				4928737826020493002BAE39 /* OverviewSendTableViewCell.swift in Sources */,
 				525DB8AD25E6A7D7001491AE /* ServicesRepository.swift in Sources */,
 				525DBAA825F164AA001491AE /* DailyQuestViewController.swift in Sources */,
 				525DB8E725E6B641001491AE /* UserDataSource.swift in Sources */,
@@ -1928,6 +1991,7 @@
 				525DBA9D25F137A1001491AE /* QuestHeaderView.swift in Sources */,
 				525DB8EE25E6B88C001491AE /* UserLocal.swift in Sources */,
 				49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */,
+				49F5FE962601EB4D00D53D82 /* SendViewController+Delegate.swift in Sources */,
 				493043DC25F87F2600EED242 /* UpdateProfileViewController.swift in Sources */,
 				525DBA3A25EFEB32001491AE /* MainViewController.swift in Sources */,
 				525DBA4A25F002B1001491AE /* PasscodeViewController+Delegate.swift in Sources */,

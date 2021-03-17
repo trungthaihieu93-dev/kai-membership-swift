@@ -9,26 +9,9 @@ import UIKit
 import QRCode
 import Toast_Swift
 
-class ReceiveViewController : BaseViewController {
+class ReceiveViewController: BaseViewController {
     
-    private let closeButton : UIButton = {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setImage(UIImage(named: "ic_close"), for: .normal)
-        
-        return view
-    }()
-    
-    private let titleLabel : UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = UIFont.workSansFont(ofSize: 36, weight: .regular)
-        view.textColor = .black
-        view.text = "Receive"
-        
-        return view
-    }()
-    
+    // MARK: Properties
     private let qrCodeContainerView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -118,6 +101,7 @@ class ReceiveViewController : BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Receive"
         visualize()
         bind()
         addTargets()
@@ -131,10 +115,10 @@ class ReceiveViewController : BaseViewController {
     }
 }
 
+// MARK: Layout
 extension ReceiveViewController {
+    
     private func visualize() {
-        view.addSubview(closeButton)
-        view.addSubview(titleLabel)
         view.addSubview(qrCodeContainerView)
 //        view.addSubview(buttonContainerView)
         
@@ -148,8 +132,6 @@ extension ReceiveViewController {
 //        buttonContainerView.addSubview(separatorLine)
         
         let views = [
-            "close" : closeButton,
-            "title" : titleLabel,
             "qrCodeContainer" : qrCodeContainerView,
 //            "buttonContainer" : buttonContainerView,
             "qrCodeImage" : qrCodeImageView,
@@ -161,9 +143,7 @@ extension ReceiveViewController {
 //            "separator" : separatorLine
         ]
         
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-50-[close(32)]-6-[title]-64-[qrCodeContainer]-(>=8@999)-|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[title]-20-|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[close(32)]-20-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(top)-[qrCodeContainer]-(>=8@999)-|", options: [], metrics: ["top": safeAreaInsets.top + navigationBarHeight + 64], views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-55-[qrCodeContainer]-55-|", options: [], metrics: nil, views: views))
 //        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-55-[buttonContainer]-55-|", options: [], metrics: nil, views: views))
         
@@ -194,14 +174,9 @@ extension ReceiveViewController {
     }
     
     private func addTargets() {
-        closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
 //        setAmountButton.addTarget(self, action: #selector(tapSetAmountButton), for: .touchUpInside)
 //        shareButton.addTarget(self, action: #selector(tapShareButton), for: .touchUpInside)
         qrCodeCopyButton.addTarget(self, action: #selector(tapCopyButton), for: .touchUpInside)
-    }
-    
-    @objc private func tapCloseButton() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @objc private func tapSetAmountButton() {

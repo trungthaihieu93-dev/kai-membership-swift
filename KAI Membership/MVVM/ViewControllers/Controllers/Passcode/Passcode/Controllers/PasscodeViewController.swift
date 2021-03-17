@@ -113,10 +113,13 @@ class PasscodeViewController: BaseViewController {
         }
     }
     
+    var completion: (() -> Void)?
+    
     // MARK: Life cycle's
-    init(with type: `Type`, email: String) {
+    init(with type: `Type`, email: String, _ completion: (() -> Void)? = nil) {
         self.type = type
         self.viewModel = PasscodeViewModel(email: email)
+        self.completion = completion
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -259,8 +262,15 @@ extension PasscodeViewController {
         case .register:
             Navigator.navigateToPasscodeVC(from: self, with: .confirm(.create(passcodeView.code)), email: viewModel.email)
         case .login:
-            viewModel.loginWithPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
-                Navigator.showRootTabbarController()
+            viewModel.loginWithPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                guard let this = self else { return }
+                
+                if let completion = this.completion {
+                    completion()
+                    this.navigationController?.popViewController(animated: true)
+                } else {
+                    Navigator.showRootTabbarController()
+                }
             }, onError: { error in
                 debugPrint("Login with passcode error: \((error as? APIErrorResult)?.message ?? "")")
             }).disposed(by: disposeBag)

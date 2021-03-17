@@ -21,6 +21,7 @@ extension QuestViewController: KAIBarButtonItemViewDelegate {
             Navigator.navigateToSignInVC(from: self) { [weak self] in
                 guard let this = self else { return }
                 
+                kAIBarButtonItemView.refresh()
                 Navigator.navigateToProfileVC(from: this)
             }
         }

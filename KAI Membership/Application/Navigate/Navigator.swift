@@ -37,8 +37,13 @@ final class Navigator {
      - parameter users: Danh sách tài khoản đã đăng nhập
      */
     class func showSelectAccountVC(_ users: [UserRemote]) {
+        guard let window = self.window else { return }
+        
         let vc = SelectAccountViewController(with: users)
-        window?.rootViewController = RootNavigationController(rootViewController: vc)
+        
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {}, completion: { completed in
+            window.rootViewController = RootNavigationController(rootViewController: vc)
+        })
     }
     
     /* Hiện màn hình đăng nhập */
@@ -50,6 +55,7 @@ final class Navigator {
     /* Điều hướng sang màn hình đăng nhập */
     class func navigateToSignInVC(from viewController: UIViewController? = nil, _ completion: (() -> Void)? = nil) {
         let vc = SignInViewController()
+        vc.completion = completion
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -87,8 +93,9 @@ final class Navigator {
      - parameter type: Loại hiển thị
      - parameter email: Địa chỉ email
      */
-    class func navigateToPasscodeVC(from viewController: UIViewController? = nil, with type: PasscodeViewController.`Type`, email: String) {
+    class func navigateToPasscodeVC(from viewController: UIViewController? = nil, with type: PasscodeViewController.`Type`, email: String, _ completion: (() -> Void)? = nil) {
         let vc = PasscodeViewController(with: type, email: email)
+        vc.completion = completion
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -181,22 +188,28 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /*
-     Điều hướng tới màn hình Receive
-     */
+    /* Điều hướng tới màn hình Receive */
     class func navigateToReceiveVC(from viewController: UIViewController? = nil) {
         let vc = ReceiveViewController()
-        vc.modalPresentationStyle = . fullScreen
-        viewController?.present(vc, animated: true, completion: nil)
+        let nv = RootNavigationController(rootViewController: vc)
+        nv.modalPresentationStyle = .fullScreen
+        viewController?.present(nv, animated: true, completion: nil)
     }
     
-    /*
-     Điều hướng tới màn hình Buy
-     */
+    /* Điều hướng tới màn hình Buy */
     class func navigateToBuyVC(from viewController: UIViewController? = nil) {
         let vc = BuyViewController()
-        vc.modalPresentationStyle = . fullScreen
-        viewController?.present(vc, animated: true, completion: nil)
+        let nv = RootNavigationController(rootViewController: vc)
+        nv.modalPresentationStyle = .fullScreen
+        viewController?.present(nv, animated: true, completion: nil)
+    }
+    
+    /* Điều hướng tới màn hình Send */
+    class func navigateToSendVC(from viewController: UIViewController? = nil) {
+        let vc = SendViewController()
+        let nv = RootNavigationController(rootViewController: vc)
+        nv.modalPresentationStyle = .fullScreen
+        viewController?.present(nv, animated: true, completion: nil)
     }
     
     /* Show màn hình game vòng quay */

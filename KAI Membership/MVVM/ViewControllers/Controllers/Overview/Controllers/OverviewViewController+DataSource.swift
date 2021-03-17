@@ -35,7 +35,8 @@ extension OverviewViewController: UITableViewDataSource {
                 
                 return cell
             case .send:
-                let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTopupTableViewCell.identifier, for: indexPath) as! OverviewTopupTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: OverviewSendTableViewCell.identifier, for: indexPath) as! OverviewSendTableViewCell
+                cell.configure(walletAddress: viewModel.address, amount: viewModel.amount.kai)
                 
                 return cell
             }

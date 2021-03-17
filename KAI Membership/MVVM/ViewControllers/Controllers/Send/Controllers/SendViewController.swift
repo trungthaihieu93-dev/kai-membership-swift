@@ -1,13 +1,13 @@
 //
-//  TopupViewController.swift
+//  SendViewController.swift
 //  KAI Membership
 //
-//  Created by Anh Kiệt on 04/03/2021.
+//  Created by DAKiet on 17/03/2021.
 //
 
 import UIKit
 
-class TopupViewController: BaseViewController {
+class SendViewController: BaseViewController {
 
     // MARK: Properties
     enum Section: Int, CaseIterable {
@@ -15,7 +15,7 @@ class TopupViewController: BaseViewController {
         case setting
     }
     
-    let viewModel = TopupViewModel()
+    let viewModel = SendViewModel()
     
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -26,7 +26,7 @@ class TopupViewController: BaseViewController {
         tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(CardCollapseTableViewCell.self, forCellReuseIdentifier: CardCollapseTableViewCell.identifier)
-        tableView.register(TopupTableViewCell.self, forCellReuseIdentifier: TopupTableViewCell.identifier)
+        tableView.register(SendTableViewCell.self, forCellReuseIdentifier: SendTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -44,7 +44,7 @@ class TopupViewController: BaseViewController {
         button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(onPressedTopup), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onPressedSend), for: .touchUpInside)
         
         return button
     }()
@@ -72,15 +72,25 @@ class TopupViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        navigationItem.title = "Top-up"
+        navigationItem.title = "Send"
         setupView()
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
         singleTap.numberOfTapsRequired = 1
         singleTap.cancelsTouchesInView = true
-        singleTap.delegate = self
         tableView.addGestureRecognizer(singleTap)
     }
+    
+    private lazy var cameraButton2: UIButton = {
+        let button = UIButton(type: .system)
+        button.frame.size = CGSize(width: 32, height: 32)
+        button.setImage(UIImage(named: "ic_delete")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 8
+        button.createShadow(radius: 8)
+        
+        return button
+    }()
     
     // MARK: Layout
     private func setupView() {
@@ -104,19 +114,18 @@ class TopupViewController: BaseViewController {
 }
 
 // MARK: Handle actions
-extension TopupViewController {
+extension SendViewController {
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
-    @objc private func onPressedTopup() {
-        guard viewModel.phoneNumber.isPhoneNumber else {
-            debugPrint("Show Alert ko phai so dien thoai")
-            return
-        }
-        
-        Navigator.navigateToOverviewVC(from: self, phoneNumber: viewModel.phoneNumber, providerCode: viewModel.serviceProviders[viewModel.serviceProviderIndex].value, amount: viewModel.amount)
+    @objc private func onPressedClose() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func onPressedSend() {
+        Navigator.navigateToOverviewVC(from: self, address: viewModel.walletAddress, amount: viewModel.amount)
         view.endEditing(true)
     }
     

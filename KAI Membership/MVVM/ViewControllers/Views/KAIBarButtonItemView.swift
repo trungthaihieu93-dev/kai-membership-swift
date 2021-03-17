@@ -32,6 +32,8 @@ class KAIBarButtonItemView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
+        button.contentEdgeInsets = .init(top: 2, left: 2, bottom: 2, right: 2)
+        button.imageView?.layer.cornerRadius = 8
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
         button.addTarget(self, action: #selector(onPressedProfile), for: .touchUpInside)
@@ -71,6 +73,13 @@ class KAIBarButtonItemView: UIView {
             spinButton.widthAnchor.constraint(equalTo: profileButton.widthAnchor),
             spinButton.heightAnchor.constraint(equalTo: profileButton.heightAnchor),
         ])
+        
+        refresh()
+    }
+    
+    // MARK: Methods
+    func refresh() {
+        profileButton.setImage(from: AccountManagement.user.avatarLink, placeholder: UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     // MARK: Handle actions

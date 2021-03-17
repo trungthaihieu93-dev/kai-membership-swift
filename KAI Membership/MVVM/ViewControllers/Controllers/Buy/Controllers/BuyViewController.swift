@@ -7,26 +7,9 @@
 
 import UIKit
 
-class BuyViewController : BaseViewController {
+class BuyViewController: BaseViewController {
     
-    private let closeButton : UIButton = {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setImage(UIImage(named: "ic_close"), for: .normal)
-        
-        return view
-    }()
-    
-    private let titleLabel : UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = UIFont.workSansFont(ofSize: 36, weight: .regular)
-        view.textColor = .black
-        view.text = "Buy"
-        
-        return view
-    }()
-    
+    // MARK: Properties
     private let firstImageView : UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "ic_nami")
@@ -80,7 +63,7 @@ class BuyViewController : BaseViewController {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Download Nami from Appstore", for: .normal)
-        view.setTitleColor(UIColor.init(hex: "000000").withAlphaComponent(0.87), for: .normal)
+        view.setTitleColor(UIColor.black.withAlphaComponent(0.87), for: .normal)
         view.titleLabel?.font = UIFont.workSansFont(ofSize: 16, weight: .medium)
         view.backgroundColor = UIColor.white
         view.layer.borderWidth = 1
@@ -102,19 +85,22 @@ class BuyViewController : BaseViewController {
         return view
     }()
     
+    // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Buy"
         visualize()
         bind()
         addTargets()
     }
 }
 
+// MARK: Layout
 extension BuyViewController {
+    
     private func visualize() {
-        view.addSubview(closeButton)
-        view.addSubview(titleLabel)
+        
         view.addSubview(firstImageView)
         view.addSubview(separatorImageView)
         view.addSubview(secondImageView)
@@ -124,8 +110,6 @@ extension BuyViewController {
         view.addSubview(openButton)
         
         let views = [
-            "close" : closeButton,
-            "title" : titleLabel,
             "firstImage" : firstImageView,
             "separator" : separatorImageView,
             "secondImage" : secondImageView,
@@ -135,12 +119,9 @@ extension BuyViewController {
             "open" : openButton
         ]
         
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-50-[close(32)]-6-[title]-100-[firstImage(54)]-40-[introduce]-[description]-(>=8@999)-[download(52)]-12-[open(52)]-66-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(top)-[firstImage(54)]-40-[introduce]-[description]-(>=8@999)-[download(52)]-12-[open(52)]-66-|", options: [], metrics: ["top": safeAreaInsets.top + navigationBarHeight + 100], views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[separator(14)]", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[separator(14)]", options: [], metrics: nil, views: views))
-        
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[title]-20-|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[close(32)]-20-|", options: [], metrics: nil, views: views))
         
         view.addConstraint(NSLayoutConstraint(item: firstImageView, attribute: .width, relatedBy: .equal, toItem: firstImageView, attribute: .height, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: firstImageView, attribute: .width, relatedBy: .equal, toItem: secondImageView, attribute: .width, multiplier: 1, constant: 0))
@@ -182,13 +163,8 @@ extension BuyViewController {
     }
     
     private func addTargets() {
-        closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
         downloadButton.addTarget(self, action: #selector(tapDownloadButton), for: .touchUpInside)
         openButton.addTarget(self, action: #selector(tapOpenButton), for: .touchUpInside)
-    }
-    
-    @objc private func tapCloseButton() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @objc private func tapDownloadButton() {

@@ -122,5 +122,28 @@ class UserRemote: BaseModel {
         return data
     }
     
-    func encode(to encoder: Encoder) throws { }
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(id, forKey: .id)
+        try container.encode(username, forKey: .username)
+        try container.encode(birthday, forKey: .birthday)
+        try container.encode(createdDate, forKey: .createdDate)
+        try container.encode(updatedDate, forKey: .updatedDate)
+        try container.encode(phone, forKey: .phone)
+        try container.encode(avatarLink, forKey: .avatarLink)
+        try container.encode(isActive, forKey: .isActive)
+        try container.encode(customerID, forKey: .customerID)
+        try container.encode(lastLogin, forKey: .lastLogin)
+        try container.encode(platform, forKey: .platform)
+        try container.encode(isUpdated, forKey: .isUpdated)
+        try container.encode(email, forKey: .email)
+        try container.encode(rateApp, forKey: .rateApp)
+        try container.encode(passcode, forKey: .passcode)
+        try container.encode(isCaptcha, forKey: .isCaptcha)
+        try container.encode(isVerified, forKey: .isVerified)
+        try container.encode(lastRegionLogin, forKey: .lastRegionLogin)
+        try container.encode(refarralAppflyerLink, forKey: .refarralAppflyerLink)
+        try container.encode(spinTurn, forKey: .spinTurn)
+    }
 }

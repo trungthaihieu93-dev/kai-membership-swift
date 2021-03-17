@@ -35,7 +35,9 @@ class OverviewViewController: BaseViewController {
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(CardCollapseTableViewCell.self, forCellReuseIdentifier: CardCollapseTableViewCell.identifier)
         tableView.register(OverviewTopupTableViewCell.self, forCellReuseIdentifier: OverviewTopupTableViewCell.identifier)
+        tableView.register(OverviewSendTableViewCell.self, forCellReuseIdentifier: OverviewSendTableViewCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         
         return tableView
     }()

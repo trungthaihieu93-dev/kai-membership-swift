@@ -70,7 +70,7 @@ class WalletViewController: BaseViewController {
         let floaty = Floaty()
         
         floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send")) { [weak self] (_) in
-            
+            Navigator.navigateToSendVC(from: self)
         }
         floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive")) { [weak self] (_) in
             Navigator.navigateToReceiveVC(from: self)
