@@ -29,6 +29,7 @@ class Constants {
         ConfigRemote(with: "Mobifone", value: "Mobifone"),
         ConfigRemote(with: "Vinaphone", value: "Vinaphone")
     ]
+    static let linkBuyAppDefault: String = "itms-apps://itunes.apple.com/us/app/apple-store/nami-exchange-crypto-futures/id1480302334"
     
     static var isDebug: Bool {
         #if DEBUG
@@ -39,7 +40,7 @@ class Constants {
     }
     
     struct Device {
-        static let id: String = UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
+        static let id: String = "Device_TEST"//UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
         static let name: String = UIDevice.current.name.folding(options: .diacriticInsensitive, locale: .current)
         static let model: String = UIDevice.current.model
         static let version: String = UIDevice.current.systemVersion

@@ -52,6 +52,15 @@ class AppSetting {
         }
     }
     
+    static var linkBuyApp: String {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.linkBuyApp.rawValue)
+        }
+        get {
+            return UserDefaults.standard.string(forKey: Key.UserDefault.linkBuyApp.rawValue) ?? Constants.linkBuyAppDefault
+        }
+    }
+    
     static var configures: [ConfigGroupRemote] {
         set {
             do {

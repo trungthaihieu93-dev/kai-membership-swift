@@ -56,24 +56,6 @@ extension QuestViewController: NestedScrollDelegate {
         }
     }
     
-//    func tp_scrollView(_ scrollView: UIScrollView, didUpdate progress: CGFloat) {
-//        let y: CGFloat = scrollView.contentOffset.y
-//        let headerHeight: CGFloat = PostCollectionHeaderNode.height - Constants.Values.NavigationHeight
-//
-//        if y <= 0 {
-//            navigationAlpha = 0
-//            detailHeaderNode.view.snp.updateConstraints {
-//                $0.height.equalTo(PostCollectionHeaderNode.height - y)
-//            }
-//            detailHeaderNode.zoomImage(with: -y)
-//            isStatusBarDefault = false
-//        } else {
-//            let alpha = y / headerHeight
-//            navigationAlpha = scrollView.contentOffset.y > headerHeight || alpha >= 1 ? 1 : alpha
-//            isStatusBarDefault = true
-//        }
-//    }
-    
     func scrollViewDidLoad(_ scrollView: UIScrollView) {
 //        refresh.tintColor = .black
 //        refresh.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)

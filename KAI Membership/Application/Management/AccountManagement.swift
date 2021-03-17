@@ -93,6 +93,31 @@ class AccountManagement {
         }
     }
     
+    static var user: UserRemote {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: Key.UserDefault.userInfo.rawValue) else { return UserRemote() }
+            
+            do {
+                let decoder = JSONDecoder()
+                let result = try decoder.decode(UserRemote.self, from: data)
+                
+                return result
+            } catch {
+                debugPrint("Unable to Decode Service Providers (\(error))")
+                return UserRemote()
+            }
+        }
+        set {
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(newValue)
+                UserDefaults.standard.set(data, forKey: Key.UserDefault.userInfo.rawValue)
+            } catch {
+                debugPrint("Unable to Encode User Infomation (\(error))")
+            }
+        }
+    }
+    
     class func refresh() {
         AccountManagement.accessToken = nil
         AccountManagement.refreshToken = nil
@@ -109,6 +134,7 @@ class AccountManagement {
             switch $0 {
             case .success(let result):
                 if let data = result.data {
+                    AccountManagement.user = data.user ?? UserRemote()
                     AccountManagement.userID = data.user?.id
                     AccountManagement.kai = data.kai
                     completion(.success(data))

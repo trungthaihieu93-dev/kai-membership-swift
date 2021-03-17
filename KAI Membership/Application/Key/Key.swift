@@ -13,8 +13,9 @@ class Key {
         case darkMode = "KAI.UserDefault.DarkMode"
         case haveUsedTheApplicationOnce = "KAI.UserDefault.HaveUsedTheApplicationOnce"
         case serviceProviders = "KAI.UserDefault.ServiceProviders"
-//        case linkBuyApp = "KAI.UserDefault.LinkBuyApp"
+        case linkBuyApp = "KAI.UserDefault.LinkBuyApp"
         case configure = "KAI.UserDefault.Configure"
+        case userInfo = "KAI.UserDefault.UserInfomation"
     }
     
     enum KeyChain: String {

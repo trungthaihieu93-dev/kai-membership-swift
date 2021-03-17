@@ -62,6 +62,7 @@
 		49CAC10C25FB6B9A00577D33 /* TrackingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */; };
 		49CAC11025FB74C900577D33 /* PasscodeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10F25FB74C900577D33 /* PasscodeServices.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
+		49F5FE862601AD5700D53D82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
 		521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B425DE7C5B009355BC /* UIView+Extensions.swift */; };
@@ -253,6 +254,7 @@
 		49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServices.swift; sourceTree = "<group>"; };
 		49CAC10F25FB74C900577D33 /* PasscodeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeServices.swift; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
+		49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		521754B425DE7C5B009355BC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 			children = (
 				493043F525F8A0CF00EED242 /* RewardsEmptyView.swift */,
 				4963D08925FF2D5700720B34 /* RewardsTableViewCell.swift */,
+				49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1888,6 +1891,7 @@
 				525DB97825EB5276001491AE /* RecentTransactionsTableViewCell.swift in Sources */,
 				52F37CA625E0022C009F311F /* Navigator.swift in Sources */,
 				494C0AB525F9EE0400E30115 /* KAITextField.swift in Sources */,
+				49F5FE862601AD5700D53D82 /* HistoryTableViewCell.swift in Sources */,
 				49CAC0E025FB1F0B00577D33 /* KAICombobox.swift in Sources */,
 				493043E925F88C5E00EED242 /* RewardsViewController.swift in Sources */,
 				5265495025F53C4E003AE21A /* SignUpViewController+Delegate.swift in Sources */,
