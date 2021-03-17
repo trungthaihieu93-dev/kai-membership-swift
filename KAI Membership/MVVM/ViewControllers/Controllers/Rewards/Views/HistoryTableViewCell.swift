@@ -1,15 +1,15 @@
 //
-//  RewardsTableViewCell.swift
+//  HistoryTableViewCell.swift
 //  KAI Membership
 //
-//  Created by DAKiet on 15/03/2021.
+//  Created by DAKiet on 17/03/2021.
 //
 
 import UIKit
 
-class RewardsTableViewCell: UITableViewCell {
+class HistoryTableViewCell: UITableViewCell {
     
-    // MARK: Properties    
+    // MARK: Properties
     private let contentImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false

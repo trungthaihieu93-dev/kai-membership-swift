@@ -47,11 +47,11 @@ extension TopupViewController: TopupTableViewCellDelegate {
         isConfirmEnabled = !viewModel.phoneNumber.isEmpty
     }
     
-    func topupTableViewCellDidSelectProvider(_ topupTableViewCell: TopupTableViewCell, providerType: TopupTableViewCell.ProviderType) {
-        viewModel.serviceProvider = providerType.name
+    func topupTableViewCellProvider(_ topupTableViewCell: TopupTableViewCell, didSelectIndex index: Int) {
+        viewModel.serviceProviderIndex = index
     }
     
-    func topupTableViewCellDidValueMoney(_ topupTableViewCell: TopupTableViewCell, amount: Double) {
+    func topupTableViewCellDidValueMoney(_ topupTableViewCell: TopupTableViewCell, amount: Amount) {
         viewModel.amount = amount
     }
 }

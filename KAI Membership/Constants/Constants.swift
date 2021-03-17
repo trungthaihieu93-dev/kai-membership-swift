@@ -24,6 +24,12 @@ class Constants {
     static let lengthPasswordMinimum: Int = 8
     static let backroundColorDefault: UIColor = .init(hex: "F7F8F9")
     static let spinLink: String = "https://game-003-tego022.bcms.tech?token=$%@&lang=$%@&device=$%@"
+    static let serviceProviderDefault: [ConfigRemote] = [
+        ConfigRemote(with: "Viettel", value: "Viettel"),
+        ConfigRemote(with: "Mobifone", value: "Mobifone"),
+        ConfigRemote(with: "Vinaphone", value: "Vinaphone")
+    ]
+    static let linkBuyAppDefault: String = "itms-apps://itunes.apple.com/us/app/apple-store/nami-exchange-crypto-futures/id1480302334"
     
     static var isDebug: Bool {
         #if DEBUG
@@ -34,7 +40,7 @@ class Constants {
     }
     
     struct Device {
-        static let id: String = "Device_TEST" // UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
+        static let id: String = "Device_TEST"//UIDevice.current.identifierForVendor?.uuidString ?? "undefined"
         static let name: String = UIDevice.current.name.folding(options: .diacriticInsensitive, locale: .current)
         static let model: String = UIDevice.current.model
         static let version: String = UIDevice.current.systemVersion
@@ -62,4 +68,9 @@ struct API {
         case production = "https://membership.kardiachain.io"
         case development = "https://membership-backend.kardiachain.io"
     }
+}
+
+struct Amount {
+    var money: Double
+    var kai: Double
 }

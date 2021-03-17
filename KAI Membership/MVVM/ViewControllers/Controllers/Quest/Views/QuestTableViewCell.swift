@@ -112,7 +112,6 @@ class QuestTableViewCell: UITableViewCell {
     }
     
     // MARK: Methods
-    
     func configure(_ quest: QuestRemote) {
         switch quest.key {
         case .highestScores:

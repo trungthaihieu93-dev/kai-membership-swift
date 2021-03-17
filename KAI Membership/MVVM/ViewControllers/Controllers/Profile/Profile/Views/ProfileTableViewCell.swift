@@ -86,7 +86,7 @@ class ProfileTableViewCell: UITableViewCell {
     // MARK: Layout
     private func setupView() {
         selectionStyle = .none
-        
+        backgroundColor = .clear
         contentView.addSubview(containerView)
         
         containerView.addSubview(titleImageView)

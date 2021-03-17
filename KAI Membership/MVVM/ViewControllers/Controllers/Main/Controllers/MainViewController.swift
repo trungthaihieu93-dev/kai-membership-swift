@@ -43,6 +43,7 @@ class MainViewController: UIViewController {
         viewModel.getData().subscribe(on: MainScheduler.instance).subscribe { [weak self] configs, device in
             if let device = device, !device.users.isEmpty {
                 Navigator.showSelectAccountVC(device.users)
+                KeyChain.deleteAll()
                 AppSetting.haveUsedTheApplicationOnce = true
             } else {
                 self?.showSignInApp()
@@ -57,6 +58,7 @@ class MainViewController: UIViewController {
             Navigator.showSignInVC()
         } else {
             Navigator.showTutorialVC()
+            KeyChain.deleteAll()
             AppSetting.haveUsedTheApplicationOnce = true
         }
     }

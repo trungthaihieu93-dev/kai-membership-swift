@@ -184,6 +184,10 @@ class TutorialViewController: BaseViewController {
         return 0
     }
     
+    override var backroundColorDefault: UIColor {
+        return .white
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -28,7 +28,7 @@ extension RewardsViewController: UITableViewDataSource {
         
         switch sectionType {
         case .rewards:
-            return 1
+            return 0
         case .history:
             return viewModel.histories.count
         }
@@ -39,12 +39,12 @@ extension RewardsViewController: UITableViewDataSource {
         
         switch sectionType {
         case .rewards:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as! ProfileTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: RewardsTableViewCell.identifier, for: indexPath) as! RewardsTableViewCell
             
             return cell
         case .history:
-            let cell = tableView.dequeueReusableCell(withIdentifier: RewardsTableViewCell.identifier, for: indexPath) as! RewardsTableViewCell
-            cell.configure("10 KAI received")
+            let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as! HistoryTableViewCell
+            cell.configure(viewModel.histories[indexPath.row])
             
             return cell
         }

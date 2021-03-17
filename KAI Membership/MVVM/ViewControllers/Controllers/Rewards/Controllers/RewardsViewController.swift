@@ -36,7 +36,8 @@ class RewardsViewController: BaseViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
-        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
+        tableView.register(RewardsTableViewCell.self, forCellReuseIdentifier: RewardsTableViewCell.identifier)
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.emptyDataSetSource = self

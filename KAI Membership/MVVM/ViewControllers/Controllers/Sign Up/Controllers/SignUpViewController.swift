@@ -54,6 +54,8 @@ class SignUpViewController: BaseViewController {
         return button
     }()
     
+    private var contentInputBottomAnchor: NSLayoutConstraint?
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +69,9 @@ class SignUpViewController: BaseViewController {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
         singleTap.numberOfTapsRequired = 1
         singleTap.cancelsTouchesInView = true
-        scrollView.addGestureRecognizer(singleTap)
+        view.addGestureRecognizer(singleTap)
+        
+        generateCaptcha()
     }
     
     // MARK: Layout
@@ -83,21 +87,35 @@ class SignUpViewController: BaseViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            scrollView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            scrollView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
+            signUpView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
             signUpView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            signUpView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
             signUpView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            signUpView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
             signUpView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            trialButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 8),
             trialButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             trialButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 24)),
             trialButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             trialButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        
+        contentInputBottomAnchor = scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 84))
+        contentInputBottomAnchor?.isActive = true
+    }
+    
+    // MARK: Data fetching
+    func generateCaptcha() {
+        viewModel.generateCaptcha().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+            guard let this = self else { return }
+            
+            this.signUpView.setCaptchaImage($0)
+        }, onError: { error in
+            debugPrint("Generate captcha error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
     }
     
     // MARK: Methods
@@ -108,8 +126,13 @@ class SignUpViewController: BaseViewController {
             return
         }
         
+        guard !signUpView.captchaTextField.contentInput.isEmpty else {
+            debugPrint("Vui lòng xác nhận captcha")
+            return
+        }
+        
         let email = signUpView.emailTextField.contentInput
-        viewModel.register(username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
+        viewModel.register(captcha: signUpView.captchaTextField.contentInput, username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
             guard let this = self else { return }
             
             Navigator.navigateToPasscodeVC(from: this, with: .register, email: email)
@@ -126,13 +149,13 @@ extension SignUpViewController {
         if notification.name == UIResponder.keyboardWillShowNotification {
             guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             
-            let bottomOffset = Constants.Device.screenBounds.height - (scrollView.frame.origin.y + signUpView.frame.origin.y + signUpView.frame.height + 10)
-            
-            if keyboardFrame.height > bottomOffset {
-                self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardFrame.height - bottomOffset), animated: true)
-            }
+            contentInputBottomAnchor?.constant = -(keyboardFrame.height)
         } else {
-            self.scrollView.setContentOffset(.zero, animated: true)
+            contentInputBottomAnchor?.constant = -(safeAreaInsets.bottom + 84)
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
     

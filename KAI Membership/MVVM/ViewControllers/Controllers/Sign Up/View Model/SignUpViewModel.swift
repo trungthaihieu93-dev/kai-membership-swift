@@ -9,16 +9,49 @@ import RxSwift
 
 class SignUpViewModel {
     
+    // MARK: Properties
+    private var captchaID: String = ""
+    
     // MARK: Methods
-    func register(username: String, email: String, password: String) -> Observable<AccountInfoRemote> {
+    func register(captcha: String, username: String, email: String, password: String) -> Observable<AccountInfoRemote> {
+        let captchaID = self.captchaID
         return Observable<AccountInfoRemote>.create { (observer) -> Disposable in
-            AccountManagement.register(username: username, email: email, password: password) {
+            CaptchaServices.verifyCaptcha(with: captchaID, captcha: captcha) {
+                switch $0 {
+                case .success:
+                    AccountManagement.register(username: username, email: email, password: password) {
+                        switch $0 {
+                        case .success(let result):
+                            observer.onNext(result)
+                            observer.onCompleted()
+                        case .failure:
+                            observer.onError(APIErrorResult(code: "1", message: "Error register."))
+                        }
+                    }
+                case .failure:
+                    observer.onError(APIErrorResult(code: "1", message: "Error comfirm captcha."))
+                }
+            }
+
+            return Disposables.create()
+        }
+    }
+    
+    func generateCaptcha() -> Observable<URL> {
+        return Observable<URL>.create { [weak self] observer -> Disposable in
+            CaptchaServices.generateCaptcha {
                 switch $0 {
                 case .success(let result):
-                    observer.onNext(result)
-                    observer.onCompleted()
-                case .failure(let error):
-                    observer.onError(error)
+                    if let captchaID = result.data?.id, !captchaID.isEmpty, let url = URL(string: CaptchaServices.getCaptchaImageLink(with: captchaID)) {
+                        self?.captchaID = captchaID
+                        observer.onNext(url)
+                        observer.onCompleted()
+                    } else {
+                        let error = APIErrorResult(code: "1", message: "Error generate url captcha image")
+                        observer.onError(error)
+                    }
+                case .failure:
+                    observer.onError(APIErrorResult(code: "1", message: "Error generate captcha"))
                 }
             }
 

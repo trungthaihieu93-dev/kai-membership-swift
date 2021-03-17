@@ -10,6 +10,15 @@ import Security
 
 class KeyChain {
 
+    class func deleteAll() {
+        let secItemClasses = [kSecClassGenericPassword, kSecClassInternetPassword, kSecClassCertificate, kSecClassKey, kSecClassIdentity]
+        
+        for itemClass in secItemClasses {
+            let spec: NSDictionary = [kSecClass: itemClass]
+            SecItemDelete(spec)
+        }
+    }
+    
     class func delete(forKey key: Key.KeyChain) {
         let query = [
             kSecClass       : kSecClassGenericPassword,

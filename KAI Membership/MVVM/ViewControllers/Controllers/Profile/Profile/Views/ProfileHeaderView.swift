@@ -11,9 +11,9 @@ class ProfileHeaderView: UIView {
     
     // MARK: Properties
     private let backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "bg_profile"))
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         
         return imageView
     }()
@@ -59,7 +59,7 @@ class ProfileHeaderView: UIView {
         return view
     }()
     
-    private let addressWalletLabel: UILabel = {
+    private let userIDLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
@@ -74,7 +74,6 @@ class ProfileHeaderView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = Constants.backroundColorDefault
-//        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         button.setImage(UIImage(named: "ic_share_arrow")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.titleEdgeInsets.left = 8
         button.imageEdgeInsets.right = 8
@@ -110,7 +109,7 @@ class ProfileHeaderView: UIView {
         containerView.addSubview(emailLabel)
         containerView.addSubview(walletContainerView)
         
-        walletContainerView.addSubview(addressWalletLabel)
+        walletContainerView.addSubview(userIDLabel)
         walletContainerView.addSubview(shareButton)
 
         coverImageTopAnchor = backgroundImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
@@ -144,19 +143,18 @@ class ProfileHeaderView: UIView {
             shareButton.heightAnchor.constraint(equalToConstant: 32),
             shareButton.widthAnchor.constraint(equalToConstant: 70),
             
-            addressWalletLabel.centerYAnchor.constraint(equalTo: walletContainerView.centerYAnchor),
-            addressWalletLabel.leadingAnchor.constraint(equalTo: walletContainerView.leadingAnchor, constant: 12),
-            addressWalletLabel.trailingAnchor.constraint(lessThanOrEqualTo: shareButton.leadingAnchor, constant: -8),
+            userIDLabel.centerYAnchor.constraint(equalTo: walletContainerView.centerYAnchor),
+            userIDLabel.leadingAnchor.constraint(equalTo: walletContainerView.leadingAnchor, constant: 12),
+            userIDLabel.trailingAnchor.constraint(lessThanOrEqualTo: shareButton.leadingAnchor, constant: -8),
         ])
-        
-        configure()
     }
     
     // MARK: Configure
-    func configure() {
-        nameLabel.text = "Bảo Ngọc"
-        emailLabel.text = "ngoc.bao@gmail.com"
-        addressWalletLabel.text = "Q24-EUZP-IUGY-935R-P8GH-U7RASH5PP6NSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NGSH5PP6NG-N4W"
+    func configure(_ user: UserRemote) {
+        backgroundImageView.setImage(from: user.avatarLink, placeholder: UIImage(named: "bg_profile"))
+        nameLabel.text = user.username
+        emailLabel.text = user.email
+        userIDLabel.text = user.id
     }
     
     func zoomImage(with value: CGFloat) {

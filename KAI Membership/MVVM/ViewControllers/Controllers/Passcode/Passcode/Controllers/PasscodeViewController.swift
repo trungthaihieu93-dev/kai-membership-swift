@@ -267,8 +267,11 @@ extension PasscodeViewController {
         case .reset:
             Navigator.navigateToPasscodeVC(from: self, with: .confirm(.reset(passcodeView.code)), email: viewModel.email)
         case .changePassword:
-            viewModel.checkPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
-                Navigator.showRootTabbarController()
+            viewModel.checkPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                guard let this = self else { return }
+                
+                debugPrint("Show Alert kêu người dùng ở app mail để coi token")
+                Navigator.navigateToPasswordVC(from: this, with: .change)
             }, onError: { error in
                 debugPrint("Check passcode error: \((error as? APIErrorResult)?.message ?? "")")
             }).disposed(by: disposeBag)
@@ -293,6 +296,7 @@ extension PasscodeViewController {
                     return
                 }
                 
+                //resetpasscode
                 debugPrint("")
             }
         }

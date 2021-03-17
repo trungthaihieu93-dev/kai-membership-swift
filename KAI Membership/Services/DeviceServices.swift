@@ -41,7 +41,7 @@ class DeviceServices {
     
     // MARK: Check passcode
     class func checkPasscode(_ passcode: String, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
-        let input = APIInput(withDomain: Constants.environment.domain, path: "api/v1/passcode/check", method: .post)
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/passcodes/check", method: .post)
         input.params["mobile_unique_id"] = Constants.Device.id
         input.params["passcode"] = passcode
         

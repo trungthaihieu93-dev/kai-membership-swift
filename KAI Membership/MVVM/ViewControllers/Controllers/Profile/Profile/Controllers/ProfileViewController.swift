@@ -46,6 +46,7 @@ class ProfileViewController: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.dataSource = self
@@ -68,6 +69,7 @@ class ProfileViewController: BaseViewController {
     
     private(set) lazy var headerView: ProfileHeaderView = {
         let view = ProfileHeaderView()
+        view.configure(AccountManagement.user)
         
         return view
     }()
@@ -115,7 +117,14 @@ class ProfileViewController: BaseViewController {
     
     // MARK: Data fetching
     func fetchData() {
-        tableView.reloadData()
+        viewModel.getUserInfo().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] user in
+            guard let this = self else { return }
+            
+            this.headerView.configure(user)
+            this.tableView.reloadData()
+        }, onError: { error in
+            debugPrint("Get user errror: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
     }
     
     func fetchAccountsLoggedIntoDevice() {

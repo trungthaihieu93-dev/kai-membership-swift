@@ -112,7 +112,7 @@ extension TopupViewController {
     }
     
     @objc private func onPressedTopup() {
-        Navigator.navigateToOverviewVC(from: self, phoneNumber: viewModel.phoneNumber, serviceProvider: viewModel.serviceProvider, amount: viewModel.amount)
+        Navigator.navigateToOverviewVC(from: self, phoneNumber: viewModel.phoneNumber, providerCode: viewModel.serviceProviders[viewModel.serviceProviderIndex].value, amount: viewModel.amount)
         view.endEditing(true)
     }
     

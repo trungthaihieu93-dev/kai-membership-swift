@@ -15,4 +15,13 @@ class TransactionServices {
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
+    
+    class func topup(phoneNumber: String, providerCode: String, amount: Double, _ completion: @escaping (APIResult<APIDataListResults<String>, APIErrorResult>) -> Void) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/topup", method: .post)
+        input.params["phone_number"] = phoneNumber
+        input.params["provider_code"] = providerCode
+        input.params["amount"] = amount
+        
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
 }

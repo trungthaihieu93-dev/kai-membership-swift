@@ -42,6 +42,7 @@ class SelectAccountViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AccountManagement.logout()
         navigationItem.title = "Select Account"
         setupView()
     }

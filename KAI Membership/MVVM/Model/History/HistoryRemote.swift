@@ -35,7 +35,6 @@ class HistoryRemote: BaseModel {
     var deviceID: String?
     var status: HistoryStatus
     
-    
     enum CodingKeys: String, CodingKey {
         case id
         case createdDate
