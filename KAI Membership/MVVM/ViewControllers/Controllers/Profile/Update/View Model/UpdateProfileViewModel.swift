@@ -13,12 +13,13 @@ class UpdateProfileViewModel {
     var birthday: Double?
     
     // MARK: Methods
-    func login(with email: String, and password: String) -> Observable<AccountInfoRemote> {
-        return Observable<AccountInfoRemote>.create { (observer) -> Disposable in
-            AccountManagement.login(with: email, and: password) {
+    func udpateProfile(name: String, phoneNumber: String) -> Observable<Void> {
+        let birthday = self.birthday
+        return Observable.create { (observer) -> Disposable in
+            UserServices.updateInfomation(name: name, phoneNumber: phoneNumber, birthday: birthday) {
                 switch $0 {
-                case .success(let info):
-                    observer.onNext(info)
+                case .success:
+                    observer.onNext(())
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)

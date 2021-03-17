@@ -21,7 +21,7 @@ class UpdateProfileViewController: BaseViewController {
         return scrollView
     }()
     
-    private lazy var inputFullNameView: KAIInputTextFieldView = {
+    private(set) lazy var inputFullNameView: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(with: .default, title: "FULL NAME", placeholder: "Full Name")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -58,7 +58,7 @@ class UpdateProfileViewController: BaseViewController {
         return button
     }()
     
-    private lazy var inputPhoneNumberView: KAIInputTextFieldView = {
+    private(set) lazy var inputPhoneNumberView: KAIInputTextFieldView = {
         let view = KAIInputTextFieldView(with: .default, title: "PHONE NO.", placeholder: "e.g 0903509786", keyboardType: .phonePad)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -97,6 +97,8 @@ class UpdateProfileViewController: BaseViewController {
             }
         }
     }
+    
+    var datePicker = UIDatePicker()
     
     // MARK: Life cycle's
     override func viewDidLoad() {
@@ -177,8 +179,16 @@ extension UpdateProfileViewController {
     }
     
     @objc private func onPressedUpdateProfile() {
-        // TODO: API here
-        AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top, from: self)
+        guard inputPhoneNumberView.contentInput.isPhoneNumber else {
+            debugPrint("Show Alert ko phai so dien thoai")
+            return
+        }
+        
+        viewModel.udpateProfile(name: inputFullNameView.contentInput, phoneNumber: inputPhoneNumberView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: {
+            AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top)
+        }, onError: { error in
+            debugPrint("Login error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }).disposed(by: disposeBag)
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
@@ -186,6 +196,22 @@ extension UpdateProfileViewController {
     }
     
     @objc private func onPressedBirthDay() {
-        // TODO: Show Date picker here
+        view.endEditing(true)
+        datePicker.backgroundColor = UIColor.white
+                
+        datePicker.autoresizingMask = .flexibleWidth
+        datePicker.datePickerMode = .date
+                
+        datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
+        datePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
+        self.view.addSubview(datePicker)
+    }
+    
+    @objc func dateChanged(_ sender: UIDatePicker) {
+        viewModel.birthday = sender.date.timeIntervalSince1970
+        inputDOBButton.setAttributedTitle(NSAttributedString(string: sender.date.toString("dd/MM/yyyy"), attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium)
+        ]), for: .normal)
     }
 }

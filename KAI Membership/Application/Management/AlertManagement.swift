@@ -72,6 +72,11 @@ class AlertManagement {
         style.titleFont = UIFont.workSansFont(ofSize: 12, weight: .medium)
         style.messageColor = textColor ?? .black
         style.backgroundColor = backgroundColor ?? .white
-        controller?.view.makeToast("Copied", duration: 2.0, position: position, style: style)
+        
+        if let viewcontroller = controller {
+            viewcontroller.view.makeToast(text, duration: 2.0, position: position, style: style)
+        } else {
+            Navigator.window?.makeToast(text, duration: 2.0, position: position, style: style)
+        }
     }
 }

@@ -20,7 +20,7 @@ class UserServices {
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
     
-    // MARK: Get infomation user
+    // MARK: Get infomation
     class func getInfo(_ completion: @escaping (APIResult<APIDataResults<AccountInfoRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/info", method: .get)
         
@@ -59,6 +59,20 @@ class UserServices {
     // MARK: Get histories
     class func getHistories(_ completion: @escaping (APIResult<APIDataListResults<HistoryRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/history", method: .get)
+        
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
+    
+    // MARK: Update infomation
+    class func updateInfomation(name: String, phoneNumber: String, birthday: Double? = nil, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/info", method: .post)
+        input.params["first_name"] = name
+        input.params["last_name"] = name
+        input.params["phone"] = phoneNumber
+        
+        if let birthday = birthday {
+            input.params["birthday_time"] = birthday
+        }
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }

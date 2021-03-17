@@ -11,7 +11,7 @@ import UIKit
 extension UpdateProfileViewController: KAITextFieldDelegate {
     
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
-        
+        isConfirmEnabled = !(inputFullNameView.contentInput.isEmpty) && !(inputPhoneNumberView.contentInput.isEmpty)
     }
     
     func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
