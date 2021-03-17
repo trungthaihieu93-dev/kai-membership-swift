@@ -15,5 +15,6 @@ target 'KAI Membership' do
   pod 'Kingfisher'
   pod 'QRCode'
   pod 'Toast-Swift'
+  pod 'BulletinBoard'
   
 end
