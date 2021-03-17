@@ -69,6 +69,7 @@ class AlertManagement {
     
     func showToast(with text: String, textColor: UIColor? = nil, backgroundColor: UIColor? = nil, position: ToastPosition = ToastManager.shared.position, from controller: UIViewController? = nil) {
         var style = ToastStyle()
+        style.titleFont = UIFont.workSansFont(ofSize: 12, weight: .medium)
         style.messageColor = textColor ?? .black
         style.backgroundColor = backgroundColor ?? .white
         controller?.view.makeToast("Copied", duration: 2.0, position: position, style: style)
