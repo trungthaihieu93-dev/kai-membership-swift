@@ -79,7 +79,12 @@ class KAICombobox: UIView {
                 newCell.isDropdownSelected = true
             }
             
-            valueLabel.text = dataSources[selectedIndex].title
+            if let subTitle = dataSources[selectedIndex].subTitle {
+                valueLabel.text = "\(dataSources[selectedIndex].title) (\(subTitle))"
+            } else {
+                valueLabel.text = dataSources[selectedIndex].title
+            }
+            
             delegate?.kaiCombobox(self, didSelectIndex: selectedIndex)
             removeTransparentView()
         }
@@ -93,7 +98,16 @@ class KAICombobox: UIView {
         
         super.init(frame: frame)
         
-        valueLabel.text = dataSources.first?.title
+        if let first = dataSources.first {
+            if let subTitle = first.subTitle {
+                valueLabel.text = "\(first.title) (\(subTitle))"
+            } else {
+                valueLabel.text = first.title
+            }
+        } else {
+            valueLabel.text = "Option"
+        }
+        
         setupView()
     }
 

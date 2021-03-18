@@ -119,7 +119,7 @@ class QuestTableViewCell: UITableViewCell {
             infoStackVỉew.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: 12),
             infoStackVỉew.leadingAnchor.constraint(equalTo: contentImageView.trailingAnchor, constant: 8),
             infoStackVỉew.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            infoStackVỉew.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
+            infoStackVỉew.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -32),
             
             progressBar.heightAnchor.constraint(equalToConstant: 4),
         ])

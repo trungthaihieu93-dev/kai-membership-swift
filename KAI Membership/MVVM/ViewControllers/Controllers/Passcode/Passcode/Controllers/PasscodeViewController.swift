@@ -245,7 +245,7 @@ class PasscodeViewController: BaseViewController {
             let mutableAttributedString = footerString2.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
             let detectRange = (footerString2 as NSString).range(of: clickHere)
             mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: detectRange)
-            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: detectRange)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "A2ACB9"), range: detectRange)
             
             footerLabel.attributedText = mutableAttributedString
         case .changePassword:

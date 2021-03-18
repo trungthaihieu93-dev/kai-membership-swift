@@ -15,6 +15,7 @@ target 'KAI Membership' do
   pod 'Kingfisher'
   pod 'QRCode'
   pod 'Toast-Swift'
+  pod 'RNLoadingButton-Swift'
   pod 'BulletinBoard', :git => 'https://github.com/peihsendoyle/BulletinBoard.git', :branch => 'develop'
   
 end
