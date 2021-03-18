@@ -37,17 +37,37 @@ class QuestTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.font = .workSansFont(ofSize: 10, weight: .medium)
-        label.textColor = UIColor.init(hex: "0E8C31")
         
         return label
     }()
     
-    private let infoView: UIView = {
-        let view = UIView()
+    private let progressBar: UIProgressView = {
+        let view = UIProgressView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.progressTintColor = .init(hex: "0E8C31")
+        view.trackTintColor = .init(hex: "F7F8F9")
         
         return view
+    }()
+    
+    private let descriptionStackVỉew: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        
+        return stackView
+    }()
+    
+    private let infoStackVỉew: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 6
+        
+        return stackView
     }()
     
     private let containerView: UIView = {
@@ -79,10 +99,10 @@ class QuestTableViewCell: UITableViewCell {
         contentView.addSubview(containerView)
         
         containerView.addSubview(contentImageView)
-        containerView.addSubview(infoView)
+        containerView.addSubview(infoStackVỉew)
         
-        infoView.addSubview(titleLabel)
-        infoView.addSubview(descriptionLabel)
+        infoStackVỉew.addArrangedSubview(titleLabel)
+        infoStackVỉew.addArrangedSubview(descriptionStackVỉew)
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
@@ -96,18 +116,12 @@ class QuestTableViewCell: UITableViewCell {
             contentImageView.widthAnchor.constraint(equalToConstant: 52),
             contentImageView.heightAnchor.constraint(equalToConstant: 52),
             
-            infoView.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: 12),
-            infoView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            infoView.leadingAnchor.constraint(equalTo: contentImageView.trailingAnchor, constant: 8),
+            infoStackVỉew.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: 12),
+            infoStackVỉew.leadingAnchor.constraint(equalTo: contentImageView.trailingAnchor, constant: 8),
+            infoStackVỉew.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            infoStackVỉew.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
             
-            titleLabel.topAnchor.constraint(equalTo: infoView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: infoView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: infoView.trailingAnchor),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            descriptionLabel.leadingAnchor.constraint(equalTo: infoView.leadingAnchor),
-            descriptionLabel.bottomAnchor.constraint(equalTo: infoView.bottomAnchor),
-            descriptionLabel.trailingAnchor.constraint(greaterThanOrEqualTo: infoView.trailingAnchor),
+            progressBar.heightAnchor.constraint(equalToConstant: 4),
         ])
     }
     
@@ -115,16 +129,39 @@ class QuestTableViewCell: UITableViewCell {
     func configure(_ quest: QuestRemote) {
         switch quest.key {
         case .highestScores:
-            contentImageView.image = UIImage(named: "ic_mission_completed")
-            descriptionLabel.text = "description"
-        case .thiryMinutes:
-            contentImageView.image = UIImage(named: "ic_mission_completed")
-        case .inviteFriend:
-            contentImageView.image = UIImage(named: "ic_mission_completed")
-        case .signIn:
-            contentImageView.image = UIImage(named: "ic_mission_completed")
+            contentImageView.image = UIImage(named: "ic_mission_progress")
+            let mutableAttributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: "Top score: ", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54)
+            ]))
+            
+            mutableAttributedString.append(NSAttributedString(string: "\((quest.userQuest?.progress ?? 0).formatToString()) (Flying Bird)", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+            ]))
+            
+            descriptionLabel.attributedText = mutableAttributedString
+        case .thiryMinutes, .inviteFriend, .signIn:
+            let progress = quest.userQuest?.progress ?? 0
+            
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                progressBar.progress = Float(progress) / Float(totalProgress)
+                descriptionStackVỉew.addArrangedSubview(progressBar)
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "\(progress)/\(totalProgress)", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
         }
         
+        descriptionStackVỉew.addArrangedSubview(descriptionLabel)
         titleLabel.text = quest.name
     }
 }

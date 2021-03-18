@@ -27,7 +27,7 @@ class QuestRemote: BaseModel {
     var name: String?
     var key: QuestKey = .signIn
     var type: QuestType = .daily
-    var progress: Double?
+    var progress: Int?
     var userQuest: UserQuestRemote?
     
     enum CodingKeys: String, CodingKey {
@@ -60,7 +60,7 @@ class QuestRemote: BaseModel {
             self.type = .daily
         }
         
-        progress = try container.decodeIfPresent(Double.self, forKey: .progress)
+        progress = try container.decodeIfPresent(Int.self, forKey: .progress)
     }
     
     func encode(to encoder: Encoder) throws { }

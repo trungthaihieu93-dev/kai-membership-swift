@@ -15,7 +15,7 @@ class UserQuestRemote: BaseModel {
     var completedDate: String?
     var userID: String?
     var key: QuestKey = .signIn
-    var progress: Double?
+    var progress: Int?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -43,7 +43,7 @@ class UserQuestRemote: BaseModel {
             self.key = .signIn
         }
         
-        progress = try container.decodeIfPresent(Double.self, forKey: .progress)
+        progress = try container.decodeIfPresent(Int.self, forKey: .progress)
     }
     
     func encode(to encoder: Encoder) throws { }

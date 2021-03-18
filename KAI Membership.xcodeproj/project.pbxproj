@@ -22,6 +22,7 @@
 		3C7A1FC1E532DE5E439A9626 /* Pods_KAI_Membership.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */; };
 		4928737826020493002BAE39 /* OverviewSendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */; };
 		4928738A26020F6E002BAE39 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928738926020F6E002BAE39 /* Date+Extensions.swift */; };
+		4928738E2602FA98002BAE39 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928738D2602FA98002BAE39 /* Int+Extensions.swift */; };
 		493043DC25F87F2600EED242 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */; };
 		493043E025F87FA800EED242 /* UpdateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043DF25F87FA800EED242 /* UpdateProfileViewModel.swift */; };
 		493043E325F8818200EED242 /* UpdateProfileViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043E225F8818200EED242 /* UpdateProfileViewController+Delegate.swift */; };
@@ -223,6 +224,7 @@
 		2DEAACA282BABB61573963A5 /* Pods_KAI_Membership.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KAI_Membership.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSendTableViewCell.swift; sourceTree = "<group>"; };
 		4928738926020F6E002BAE39 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		4928738D2602FA98002BAE39 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		493043DB25F87F2600EED242 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		493043DF25F87FA800EED242 /* UpdateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewModel.swift; sourceTree = "<group>"; };
 		493043E225F8818200EED242 /* UpdateProfileViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateProfileViewController+Delegate.swift"; sourceTree = "<group>"; };
@@ -811,6 +813,7 @@
 				525DBA5625F008E7001491AE /* Data+Extensions.swift */,
 				4928738926020F6E002BAE39 /* Date+Extensions.swift */,
 				525DB96C25EA4490001491AE /* Double+Extensions.swift */,
+				4928738D2602FA98002BAE39 /* Int+Extensions.swift */,
 				5270BE2625E160AA0046E224 /* String+Extensions.swift */,
 				226DA41D2600ACC6009BC8CC /* UIButton+Extensions.swift */,
 				525DBADE25F22F96001491AE /* UICollectionViewCell+Extensions.swift */,
@@ -1986,6 +1989,7 @@
 				525DB8F625E6B91E001491AE /* UserServices.swift in Sources */,
 				521754DA25DEAE44009355BC /* Key.swift in Sources */,
 				525DBA5125F007CB001491AE /* KeyChain.swift in Sources */,
+				4928738E2602FA98002BAE39 /* Int+Extensions.swift in Sources */,
 				525DB9C925ED397F001491AE /* SignInViewModel.swift in Sources */,
 				525DB9F725EFD5B7001491AE /* DeviceServices.swift in Sources */,
 				525DBA9D25F137A1001491AE /* QuestHeaderView.swift in Sources */,

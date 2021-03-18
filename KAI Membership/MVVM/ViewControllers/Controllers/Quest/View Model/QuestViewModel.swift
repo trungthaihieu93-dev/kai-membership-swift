@@ -59,6 +59,6 @@ class QuestViewModel {
             }
         }
         
-        return newValue
+        return quests
     }
 }

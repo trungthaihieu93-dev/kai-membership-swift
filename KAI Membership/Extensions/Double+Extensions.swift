@@ -47,4 +47,13 @@ extension Double {
         
         return mutableAttributedString
     }
+    
+    func formatToString(groupingSeparator: CurrencySeparator = .comma, decimalSeparator: CurrencySeparator = .dots) -> String {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = groupingSeparator.rawValue
+        formatter.decimalSeparator = decimalSeparator.rawValue
+        formatter.numberStyle = .decimal
+        
+        return formatter.string(for: self) ?? "0"
+    }
 }

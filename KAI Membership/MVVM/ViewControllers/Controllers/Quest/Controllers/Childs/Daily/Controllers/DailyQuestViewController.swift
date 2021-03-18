@@ -17,7 +17,7 @@ class DailyQuestViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = Constants.backroundColorDefault
-        tableView.contentInset = .init(top: 6, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = .init(top: 12, left: 0, bottom: 0, right: 0)
         tableView.register(QuestTableViewCell.self, forCellReuseIdentifier: QuestTableViewCell.identifier)
         tableView.dataSource = self
         
