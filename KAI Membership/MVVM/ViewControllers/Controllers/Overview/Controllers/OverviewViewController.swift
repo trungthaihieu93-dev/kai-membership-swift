@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RNLoadingButton_Swift
 
 class OverviewViewController: BaseViewController {
     
@@ -42,15 +43,36 @@ class OverviewViewController: BaseViewController {
         return tableView
     }()
     
-    private lazy var continueButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var continueButton: RNLoadingButton = {
+        let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isEnabled = true
+        button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
+        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
+        button.activityIndicatorEdgeInsets.left = 16
+        button.hideTextWhenLoading = false
+        button.isLoading = false
+        button.activityIndicatorColor = .white
         button.addTarget(self, action: #selector(onPressedTopup), for: .touchUpInside)
         
         return button
     }()
+    
+    var isConfirmEnabled: Bool = true {
+        didSet {
+            guard isConfirmEnabled != oldValue else { return }
+            
+            continueButton.isEnabled = isConfirmEnabled
+            
+            if isConfirmEnabled {
+                continueButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+            } else {
+                continueButton.removeAllSublayers(withName: UIView.gradientLayerKey)
+            }
+        }
+    }
     
     // MARK: Life cycle's
     init(address: String, amount: Amount) {
@@ -76,6 +98,13 @@ class OverviewViewController: BaseViewController {
         
         navigationItem.title = "Overview"
         setupView()
+        
+        viewModel.showLoading.asObservable().observe(on: MainScheduler.instance).subscribe { [weak self] isLoading in
+            guard let this = self else { return }
+            
+            this.isConfirmEnabled = !(isLoading.element ?? false)
+            this.continueButton.isLoading = isLoading.element ?? false
+        }.disposed(by: disposeBag)
     }
     
     // MARK: Layout

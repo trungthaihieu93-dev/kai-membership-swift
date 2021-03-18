@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import RxRelay
 
 class OverviewViewModel {
     
@@ -14,6 +15,8 @@ class OverviewViewModel {
     let address: String
     let phoneNumber: String
     let providerCode: String
+    
+    let showLoading = BehaviorRelay<Bool>(value: false)
     
     // MARK: Life cycle's
     init(address: String, amount: Amount) {
@@ -35,14 +38,18 @@ class OverviewViewModel {
         let phone = self.phoneNumber
         let providerCode = self.providerCode
         let money = self.amount.money
-        return Observable.create { (observer) -> Disposable in
+        
+        showLoading.accept(true)
+        return Observable.create { [weak self] observer -> Disposable in
             TransactionServices.topup(phoneNumber: phone, providerCode: providerCode, amount: money) {
                 switch $0 {
-                case .success(let result):
+                case .success:
                     debugPrint("")
                 case .failure(let error):
                     observer.onError(error)
                 }
+                
+                self?.showLoading.accept(false)
             }
 
             return Disposables.create()

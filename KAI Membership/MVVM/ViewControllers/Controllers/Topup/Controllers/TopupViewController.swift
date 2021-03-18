@@ -112,7 +112,12 @@ extension TopupViewController {
     
     @objc private func onPressedTopup() {
         guard viewModel.phoneNumber.isPhoneNumber else {
-            debugPrint("Show Alert ko phai so dien thoai")
+            if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: Section.setting.rawValue)) as? TopupTableViewCell {
+                cell.inputPhoneNumberView.setMessage("🤔 Phone number invalid!")
+            } else {
+                AlertManagement.shared.showToast(with: "🤔 Phone number invalid!", position: .top)
+            }
+            
             return
         }
         

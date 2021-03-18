@@ -198,7 +198,7 @@ extension UpdateProfileViewController {
     
     @objc private func onPressedUpdateProfile() {
         guard inputPhoneNumberView.contentInput.isPhoneNumber else {
-            inputPhoneNumberView.setMessage("🤔 Phone number invalid! \n Phone number invalid!")
+            inputPhoneNumberView.setMessage("🤔 Phone number invalid!")
             return
         }
         

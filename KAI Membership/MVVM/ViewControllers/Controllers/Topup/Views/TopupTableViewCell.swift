@@ -39,19 +39,8 @@ class TopupTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let contactLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.font = .workSansFont(ofSize: 10, weight: .medium)
-        label.textColor = .init(hex: "364766")
-        label.text = "PHONE NO."
-        
-        return label
-    }()
-    
-    private lazy var contactTextField: KAITextField = {
-        let view = KAITextField(with: .default, keyboardType: .phonePad, placeholder: "e.g 01669919308")
+    private(set) lazy var inputPhoneNumberView: KAIInputTextFieldView = {
+        let view = KAIInputTextFieldView(with: .default, title: "PHONE NO.", placeholder: "e.g 0903509786", keyboardType: .phonePad)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -147,8 +136,7 @@ class TopupTableViewCell: UITableViewCell {
         
         contentView.addSubview(containerView)
             
-        containerView.addSubview(contactLabel)
-        containerView.addSubview(contactTextField)
+        containerView.addSubview(inputPhoneNumberView)
         containerView.addSubview(providerLabel)
         containerView.addSubview(providerCollectionView)
         containerView.addSubview(comboboxLabel)
@@ -159,16 +147,12 @@ class TopupTableViewCell: UITableViewCell {
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            
-            contactLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
-            contactLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            contactLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
 
-            contactTextField.topAnchor.constraint(equalTo: contactLabel.bottomAnchor, constant: 4),
-            contactTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            contactTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            inputPhoneNumberView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
+            inputPhoneNumberView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            inputPhoneNumberView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             
-            providerLabel.topAnchor.constraint(equalTo: contactTextField.bottomAnchor, constant: 12),
+            providerLabel.topAnchor.constraint(equalTo: inputPhoneNumberView.bottomAnchor, constant: 12),
             providerLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             providerLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             

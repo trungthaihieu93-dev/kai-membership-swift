@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RNLoadingButton_Swift
 
 class PasswordViewController: BaseViewController {
     
@@ -60,8 +61,8 @@ class PasswordViewController: BaseViewController {
         return view
     }()
     
-    private lazy var setNewPasswordButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var setNewPasswordButton: RNLoadingButton = {
+        let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Set new Password", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
@@ -71,6 +72,11 @@ class PasswordViewController: BaseViewController {
         button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
+        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
+        button.activityIndicatorEdgeInsets.left = 16
+        button.hideTextWhenLoading = false
+        button.isLoading = false
+        button.activityIndicatorColor = .white
         button.addTarget(self, action: #selector(onPressedSetNew), for: .touchUpInside)
         
         return button
@@ -116,6 +122,13 @@ class PasswordViewController: BaseViewController {
         singleTap.numberOfTapsRequired = 1
         singleTap.cancelsTouchesInView = true
         scrollView.addGestureRecognizer(singleTap)
+        
+        viewModel.showLoading.asObservable().observe(on: MainScheduler.instance).subscribe { [weak self] isLoading in
+            guard let this = self else { return }
+            
+            this.isConfirmEnabled = !(isLoading.element ?? false)
+            this.setNewPasswordButton.isLoading = isLoading.element ?? false
+        }.disposed(by: disposeBag)
     }
     
     // MARK: Layout

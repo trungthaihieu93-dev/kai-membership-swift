@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RNLoadingButton_Swift
 
 class PasscodeViewController: BaseViewController {
 
@@ -51,13 +52,18 @@ class PasscodeViewController: BaseViewController {
         return view
     }()
     
-    private lazy var confirmButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var confirmButton: RNLoadingButton = {
+        let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
         button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
+        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
+        button.activityIndicatorEdgeInsets.left = 16
+        button.hideTextWhenLoading = false
+        button.isLoading = false
+        button.activityIndicatorColor = .white
         button.addTarget(self, action: #selector(onPressedConfirm), for: .touchUpInside)
         
         return button
@@ -133,6 +139,13 @@ class PasscodeViewController: BaseViewController {
         
         setTitle()
         setupView()
+        
+        viewModel.showLoading.asObservable().observe(on: MainScheduler.instance).subscribe { [weak self] isLoading in
+            guard let this = self else { return }
+            
+            this.isConfirmEnabled = !(isLoading.element ?? false)
+            this.confirmButton.isLoading = isLoading.element ?? false
+        }.disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {

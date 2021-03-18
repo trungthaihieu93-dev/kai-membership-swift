@@ -17,5 +17,4 @@ class TopupViewModel {
     var serviceProviderIndex: Int = 0
     
     // MARK: Methods
-    
 }
