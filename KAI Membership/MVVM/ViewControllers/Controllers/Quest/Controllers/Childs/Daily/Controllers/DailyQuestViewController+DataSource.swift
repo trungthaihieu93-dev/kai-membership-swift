@@ -23,7 +23,7 @@ extension DailyQuestViewController: DZNEmptyDataSetSource {
     }
     
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return 0
+        return -100
     }
 }
 

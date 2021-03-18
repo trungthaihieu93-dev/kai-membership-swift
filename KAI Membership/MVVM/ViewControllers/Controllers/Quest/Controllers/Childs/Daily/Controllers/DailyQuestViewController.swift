@@ -13,7 +13,7 @@ class DailyQuestViewController: UIViewController {
     // MARK: Properties
     private(set) var quests = [QuestRemote]()
     
-    private lazy var tableView: UITableView = {
+    private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none

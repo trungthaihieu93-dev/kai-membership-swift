@@ -46,23 +46,22 @@ extension QuestViewController: NestedScrollDelegate {
         let y: CGFloat = scrollView.contentOffset.y
         
         if y <= 0 {
-//            headerView.frame.size.height = 300 + y
-//            navigationBarAnimation(withAlpha: 0)
             headerView.zoomImage(with: y)
+//            navigationBarAnimation(withAlpha: 0)
         } else {
-//            let headerHeight: CGFloat = headerView.originalHeaderHeight
-//            let tmp = y / headerHeight
-//            let alpha = y > headerHeight || tmp >= 1 ? 1 : tmp
-//            navigationBarAnimation(withAlpha: alpha)
+            /*let headerHeight: CGFloat = safeAreaInsets.top + navigationBarHeight
+            let tmp = y / headerHeight
+            let alpha = y > headerHeight || tmp >= 1 ? 1 : tmp
+            navigationBarAnimation(withAlpha: alpha)*/
         }
     }
     
     func scrollViewDidLoad(_ scrollView: UIScrollView) {
-//        refresh.tintColor = .black
-//        refresh.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
-//        let refreshView = UIView(frame: CGRect(x: 0, y: Constants.Values.NavigationHeight, width: 0, height: 0))
-//        scrollView.addSubview(refreshView)
-//        refreshView.addSubview(refresh)
-//        self.scrollView = scrollView
+        /*refresh.tintColor = .black
+        refresh.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+        let refreshView = UIView(frame: CGRect(x: 0, y: Constants.Values.NavigationHeight, width: 0, height: 0))
+        scrollView.addSubview(refreshView)
+        refreshView.addSubview(refresh)
+        self.scrollView = scrollView*/
     }
 }

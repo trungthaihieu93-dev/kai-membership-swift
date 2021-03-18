@@ -93,15 +93,12 @@ class AccountManagement {
         }
     }
     
-    class func refresh() {
-        AccountManagement.accessToken = nil
-        AccountManagement.refreshToken = nil
-    }
-    
     class func logout() {
-        AccountManagement.email = nil
-        AccountManagement.userID = nil
-        refresh()
+        KeyChain.delete(forKey: .email)
+        KeyChain.delete(forKey: .userID)
+        KeyChain.delete(forKey: .user)
+        KeyChain.delete(forKey: .authorizationToken)
+        KeyChain.delete(forKey: .refreshToken)
     }
     
     class func getInfoUser(_ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
@@ -183,6 +180,10 @@ class AccountManagement {
                         case .failure(let error):
                             completion(.failure(error))
                         }
+                    }
+                    
+                    if data.isFirst {
+                        AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
                     }
                 } else {
                     completion(.failure(APIErrorResult(with: .emptyResults)))

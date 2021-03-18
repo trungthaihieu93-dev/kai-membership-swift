@@ -20,9 +20,9 @@ class UpdateProfileViewModel {
     
     var hasChanged: Bool {
         if let birthdayDefault = self.birthdayDefault {
-            return fullName != fullNameDefault && phoneNumber != phoneNumberDefault && !fullName.isEmpty && !phoneNumber.isEmpty && birthday != birthdayDefault
+            return !fullName.isEmpty && !phoneNumber.isEmpty && (fullName != fullNameDefault || phoneNumber != phoneNumberDefault || birthday != birthdayDefault)
         } else {
-            return fullName != fullNameDefault && phoneNumber != phoneNumberDefault && !fullName.isEmpty && !phoneNumber.isEmpty
+            return !fullName.isEmpty && !phoneNumber.isEmpty && (fullName != fullNameDefault || phoneNumber != phoneNumberDefault)
         }
     }
     
@@ -31,6 +31,10 @@ class UpdateProfileViewModel {
         self.fullNameDefault = fullName ?? ""
         self.birthdayDefault = birthday
         self.phoneNumberDefault = phoneNumber ?? ""
+        
+        self.fullName = self.fullNameDefault
+        self.birthday = self.birthdayDefault
+        self.phoneNumber = self.phoneNumberDefault
     }
     
     // MARK: Methods

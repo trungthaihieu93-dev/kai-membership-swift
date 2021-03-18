@@ -265,11 +265,11 @@ class NestedScrollViewController: UIViewController {
         if let scroll = containerView as? UIScrollView {
             let bottomHeight = max(scroll.contentSize.height, view.frame.height - pagerTabHeight - safeAreaInsets.bottom)
             
-            return .init(width: scroll.contentSize.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight + safeAreaInsets.bottom)
+            return .init(width: scroll.contentSize.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight + safeAreaInsets.top)
         } else {
             let bottomHeight = view.frame.height - pagerTabHeight
             
-            return .init(width: containerView.frame.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight + safeAreaInsets.bottom)
+            return .init(width: containerView.frame.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight + safeAreaInsets.top)
         }
     }
     

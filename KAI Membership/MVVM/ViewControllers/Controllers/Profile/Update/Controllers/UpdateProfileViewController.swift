@@ -198,11 +198,12 @@ extension UpdateProfileViewController {
     
     @objc private func onPressedUpdateProfile() {
         guard inputPhoneNumberView.contentInput.isPhoneNumber else {
-            inputPhoneNumberView.setMessage("🤔 Phone number invalid!")
+            inputPhoneNumberView.setMessage("🤔 Phone number invalid! \n Phone number invalid!")
             return
         }
         
-        viewModel.udpateProfile().subscribe(on: MainScheduler.instance).subscribe(onNext: {
+        viewModel.udpateProfile().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
             AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top)
         }, onError: { error in
             AlertManagement.shared.showToast(with: "🤔 Update failure!", position: .top)
@@ -231,5 +232,7 @@ extension UpdateProfileViewController {
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87),
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium)
         ]), for: .normal)
+        
+        isConfirmEnabled = viewModel.hasChanged
     }
 }

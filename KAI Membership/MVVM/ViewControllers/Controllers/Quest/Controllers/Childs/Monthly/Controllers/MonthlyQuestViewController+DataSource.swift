@@ -22,9 +22,9 @@ extension MonthlyQuestViewController: DZNEmptyDataSetSource {
         ])
     }
     
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return 0
-    }
+//    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+//        return -100
+//    }
 }
 
 // MARK: UITableViewDataSource
@@ -36,8 +36,7 @@ extension MonthlyQuestViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestTableViewCell.identifier, for: indexPath) as! QuestTableViewCell
-//        cell.configure(with: indexPath.row % 2 == 0 ? .inProgress : .completed, title: "Spend 30 minutes in Games", description: "Completed")
-        cell.configure(quests[indexPath.row])
+        cell.configure(quests[0])
         
         return cell
     }

@@ -54,7 +54,7 @@ class KAIInputTextFieldView: UIView {
         
         addSubview(titleLabel)
         addSubview(textFieldView)
-//        addSubview(messageLabel)
+        addSubview(messageLabel)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -63,13 +63,12 @@ class KAIInputTextFieldView: UIView {
             
             textFieldView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             textFieldView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            textFieldView.bottomAnchor.constraint(equalTo: bottomAnchor),
             textFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-//            messageLabel.topAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: 8),
-//            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-//            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            messageLabel.topAnchor.constraint(equalTo: textFieldView.bottomAnchor),
+            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
@@ -79,7 +78,7 @@ class KAIInputTextFieldView: UIView {
             return
         }
         
-        messageLabel.attributedText = message.setTextWithFormat(font: .workSansFont(ofSize: 12, weight: .medium), lineHeight: 20, textColor: UIColor.black.withAlphaComponent(0.26))
+        messageLabel.attributedText = message.setTextWithFormat(font: .workSansFont(ofSize: 12, weight: .medium), lineHeight: 16, textColor: UIColor.init(hex: "C42C15"))
     }
     
     func reset() {
@@ -114,6 +113,7 @@ extension KAIInputTextFieldView: KAITextFieldDelegate {
     
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
         contentInput = textField.text ?? ""
+        messageLabel.attributedText = nil
         delegate?.kAITextFieldDidChange(textField, for: self)
     }
     

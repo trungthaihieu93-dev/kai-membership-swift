@@ -23,13 +23,19 @@ final class Navigator {
     
     /* Hiện màn hình tương tác chính */
     class func showRootTabbarController() {
-        Navigator.window?.rootViewController = RootTabbarController()
+        guard let window = self.window else { return }
+        
+        window.rootViewController = RootTabbarController()
+        UIView.transition(with: window, duration: 0.2, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
     
     /* Hiện màn hình giới thiệu */
     class func showTutorialVC() {
+        guard let window = self.window else { return }
+        
         let vc = TutorialViewController()
-        window?.rootViewController = RootNavigationController(rootViewController: vc)
+        window.rootViewController = RootNavigationController(rootViewController: vc)
+        UIView.transition(with: window, duration: 0.2, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
     
     /*
@@ -40,16 +46,17 @@ final class Navigator {
         guard let window = self.window else { return }
         
         let vc = SelectAccountViewController(with: users)
-        
-        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {}, completion: { completed in
-            window.rootViewController = RootNavigationController(rootViewController: vc)
-        })
+        window.rootViewController = RootNavigationController(rootViewController: vc)
+        UIView.transition(with: window, duration: 0.2, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
-    
+
     /* Hiện màn hình đăng nhập */
     class func showSignInVC() {
+        guard let window = self.window else { return }
+        
         let vc = SignInViewController()
-        window?.rootViewController = RootNavigationController(rootViewController: vc)
+        window.rootViewController = RootNavigationController(rootViewController: vc)
+        UIView.transition(with: window, duration: 0.2, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
     
     /* Điều hướng sang màn hình đăng nhập */
@@ -127,9 +134,14 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /* Điều hướng sang màn hình cập nhật thông tin tài khoản cá nhân */
-    class func navigateToUpdateProfileVC(from viewController: UIViewController? = nil) {
-        let vc = UpdateProfileViewController()
+    /*
+     Điều hướng sang màn hình cập nhật thông tin tài khoản cá nhân
+     - parameter fullName: tên đầy đủ
+     - parameter birthday: ngày sinh
+     - parameter phoneNumber: số điện thoại
+     */
+    class func navigateToUpdateProfileVC(from viewController: UIViewController? = nil, fullName: String? = nil, birthday: Double? = nil, phoneNumber: String? = nil) {
+        let vc = UpdateProfileViewController(fullName: fullName, birthday: birthday, phoneNumber: phoneNumber)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
