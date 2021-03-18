@@ -11,7 +11,7 @@ import RxSwift
 class UpdateProfileViewController: BaseViewController {
     
     // MARK: Properties
-    let viewModel = UpdateProfileViewModel()
+    let viewModel: UpdateProfileViewModel
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -101,6 +101,16 @@ class UpdateProfileViewController: BaseViewController {
     var datePicker = UIDatePicker()
     
     // MARK: Life cycle's
+    init(fullName: String? = nil, birthday: Double? = nil, phoneNumber: String? = nil) {
+        self.viewModel = UpdateProfileViewModel(fullName: fullName, birthday: birthday, phoneNumber: phoneNumber)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -158,6 +168,14 @@ class UpdateProfileViewController: BaseViewController {
         
         updateButtonBottomAnchor = updateButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 20))
         updateButtonBottomAnchor?.isActive = true
+        
+        configure()
+    }
+    
+    // MARK: Methods
+    private func configure() {
+        inputFullNameView.setText(viewModel.fullName)
+        inputPhoneNumberView.setText(viewModel.phoneNumber)
     }
 }
 
@@ -180,14 +198,14 @@ extension UpdateProfileViewController {
     
     @objc private func onPressedUpdateProfile() {
         guard inputPhoneNumberView.contentInput.isPhoneNumber else {
-            debugPrint("Show Alert ko phai so dien thoai")
+            inputPhoneNumberView.setMessage("🤔 Phone number invalid!")
             return
         }
         
-        viewModel.udpateProfile(name: inputFullNameView.contentInput, phoneNumber: inputPhoneNumberView.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: {
+        viewModel.udpateProfile().subscribe(on: MainScheduler.instance).subscribe(onNext: {
             AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top)
         }, onError: { error in
-            debugPrint("Login error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            AlertManagement.shared.showToast(with: "🤔 Update failure!", position: .top)
         }).disposed(by: disposeBag)
     }
     

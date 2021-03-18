@@ -15,7 +15,6 @@ class Key {
         case serviceProviders = "KAI.UserDefault.ServiceProviders"
         case linkBuyApp = "KAI.UserDefault.LinkBuyApp"
         case configure = "KAI.UserDefault.Configure"
-        case userInfo = "KAI.UserDefault.UserInfomation"
     }
     
     enum KeyChain: String {
@@ -23,6 +22,6 @@ class Key {
         case refreshToken = "KAI.KeyChain.refreshToken"
         case userID = "KAI.KeyChain.UserID"
         case email = "KAI.KeyChain.Email"
-        case kaiInfo = "KAI.KeyChain.KaiInfomation"
+        case user = "KAI.KeyChain.UserInfomation"
     }
 }

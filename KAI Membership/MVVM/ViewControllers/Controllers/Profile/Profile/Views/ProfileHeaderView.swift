@@ -151,11 +151,11 @@ class ProfileHeaderView: UIView {
     }
     
     // MARK: Configure
-    func configure(_ user: UserRemote) {
-        backgroundImageView.setImage(from: user.avatarLink, placeholder: UIImage(named: "bg_profile"))
-        nameLabel.text = user.username
-        emailLabel.text = user.email
-        userIDLabel.text = user.id
+    func configure(_ user: AccountInfoRemote? = nil) {
+        backgroundImageView.setImage(from: user?.user?.avatarLink, placeholder: UIImage(named: "bg_profile"))
+        nameLabel.text = user?.kai?.firstName
+        emailLabel.text = user?.user?.email
+        userIDLabel.text = user?.user?.id
     }
     
     func zoomImage(with value: CGFloat) {

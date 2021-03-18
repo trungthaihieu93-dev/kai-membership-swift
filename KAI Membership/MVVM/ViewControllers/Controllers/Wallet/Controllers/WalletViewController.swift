@@ -37,7 +37,7 @@ class WalletViewController: BaseViewController {
     }()
     
     private lazy var cardView: KAICardView = {
-        let view = KAICardView(with: AccountManagement.kai)
+        let view = KAICardView(with: AccountManagement.user?.kai)
         
         return view
     }()

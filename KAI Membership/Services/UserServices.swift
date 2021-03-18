@@ -66,8 +66,8 @@ class UserServices {
     // MARK: Update infomation
     class func updateInfomation(name: String, phoneNumber: String, birthday: Double? = nil, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/info", method: .post)
-        input.params["first_name"] = name
-        input.params["last_name"] = name
+        input.params["firstName"] = name
+        input.params["lastName"] = name
         input.params["phone"] = phoneNumber
         
         if let birthday = birthday {

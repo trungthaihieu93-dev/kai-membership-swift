@@ -10,13 +10,37 @@ import RxSwift
 class UpdateProfileViewModel {
     
     // MARK: Properties
+    private let fullNameDefault: String
+    private let birthdayDefault: Double?
+    private let phoneNumberDefault: String
+    
+    var fullName: String = ""
     var birthday: Double?
+    var phoneNumber: String = ""
+    
+    var hasChanged: Bool {
+        if let birthdayDefault = self.birthdayDefault {
+            return fullName != fullNameDefault && phoneNumber != phoneNumberDefault && !fullName.isEmpty && !phoneNumber.isEmpty && birthday != birthdayDefault
+        } else {
+            return fullName != fullNameDefault && phoneNumber != phoneNumberDefault && !fullName.isEmpty && !phoneNumber.isEmpty
+        }
+    }
+    
+    // MARK: Life cycle's
+    init(fullName: String? = nil, birthday: Double? = nil, phoneNumber: String? = nil) {
+        self.fullNameDefault = fullName ?? ""
+        self.birthdayDefault = birthday
+        self.phoneNumberDefault = phoneNumber ?? ""
+    }
     
     // MARK: Methods
-    func udpateProfile(name: String, phoneNumber: String) -> Observable<Void> {
+    func udpateProfile() -> Observable<Void> {
         let birthday = self.birthday
+        let fullName = self.fullName
+        let phoneNumber = self.phoneNumber
+        
         return Observable.create { (observer) -> Disposable in
-            UserServices.updateInfomation(name: name, phoneNumber: phoneNumber, birthday: birthday) {
+            UserServices.updateInfomation(name: fullName, phoneNumber: phoneNumber, birthday: birthday) {
                 switch $0 {
                 case .success:
                     observer.onNext(())

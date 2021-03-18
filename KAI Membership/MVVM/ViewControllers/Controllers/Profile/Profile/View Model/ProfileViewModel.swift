@@ -26,17 +26,12 @@ class ProfileViewModel {
         }
     }
     
-    func getUserInfo() -> Observable<UserRemote> {
-        return Observable<UserRemote>.create { (observer) -> Disposable in
+    func getUserInfo() -> Observable<AccountInfoRemote> {
+        return Observable<AccountInfoRemote>.create { (observer) -> Disposable in
             AccountManagement.getInfoUser {
                 switch $0 {
                 case .success(let result):
-                    if let user = result.user {
-                        observer.onNext(user)
-                    } else {
-                        observer.onNext(AccountManagement.user)
-                    }
-                    
+                    observer.onNext(result)
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)

@@ -52,13 +52,13 @@ class QuestViewModel {
         var newValue: [QuestRemote] = []
         
         for userQuest in userQuests {
-            for i in 0..<quests.count where quests[i].id == userQuest.id {
+            for i in 0..<quests.count where quests[i].key == userQuest.key {
                 let tmp = quests[i]
                 tmp.userQuest = userQuest
                 newValue.append(tmp)
             }
         }
         
-        return quests
+        return newValue
     }
 }

@@ -77,44 +77,19 @@ class AccountManagement {
         }
     }
     
-    static var kai: KAIRemote? {
+    static var user: AccountInfoRemote? {
         get {
-            guard let data = KeyChain.load(forKey: .kaiInfo), let jsonString = String(data: data, encoding: .utf8) else { return nil }
+            guard let data = KeyChain.load(forKey: .user), let jsonString = String(data: data, encoding: .utf8) else { return nil }
             
-            return Helper.toObject(ofType: KAIRemote.self, jsonString: jsonString)
+            return Helper.toObject(ofType: AccountInfoRemote.self, jsonString: jsonString)
         }
         set {
             guard let data = Helper.toJSONString(newValue)?.data(using: .utf8) else {
-                KeyChain.delete(forKey: .kaiInfo)
+                KeyChain.delete(forKey: .user)
                 return
             }
             
-            KeyChain.save(forKey: .kaiInfo, data: data)
-        }
-    }
-    
-    static var user: UserRemote {
-        get {
-            guard let data = UserDefaults.standard.data(forKey: Key.UserDefault.userInfo.rawValue) else { return UserRemote() }
-            
-            do {
-                let decoder = JSONDecoder()
-                let result = try decoder.decode(UserRemote.self, from: data)
-                
-                return result
-            } catch {
-                debugPrint("Unable to Decode Service Providers (\(error))")
-                return UserRemote()
-            }
-        }
-        set {
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(newValue)
-                UserDefaults.standard.set(data, forKey: Key.UserDefault.userInfo.rawValue)
-            } catch {
-                debugPrint("Unable to Encode User Infomation (\(error))")
-            }
+            KeyChain.save(forKey: .user, data: data)
         }
     }
     
@@ -134,9 +109,8 @@ class AccountManagement {
             switch $0 {
             case .success(let result):
                 if let data = result.data {
-                    AccountManagement.user = data.user ?? UserRemote()
                     AccountManagement.userID = data.user?.id
-                    AccountManagement.kai = data.kai
+                    AccountManagement.user = data
                     completion(.success(data))
                 } else {
                     completion(.failure(APIErrorResult(with: .emptyResults)))

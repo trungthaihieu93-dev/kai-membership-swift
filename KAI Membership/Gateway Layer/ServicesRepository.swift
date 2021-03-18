@@ -53,7 +53,7 @@ class APIInput: APIInputBase {
     
     init(withDomain domain: String, path: String = "", params: Parameters = [:], method: HTTPMethod = .get) {
         if let authorizationToken = AccountManagement.accessToken {
-            headers.add(HTTPHeader.authorization(bearerToken: "7NXC8thsTuuC2zkkT9LlzdkH5cJcng"))
+            headers.add(HTTPHeader.authorization(bearerToken: authorizationToken))
         }
          
         self.domain = domain

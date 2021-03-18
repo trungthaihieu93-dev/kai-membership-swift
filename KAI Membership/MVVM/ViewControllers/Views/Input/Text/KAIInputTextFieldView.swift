@@ -89,6 +89,16 @@ class KAIInputTextFieldView: UIView {
     func inputBecomeFirstResponder() {
         textFieldView.inputBecomeFirstResponder()
     }
+    
+    func setText(_ text: String) {
+        contentInput = text
+        textFieldView.setText(text)
+    }
+    
+    func setAttributedText(_ attributedText: NSAttributedString) {
+        contentInput = attributedText.string
+        textFieldView.setAttributedText(attributedText)
+    }
 }
 
 // MARK: KAITextFieldDelegate
