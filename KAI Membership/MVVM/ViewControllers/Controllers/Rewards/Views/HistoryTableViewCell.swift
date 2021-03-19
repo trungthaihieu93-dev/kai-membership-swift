@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RNLoadingButton_Swift
 
 class HistoryTableViewCell: UITableViewCell {
     
@@ -31,8 +30,6 @@ class HistoryTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .workSansFont(ofSize: 10, weight: .medium)
-        label.textColor = UIColor.init(hex: "0E8C31")
         
         return label
     }()
@@ -40,26 +37,22 @@ class HistoryTableViewCell: UITableViewCell {
     private let infoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         stackView.spacing = 4
         stackView.distribution = .fill
         
         return stackView
     }()
     
-    private lazy var actionButton: RNLoadingButton = {
-        let button = RNLoadingButton()
+    private lazy var actionButton: UIButton = {
+        let button = UIButton(type: .system)
         button.backgroundColor = .init(hex: "E6EAEF")
         button.setAttributedTitle(NSAttributedString(string: "Redeem", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 12, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.init(hex: "29323D")
         ]), for: .normal)
+        button.contentEdgeInsets = .init(top: 6, left: 12, bottom: 6, right: 12)
         button.layer.cornerRadius = 8
-        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
-        button.activityIndicatorEdgeInsets.left = 16
-        button.hideTextWhenLoading = false
-        button.isLoading = false
-        button.activityIndicatorColor = .white
         button.addTarget(self, action: #selector(onPressedAction), for: .touchUpInside)
         
         return button
@@ -68,9 +61,9 @@ class HistoryTableViewCell: UITableViewCell {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
+        stackView.axis = .horizontal
         stackView.spacing = 8
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         
         return stackView
     }()
@@ -84,15 +77,6 @@ class HistoryTableViewCell: UITableViewCell {
         
         return view
     }()
-    
-    var isActionEnabled: Bool = true {
-        didSet {
-            actionButton.isEnabled = isActionEnabled
-            actionButton.isLoading = !isActionEnabled
-        }
-    }
-    
-    var didFinishTouchedAction: (() -> Void)?
     
     // MARK: Life cycle's
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -118,7 +102,7 @@ class HistoryTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(infoStackView)
         
         infoStackView.addArrangedSubview(titleLabel)
-        infoStackView.addArrangedSubview(descriptionLabel)
+//        infoStackView.addArrangedSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
@@ -133,26 +117,35 @@ class HistoryTableViewCell: UITableViewCell {
             contentImageView.heightAnchor.constraint(equalToConstant: 45),
             
             stackView.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: 12),
-            stackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentImageView.trailingAnchor, constant: 8),
+            stackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
         ])
     }
     
     // MARK: Methods
     func configure(_ history: HistoryRemote) {
-        stackView.removeArrangedSubview(actionButton)
-        stackView.addArrangedSubview(actionButton)
-        
-//        if history.status == .inProgress {
-//            stackView.addArrangedSubview(actionButton)
-//        }
-        
         titleLabel.text = history.rewardName
+        /*stackView.removeArrangedSubview(actionButton)
+        
+        if history.status == .inProgress {
+            stackView.addArrangedSubview(actionButton)
+        }
+        
+        let mutableAttributedString = NSMutableAttributedString(string: "Received on: ", attributes: [
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54)
+        ])
+        mutableAttributedString.append(NSAttributedString(string: "Tue, 20/11/2020", attributes: [
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+            NSAttributedString.Key.foregroundColor: UIColor.init(hex: "98A1B1")
+        ]))
+        
+        descriptionLabel.attributedText = mutableAttributedString*/
     }
     
     // MARK: Handle actions
     @objc private func onPressedAction() {
-        isActionEnabled = false
-        didFinishTouchedAction?()
+        AlertManagement.shared.showToast(with: "Your received \(titleLabel.text ?? "KAI")", position: .top)
     }
 }

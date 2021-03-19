@@ -44,9 +44,30 @@ class PasscodeViewModel {
     
     func createPasscode(_ passcode: String) -> Observable<Void> {
         let email = self.email
+        showLoading.accept(true)
+        
+        return Observable<Void>.create { [weak self] (observer) -> Disposable in
+            PasscodeServices.createPasscode(with: email, passcode: passcode) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            self?.showLoading.accept(false)
+            
+            return Disposables.create()
+        }
+    }
+    
+    func checkPasscode(_ passcode: String) -> Observable<Void> {
+        showLoading.accept(true)
         
         return Observable<Void>.create { (observer) -> Disposable in
-            DeviceServices.createPasscode(with: email, passcode: passcode) {
+            PasscodeServices.checkPasscode(passcode) {
                 switch $0 {
                 case .success:
                     observer.onNext(())
@@ -60,23 +81,33 @@ class PasscodeViewModel {
         }
     }
     
-    func checkPasscode(_ passcode: String) -> Observable<Void> {
-//        let email = self.email
-        let email = "peihsen.doyle@gmail.com"
+    func requestChangePassword() -> Observable<Void> {
+        let email = self.email
         
-        return Observable<Void>.create { (observer) -> Disposable in
-            DeviceServices.checkPasscode(passcode) {
+        return Observable.create { (observer) -> Disposable in
+            UserServices.requestChangePassword(with: email) {
                 switch $0 {
                 case .success:
-                    UserServices.requestChangePassword(with: email) {
-                        switch $0 {
-                        case .success:
-                            observer.onNext(())
-                            observer.onCompleted()
-                        case .failure(let error):
-                            observer.onError(error)
-                        }
-                    }
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func resetPasscode(token: String, passcode: String) -> Observable<Void> {
+        let email = self.email
+        
+        return Observable.create { (observer) -> Disposable in
+            PasscodeServices.resetPasscode(token: token, passcode: passcode, email: email) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }

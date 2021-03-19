@@ -1,15 +1,15 @@
 //
-//  ResetPasscodeViewController.swift
+//  VerificationViewController.swift
 //  KAI Membership
 //
-//  Created by Anh Kiệt on 20/02/2021.
+//  Created by DAKiet on 19/03/2021.
 //
 
 import UIKit
 import RxSwift
 import RNLoadingButton_Swift
 
-class ResetPasscodeViewController: BaseViewController {
+class VerificationViewController: BaseViewController {
 
     // MARK: Properties
     private let email: String
@@ -20,13 +20,13 @@ class ResetPasscodeViewController: BaseViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
-        label.attributedText = "We will send an email with instructions to your registed email.".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+        label.attributedText = "Check your email for token".setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
         
         return label
     }()
     
-    private lazy var emailTextField: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(with: .default, title: "EMAIL", placeholder: "an.nguyen@kardiachain.io", keyboardType: .emailAddress)
+    private lazy var tokenTextField: KAIInputTextFieldView = {
+        let view = KAIInputTextFieldView(with: .default, title: "PASTE YOUR TOKEN HERE", placeholder: "Paste your token here")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -36,7 +36,7 @@ class ResetPasscodeViewController: BaseViewController {
     private lazy var sendButton: RNLoadingButton = {
         let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setAttributedTitle(NSAttributedString(string: "Send Instructions", attributes: [
+        button.setAttributedTitle(NSAttributedString(string: "Set new Passcode", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]), for: .normal)
@@ -54,7 +54,7 @@ class ResetPasscodeViewController: BaseViewController {
         return button
     }()
     
-    var isConfirmEnabled: Bool {
+    var isConfirmEnabled: Bool = false {
         didSet {
             guard isConfirmEnabled != oldValue else { return }
             
@@ -68,17 +68,9 @@ class ResetPasscodeViewController: BaseViewController {
         }
     }
     
-    var isLoading: Bool = false {
-        didSet {
-            isConfirmEnabled = !isLoading
-            sendButton.isLoading = isLoading
-        }
-    }
-    
     // MARK: Life cycle's
     init(with email: String) {
         self.email = email
-        self.isConfirmEnabled = !email.isEmpty
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -90,14 +82,14 @@ class ResetPasscodeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Reset Passcode"
+        navigationItem.title = "Verification"
         setupView()
     }
     
     // MARK: Layout
     private func setupView() {
         view.addSubview(descriptionLabel)
-        view.addSubview(emailTextField)
+        view.addSubview(tokenTextField)
         view.addSubview(sendButton)
         
         NSLayoutConstraint.activate([
@@ -105,43 +97,23 @@ class ResetPasscodeViewController: BaseViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            emailTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24),
-            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tokenTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24),
+            tokenTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tokenTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            sendButton.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 16),
-            sendButton.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
+            sendButton.topAnchor.constraint(equalTo: tokenTextField.bottomAnchor, constant: 16),
+            sendButton.leadingAnchor.constraint(equalTo: tokenTextField.leadingAnchor),
             sendButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 24)),
-            sendButton.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
+            sendButton.trailingAnchor.constraint(equalTo: tokenTextField.trailingAnchor),
             sendButton.heightAnchor.constraint(equalToConstant: 52),
         ])
-        
-        emailTextField.setText(email)
-        
-        if isConfirmEnabled {
-            sendButton.isEnabled = true
-            
-            DispatchQueue.main.async {
-                self.sendButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
-            }
-        }
     }
 }
 
 // MARK: Handle actions
-extension ResetPasscodeViewController {
+extension VerificationViewController {
     
     @objc private func onPressedSend() {
-        let email = emailTextField.contentInput
-        isLoading = true
-        viewModel.requestResetPasscode(with: email).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
-            guard let this = self else { return }
-            
-            Navigator.navigateToCheckMailVC(from: this, with: email)
-            this.isLoading = false
-        }, onError: { [weak self] error in
-            AlertManagement.shared.showToast(with: "🤔 Request forgot passcode by email failure!", position: .top)
-            self?.isLoading = false
-        }).disposed(by: disposeBag)
+        Navigator.navigateToPasscodeVC(from: self, with: .reset(tokenTextField.contentInput), email: email)
     }
 }

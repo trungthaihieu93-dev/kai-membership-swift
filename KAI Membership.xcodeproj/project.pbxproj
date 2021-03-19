@@ -62,6 +62,8 @@
 		498BCFFC25F78D6800F04160 /* ProfileViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */; };
 		498E45C126045A1600D62AAA /* TrackingManagement+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C026045A1600D62AAA /* TrackingManagement+Registration.swift */; };
 		498E45C426045B9400D62AAA /* TrackingManagement+Topup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C326045B9400D62AAA /* TrackingManagement+Topup.swift */; };
+		498E45C92604B0E400D62AAA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C82604B0E400D62AAA /* VerificationViewController.swift */; };
+		498E45CD2604B47600D62AAA /* VerificationViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */; };
 		49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7946F260441FE00915584 /* AppsFlyerManagement.swift */; };
 		49A79473260442BF00915584 /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A79472260442BF00915584 /* NotificationManagement.swift */; };
 		49A794862604521900915584 /* TrackingManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A794852604521900915584 /* TrackingManagement.swift */; };
@@ -270,6 +272,8 @@
 		498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Delegate.swift"; sourceTree = "<group>"; };
 		498E45C026045A1600D62AAA /* TrackingManagement+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingManagement+Registration.swift"; sourceTree = "<group>"; };
 		498E45C326045B9400D62AAA /* TrackingManagement+Topup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingManagement+Topup.swift"; sourceTree = "<group>"; };
+		498E45C82604B0E400D62AAA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerificationViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49A7946F260441FE00915584 /* AppsFlyerManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManagement.swift; sourceTree = "<group>"; };
 		49A79472260442BF00915584 /* NotificationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
 		49A794852604521900915584 /* TrackingManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManagement.swift; sourceTree = "<group>"; };
@@ -650,6 +654,15 @@
 				498BCFE825F7470800F04160 /* Helper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		498E45C72604B0D800D62AAA /* Verification */ = {
+			isa = PBXGroup;
+			children = (
+				498E45C82604B0E400D62AAA /* VerificationViewController.swift */,
+				498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */,
+			);
+			path = Verification;
 			sourceTree = "<group>";
 		};
 		49A794882604522B00915584 /* Tracking */ = {
@@ -1548,7 +1561,6 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				49F5FE882601E6A100D53D82 /* Send */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				226DA42C2600B5DB009BC8CC /* Buy */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
@@ -1566,11 +1578,13 @@
 				493043E525F88C2000EED242 /* Rewards */,
 				529AE1BD25DD9B5D00635807 /* Root */,
 				521754C825DEACC9009355BC /* Select Account */,
+				49F5FE882601E6A100D53D82 /* Send */,
 				52F37C9D25E00004009F311F /* Sign In */,
 				52F37CE825E031B5009F311F /* Sign Up */,
 				525DBA7825F01765001491AE /* Topup */,
 				521754AD25DE764B009355BC /* Tutorials */,
 				529AE1AB25DD997500635807 /* Utilities */,
+				498E45C72604B0D800D62AAA /* Verification */,
 				529AE1B125DD99B000635807 /* Wallet */,
 				525E6BD625FE086200A7BAC5 /* Web */,
 			);
@@ -1977,6 +1991,7 @@
 				525DBB0125F28917001491AE /* KAIRemote.swift in Sources */,
 				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
 				498BCFE925F7470800F04160 /* Helper.swift in Sources */,
+				498E45C92604B0E400D62AAA /* VerificationViewController.swift in Sources */,
 				525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */,
 				494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */,
 				525DBA5725F008E7001491AE /* Data+Extensions.swift in Sources */,
@@ -2019,6 +2034,7 @@
 				521754DE25DECBEF009355BC /* UIViewController+Extensions.swift in Sources */,
 				226DA3F92600750A009BC8CC /* FloatyManager.swift in Sources */,
 				4963D07725FEF8AB00720B34 /* ConfigRemote.swift in Sources */,
+				498E45CD2604B47600D62AAA /* VerificationViewController+Delegate.swift in Sources */,
 				494C0AE325FA147A00E30115 /* ResetPasscodeViewModel.swift in Sources */,
 				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
 				5265495C25F5E909003AE21A /* ProfileViewController.swift in Sources */,

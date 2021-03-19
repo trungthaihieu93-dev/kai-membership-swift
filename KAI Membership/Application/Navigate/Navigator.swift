@@ -74,9 +74,12 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /* Điều hướng sang màn hình làm mới passcode */
-    class func navigateToResetPasscodeVC(from viewController: UIViewController? = nil) {
-        let vc = ResetPasscodeViewController()
+    /*
+     Điều hướng sang màn hình làm mới passcode
+     - parameter email: Địa chỉ email
+     */
+    class func navigateToResetPasscodeVC(from viewController: UIViewController? = nil, with email: String) {
+        let vc = ResetPasscodeViewController(with: email)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -88,9 +91,12 @@ final class Navigator {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /* Điều hướng sang màn hình kiểm tra email */
-    class func navigateToCheckMailVC(from viewController: UIViewController? = nil) {
-        let vc = CheckMailViewController()
+    /*
+     Điều hướng sang màn hình kiểm tra email
+     - parameter email: Địa chỉ email
+     */
+    class func navigateToCheckMailVC(from viewController: UIViewController? = nil, with email: String) {
+        let vc = CheckMailViewController(with: email)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -115,6 +121,16 @@ final class Navigator {
         let vc = CongratsViewController(with: type)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /*
+     Hiển thị màn hình chúc mừng (đã đăng ký tài khoản hoăc đã cập nhật mật khẩu) thành công
+     - parameter type: Loại hiển thị
+     */
+    class func showCongratsVC(from viewController: UIViewController? = nil, with type: CongratsViewController.`Type`) {
+        let vc = CongratsViewController(with: type)
+        vc.modalPresentationStyle = .fullScreen
+        viewController?.present(vc, animated: true, completion: nil)
     }
     
     /*
@@ -240,5 +256,15 @@ final class Navigator {
                 Navigator.openSpin(from: viewController)
             }
         }
+    }
+    
+    /*
+     Điều hướng tới màn hình Verification
+     - parameter email: Địa chỉ email
+     */
+    class func navigateToVerificationVC(from viewController: UIViewController? = nil, with email: String) {
+        let vc = VerificationViewController(with: email)
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

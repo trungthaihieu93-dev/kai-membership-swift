@@ -12,15 +12,20 @@ import RNLoadingButton_Swift
 class PasscodeViewController: BaseViewController {
 
     // MARK: Properties
+    struct Reset {
+        let token: String
+        let passcode: String
+    }
+    
     enum ConfirmType {
         case create(String)
-        case reset(String)
+        case reset(Reset)
     }
     
     enum `Type` {
         case register
         case login
-        case reset
+        case reset(String)
         case changePassword
         case updateProfile
         case confirm(ConfirmType)
@@ -63,7 +68,7 @@ class PasscodeViewController: BaseViewController {
         button.activityIndicatorEdgeInsets.left = 16
         button.hideTextWhenLoading = false
         button.isLoading = false
-        button.activityIndicatorColor = .white
+        button.activityIndicatorColor = .black
         button.addTarget(self, action: #selector(onPressedConfirm), for: .touchUpInside)
         
         return button
@@ -122,7 +127,7 @@ class PasscodeViewController: BaseViewController {
     var completion: (() -> Void)?
     
     // MARK: Life cycle's
-    init(with type: `Type`, email: String, _ completion: (() -> Void)? = nil) {
+    init(with type: `Type`, email: String, token: String = "", _ completion: (() -> Void)? = nil) {
         self.type = type
         self.viewModel = PasscodeViewModel(email: email)
         self.completion = completion
@@ -265,6 +270,19 @@ class PasscodeViewController: BaseViewController {
             footerLabel.attributedText = nil
         }
     }
+    
+    // MARK: Methods
+    private func requestChangePassword() {
+        viewModel.requestChangePassword().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+            guard let this = self else { return }
+            
+            this.viewModel.showLoading.accept(false)
+            Navigator.navigateToPasswordVC(from: this, with: .change)
+        }, onError: { [weak self] error in
+            self?.viewModel.showLoading.accept(false)
+            AlertManagement.shared.showToast(with: "🤔 Instruction sent to email failure!", position: .top)
+        }).disposed(by: disposeBag)
+    }
 }
 
 // MARK: Handle actions
@@ -285,42 +303,60 @@ extension PasscodeViewController {
                     Navigator.showRootTabbarController()
                 }
             }, onError: { error in
-                debugPrint("Login with passcode error: \((error as? APIErrorResult)?.message ?? "")")
+                AlertManagement.shared.showToast(with: "🤔 Passcode incorrect!", position: .top)
             }).disposed(by: disposeBag)
-        case .reset:
-            Navigator.navigateToPasscodeVC(from: self, with: .confirm(.reset(passcodeView.code)), email: viewModel.email)
+        case .reset(let token):
+            Navigator.navigateToPasscodeVC(from: self, with: .confirm(.reset(Reset(token: token, passcode: passcodeView.code))), email: viewModel.email)
         case .changePassword:
             viewModel.checkPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
-                guard let this = self else { return }
-                
-                debugPrint("Show Alert kêu người dùng ở app mail để coi token")
-                Navigator.navigateToPasswordVC(from: this, with: .change)
-            }, onError: { error in
-                debugPrint("Check passcode error: \((error as? APIErrorResult)?.message ?? "")")
+                self?.requestChangePassword()
+            }, onError: { [weak self] error in
+                self?.viewModel.showLoading.accept(false)
+                AlertManagement.shared.showToast(with: "🤔 Passcode incorrect!", position: .top)
             }).disposed(by: disposeBag)
         case .updateProfile:
-            debugPrint("")
+            viewModel.checkPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                self?.completion?()
+            }, onError: { [weak self] error in
+                self?.viewModel.showLoading.accept(false)
+                AlertManagement.shared.showToast(with: "🤔 Passcode incorrect!", position: .top)
+            }).disposed(by: disposeBag)
         case .confirm(let type):
             switch type {
             case .create(let passcode):
                 guard passcodeView.code == passcode else {
-                    debugPrint("Xác nhận passcode không chính xác")
+                    AlertManagement.shared.showToast(with: "🤔 Confirm passcode incorrect!", position: .top)
                     return
                 }
                 
-                viewModel.createPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: {
-                    Navigator.showRootTabbarController()
+                viewModel.createPasscode(passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                    guard let this = self else { return }
+                    
+                    Navigator.showCongratsVC(from: this, with: .signUp)
                 }, onError: { error in
-                    debugPrint("Create passcode error: \((error as? APIErrorResult)?.message ?? "")")
+                    AlertManagement.shared.showToast(with: "🤔 Create passcode failure!", position: .top)
                 }).disposed(by: disposeBag)
-            case .reset(let passcode):
-                guard passcodeView.code == passcode else {
-                    debugPrint("Xác nhận passcode không chính xác")
+            case .reset(let reset):
+                guard passcodeView.code == reset.passcode else {
+                    AlertManagement.shared.showToast(with: "🤔 Confirm passcode incorrect!", position: .top)
                     return
                 }
                 
-                //resetpasscode
-                debugPrint("")
+                viewModel.resetPasscode(token: reset.token, passcode: passcodeView.code).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                    guard let this = self else { return }
+                    
+                    Navigator.showCongratsVC(from: this, with: .passcode)
+                }, onError: { [weak self] error in
+                    guard let this = self else { return }
+                    
+                    if let verificationVC = this.navigationController?.viewControllers.first(where: { $0 is VerificationViewController }) {
+                        this.navigationController?.popToViewController(verificationVC, animated: true)
+                    } else {
+                        this.navigationController?.popToRootViewController(animated: true)
+                    }
+                    
+                    AlertManagement.shared.showToast(with: "🤔 Verification token incorrect!", position: .top)
+                }).disposed(by: disposeBag)
             }
         }
     }
@@ -344,7 +380,7 @@ extension PasscodeViewController {
             let clickHereRange = (footerString2 as NSString).range(of: clickHere)
 
             if recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: clickHereRange) {
-                Navigator.navigateToResetPasscodeVC(from: self)
+                Navigator.navigateToResetPasscodeVC(from: self, with: viewModel.email)
             }
         case .changePassword:
             break

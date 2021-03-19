@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RNLoadingButton_Swift
 
 class ForgotPasswordViewController: BaseViewController {
     
@@ -33,8 +34,8 @@ class ForgotPasswordViewController: BaseViewController {
         return view
     }()
     
-    private lazy var sendButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var sendButton: RNLoadingButton = {
+        let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Send Instructions", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
@@ -44,6 +45,11 @@ class ForgotPasswordViewController: BaseViewController {
         button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
+        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
+        button.activityIndicatorEdgeInsets.left = 16
+        button.hideTextWhenLoading = false
+        button.isLoading = false
+        button.activityIndicatorColor = .black
         button.addTarget(self, action: #selector(onPressedSend), for: .touchUpInside)
         
         return button
@@ -71,6 +77,13 @@ class ForgotPasswordViewController: BaseViewController {
             } else {
                 sendButton.removeAllSublayers(withName: UIView.gradientLayerKey)
             }
+        }
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            isConfirmEnabled = !isLoading
+            sendButton.isLoading = isLoading
         }
     }
     
@@ -132,12 +145,15 @@ class ForgotPasswordViewController: BaseViewController {
 extension ForgotPasswordViewController {
     
     @objc private func onPressedSend() {
+        isLoading = true
         viewModel.requestChangePassword(with: emailTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             guard let this = self else { return }
             
             Navigator.navigateToPasswordVC(from: this, with: .new)
-        }, onError: { error in
-            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            this.isLoading = false
+        }, onError: { [weak self] error in
+            self?.isLoading = false
+            AlertManagement.shared.showToast(with: "🤔 Request forgot password by email failure!", position: .top)
         }).disposed(by: disposeBag)
     }
     

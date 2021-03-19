@@ -97,7 +97,7 @@ extension ProfileViewController: UITableViewDelegate {
             case .rewards:
                 Navigator.navigateToRewardsVC(from: self)
             case .changePassword:
-                Navigator.navigateToPasscodeVC(from: self, with: .changePassword, email: AccountManagement.email ?? "")
+                Navigator.navigateToPasscodeVC(from: self, with: .changePassword, email: AccountManagement.email)
             }
         case .others:
             guard let itemType = OthersItem(rawValue: indexPath.row) else { return }

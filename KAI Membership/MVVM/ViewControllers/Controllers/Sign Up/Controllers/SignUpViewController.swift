@@ -122,13 +122,14 @@ class SignUpViewController: BaseViewController {
     // MARK: Methods
     func createAccount() {
         guard signUpView.confirmPasswordTextField.contentInput == signUpView.passwordTextField.contentInput else {
-            debugPrint("Xác nhận lại mật khẩu không đúng")
+            AlertManagement.shared.showToast(with: "🤔 Confirm password incorrect!", position: .top)
             
             return
         }
         
         guard !signUpView.captchaTextField.contentInput.isEmpty else {
-            debugPrint("Vui lòng xác nhận captcha")
+            AlertManagement.shared.showToast(with: "🥺 Please confirm the captcha!", position: .top)
+            
             return
         }
         
@@ -138,7 +139,7 @@ class SignUpViewController: BaseViewController {
             
             Navigator.navigateToPasscodeVC(from: this, with: .register, email: email)
         }, onError: { error in
-            debugPrint("Register error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            AlertManagement.shared.showToast(with: "🤔 Register account failure!", position: .top)
         }).disposed(by: disposeBag)
     }
 }

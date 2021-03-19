@@ -49,7 +49,7 @@ class Helper {
         }
     }
     
-    class func openSafari(_ link: String?) {
+    class func openSafari(_ link: String? = nil) {
         guard let link = link, let url = URL(string: link) else {
             debugPrint("Error: Invalid link")
             return

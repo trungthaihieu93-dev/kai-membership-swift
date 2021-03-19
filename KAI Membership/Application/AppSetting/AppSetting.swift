@@ -85,4 +85,13 @@ class AppSetting {
             }
         }
     }
+    
+    static var haveFreeSpin: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.haveFreeSpin.rawValue)
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: Key.UserDefault.haveFreeSpin.rawValue)
+        }
+    }
 }

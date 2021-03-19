@@ -61,14 +61,14 @@ class AccountManagement {
         }
     }
     
-    static var email: String? {
+    static var email: String {
         get {
-            guard let data = KeyChain.load(forKey: .email) else { return nil }
+            guard let data = KeyChain.load(forKey: .email) else { return "" }
 
-            return String(data: data, encoding: .utf8)
+            return String(data: data, encoding: .utf8) ?? ""
         }
         set {
-            guard let data = newValue?.data(using: .utf8) else {
+            guard let data = newValue.data(using: .utf8) else {
                 KeyChain.delete(forKey: .email)
                 return
             }
@@ -167,10 +167,11 @@ class AccountManagement {
     }
     
     class func loginWithPascode(with email: String, and passcode: String, _ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
-        DeviceServices.loginWithPasscode(passcode, email: email) {
+        PasscodeServices.loginWithPasscode(passcode, email: email) {
             switch $0 {
             case .success(let result):
                 if let data = result.data {
+                    AppSetting.haveFreeSpin = data.isFirst
                     AccountManagement.accessToken = data.accessToken
                     AccountManagement.refreshToken = data.refreshToken
                     AccountManagement.getInfoUser {
@@ -180,10 +181,6 @@ class AccountManagement {
                         case .failure(let error):
                             completion(.failure(error))
                         }
-                    }
-                    
-                    if data.isFirst {
-                        AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
                     }
                 } else {
                     completion(.failure(APIErrorResult(with: .emptyResults)))

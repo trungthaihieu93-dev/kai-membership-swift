@@ -16,6 +16,7 @@ class UserQuestRemote: BaseModel {
     var userID: String?
     var key: QuestKey = .signIn
     var progress: Int?
+    var isCompleted: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -26,6 +27,7 @@ class UserQuestRemote: BaseModel {
         case key
         case progress = "process"
         case description
+        case isCompleted = "is_completed"
     }
     
     required init(from decoder: Decoder) throws {
@@ -44,6 +46,7 @@ class UserQuestRemote: BaseModel {
         }
         
         progress = try container.decodeIfPresent(Int.self, forKey: .progress)
+        isCompleted = try container.decodeIfPresent(Bool.self, forKey: .isCompleted)
     }
     
     func encode(to encoder: Encoder) throws { }

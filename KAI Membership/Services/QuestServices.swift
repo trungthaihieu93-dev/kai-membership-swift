@@ -24,7 +24,7 @@ class QuestServices {
     }
     
     // MARK: Get the quests list of user
-    class func requestUserQuest(with key: QuestKey, _ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
+    class func requestUserQuest(with key: QuestKey, _ completion: ((APIResult<APIDataResults<UserQuestRemote>, APIErrorResult>) -> Void)? = nil) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/quests", method: .post)
         input.params["key"] = key.rawValue
 

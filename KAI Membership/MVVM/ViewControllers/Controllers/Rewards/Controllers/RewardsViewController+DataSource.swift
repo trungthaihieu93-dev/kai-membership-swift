@@ -45,11 +45,6 @@ extension RewardsViewController: UITableViewDataSource {
         case .history:
             let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as! HistoryTableViewCell
             cell.configure(viewModel.histories[indexPath.row])
-            cell.didFinishTouchedAction = { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    cell.isActionEnabled = true
-                }
-            }
             
             return cell
         }

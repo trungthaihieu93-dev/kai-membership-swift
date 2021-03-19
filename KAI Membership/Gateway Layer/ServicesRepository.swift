@@ -191,7 +191,7 @@ struct APIDataListResults<D: BaseModel>: APIBaseDataListResults {
 class APIServices {
     
     private class func _request<T: APIOutputBase>(input: APIInputBase, output: T.Type, _ completion: @escaping (T) -> Void) {
-        AF.request(input.url, method: input.method, parameters: input.params, encoding: input.encoding, headers: input.headers).responseJSON(queue: .main) { response in
+        AF.request(input.url, method: input.method, parameters: input.params, encoding: input.encoding, headers: input.headers).validate().responseJSON(queue: .main) { response in
             completion(T(response: response))
         }
     }

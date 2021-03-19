@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RNLoadingButton_Swift
 
 class UpdateProfileViewController: BaseViewController {
     
@@ -66,8 +67,8 @@ class UpdateProfileViewController: BaseViewController {
         return view
     }()
     
-    private lazy var updateButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var updateButton: RNLoadingButton = {
+        let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Update Profile", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
@@ -77,6 +78,11 @@ class UpdateProfileViewController: BaseViewController {
         button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
+        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
+        button.activityIndicatorEdgeInsets.left = 16
+        button.hideTextWhenLoading = false
+        button.isLoading = false
+        button.activityIndicatorColor = .black
         button.addTarget(self, action: #selector(onPressedUpdateProfile), for: .touchUpInside)
         
         return button
@@ -100,6 +106,15 @@ class UpdateProfileViewController: BaseViewController {
     
     var datePicker = UIDatePicker()
     var completion: ((AccountInfoRemote) -> Void)?
+    
+    var isLoading: Bool = false {
+        didSet {
+            guard isLoading != oldValue else { return }
+            
+            isConfirmEnabled = !isLoading
+            updateButton.isLoading = isLoading
+        }
+    }
     
     // MARK: Life cycle's
     init(fullName: String? = nil, birthday: Double? = nil, phoneNumber: String? = nil) {
@@ -203,13 +218,27 @@ extension UpdateProfileViewController {
             return
         }
         
-        viewModel.udpateProfile().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] accountInfo in
-            self?.navigationController?.popViewController(animated: true)
-            self?.completion?(accountInfo)
-            AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top)
-        }, onError: { error in
-            AlertManagement.shared.showToast(with: "🤔 Update failure!", position: .top)
-        }).disposed(by: disposeBag)
+        Navigator.navigateToPasscodeVC(from: self, with: .updateProfile, email: AccountManagement.email) { [weak self] in
+            guard let this = self else { return }
+            
+            this.isLoading = true
+            this.viewModel.udpateProfile().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] accountInfo in
+                guard let this = self else { return }
+                
+                if let profileVC = this.navigationController?.viewControllers.first(where: { $0 is ProfileViewController }) {
+                    this.completion?(accountInfo)
+                    this.navigationController?.popToViewController(profileVC, animated: true)
+                } else {
+                    this.navigationController?.popToRootViewController(animated: true)
+                }
+                
+                AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top)
+            }, onError: { [weak self] error in
+                self?.navigationController?.popViewController(animated: true)
+                self?.isLoading = false
+                AlertManagement.shared.showToast(with: "🤔 Update failure!", position: .top)
+            }).disposed(by: this.disposeBag)
+        }
     }
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {

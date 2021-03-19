@@ -76,7 +76,7 @@ class PasswordViewController: BaseViewController {
         button.activityIndicatorEdgeInsets.left = 16
         button.hideTextWhenLoading = false
         button.isLoading = false
-        button.activityIndicatorColor = .white
+        button.activityIndicatorColor = .black
         button.addTarget(self, action: #selector(onPressedSetNew), for: .touchUpInside)
         
         return button
@@ -194,7 +194,7 @@ extension PasswordViewController {
     
     @objc private func onPressedSetNew() {
         guard confirmPasswordView.contentInput == inputPasswordView.contentInput else {
-            debugPrint("Xác nhận lại mật khẩu không đúng")
+            AlertManagement.shared.showToast(with: "🤔 Confirm password incorrect", position: .top)
             return
         }
         
@@ -205,7 +205,7 @@ extension PasswordViewController {
             
             switch this.type {
             case .new:
-                Navigator.navigateToCongratsVC(from: this, with: .password)
+                Navigator.showCongratsVC(from: this, with: .password)
             case .change:
                 AlertManagement.shared.showBulletin(with: "Password changed", image: UIImage(named: "ic_change_password_success"), descriptionText: "Your new password is now applied.\nKeep it safe & sound", fromController: this, primaryButtonTitle: "OK, I got it", secondaryButtonTitle: nil, primaryHandler: { [weak self] item in
                     guard let this = self else { return }
@@ -218,7 +218,7 @@ extension PasswordViewController {
                 }, secondaryHandler: nil)
             }
         }, onError: { error in
-            debugPrint("Request forgot password by email error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            AlertManagement.shared.showToast(with: "🤔 Request forgot password by email failure!", position: .top)
         }).disposed(by: disposeBag)
     }
     

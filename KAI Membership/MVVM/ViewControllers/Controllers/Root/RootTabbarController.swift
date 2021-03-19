@@ -29,14 +29,11 @@ class RootTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if AccountManagement.accessToken != nil {
-            QuestServices.requestUserQuest(with: .signIn)
-        }
-        
+        requestUserQuestSignIn()
         ActivityServices.activity(userId: AccountManagement.userID ?? "guest")
     }
     
-    // MARK: Handle UI
+    // MARK: Layout
     private func viewControllers() -> [UINavigationController] {
         var navigationControllers: [UINavigationController] = []
         
@@ -74,5 +71,32 @@ class RootTabbarController: UITabBarController {
         }
         
         return navigationControllers
+    }
+    
+    // MARK: Methods
+    private func requestUserQuestSignIn() {
+        if AccountManagement.accessToken != nil {
+            QuestServices.requestUserQuest(with: .signIn) { [weak self] in
+                switch $0 {
+                case .success(let results):
+                    if results.data?.isCompleted == true {
+                        AlertManagement.shared.showToast(with: "🎁 You have 02 free spin", position: .top)
+                    } else {
+                        self?.showAlertYouHaveFreeSpinFirstLogin()
+                    }
+                case .failure(let error):
+                    debugPrint("Error request user quest: \(error.message)")
+                    self?.showAlertYouHaveFreeSpinFirstLogin()
+                }
+            }
+        } else {
+            showAlertYouHaveFreeSpinFirstLogin()
+        }
+    }
+    
+    private func showAlertYouHaveFreeSpinFirstLogin() {
+        guard AppSetting.haveFreeSpin else { return }
+            
+        AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
     }
 }

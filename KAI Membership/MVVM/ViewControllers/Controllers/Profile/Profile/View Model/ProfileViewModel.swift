@@ -41,4 +41,22 @@ class ProfileViewModel {
             return Disposables.create()
         }
     }
+    
+    func requestChangePassword() -> Observable<Void> {
+        let email = AccountManagement.email
+        
+        return Observable.create { (observer) -> Disposable in
+            UserServices.requestChangePassword(with: email) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
 }

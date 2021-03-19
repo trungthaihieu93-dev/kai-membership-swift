@@ -98,6 +98,12 @@ class CongratsViewController: BaseViewController {
         setupView()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.spinNowButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
+    }
+    
     // MARK: Layout
     private func setupView() {
         view.addSubview(containerView)
@@ -169,10 +175,6 @@ class CongratsViewController: BaseViewController {
                 spinNowButton.heightAnchor.constraint(equalToConstant: 52)
             ])
         }
-        
-        DispatchQueue.main.async {
-            self.spinNowButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
-        }
     }
 }
 
@@ -180,13 +182,13 @@ class CongratsViewController: BaseViewController {
 extension CongratsViewController {
     
     @objc private func onPressedSpinLater() {
-        debugPrint("Spin Late")
+        Navigator.showRootTabbarController()
     }
     
     @objc private func onPressedSpinNow() {
         switch type {
         case .signUp:
-            debugPrint("Spin Now")
+            Navigator.showRootTabbarController()
         case .passcode, .password:
             Navigator.showRootTabbarController()
         }

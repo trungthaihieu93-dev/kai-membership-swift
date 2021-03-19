@@ -20,20 +20,24 @@ class CheckMailViewController: BaseViewController {
         return view
     }()
     
-    private let imageView: UIImageView = {
-        let view = UIImageView(image: nil)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
+    private let iconTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = .workSansFont(ofSize: 64, weight: .bold)
+        label.text = "📬"
         
-        return view
+        return label
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.isUserInteractionEnabled = true
         label.numberOfLines = 1
         label.textAlignment = .center
+        label.textColor = UIColor.black.withAlphaComponent(0.87)
+        label.font = .workSansFont(ofSize: 28, weight: .medium)
+        label.text = "Instruction Sent"
         
         return label
     }()
@@ -73,7 +77,19 @@ class CheckMailViewController: BaseViewController {
         return label
     }()
     
+    private let email: String
+    
     // MARK: Life cycle's
+    init(with email: String) {
+        self.email = email
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,25 +100,23 @@ class CheckMailViewController: BaseViewController {
     private func setupView() {
         view.addSubview(containerView)
         
-        containerView.addSubview(imageView)
+        containerView.addSubview(iconTitleLabel)
         containerView.addSubview(titleLabel)
         containerView.addSubview(descriptionLabel)
         containerView.addSubview(openEmailAppButton)
         containerView.addSubview(footerLabel)
         
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(lessThanOrEqualTo: view.topAnchor, constant: statusBarHeight),
+            containerView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: statusBarHeight),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            imageView.leadingAnchor.constraint(lessThanOrEqualTo: containerView.leadingAnchor, constant: 20),
-            imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 104),
-            imageView.heightAnchor.constraint(equalToConstant: 104),
+            iconTitleLabel.topAnchor.constraint(equalTo: containerView.topAnchor),
+            iconTitleLabel.leadingAnchor.constraint(greaterThanOrEqualTo: containerView.leadingAnchor, constant: 20),
+            iconTitleLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0),
+            titleLabel.topAnchor.constraint(equalTo: iconTitleLabel.bottomAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             
@@ -120,6 +134,13 @@ class CheckMailViewController: BaseViewController {
             footerLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             footerLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
         ])
+        
+        let description: String = "We have sent you a email comfirmation to \(email) email. Please check."
+        let descriptionAttributedString = description.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
+        let range = (description as NSString).range(of: email) 
+        descriptionAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: range)
+        descriptionAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "377AA9"), range: range)
+        descriptionLabel.attributedText = descriptionAttributedString
         
         configureFooterLabel()
         
@@ -142,7 +163,7 @@ class CheckMailViewController: BaseViewController {
 extension CheckMailViewController {
     
     @objc private func onPressedOpenEmailApp() {
-        Helper.openSafari(AccountManagement.email)
+        Navigator.navigateToVerificationVC(from: self, with: email)
     }
     
     @objc private func onTapResendAnotherMail(_ recognizer: UITapGestureRecognizer) {
@@ -151,6 +172,6 @@ extension CheckMailViewController {
         guard recognizer.didTapAttributedTextInLabel(label: footerLabel, inRange: range) else { return }
         
         navigationController?.viewControllers.removeAll { ($0 is ResetPasscodeViewController) || ($0 is CheckMailViewController) }
-        Navigator.navigateToResetPasscodeVC(from: self)
+        Navigator.navigateToResetPasscodeVC(from: self, with: email)
     }
 }
