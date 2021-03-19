@@ -164,7 +164,7 @@ extension ReceiveViewController {
     }
     
     private func bind() {
-        guard let address = AccountManagement.user?.kai?.wallet?.address else { return }
+        guard let address = AccountManagement.accountInfo?.kai?.wallet?.address else { return }
         
         let qrCode = QRCode(address)
         qrCodeImageView.image = qrCode?.image

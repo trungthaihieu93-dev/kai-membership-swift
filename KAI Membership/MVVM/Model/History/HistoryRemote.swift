@@ -8,7 +8,8 @@
 import Foundation
 
 enum HistoryStatus: String {
-    case success = "Success"
+    case inProgress = "PROGRESS"
+    case completed = "COMPLETED"
 }
 
 class HistoryRemote: BaseModel {
@@ -26,7 +27,7 @@ class HistoryRemote: BaseModel {
     var expriedCard: String?
     var providerName: String?
     var infinity: Bool?
-    var os: String?
+    var platfrom: String?
     var phoneNumberTopup: String?
     var formName: String?
     var formPhone: String?
@@ -49,7 +50,7 @@ class HistoryRemote: BaseModel {
         case expriedCard
         case providerName
         case infinity
-        case os
+        case platfrom = "os"
         case phoneNumberTopup
         case formName
         case formPhone
@@ -75,7 +76,7 @@ class HistoryRemote: BaseModel {
         expriedCard = try container.decodeIfPresent(String.self, forKey: .expriedCard)
         providerName = try container.decodeIfPresent(String.self, forKey: .providerName)
         infinity = try container.decodeIfPresent(Bool.self, forKey: .infinity)
-        os = try container.decodeIfPresent(String.self, forKey: .os)
+        platfrom = try container.decodeIfPresent(String.self, forKey: .platfrom)
         phoneNumberTopup = try container.decodeIfPresent(String.self, forKey: .phoneNumberTopup)
         formName = try container.decodeIfPresent(String.self, forKey: .formName)
         formPhone = try container.decodeIfPresent(String.self, forKey: .formPhone)
@@ -84,9 +85,9 @@ class HistoryRemote: BaseModel {
         deviceID = try container.decodeIfPresent(String.self, forKey: .deviceID)
         
         if let status = try container.decodeIfPresent(String.self, forKey: .status) {
-            self.status = HistoryStatus(rawValue: status) ?? .success
+            self.status = HistoryStatus(rawValue: status) ?? .completed
         } else {
-            self.status = .success
+            self.status = .completed
         }
     }
     

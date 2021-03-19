@@ -139,9 +139,11 @@ final class Navigator {
      - parameter fullName: tên đầy đủ
      - parameter birthday: ngày sinh
      - parameter phoneNumber: số điện thoại
+     - parameter completion: khi update thành công
      */
-    class func navigateToUpdateProfileVC(from viewController: UIViewController? = nil, fullName: String? = nil, birthday: Double? = nil, phoneNumber: String? = nil) {
+    class func navigateToUpdateProfileVC(from viewController: UIViewController? = nil, fullName: String? = nil, birthday: Double? = nil, phoneNumber: String? = nil, completion: ((AccountInfoRemote) -> Void)? = nil) {
         let vc = UpdateProfileViewController(fullName: fullName, birthday: birthday, phoneNumber: phoneNumber)
+        vc.completion = completion
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

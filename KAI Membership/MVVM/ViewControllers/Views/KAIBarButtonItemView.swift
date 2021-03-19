@@ -18,7 +18,7 @@ class KAIBarButtonItemView: UIView {
     private lazy var spinButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: (AccountManagement.user?.user?.spinTurn ?? 0) > 0 ? "ic_spin_original" : "ic_spin")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: (AccountManagement.accountInfo?.user?.spinTurn ?? 0) > 0 ? "ic_spin_original" : "ic_spin")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
@@ -34,7 +34,7 @@ class KAIBarButtonItemView: UIView {
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 2
         view.layer.cornerRadius = 7
-        view.isHidden = (AccountManagement.user?.user?.spinTurn ?? 0) <= 0
+        view.isHidden = (AccountManagement.accountInfo?.user?.spinTurn ?? 0) <= 0
         
         return view
     }()
@@ -42,7 +42,7 @@ class KAIBarButtonItemView: UIView {
     private lazy var profileButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(from: AccountManagement.user?.user?.avatarLink, placeholder: UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(from: AccountManagement.accountInfo?.user?.avatarLink, placeholder: UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
         button.contentEdgeInsets = .init(top: 2, left: 2, bottom: 2, right: 2)
         button.imageView?.layer.cornerRadius = 8
@@ -95,8 +95,8 @@ class KAIBarButtonItemView: UIView {
     
     // MARK: Methods
     func refresh() {
-        profileButton.setImage(from: AccountManagement.user?.user?.avatarLink, placeholder: UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        dotView.isHidden = (AccountManagement.user?.user?.spinTurn ?? 0) <= 0
+        profileButton.setImage(from: AccountManagement.accountInfo?.user?.avatarLink, placeholder: UIImage(named: "ic_profile")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        dotView.isHidden = (AccountManagement.accountInfo?.user?.spinTurn ?? 0) <= 0
         spinButton.setImage(UIImage(named: dotView.isHidden ? "ic_spin" : "ic_spin_original")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     

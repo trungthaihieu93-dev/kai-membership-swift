@@ -90,8 +90,10 @@ extension ProfileViewController: UITableViewDelegate {
             
             switch itemType {
             case .profile:
-                let user = AccountManagement.user
-                Navigator.navigateToUpdateProfileVC(from: self, fullName: user?.kai?.firstName, birthday: user?.user?.birthday, phoneNumber: user?.user?.phone)
+                let user = AccountManagement.accountInfo
+                Navigator.navigateToUpdateProfileVC(from: self, fullName: user?.kai?.firstName, birthday: user?.user?.birthday, phoneNumber: user?.user?.phone) { [weak self] accountInfo in
+                    self?.headerView.configure(accountInfo)
+                }
             case .rewards:
                 Navigator.navigateToRewardsVC(from: self)
             case .changePassword:

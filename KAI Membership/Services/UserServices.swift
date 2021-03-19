@@ -33,8 +33,8 @@ class UserServices {
         input.params["username"] = username
         input.params["password"] = password
         input.params["email"] = email
-        input.params["first_name"] = "firstName"
-        input.params["last_name"] = "lastName"
+        input.params["first_name"] = username
+        input.params["last_name"] = username
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }

@@ -77,26 +77,26 @@ class AccountManagement {
         }
     }
     
-    static var user: AccountInfoRemote? {
+    static var accountInfo: AccountInfoRemote? {
         get {
-            guard let data = KeyChain.load(forKey: .user), let jsonString = String(data: data, encoding: .utf8) else { return nil }
+            guard let data = KeyChain.load(forKey: .AccountInfo), let jsonString = String(data: data, encoding: .utf8) else { return nil }
             
             return Helper.toObject(ofType: AccountInfoRemote.self, jsonString: jsonString)
         }
         set {
             guard let data = Helper.toJSONString(newValue)?.data(using: .utf8) else {
-                KeyChain.delete(forKey: .user)
+                KeyChain.delete(forKey: .AccountInfo)
                 return
             }
             
-            KeyChain.save(forKey: .user, data: data)
+            KeyChain.save(forKey: .AccountInfo, data: data)
         }
     }
     
     class func logout() {
         KeyChain.delete(forKey: .email)
         KeyChain.delete(forKey: .userID)
-        KeyChain.delete(forKey: .user)
+        KeyChain.delete(forKey: .AccountInfo)
         KeyChain.delete(forKey: .authorizationToken)
         KeyChain.delete(forKey: .refreshToken)
     }
@@ -107,7 +107,7 @@ class AccountManagement {
             case .success(let result):
                 if let data = result.data {
                     AccountManagement.userID = data.user?.id
-                    AccountManagement.user = data
+                    AccountManagement.accountInfo = data
                     completion(.success(data))
                 } else {
                     completion(.failure(APIErrorResult(with: .emptyResults)))
@@ -187,6 +187,37 @@ class AccountManagement {
                     }
                 } else {
                     completion(.failure(APIErrorResult(with: .emptyResults)))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    class func updateUserInfomation(name: String, phoneNumber: String, birthday: Double? = nil, _ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
+        UserServices.updateInfomation(name: name, phoneNumber: phoneNumber, birthday: birthday) {
+            switch $0 {
+            case .success:
+                if let currentInfo = AccountManagement.accountInfo, let user = currentInfo.user, let kai = currentInfo.kai {
+                    kai.firstName = name
+                    user.phone = phoneNumber
+                    
+                    if let birthday = birthday {
+                        user.birthday = birthday
+                    }
+                    
+                    AccountManagement.accountInfo = currentInfo
+                    
+                    completion(.success(currentInfo))
+                } else {
+                    AccountManagement.getInfoUser {
+                        switch $0 {
+                        case .success(let info):
+                            completion(.success(info))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
                 }
             case .failure(let error):
                 completion(.failure(error))

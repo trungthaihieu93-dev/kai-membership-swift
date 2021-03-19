@@ -64,6 +64,7 @@ class SignUpViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        TrackingManagement.startRegistration()
         setupView()
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))

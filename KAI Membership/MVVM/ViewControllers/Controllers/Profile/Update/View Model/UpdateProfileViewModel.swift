@@ -38,16 +38,16 @@ class UpdateProfileViewModel {
     }
     
     // MARK: Methods
-    func udpateProfile() -> Observable<Void> {
+    func udpateProfile() -> Observable<AccountInfoRemote> {
         let birthday = self.birthday
-        let fullName = self.fullName
+        let name = self.fullName
         let phoneNumber = self.phoneNumber
         
-        return Observable.create { (observer) -> Disposable in
-            UserServices.updateInfomation(name: fullName, phoneNumber: phoneNumber, birthday: birthday) {
+        return Observable<AccountInfoRemote>.create { (observer) -> Disposable in
+            AccountManagement.updateUserInfomation(name: name, phoneNumber: phoneNumber, birthday: birthday) {
                 switch $0 {
-                case .success:
-                    observer.onNext(())
+                case .success(let accountInfo):
+                    observer.onNext(accountInfo)
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)

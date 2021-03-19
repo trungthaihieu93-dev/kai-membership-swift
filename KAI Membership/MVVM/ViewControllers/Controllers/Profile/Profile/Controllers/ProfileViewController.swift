@@ -69,7 +69,7 @@ class ProfileViewController: BaseViewController {
     
     private(set) lazy var headerView: ProfileHeaderView = {
         let view = ProfileHeaderView()
-        view.configure(AccountManagement.user)
+        view.configure(AccountManagement.accountInfo)
         
         return view
     }()

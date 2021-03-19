@@ -16,6 +16,8 @@ target 'KAI Membership' do
   pod 'QRCode'
   pod 'Toast-Swift'
   pod 'RNLoadingButton-Swift'
+  pod 'SkeletonView'
+  pod 'AppsFlyerFramework'
   pod 'BulletinBoard', :git => 'https://github.com/peihsendoyle/BulletinBoard.git', :branch => 'develop'
   
 end

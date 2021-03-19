@@ -22,6 +22,6 @@ class Key {
         case refreshToken = "KAI.KeyChain.refreshToken"
         case userID = "KAI.KeyChain.UserID"
         case email = "KAI.KeyChain.Email"
-        case user = "KAI.KeyChain.UserInfomation"
+        case AccountInfo = "KAI.KeyChain.AccountInfomation"
     }
 }

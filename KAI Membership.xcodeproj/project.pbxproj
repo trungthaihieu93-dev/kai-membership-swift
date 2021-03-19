@@ -60,6 +60,11 @@
 		498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */; };
 		498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFF825F78D5A00F04160 /* ProfileViewController+DataSource.swift */; };
 		498BCFFC25F78D6800F04160 /* ProfileViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */; };
+		498E45C126045A1600D62AAA /* TrackingManagement+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C026045A1600D62AAA /* TrackingManagement+Registration.swift */; };
+		498E45C426045B9400D62AAA /* TrackingManagement+Topup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C326045B9400D62AAA /* TrackingManagement+Topup.swift */; };
+		49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7946F260441FE00915584 /* AppsFlyerManagement.swift */; };
+		49A79473260442BF00915584 /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A79472260442BF00915584 /* NotificationManagement.swift */; };
+		49A794862604521900915584 /* TrackingManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A794852604521900915584 /* TrackingManagement.swift */; };
 		49CAC0E025FB1F0B00577D33 /* KAICombobox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */; };
 		49CAC10225FB51FD00577D33 /* RequestQuestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10125FB51FD00577D33 /* RequestQuestUser.swift */; };
 		49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */; };
@@ -263,6 +268,11 @@
 		498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		498BCFF825F78D5A00F04160 /* ProfileViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+DataSource.swift"; sourceTree = "<group>"; };
 		498BCFFB25F78D6800F04160 /* ProfileViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Delegate.swift"; sourceTree = "<group>"; };
+		498E45C026045A1600D62AAA /* TrackingManagement+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingManagement+Registration.swift"; sourceTree = "<group>"; };
+		498E45C326045B9400D62AAA /* TrackingManagement+Topup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingManagement+Topup.swift"; sourceTree = "<group>"; };
+		49A7946F260441FE00915584 /* AppsFlyerManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManagement.swift; sourceTree = "<group>"; };
+		49A79472260442BF00915584 /* NotificationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
+		49A794852604521900915584 /* TrackingManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManagement.swift; sourceTree = "<group>"; };
 		49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAICombobox.swift; sourceTree = "<group>"; };
 		49CAC10125FB51FD00577D33 /* RequestQuestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestQuestUser.swift; sourceTree = "<group>"; };
 		49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestRemote.swift; sourceTree = "<group>"; };
@@ -642,6 +652,16 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		49A794882604522B00915584 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				49A794852604521900915584 /* TrackingManagement.swift */,
+				498E45C026045A1600D62AAA /* TrackingManagement+Registration.swift */,
+				498E45C326045B9400D62AAA /* TrackingManagement+Topup.swift */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
 		49CAC0EC25FB42CC00577D33 /* Input */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +911,9 @@
 			children = (
 				521754D025DEAD91009355BC /* AccountManagement.swift */,
 				22FA81A52601B18200E3C460 /* AlertManagement.swift */,
+				49A7946F260441FE00915584 /* AppsFlyerManagement.swift */,
+				49A79472260442BF00915584 /* NotificationManagement.swift */,
+				49A794882604522B00915584 /* Tracking */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -1862,6 +1885,7 @@
 				494C0ADF25FA132800E30115 /* ResetPasscodeViewController+Delegate.swift in Sources */,
 				529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */,
 				525DBA4E25F0036D001491AE /* PasscodeViewModel.swift in Sources */,
+				498E45C126045A1600D62AAA /* TrackingManagement+Registration.swift in Sources */,
 				493043F325F89D4800EED242 /* RewardsViewController+Delegate.swift in Sources */,
 				521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */,
 				525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */,
@@ -1870,6 +1894,7 @@
 				493043F625F8A0CF00EED242 /* RewardsEmptyView.swift in Sources */,
 				525DBA9525F0FDA6001491AE /* NestedScrollViewController+Protocol.swift in Sources */,
 				525DBA4225EFEE2F001491AE /* MainViewModel.swift in Sources */,
+				49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */,
 				525DBAC425F17802001491AE /* QuestServices.swift in Sources */,
 				493043E025F87FA800EED242 /* UpdateProfileViewModel.swift in Sources */,
 				49CAC10225FB51FD00577D33 /* RequestQuestUser.swift in Sources */,
@@ -1920,6 +1945,7 @@
 				4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
 				525DBAAC25F164C0001491AE /* MonthlyQuestViewController.swift in Sources */,
+				49A79473260442BF00915584 /* NotificationManagement.swift in Sources */,
 				525E6B8325F9010C00A7BAC5 /* RootNavigationController.swift in Sources */,
 				525DBA8025F017BF001491AE /* TopupViewModel.swift in Sources */,
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
@@ -1936,6 +1962,8 @@
 				4930440125F8B82C00EED242 /* PasswordViewModel.swift in Sources */,
 				525DB96D25EA4490001491AE /* Double+Extensions.swift in Sources */,
 				525DB9E825EE96A6001491AE /* WalletViewController+DataSource.swift in Sources */,
+				49A794862604521900915584 /* TrackingManagement.swift in Sources */,
+				498E45C426045B9400D62AAA /* TrackingManagement+Topup.swift in Sources */,
 				5265495425F53D80003AE21A /* SignUpViewModel.swift in Sources */,
 				529AE1B825DD9A9300635807 /* BaseViewController.swift in Sources */,
 				5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */,

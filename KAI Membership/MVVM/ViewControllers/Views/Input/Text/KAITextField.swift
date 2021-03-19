@@ -66,6 +66,7 @@ class KAITextField: UIView {
         textField.backgroundColor = nil
         textField.tintColor = .init(hex: "ED9771")
         textField.autocorrectionType = .no
+        textField.textContentType = nil
         textField.isSecureTextEntry = isSecureTextEntry
         textField.textColor = UIColor.black.withAlphaComponent(0.84)
         textField.font = .workSansFont(ofSize: 14, weight: .medium)

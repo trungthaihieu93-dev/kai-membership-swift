@@ -99,6 +99,7 @@ class UpdateProfileViewController: BaseViewController {
     }
     
     var datePicker = UIDatePicker()
+    var completion: ((AccountInfoRemote) -> Void)?
     
     // MARK: Life cycle's
     init(fullName: String? = nil, birthday: Double? = nil, phoneNumber: String? = nil) {
@@ -202,8 +203,9 @@ extension UpdateProfileViewController {
             return
         }
         
-        viewModel.udpateProfile().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+        viewModel.udpateProfile().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] accountInfo in
             self?.navigationController?.popViewController(animated: true)
+            self?.completion?(accountInfo)
             AlertManagement.shared.showToast(with: "👍 Update successfully!", position: .top)
         }, onError: { error in
             AlertManagement.shared.showToast(with: "🤔 Update failure!", position: .top)

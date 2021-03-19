@@ -90,7 +90,7 @@ class SignUpInputView: UIView {
     }()
     
     private(set) lazy var captchaTextField: KAIInputTextFieldView = {
-        let view = KAIInputTextFieldView(with: .password, title: "CONFIRM CAPTCHA", placeholder: "Confirm captcha")
+        let view = KAIInputTextFieldView(with: .default, title: "CONFIRM CAPTCHA", placeholder: "Confirm captcha")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         

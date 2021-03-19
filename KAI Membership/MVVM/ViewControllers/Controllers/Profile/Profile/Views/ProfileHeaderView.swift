@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ProfileHeaderView: UIView {
     
@@ -148,6 +149,9 @@ class ProfileHeaderView: UIView {
             userIDLabel.leadingAnchor.constraint(equalTo: walletContainerView.leadingAnchor, constant: 12),
             userIDLabel.trailingAnchor.constraint(lessThanOrEqualTo: shareButton.leadingAnchor, constant: -8),
         ])
+        
+        backgroundImageView.isSkeletonable = true
+        backgroundImageView.showAnimatedGradientSkeleton()
     }
     
     // MARK: Configure
@@ -156,6 +160,7 @@ class ProfileHeaderView: UIView {
         nameLabel.text = user?.kai?.firstName
         emailLabel.text = user?.user?.email
         userIDLabel.text = user?.user?.id
+        backgroundImageView.hideSkeleton()
     }
     
     func zoomImage(with value: CGFloat) {
