@@ -64,6 +64,7 @@
 		498E45C426045B9400D62AAA /* TrackingManagement+Topup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C326045B9400D62AAA /* TrackingManagement+Topup.swift */; };
 		498E45C92604B0E400D62AAA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C82604B0E400D62AAA /* VerificationViewController.swift */; };
 		498E45CD2604B47600D62AAA /* VerificationViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */; };
+		49976C392608457E0005F8F8 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C382608457E0005F8F8 /* ShareViewController.swift */; };
 		49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7946F260441FE00915584 /* AppsFlyerManagement.swift */; };
 		49A79473260442BF00915584 /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A79472260442BF00915584 /* NotificationManagement.swift */; };
 		49A794862604521900915584 /* TrackingManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A794852604521900915584 /* TrackingManagement.swift */; };
@@ -274,6 +275,7 @@
 		498E45C326045B9400D62AAA /* TrackingManagement+Topup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingManagement+Topup.swift"; sourceTree = "<group>"; };
 		498E45C82604B0E400D62AAA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerificationViewController+Delegate.swift"; sourceTree = "<group>"; };
+		49976C382608457E0005F8F8 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		49A7946F260441FE00915584 /* AppsFlyerManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManagement.swift; sourceTree = "<group>"; };
 		49A79472260442BF00915584 /* NotificationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
 		49A794852604521900915584 /* TrackingManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManagement.swift; sourceTree = "<group>"; };
@@ -663,6 +665,14 @@
 				498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */,
 			);
 			path = Verification;
+			sourceTree = "<group>";
+		};
+		49976C372608456C0005F8F8 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				49976C382608457E0005F8F8 /* ShareViewController.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		49A794882604522B00915584 /* Tracking */ = {
@@ -1561,6 +1571,7 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				49976C372608456C0005F8F8 /* Share */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				226DA42C2600B5DB009BC8CC /* Buy */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
@@ -1935,6 +1946,7 @@
 				49F5FE9A2601EC1200D53D82 /* SendTableViewCell.swift in Sources */,
 				49D8F11E26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
+				49976C392608457E0005F8F8 /* ShareViewController.swift in Sources */,
 				226DA3FD2600750A009BC8CC /* Floaty.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
 				525DBA6A25F010BA001491AE /* NewsLastestTableViewCell.swift in Sources */,

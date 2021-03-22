@@ -59,4 +59,20 @@ class ProfileViewModel {
             return Disposables.create()
         }
     }
+    
+    func updateAvatar(_ image: UIImage) -> Observable<Void> {
+        return Observable.create { (observer) -> Disposable in
+            AccountManagement.updateAvatar(image) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
 }

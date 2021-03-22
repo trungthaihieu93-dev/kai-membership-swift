@@ -70,6 +70,9 @@ class ProfileViewController: BaseViewController {
     private(set) lazy var headerView: ProfileHeaderView = {
         let view = ProfileHeaderView()
         view.configure(AccountManagement.accountInfo)
+        view.didFinishTouchingShared = { [weak self] in
+            self?.share()
+        }
         
         return view
     }()
@@ -174,14 +177,17 @@ class ProfileViewController: BaseViewController {
     }
     
     func uploadImage(_ image: UIImage) {
-        UserServices.updateAvatar(image) { (result) in
-            switch result {
-            case .success(let string):
-                print(string)
-            case .failure(let error):
-                print(error.message)
-            }
-        }
+        viewModel.updateAvatar(image).subscribe(on: MainScheduler.instance).subscribe {
+            AlertManagement.shared.showToast(with: "👍 Update avatar successfully!", position: .top)
+        } onError: { error in
+            AlertManagement.shared.showToast(with: "🤔 Update avatar failure!", position: .top)
+        }.disposed(by: disposeBag)
+    }
+    
+    private func share() {
+        let items = ["This app is my favorite"]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
     
     // MARK: Handle actions

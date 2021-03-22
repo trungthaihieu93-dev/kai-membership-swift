@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RNLoadingButton_Swift
 
 protocol SignInInputViewDelegate: class {
     func signInInputViewEmailValueChange(_ signInInputView: SignInInputView, textField: UITextField)
@@ -59,8 +60,8 @@ class SignInInputView: UIView {
         return button
     }()
     
-    private lazy var signInButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var signInButton: RNLoadingButton = {
+        let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Sign in", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
@@ -70,6 +71,11 @@ class SignInInputView: UIView {
         button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
+        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
+        button.activityIndicatorEdgeInsets.left = 16
+        button.hideTextWhenLoading = false
+        button.isLoading = false
+        button.activityIndicatorColor = .black
         button.addTarget(self, action: #selector(onPressedSignIn), for: .touchUpInside)
         
         return button
@@ -96,6 +102,13 @@ class SignInInputView: UIView {
             } else {
                 signInButton.removeAllSublayers(withName: UIView.gradientLayerKey)
             }
+        }
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            isConfirmEnabled = !isLoading
+            signInButton.isLoading = isLoading
         }
     }
     

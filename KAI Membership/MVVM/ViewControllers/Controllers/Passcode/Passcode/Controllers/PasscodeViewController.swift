@@ -297,8 +297,13 @@ extension PasscodeViewController {
                 guard let this = self else { return }
                 
                 if let completion = this.completion {
-                    completion()
-                    this.navigationController?.popViewController(animated: true)
+                    if let loginIndex = this.navigationController?.viewControllers.firstIndex(where: { $0 is SignInViewController }), let count = this.navigationController?.viewControllers.count {
+                        completion()
+                        this.navigationController?.viewControllers.removeSubrange(loginIndex..<count)
+                    } else {
+                        this.navigationController?.popViewController(animated: true)
+                        completion()
+                    }
                 } else {
                     Navigator.showRootTabbarController()
                 }

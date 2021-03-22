@@ -25,11 +25,11 @@ class SignUpViewModel {
                             observer.onNext(result)
                             observer.onCompleted()
                         case .failure:
-                            observer.onError(APIErrorResult(code: "1", message: "Error register."))
+                            observer.onError(APIErrorResult(with: .custom("🤔 Register account failure!")))
                         }
                     }
                 case .failure:
-                    observer.onError(APIErrorResult(code: "1", message: "Error comfirm captcha."))
+                    observer.onError(APIErrorResult(with: .captcha))
                 }
             }
 

@@ -85,11 +85,14 @@ class ProfileHeaderView: UIView {
         ]), for: .normal)
         button.sizeToFit()
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(onPressedShared), for: .touchUpInside)
         
         return button
     }()
     
     private var coverImageTopAnchor: NSLayoutConstraint?
+    
+    var didFinishTouchingShared: (() -> Void)?
     
     // MARK: Life cycle's
     override init(frame: CGRect) {
@@ -165,5 +168,10 @@ class ProfileHeaderView: UIView {
     
     func zoomImage(with value: CGFloat) {
         coverImageTopAnchor?.constant = value
+    }
+    
+    // MARK: Handle actions
+    @objc private func onPressedShared() {
+        didFinishTouchingShared?()
     }
 }

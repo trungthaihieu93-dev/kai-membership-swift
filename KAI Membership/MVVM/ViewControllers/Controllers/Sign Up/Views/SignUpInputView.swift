@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RNLoadingButton_Swift
 
 protocol SignUpInputViewDelegate: class {
     func signUpInputViewTextFieldValueChange(_ signUpInputView: SignUpInputView, textField: UITextField, inputType: SignUpInputView.InputType)
@@ -97,8 +98,8 @@ class SignUpInputView: UIView {
         return view
     }()
     
-    private lazy var createAccountButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var createAccountButton: RNLoadingButton = {
+        let button = RNLoadingButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: "Create Account", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 16, weight: .medium),
@@ -108,6 +109,11 @@ class SignUpInputView: UIView {
         button.backgroundColor = .init(hex: "E1E4E8")
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 8
+        button.activityIndicatorAlignment = RNActivityIndicatorAlignment.left
+        button.activityIndicatorEdgeInsets.left = 16
+        button.hideTextWhenLoading = false
+        button.isLoading = false
+        button.activityIndicatorColor = .black
         button.addTarget(self, action: #selector(onPressedCreateAccount), for: .touchUpInside)
         
         return button
@@ -134,6 +140,13 @@ class SignUpInputView: UIView {
             } else {
                 createAccountButton.removeAllSublayers(withName: UIView.gradientLayerKey)
             }
+        }
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            isConfirmEnabled = !isLoading
+            createAccountButton.isLoading = isLoading
         }
     }
     

@@ -104,13 +104,16 @@ class SignInViewController: BaseViewController {
     
     // MARK: Login
     func login() {
+        signInView.isLoading = true
         let email = signInView.emailTextField.contentInput
         viewModel.login(with: email, and: signInView.passwordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
             guard let this = self else { return }
             
+            this.signInView.isLoading = false
             Navigator.navigateToPasscodeVC(from: this, with: .login, email: email, this.completion)
-        }, onError: { error in
-            debugPrint("Login error: \((error as? APIErrorResult)?.message ?? "ERROR")")
+        }, onError: { [weak self] error in
+            self?.signInView.isLoading = false
+            AlertManagement.shared.showToast(with: "🤔 Login failure!", position: .top)
         }).disposed(by: disposeBag)
     }
 }

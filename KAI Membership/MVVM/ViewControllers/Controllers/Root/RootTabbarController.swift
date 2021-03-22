@@ -30,7 +30,7 @@ class RootTabbarController: UITabBarController {
         super.viewDidLoad()
         
         requestUserQuestSignIn()
-        ActivityServices.activity(userId: AccountManagement.userID ?? "guest")
+        ActivityServices.activity(userId: AccountManagement.accountID)
     }
     
     // MARK: Layout

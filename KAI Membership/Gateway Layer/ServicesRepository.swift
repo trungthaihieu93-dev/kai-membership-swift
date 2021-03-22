@@ -109,7 +109,7 @@ struct APIErrorResult: Error, BaseModel {
     }
     
     init(with code: APIErrorResultCode) {
-        self.code = code.rawValue
+        self.code = code.code
         self.message = code.description
     }
     
@@ -121,13 +121,30 @@ struct APIErrorResult: Error, BaseModel {
     }
 }
 
-enum APIErrorResultCode: String {
+enum APIErrorResultCode {
     case emptyResults
+    case captcha
+    case custom(String)
+    
+    var code: String {
+        switch self {
+        case .emptyResults:
+            return "empty"
+        case .captcha:
+            return "captcha"
+        case .custom:
+            return "custom"
+        }
+    }
     
     var description: String {
         switch self {
         case .emptyResults:
             return "Empty results"
+        case .captcha:
+            return "Captcha incorrect!"
+        case .custom(let message):
+            return message
         }
     }
 }

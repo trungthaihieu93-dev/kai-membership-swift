@@ -133,13 +133,24 @@ class SignUpViewController: BaseViewController {
             return
         }
         
+        signUpView.isLoading = true
         let email = signUpView.emailTextField.contentInput
         viewModel.register(captcha: signUpView.captchaTextField.contentInput, username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
             guard let this = self else { return }
             
+            TrackingManagement.registrationSuccessfully(registrationMethod: .google, userID: AccountManagement.accountID, email: email, time: Int(Date().timeIntervalSince1970 * 1000))
+            this.signUpView.isLoading = false
             Navigator.navigateToPasscodeVC(from: this, with: .register, email: email)
-        }, onError: { error in
-            AlertManagement.shared.showToast(with: "🤔 Register account failure!", position: .top)
+        }, onError: { [weak self] error in
+            self?.signUpView.isLoading = false
+            
+            guard let error = error as? APIErrorResult else {
+                AlertManagement.shared.showToast(with: "🤔 Register account failure!", position: .top)
+                
+                return
+            }
+            
+            AlertManagement.shared.showToast(with: error.message, position: .top)
         }).disposed(by: disposeBag)
     }
 }
