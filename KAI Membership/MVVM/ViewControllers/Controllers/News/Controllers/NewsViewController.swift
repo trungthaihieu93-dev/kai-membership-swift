@@ -28,7 +28,6 @@ class NewsViewController: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(NewsSuggestionTableViewCell.self, forCellReuseIdentifier: NewsSuggestionTableViewCell.identifier)
         tableView.register(NewsLastestTableViewCell.self, forCellReuseIdentifier: NewsLastestTableViewCell.identifier)
         tableView.dataSource = self
@@ -46,6 +45,11 @@ class NewsViewController: BaseViewController {
         
         setupView()
         fetchData()
+        
+        if AppSetting.isRequestOpenSpin {
+            Navigator.openSpin(from: self)
+            AppSetting.isRequestOpenSpin = false
+        }
     }
     
     // MARK: Layout

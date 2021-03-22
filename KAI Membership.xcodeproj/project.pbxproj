@@ -65,6 +65,9 @@
 		498E45C92604B0E400D62AAA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45C82604B0E400D62AAA /* VerificationViewController.swift */; };
 		498E45CD2604B47600D62AAA /* VerificationViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */; };
 		49976C392608457E0005F8F8 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C382608457E0005F8F8 /* ShareViewController.swift */; };
+		49976C3E260875520005F8F8 /* ShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C3D260875520005F8F8 /* ShareCollectionViewCell.swift */; };
+		49976C41260876FE0005F8F8 /* ShareViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C40260876FE0005F8F8 /* ShareViewController+DataSource.swift */; };
+		49976C45260877070005F8F8 /* ShareViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C44260877070005F8F8 /* ShareViewController+Delegate.swift */; };
 		49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7946F260441FE00915584 /* AppsFlyerManagement.swift */; };
 		49A79473260442BF00915584 /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A79472260442BF00915584 /* NotificationManagement.swift */; };
 		49A794862604521900915584 /* TrackingManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A794852604521900915584 /* TrackingManagement.swift */; };
@@ -276,6 +279,9 @@
 		498E45C82604B0E400D62AAA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		498E45CC2604B47500D62AAA /* VerificationViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerificationViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49976C382608457E0005F8F8 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		49976C3D260875520005F8F8 /* ShareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCollectionViewCell.swift; sourceTree = "<group>"; };
+		49976C40260876FE0005F8F8 /* ShareViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+DataSource.swift"; sourceTree = "<group>"; };
+		49976C44260877070005F8F8 /* ShareViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49A7946F260441FE00915584 /* AppsFlyerManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManagement.swift; sourceTree = "<group>"; };
 		49A79472260442BF00915584 /* NotificationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
 		49A794852604521900915584 /* TrackingManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManagement.swift; sourceTree = "<group>"; };
@@ -670,9 +676,28 @@
 		49976C372608456C0005F8F8 /* Share */ = {
 			isa = PBXGroup;
 			children = (
-				49976C382608457E0005F8F8 /* ShareViewController.swift */,
+				49976C3B260875360005F8F8 /* Controllers */,
+				49976C3C260875460005F8F8 /* Views */,
 			);
 			path = Share;
+			sourceTree = "<group>";
+		};
+		49976C3B260875360005F8F8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49976C382608457E0005F8F8 /* ShareViewController.swift */,
+				49976C40260876FE0005F8F8 /* ShareViewController+DataSource.swift */,
+				49976C44260877070005F8F8 /* ShareViewController+Delegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		49976C3C260875460005F8F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49976C3D260875520005F8F8 /* ShareCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		49A794882604522B00915584 /* Tracking */ = {
@@ -1930,9 +1955,11 @@
 				521754CD25DEAD2C009355BC /* SelectAccountViewController.swift in Sources */,
 				525DB8F125E6B898001491AE /* UserRemote.swift in Sources */,
 				525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */,
+				49976C45260877070005F8F8 /* ShareViewController+Delegate.swift in Sources */,
 				4963D07B25FEF8CD00720B34 /* ConfigServices.swift in Sources */,
 				49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */,
 				5265494A25F5395B003AE21A /* SignUpInputView.swift in Sources */,
+				49976C3E260875520005F8F8 /* ShareCollectionViewCell.swift in Sources */,
 				525DB95425E96018001491AE /* UIFont+Extensions.swift in Sources */,
 				495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
@@ -2000,6 +2027,7 @@
 				226DA3FE2600750A009BC8CC /* FloatyDelegate.swift in Sources */,
 				525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */,
 				226DA3F82600750A009BC8CC /* FloatyWindow.swift in Sources */,
+				49976C41260876FE0005F8F8 /* ShareViewController+DataSource.swift in Sources */,
 				525DBB0125F28917001491AE /* KAIRemote.swift in Sources */,
 				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
 				498BCFE925F7470800F04160 /* Helper.swift in Sources */,

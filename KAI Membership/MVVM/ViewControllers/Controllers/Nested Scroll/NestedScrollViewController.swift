@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NestedScrollViewController: UIViewController {
+class NestedScrollViewController: UIViewController, UITableViewDelegate {
     
     // MARK: Properties
     enum ScrollType {
@@ -67,9 +67,11 @@ class NestedScrollViewController: UIViewController {
         return scrollView
     }()
     
-    private(set) lazy var overlayScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
+    private(set) lazy var overlayScrollView: UITableView = {
+        let scrollView = UITableView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .clear
+        scrollView.separatorStyle = .none
         scrollView.isPagingEnabled = false
         scrollView.isScrollEnabled = true
         scrollView.bounces = true
@@ -263,13 +265,13 @@ class NestedScrollViewController: UIViewController {
     
     func getContentSize(for containerView: UIView) -> CGSize {
         if let scroll = containerView as? UIScrollView {
-            let bottomHeight = max(scroll.contentSize.height, view.frame.height - pagerTabHeight - safeAreaInsets.bottom)
+            let bottomHeight = min(scroll.contentSize.height, view.frame.height - (originalHeaderHeight + pagerTabHeight))
             
-            return .init(width: scroll.contentSize.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight + safeAreaInsets.top)
+            return .init(width: scroll.contentSize.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight)
         } else {
             let bottomHeight = view.frame.height - pagerTabHeight
             
-            return .init(width: containerView.frame.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight + safeAreaInsets.top)
+            return .init(width: containerView.frame.width, height: bottomHeight + originalHeaderHeight + pagerTabHeight)
         }
     }
     

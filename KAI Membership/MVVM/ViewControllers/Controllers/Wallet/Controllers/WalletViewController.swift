@@ -42,6 +42,10 @@ class WalletViewController: BaseViewController {
         return view
     }()
     
+    override var scroller: UIScrollView? {
+        return tableView
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +73,9 @@ class WalletViewController: BaseViewController {
     private func setupFloatyButton() {
         let floaty = Floaty()
         
-        floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send")) { [weak self] (_) in
+        /*floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send")) { [weak self] (_) in
             Navigator.navigateToSendVC(from: self)
-        }
+        }*/
         floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive")) { [weak self] (_) in
             Navigator.navigateToReceiveVC(from: self)
         }
@@ -104,17 +108,25 @@ class WalletViewController: BaseViewController {
         
         tableView.tableHeaderView = headerView
     }
+    
+    override func refresh(_ sender: UIRefreshControl) {
+        super.refresh(sender)
+        fetchData()
+    }
 }
 
 // MARK: Data fetching
 extension WalletViewController {
+    
     private func fetchData() {
         viewModel.fetchData().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] transactions, user in
             guard let this = self else { return }
             
             this.cardView.configure(user.kai)
             this.tableView.reloadData()
-        }, onError: { error in
+            this.endRefreshing()
+        }, onError: { [weak self] error in
+            self?.endRefreshing()
             debugPrint("Get transaction errror: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
     }

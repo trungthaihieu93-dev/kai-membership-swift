@@ -54,6 +54,10 @@ class RewardsViewController: BaseViewController {
         return view
     }()
     
+    override var scroller: UIScrollView? {
+        return tableView
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +78,12 @@ class RewardsViewController: BaseViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    // MARK: Handle actions
+    override func refresh(_ sender: UIRefreshControl) {
+        super.refresh(sender)
+        fetchData()
+    }
 }
 
 // MARK: Data fetching
@@ -84,7 +94,9 @@ extension RewardsViewController {
             guard let this = self else { return }
             
             this.tableView.reloadData()
-        }, onError: { error in
+            this.endRefreshing()
+        }, onError: { [weak self] error in
+            self?.endRefreshing()
             debugPrint("Get histories errror: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
     }

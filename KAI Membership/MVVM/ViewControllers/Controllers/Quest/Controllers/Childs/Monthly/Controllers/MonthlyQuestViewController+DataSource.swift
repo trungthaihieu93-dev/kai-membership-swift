@@ -22,9 +22,11 @@ extension MonthlyQuestViewController: DZNEmptyDataSetSource {
         ])
     }
     
-//    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-//        return -100
-//    }
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        guard let headerView = (self.parent?.parent as? QuestViewController)?.headerView else { return 0 }
+        
+        return -headerView.frame.height + (safeAreaInsets.top + 44)
+    }
 }
 
 // MARK: UITableViewDataSource
@@ -36,7 +38,7 @@ extension MonthlyQuestViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestTableViewCell.identifier, for: indexPath) as! QuestTableViewCell
-        cell.configure(quests[0])
+        cell.configure(quests[indexPath.row])
         
         return cell
     }

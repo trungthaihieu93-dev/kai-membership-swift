@@ -16,6 +16,7 @@ class Key {
         case linkBuyApp = "KAI.UserDefault.LinkBuyApp"
         case configure = "KAI.UserDefault.Configure"
         case haveFreeSpin = "KAI.UserDefault.HaveFreeSpin"
+        case isRequestOpenSpin = "KAI.UserDefault.IsRequestOpenSpin"
     }
     
     enum KeyChain: String {

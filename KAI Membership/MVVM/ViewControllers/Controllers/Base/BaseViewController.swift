@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 /*
-    Note: Muốn tạo NaviagtionItem.setRightBarButtonItem thì phải sử dụng hàm setRightBarButtonItem của class
+ Note: Muốn tạo NaviagtionItem.setRightBarButtonItem thì phải sử dụng hàm setRightBarButtonItem của class
  */
 
 class BaseViewController: UIViewController {
@@ -34,6 +34,13 @@ class BaseViewController: UIViewController {
         return button
     }()
     
+    private lazy var _refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        
+        return refreshControl
+    }()
+    
     private var _navigateType: NavigateType = .child
     
     let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
@@ -56,9 +63,9 @@ class BaseViewController: UIViewController {
         return 20
     }
     
-//    var isHiddenNavigationBar: Bool {
-//        return false
-//    }
+    //    var isHiddenNavigationBar: Bool {
+    //        return false
+    //    }
     
     var navigationAlphaDefault: CGFloat {
         return 1
@@ -71,6 +78,10 @@ class BaseViewController: UIViewController {
     private lazy var navigationAlpha: CGFloat = navigationAlphaDefault
     
     lazy var disposeBag = DisposeBag()
+    
+    var scroller: UIScrollView? {
+        return nil
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle
@@ -109,6 +120,11 @@ class BaseViewController: UIViewController {
         view.backgroundColor = backroundColorDefault
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+        extendedLayoutIncludesOpaqueBars = true
+        
+        /*if let scrollView = scroller {
+            scrollView.addSubview(_refreshControl)
+        }*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -147,8 +163,16 @@ class BaseViewController: UIViewController {
         navigationItem.setRightBarButtonItems(newItems, animated: true)
     }
     
+    func endRefreshing() {
+        _refreshControl.endRefreshing()
+    }
+    
     // MARK: Handle actions
     @objc private func _onPressedClose() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func refresh(_ sender: UIRefreshControl) {
+        // Code to refresh table view
     }
 }

@@ -188,6 +188,7 @@ extension CongratsViewController {
     @objc private func onPressedSpinNow() {
         switch type {
         case .signUp:
+            AppSetting.isRequestOpenSpin = true
             Navigator.showRootTabbarController()
         case .passcode, .password:
             Navigator.showRootTabbarController()

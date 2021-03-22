@@ -94,4 +94,13 @@ class AppSetting {
             return UserDefaults.standard.bool(forKey: Key.UserDefault.haveFreeSpin.rawValue)
         }
     }
+    
+    static var isRequestOpenSpin: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.isRequestOpenSpin.rawValue)
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: Key.UserDefault.isRequestOpenSpin.rawValue)
+        }
+    }
 }
