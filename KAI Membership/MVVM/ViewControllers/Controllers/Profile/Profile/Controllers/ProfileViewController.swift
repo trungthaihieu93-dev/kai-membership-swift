@@ -185,7 +185,7 @@ class ProfileViewController: BaseViewController {
     }
     
     private func share() {
-        let items = ["This app is my favorite"]
+        let items = [AccountManagement.accountInfo?.user?.refarralAppflyerLink ?? ""]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
     }

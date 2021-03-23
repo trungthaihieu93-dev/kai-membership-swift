@@ -52,6 +52,7 @@
 		4963D08725FF165500720B34 /* ProviderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */; };
 		4963D08A25FF2D5700720B34 /* RewardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D08925FF2D5700720B34 /* RewardsTableViewCell.swift */; };
 		4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA8925F01868001491AE /* OverviewViewModel.swift */; };
+		498615F7260A006B000BF4AD /* KAIInputCalendarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498615F6260A006B000BF4AD /* KAIInputCalendarPicker.swift */; };
 		498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */; };
 		498BCFE925F7470800F04160 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFE825F7470800F04160 /* Helper.swift */; };
 		498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BCFEB25F756EE00F04160 /* InputCodeView.swift */; };
@@ -68,6 +69,11 @@
 		49976C3E260875520005F8F8 /* ShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C3D260875520005F8F8 /* ShareCollectionViewCell.swift */; };
 		49976C41260876FE0005F8F8 /* ShareViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C40260876FE0005F8F8 /* ShareViewController+DataSource.swift */; };
 		49976C45260877070005F8F8 /* ShareViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C44260877070005F8F8 /* ShareViewController+Delegate.swift */; };
+		49976C732609A2960005F8F8 /* CalendarDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C722609A2960005F8F8 /* CalendarDateCollectionViewCell.swift */; };
+		49976C772609A2F20005F8F8 /* CalendarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C762609A2F20005F8F8 /* CalendarPickerViewController.swift */; };
+		49976C7E2609D3F00005F8F8 /* CalendarPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C7D2609D3F00005F8F8 /* CalendarPickerModel.swift */; };
+		49976C822609D6140005F8F8 /* CalendarPickerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C812609D6140005F8F8 /* CalendarPickerHeaderView.swift */; };
+		49976C8A2609F28C0005F8F8 /* KAICalendarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C892609F28C0005F8F8 /* KAICalendarPicker.swift */; };
 		49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7946F260441FE00915584 /* AppsFlyerManagement.swift */; };
 		49A79473260442BF00915584 /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A79472260442BF00915584 /* NotificationManagement.swift */; };
 		49A794862604521900915584 /* TrackingManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A794852604521900915584 /* TrackingManagement.swift */; };
@@ -266,6 +272,7 @@
 		4963D07A25FEF8CD00720B34 /* ConfigServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServices.swift; sourceTree = "<group>"; };
 		4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCollectionViewCell.swift; sourceTree = "<group>"; };
 		4963D08925FF2D5700720B34 /* RewardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTableViewCell.swift; sourceTree = "<group>"; };
+		498615F6260A006B000BF4AD /* KAIInputCalendarPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputCalendarPicker.swift; sourceTree = "<group>"; };
 		498BCFE325F71B2F00F04160 /* AccountInfoRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoRemote.swift; sourceTree = "<group>"; };
 		498BCFE825F7470800F04160 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		498BCFEB25F756EE00F04160 /* InputCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCodeView.swift; sourceTree = "<group>"; };
@@ -282,6 +289,11 @@
 		49976C3D260875520005F8F8 /* ShareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCollectionViewCell.swift; sourceTree = "<group>"; };
 		49976C40260876FE0005F8F8 /* ShareViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+DataSource.swift"; sourceTree = "<group>"; };
 		49976C44260877070005F8F8 /* ShareViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+Delegate.swift"; sourceTree = "<group>"; };
+		49976C722609A2960005F8F8 /* CalendarDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCollectionViewCell.swift; sourceTree = "<group>"; };
+		49976C762609A2F20005F8F8 /* CalendarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerViewController.swift; sourceTree = "<group>"; };
+		49976C7D2609D3F00005F8F8 /* CalendarPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerModel.swift; sourceTree = "<group>"; };
+		49976C812609D6140005F8F8 /* CalendarPickerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerHeaderView.swift; sourceTree = "<group>"; };
+		49976C892609F28C0005F8F8 /* KAICalendarPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAICalendarPicker.swift; sourceTree = "<group>"; };
 		49A7946F260441FE00915584 /* AppsFlyerManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerManagement.swift; sourceTree = "<group>"; };
 		49A79472260442BF00915584 /* NotificationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
 		49A794852604521900915584 /* TrackingManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManagement.swift; sourceTree = "<group>"; };
@@ -698,6 +710,43 @@
 				49976C3D260875520005F8F8 /* ShareCollectionViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		49976C6F2609A26F0005F8F8 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				49976C7C2609D10C0005F8F8 /* Model */,
+				49976C702609A27B0005F8F8 /* Controllers */,
+				49976C712609A2830005F8F8 /* Views */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		49976C702609A27B0005F8F8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49976C762609A2F20005F8F8 /* CalendarPickerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		49976C712609A2830005F8F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49976C722609A2960005F8F8 /* CalendarDateCollectionViewCell.swift */,
+				49976C812609D6140005F8F8 /* CalendarPickerHeaderView.swift */,
+				49976C892609F28C0005F8F8 /* KAICalendarPicker.swift */,
+				498615F6260A006B000BF4AD /* KAIInputCalendarPicker.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		49976C7C2609D10C0005F8F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				49976C7D2609D3F00005F8F8 /* CalendarPickerModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		49A794882604522B00915584 /* Tracking */ = {
@@ -1596,6 +1645,7 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				49976C6F2609A26F0005F8F8 /* Calendar */,
 				49976C372608456C0005F8F8 /* Share */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				226DA42C2600B5DB009BC8CC /* Buy */,
@@ -1964,6 +2014,7 @@
 				495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
 				525DBAE325F2399B001491AE /* NewsLastestCollectionViewCell.swift in Sources */,
+				49976C822609D6140005F8F8 /* CalendarPickerHeaderView.swift in Sources */,
 				525DBA6F25F0121F001491AE /* NewsViewController+ Delegate.swift in Sources */,
 				4963D08A25FF2D5700720B34 /* RewardsTableViewCell.swift in Sources */,
 				4951731926008F200063AEF7 /* CaptchaRemote.swift in Sources */,
@@ -1980,6 +2031,7 @@
 				498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */,
 				525DB88625E557BC001491AE /* QuestViewController.swift in Sources */,
 				525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */,
+				49976C732609A2960005F8F8 /* CalendarDateCollectionViewCell.swift in Sources */,
 				525DB9DB25EE9168001491AE /* TransactionRemote.swift in Sources */,
 				525DBA9625F0FDA6001491AE /* NestedScrollViewController.swift in Sources */,
 				22FA81A62601B18200E3C460 /* AlertManagement.swift in Sources */,
@@ -2004,6 +2056,7 @@
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
 				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
+				49976C772609A2F20005F8F8 /* CalendarPickerViewController.swift in Sources */,
 				495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
 				226DA3FB2600750A009BC8CC /* UIView+Draggable.swift in Sources */,
@@ -2037,6 +2090,7 @@
 				525DBA5725F008E7001491AE /* Data+Extensions.swift in Sources */,
 				525DBAA125F16213001491AE /* QuestTableViewCell.swift in Sources */,
 				525DB9DF25EE92EF001491AE /* TransactionServices.swift in Sources */,
+				49976C8A2609F28C0005F8F8 /* KAICalendarPicker.swift in Sources */,
 				525DB97B25EB52A2001491AE /* UITableViewCell+Extensions.swift in Sources */,
 				529AE1A825DD994C00635807 /* NewsViewController.swift in Sources */,
 				493043EF25F89D2F00EED242 /* RewardsViewController+DataSource.swift in Sources */,
@@ -2059,6 +2113,7 @@
 				49F5FE902601E93F00D53D82 /* SendViewModel.swift in Sources */,
 				521754C425DE812D009355BC /* TutorialView.swift in Sources */,
 				525DB9C425ED37FD001491AE /* SelectAccountViewController+Delegate.swift in Sources */,
+				498615F7260A006B000BF4AD /* KAIInputCalendarPicker.swift in Sources */,
 				4928737826020493002BAE39 /* OverviewSendTableViewCell.swift in Sources */,
 				525DB8AD25E6A7D7001491AE /* ServicesRepository.swift in Sources */,
 				4928738A26020F6E002BAE39 /* Date+Extensions.swift in Sources */,
@@ -2092,6 +2147,7 @@
 				525DBA3A25EFEB32001491AE /* MainViewController.swift in Sources */,
 				525DBA4A25F002B1001491AE /* PasscodeViewController+Delegate.swift in Sources */,
 				5265496425F5E947003AE21A /* PasswordViewController.swift in Sources */,
+				49976C7E2609D3F00005F8F8 /* CalendarPickerModel.swift in Sources */,
 				525E6BD825FE087200A7BAC5 /* WebViewController.swift in Sources */,
 				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
 				525DB90825E91A52001491AE /* AppSetting.swift in Sources */,

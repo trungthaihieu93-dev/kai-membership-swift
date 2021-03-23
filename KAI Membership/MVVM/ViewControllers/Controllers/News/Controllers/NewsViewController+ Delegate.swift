@@ -11,7 +11,15 @@ import UIKit
 extension NewsViewController: KAIBarButtonItemViewDelegate {
     
     func kAIBarButtonItemViewDidSelecteSpin(_ kAIBarButtonItemView: KAIBarButtonItemView) {
-        Navigator.openSpin(from: self)
+//        Navigator.openSpin(from: self)
+        Navigator.navigateToCalendarPickerVC(from: self) { [weak self] date in
+            guard let this = self else { return }
+            
+//            self.item.date = date
+//            self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
+            
+            debugPrint("Set item")
+        }
     }
     
     func kAIBarButtonItemViewDidSelecteProfile(_ kAIBarButtonItemView: KAIBarButtonItemView) {

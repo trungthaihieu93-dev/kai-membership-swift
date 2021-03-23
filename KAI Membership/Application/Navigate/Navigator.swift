@@ -12,7 +12,7 @@ final class Navigator {
     static weak var window: UIWindow? {
         if #available(iOS 13, *) {
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate, let window = delegate.window else { return nil }
-
+            
             return window
         }
         
@@ -49,7 +49,7 @@ final class Navigator {
         window.rootViewController = RootNavigationController(rootViewController: vc)
         UIView.transition(with: window, duration: 0.2, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
-
+    
     /* Hiện màn hình đăng nhập */
     class func showSignInVC() {
         guard let window = self.window else { return }
@@ -266,5 +266,19 @@ final class Navigator {
         let vc = VerificationViewController(with: email)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /* Điều hướng tới màn hình Calendar */
+    class func navigateToCalendarPickerVC(from viewController: UIViewController? = nil, data: Date = Date(), _ selectedDateChanged: @escaping ((Date) -> Void)) {
+        /*let vc = CalendarPickerViewController()
+         let nv = RootNavigationController(rootViewController: vc)
+         nv.modalPresentationStyle = .fullScreen
+         viewController?.present(nv, animated: true, completion: nil)*/
+        
+        
+        let vc = CalendarPickerViewController(baseDate: data, selectedDateChanged: selectedDateChanged)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        viewController?.present(vc, animated: true, completion: nil)
     }
 }

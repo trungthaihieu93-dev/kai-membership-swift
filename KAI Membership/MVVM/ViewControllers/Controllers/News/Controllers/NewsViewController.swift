@@ -24,6 +24,17 @@ class NewsViewController: BaseViewController {
         return view
     }()
     
+    private lazy var calendarPicker: KAIInputCalendarPicker = {
+        let view = KAIInputCalendarPicker(baseDate: Date()) { [weak self] date in
+            guard let this = self else { return }
+            
+            debugPrint("Selected date: \(date)")
+        }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,10 +65,15 @@ class NewsViewController: BaseViewController {
     
     // MARK: Layout
     private func setupView() {
+        view.addSubview(calendarPicker)
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            calendarPicker.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
+            calendarPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            calendarPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            tableView.topAnchor.constraint(equalTo: calendarPicker.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
