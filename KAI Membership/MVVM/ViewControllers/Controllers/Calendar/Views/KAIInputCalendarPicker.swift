@@ -13,11 +13,17 @@ class KAIInputCalendarPicker: UIView {
     private let transparentView = UIView()
     
     private lazy var selectedButton: UIButton = {
-        let button = UIButton(type: .custom)
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .init(hex: "FAFBFB")
+        button.contentHorizontalAlignment = .left
+        button.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
+        button.setTitleColor(UIColor.black.withAlphaComponent(0.87), for: .normal)
+        button.titleLabel?.font = UIFont.workSansFont(ofSize: 14, weight: .medium)
+        let formatTime = Date().timeIntervalSince1970.formatTimeIntervalToString("dd/MM/yyyy")
+        button.setTitle(formatTime, for: .normal)
         button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor.init(hex: "E1E4E8").cgColor
+        button.layer.borderColor = UIColor.init(hex: "E6EAEF").cgColor
         button.layer.borderWidth = 1
         button.addTarget(self, action: #selector(onPressedCalendar), for: .touchUpInside)
         
@@ -28,6 +34,8 @@ class KAIInputCalendarPicker: UIView {
         let view = KAICalendarPicker(baseDate: baseDate) { [weak self] date in
             guard let this = self else { return }
             
+            let formatTime = date.timeIntervalSince1970.formatTimeIntervalToString("dd/MM/yyyy")
+            this.setText(formatTime)
             this.selectedDateChanged(date)
             this.removeTransparentView()
         }
@@ -73,8 +81,6 @@ class KAIInputCalendarPicker: UIView {
             selectedButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             selectedButton.heightAnchor.constraint(equalToConstant: 44),
         ])
-        
-        selectedButton.backgroundColor = .red
     }
     
     private func addTransparentView() {
@@ -97,6 +103,14 @@ class KAIInputCalendarPicker: UIView {
             self.transparentView.alpha = 0.5
             self.calendarPicker.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: height)
         }, completion: nil)
+    }
+    
+    func setAttributedTitle(_ attributedString: NSAttributedString) {
+        selectedButton.setAttributedTitle(attributedString, for: .normal)
+    }
+    
+    func setText(_ text: String) {
+        selectedButton.setTitle(text, for: .normal)
     }
     
     // MARK: Handle actions

@@ -168,6 +168,7 @@ extension KAICalendarPicker: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let day = days[indexPath.row]
+        baseDate = day.date
         selectedDateChanged(day.date)
     }
     

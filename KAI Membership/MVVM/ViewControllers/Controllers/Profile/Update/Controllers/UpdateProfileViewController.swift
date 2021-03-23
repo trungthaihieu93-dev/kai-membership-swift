@@ -41,22 +41,16 @@ class UpdateProfileViewController: BaseViewController {
         return label
     }()
     
-    private lazy var inputDOBButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .init(hex: "FAFBFB")
-        button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
-        button.setAttributedTitle(NSAttributedString(string: "01/01/1988", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54),
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium)
-        ]), for: .normal)
-        button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor.init(hex: "E1E4E8").cgColor
-        button.layer.borderWidth = 1
-        button.addTarget(self, action: #selector(onPressedBirthDay), for: .touchUpInside)
+    private lazy var inputCalendarPicker: KAIInputCalendarPicker = {
+        let view = KAIInputCalendarPicker(baseDate: Date()) { [weak self] date in
+            guard let this = self else { return }
+            
+            this.viewModel.birthday = date.timeIntervalSince1970
+            this.isConfirmEnabled = this.viewModel.hasChanged
+        }
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        return button
+        return view
     }()
     
     private(set) lazy var inputPhoneNumberView: KAIInputTextFieldView = {
@@ -149,7 +143,7 @@ class UpdateProfileViewController: BaseViewController {
         
         scrollView.addSubview(inputFullNameView)
         scrollView.addSubview(inputDOBLabel)
-        scrollView.addSubview(inputDOBButton)
+        scrollView.addSubview(inputCalendarPicker)
         scrollView.addSubview(inputPhoneNumberView)
         
         NSLayoutConstraint.activate([
@@ -171,12 +165,12 @@ class UpdateProfileViewController: BaseViewController {
             inputDOBLabel.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
             inputDOBLabel.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
             
-            inputDOBButton.topAnchor.constraint(equalTo: inputDOBLabel.bottomAnchor, constant: 4),
-            inputDOBButton.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
-            inputDOBButton.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
-            inputDOBButton.heightAnchor.constraint(equalToConstant: 44),
+            inputCalendarPicker.topAnchor.constraint(equalTo: inputDOBLabel.bottomAnchor, constant: 4),
+            inputCalendarPicker.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
+            inputCalendarPicker.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
+            inputCalendarPicker.heightAnchor.constraint(equalToConstant: 44),
             
-            inputPhoneNumberView.topAnchor.constraint(equalTo: inputDOBButton.bottomAnchor, constant: 12),
+            inputPhoneNumberView.topAnchor.constraint(equalTo: inputCalendarPicker.bottomAnchor, constant: 12),
             inputPhoneNumberView.leadingAnchor.constraint(equalTo: inputFullNameView.leadingAnchor),
             inputPhoneNumberView.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor),
             inputPhoneNumberView.trailingAnchor.constraint(equalTo: inputFullNameView.trailingAnchor),
@@ -259,10 +253,10 @@ extension UpdateProfileViewController {
     
     @objc func dateChanged(_ sender: UIDatePicker) {
         viewModel.birthday = sender.date.timeIntervalSince1970
-        inputDOBButton.setAttributedTitle(NSAttributedString(string: sender.date.toString("dd/MM/yyyy"), attributes: [
+        inputCalendarPicker.setAttributedTitle(NSAttributedString(string: sender.date.toString("dd/MM/yyyy"), attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87),
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium)
-        ]), for: .normal)
+        ]))
         
         isConfirmEnabled = viewModel.hasChanged
     }

@@ -428,6 +428,8 @@
 		5265496325F5E947003AE21A /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		5265497025F5ED9C003AE21A /* PasswordViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordViewController+Delegate.swift"; sourceTree = "<group>"; };
 		5270BE2625E160AA0046E224 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		528789D4260A573B00AB00DC /* KAI MembershipDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KAI MembershipDebug.entitlements"; sourceTree = "<group>"; };
+		528789D6260A5BC100AB00DC /* KAI Membership.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KAI Membership.entitlements"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		529AE17A25DD96FD00635807 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1616,6 +1618,8 @@
 		529AE17725DD96FD00635807 /* KAI Membership */ = {
 			isa = PBXGroup;
 			children = (
+				528789D6260A5BC100AB00DC /* KAI Membership.entitlements */,
+				528789D4260A573B00AB00DC /* KAI MembershipDebug.entitlements */,
 				525DB8A625E6A78A001491AE /* Constants */,
 				226DA3EE260074FA009BC8CC /* Vendors */,
 				529AE19325DD97AD00635807 /* Application */,
@@ -2307,6 +2311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "KAI Membership/KAI MembershipDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
@@ -2330,6 +2335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "KAI Membership/KAI Membership.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
