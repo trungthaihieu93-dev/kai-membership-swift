@@ -267,18 +267,4 @@ final class Navigator {
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    /* Điều hướng tới màn hình Calendar */
-    class func navigateToCalendarPickerVC(from viewController: UIViewController? = nil, data: Date = Date(), _ selectedDateChanged: @escaping ((Date) -> Void)) {
-        /*let vc = CalendarPickerViewController()
-         let nv = RootNavigationController(rootViewController: vc)
-         nv.modalPresentationStyle = .fullScreen
-         viewController?.present(nv, animated: true, completion: nil)*/
-        
-        
-        let vc = CalendarPickerViewController(baseDate: data, selectedDateChanged: selectedDateChanged)
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        viewController?.present(vc, animated: true, completion: nil)
-    }
 }

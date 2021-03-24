@@ -10,7 +10,6 @@ import UIKit
 protocol CalendarPickerHeaderDelegate: class {
     func calendarPickerHeaderDidTouchLastMonth(_ calendarPickerHeaderView: CalendarPickerHeaderView)
     func calendarPickerHeaderDidTouchNextMonth(_ calendarPickerHeaderView: CalendarPickerHeaderView)
-    func calendarPickerHeaderExitButton()
 }
 
 class CalendarPickerHeaderView: UIView {
@@ -25,19 +24,6 @@ class CalendarPickerHeaderView: UIView {
         label.isAccessibilityElement = true
         
         return label
-    }()
-    
-    lazy var closeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_delete"), for: .normal)
-        button.tintColor = UIColor.black.withAlphaComponent(0.54)
-        button.contentMode = .scaleAspectFill
-        button.isUserInteractionEnabled = true
-        button.isAccessibilityElement = true
-        button.accessibilityLabel = "Close Picker"
-        
-        return button
     }()
     
     private lazy var previousMonthButton: UIButton = {
@@ -96,7 +82,6 @@ class CalendarPickerHeaderView: UIView {
         super.init(frame: frame)
         
         setupView()
-        closeButton.addTarget(self, action: #selector(didTapExitButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -109,7 +94,6 @@ class CalendarPickerHeaderView: UIView {
         addSubview(monthLabel)
         addSubview(previousMonthButton)
         addSubview(nextMonthButton)
-        addSubview(closeButton)
         addSubview(dayOfWeekStackView)
         
         for dayNumber in 1...7 {
@@ -124,7 +108,6 @@ class CalendarPickerHeaderView: UIView {
         NSLayoutConstraint.activate([
             monthLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             monthLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            monthLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: 4),
             
             nextMonthButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             nextMonthButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
@@ -135,11 +118,6 @@ class CalendarPickerHeaderView: UIView {
             previousMonthButton.heightAnchor.constraint(equalToConstant: 24),
             previousMonthButton.widthAnchor.constraint(equalToConstant: 24),
             previousMonthButton.trailingAnchor.constraint(equalTo: nextMonthButton.leadingAnchor, constant: -8),
-            
-            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            closeButton.heightAnchor.constraint(equalToConstant: 28),
-            closeButton.widthAnchor.constraint(equalToConstant: 28),
-            closeButton.trailingAnchor.constraint(equalTo: previousMonthButton.leadingAnchor, constant: -15),
             
             dayOfWeekStackView.topAnchor.constraint(equalTo: nextMonthButton.bottomAnchor, constant: 16),
             dayOfWeekStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -169,9 +147,6 @@ class CalendarPickerHeaderView: UIView {
     }
     
     // MARK: Handle actions
-    @objc private func didTapExitButton() {
-        delegate?.calendarPickerHeaderExitButton()
-    }
     
     // MARK: Handle actions
     @objc private func onPressedPreviousMonthButton() {

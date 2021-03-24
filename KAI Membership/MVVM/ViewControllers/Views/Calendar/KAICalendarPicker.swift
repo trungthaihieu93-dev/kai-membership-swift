@@ -44,7 +44,7 @@ class KAICalendarPicker: UIView {
     
     private lazy var days = generateDaysInMonth(for: baseDate)
     
-    private var numberOfWeeksInBaseDate: Int {
+    var numberOfWeeksInBaseDate: Int {
         calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
     }
     
@@ -174,9 +174,8 @@ extension KAICalendarPicker: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = Int(collectionView.frame.width / 7)
-        let height = Int(collectionView.frame.height) / numberOfWeeksInBaseDate
         
-        return CGSize(width: width, height: height)
+        return CGSize(width: width, height: width)
     }
 }
 

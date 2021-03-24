@@ -70,7 +70,6 @@
 		49976C41260876FE0005F8F8 /* ShareViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C40260876FE0005F8F8 /* ShareViewController+DataSource.swift */; };
 		49976C45260877070005F8F8 /* ShareViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C44260877070005F8F8 /* ShareViewController+Delegate.swift */; };
 		49976C732609A2960005F8F8 /* CalendarDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C722609A2960005F8F8 /* CalendarDateCollectionViewCell.swift */; };
-		49976C772609A2F20005F8F8 /* CalendarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C762609A2F20005F8F8 /* CalendarPickerViewController.swift */; };
 		49976C7E2609D3F00005F8F8 /* CalendarPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C7D2609D3F00005F8F8 /* CalendarPickerModel.swift */; };
 		49976C822609D6140005F8F8 /* CalendarPickerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C812609D6140005F8F8 /* CalendarPickerHeaderView.swift */; };
 		49976C8A2609F28C0005F8F8 /* KAICalendarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49976C892609F28C0005F8F8 /* KAICalendarPicker.swift */; };
@@ -290,7 +289,6 @@
 		49976C40260876FE0005F8F8 /* ShareViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+DataSource.swift"; sourceTree = "<group>"; };
 		49976C44260877070005F8F8 /* ShareViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49976C722609A2960005F8F8 /* CalendarDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCollectionViewCell.swift; sourceTree = "<group>"; };
-		49976C762609A2F20005F8F8 /* CalendarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerViewController.swift; sourceTree = "<group>"; };
 		49976C7D2609D3F00005F8F8 /* CalendarPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerModel.swift; sourceTree = "<group>"; };
 		49976C812609D6140005F8F8 /* CalendarPickerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPickerHeaderView.swift; sourceTree = "<group>"; };
 		49976C892609F28C0005F8F8 /* KAICalendarPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAICalendarPicker.swift; sourceTree = "<group>"; };
@@ -428,7 +426,6 @@
 		5265496325F5E947003AE21A /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		5265497025F5ED9C003AE21A /* PasswordViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordViewController+Delegate.swift"; sourceTree = "<group>"; };
 		5270BE2625E160AA0046E224 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		528789D4260A573B00AB00DC /* KAI MembershipDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KAI MembershipDebug.entitlements"; sourceTree = "<group>"; };
 		528789D6260A5BC100AB00DC /* KAI Membership.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KAI Membership.entitlements"; sourceTree = "<group>"; };
 		529AE17525DD96FD00635807 /* KAI Membership.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KAI Membership.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		529AE17825DD96FD00635807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -662,6 +659,18 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		498615FA260AE376000BF4AD /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				49976C722609A2960005F8F8 /* CalendarDateCollectionViewCell.swift */,
+				49976C812609D6140005F8F8 /* CalendarPickerHeaderView.swift */,
+				49976C7D2609D3F00005F8F8 /* CalendarPickerModel.swift */,
+				49976C892609F28C0005F8F8 /* KAICalendarPicker.swift */,
+				498615F6260A006B000BF4AD /* KAIInputCalendarPicker.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		498BCFE225F71B1700F04160 /* Account Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,43 +721,6 @@
 				49976C3D260875520005F8F8 /* ShareCollectionViewCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		49976C6F2609A26F0005F8F8 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				49976C7C2609D10C0005F8F8 /* Model */,
-				49976C702609A27B0005F8F8 /* Controllers */,
-				49976C712609A2830005F8F8 /* Views */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
-		49976C702609A27B0005F8F8 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				49976C762609A2F20005F8F8 /* CalendarPickerViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		49976C712609A2830005F8F8 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				49976C722609A2960005F8F8 /* CalendarDateCollectionViewCell.swift */,
-				49976C812609D6140005F8F8 /* CalendarPickerHeaderView.swift */,
-				49976C892609F28C0005F8F8 /* KAICalendarPicker.swift */,
-				498615F6260A006B000BF4AD /* KAIInputCalendarPicker.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		49976C7C2609D10C0005F8F8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				49976C7D2609D3F00005F8F8 /* CalendarPickerModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		49A794882604522B00915584 /* Tracking */ = {
@@ -886,6 +858,7 @@
 		521754A525DE7544009355BC /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				528789D6260A5BC100AB00DC /* KAI Membership.entitlements */,
 				525DB92025E9598E001491AE /* Fonts */,
 				529AE18625DD96FD00635807 /* Info.plist */,
 			);
@@ -1618,8 +1591,6 @@
 		529AE17725DD96FD00635807 /* KAI Membership */ = {
 			isa = PBXGroup;
 			children = (
-				528789D6260A5BC100AB00DC /* KAI Membership.entitlements */,
-				528789D4260A573B00AB00DC /* KAI MembershipDebug.entitlements */,
 				525DB8A625E6A78A001491AE /* Constants */,
 				226DA3EE260074FA009BC8CC /* Vendors */,
 				529AE19325DD97AD00635807 /* Application */,
@@ -1649,7 +1620,6 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				49976C6F2609A26F0005F8F8 /* Calendar */,
 				49976C372608456C0005F8F8 /* Share */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				226DA42C2600B5DB009BC8CC /* Buy */,
@@ -1783,6 +1753,7 @@
 		52F37CF825E0DCC5009F311F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				498615FA260AE376000BF4AD /* Calendar */,
 				49CAC0ED25FB42DC00577D33 /* Card */,
 				49CAC0EC25FB42CC00577D33 /* Input */,
 				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
@@ -2060,7 +2031,6 @@
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
 				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
-				49976C772609A2F20005F8F8 /* CalendarPickerViewController.swift in Sources */,
 				495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
 				226DA3FB2600750A009BC8CC /* UIView+Draggable.swift in Sources */,

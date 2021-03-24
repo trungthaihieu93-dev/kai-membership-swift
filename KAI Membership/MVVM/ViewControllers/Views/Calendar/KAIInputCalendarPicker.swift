@@ -48,12 +48,7 @@ class KAIInputCalendarPicker: UIView {
     private let selectedDate: Date
     private let baseDate: Date
     
-    private var numberOfWeeksInBaseDate: Int {
-        calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
-    }
-    
     private let selectedDateChanged: ((Date) -> Void)
-    private let calendar = Calendar(identifier: .gregorian)
     
     // MARK: Life cycle's
     init(baseDate: Date, frame: CGRect = .zero, _ selectedDateChanged: @escaping ((Date) -> Void)) {
@@ -98,7 +93,9 @@ class KAIInputCalendarPicker: UIView {
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
         transparentView.addGestureRecognizer(tapgesture)
         transparentView.alpha = 0
-        let height: CGFloat = 500//CGFloat(dataSources.count) * itemHeight
+        let itemWidth = frames.width / 7
+        let height = itemWidth * CGFloat(calendarPicker.numberOfWeeksInBaseDate)
+        
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.transparentView.alpha = 0.5
             self.calendarPicker.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: height)
