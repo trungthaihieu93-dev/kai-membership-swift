@@ -2281,7 +2281,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "KAI Membership/KAI MembershipDebug.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "KAI Membership/Application/Supporting/KAI Membership.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
@@ -2305,7 +2305,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "KAI Membership/KAI Membership.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "KAI Membership/Application/Supporting/KAI Membership.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
