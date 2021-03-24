@@ -10,6 +10,8 @@ import UIKit
 class KAICalendarPicker: UIView {
     
     // MARK: Properties
+    static let titleHeight: CGFloat = 76
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
@@ -26,21 +28,27 @@ class KAICalendarPicker: UIView {
     }()
     
     private lazy var headerView: CalendarPickerHeaderView = {
-        let view = CalendarPickerHeaderView()
+        let view = CalendarPickerHeaderView(baseDate: baseDate)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
         return view
     }()
     
-    private let selectedDate: Date
-    private var baseDate: Date {
+    private var selectedDate: Date {
         didSet {
             days = generateDaysInMonth(for: baseDate)
             collectionView.reloadData()
             headerView.baseDate = baseDate
         }
     }
+    private var baseDate: Date /*{
+        didSet {
+            days = generateDaysInMonth(for: baseDate)
+            collectionView.reloadData()
+            headerView.baseDate = baseDate
+        }
+    }*/
     
     private lazy var days = generateDaysInMonth(for: baseDate)
     
@@ -68,6 +76,24 @@ class KAICalendarPicker: UIView {
         
         setupView()
     }
+    
+    init(baseTimeInterval: Double? = nil, frame: CGRect = .zero, _ selectedDateChanged: @escaping ((Date) -> Void)) {
+        if let timeInterval = baseTimeInterval {
+            let baseDate = Date(timeIntervalSince1970: timeInterval)
+            self.selectedDate = baseDate
+            self.baseDate = baseDate
+        } else {
+            let baseDate = Date()
+            self.selectedDate = baseDate
+            self.baseDate = baseDate
+        }
+        
+        self.selectedDateChanged = selectedDateChanged
+        
+        super.init(frame: frame)
+        
+        setupView()
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -82,6 +108,7 @@ class KAICalendarPicker: UIView {
             headerView.topAnchor.constraint(equalTo: topAnchor),
             headerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: KAICalendarPicker.titleHeight),
             
             collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -168,7 +195,8 @@ extension KAICalendarPicker: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let day = days[indexPath.row]
-        baseDate = day.date
+//        baseDate = day.date
+        selectedDate = day.date
         selectedDateChanged(day.date)
     }
     
@@ -189,7 +217,5 @@ extension KAICalendarPicker: CalendarPickerHeaderDelegate {
     func calendarPickerHeaderDidTouchNextMonth(_ calendarPickerHeaderView: CalendarPickerHeaderView) {
         baseDate = calendar.date(byAdding: .month, value: 1, to: baseDate) ?? baseDate
     }
-     
-    func calendarPickerHeaderExitButton() {}
 }
 

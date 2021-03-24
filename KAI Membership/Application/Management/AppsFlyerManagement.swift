@@ -15,8 +15,8 @@ class AppsFlyerManagement: NSObject {
     
     // MARK: Methods
     func register() {
-        AppsFlyerLib.shared().appsFlyerDevKey = "<AF_DEV_KEY>"
-        AppsFlyerLib.shared().appleAppID = "<APPLE_APP_ID>"
+        AppsFlyerLib.shared().appsFlyerDevKey = "hf9GFLkT7jnwPGtGs3LQRW"
+        AppsFlyerLib.shared().appleAppID = "1551610228"
         AppsFlyerLib.shared().delegate = self
         AppsFlyerLib.shared().isDebug = true
         

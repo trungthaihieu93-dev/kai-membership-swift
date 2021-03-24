@@ -52,7 +52,7 @@ class CalendarPickerHeaderView: UIView {
         return button
     }()
     
-    lazy var dayOfWeekStackView: UIStackView = {
+    private let dayOfWeekStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
@@ -60,7 +60,7 @@ class CalendarPickerHeaderView: UIView {
         return stackView
     }()
     
-    private lazy var dateFormatter: DateFormatter = {
+    private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.locale = Locale.current
@@ -69,7 +69,7 @@ class CalendarPickerHeaderView: UIView {
         return dateFormatter
     }()
     
-    var baseDate = Date() {
+    var baseDate: Date {
         didSet {
             monthLabel.text = dateFormatter.string(from: baseDate)
         }
@@ -78,13 +78,16 @@ class CalendarPickerHeaderView: UIView {
     weak var delegate: CalendarPickerHeaderDelegate?
     
     // MARK: Life cycle's
-    override init(frame: CGRect) {
+    init(baseDate: Date, frame: CGRect = .zero) {
+        self.baseDate = baseDate
+        
         super.init(frame: frame)
         
+        monthLabel.text = dateFormatter.string(from: baseDate)
         setupView()
     }
-    
-    required init?(coder: NSCoder) {
+
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

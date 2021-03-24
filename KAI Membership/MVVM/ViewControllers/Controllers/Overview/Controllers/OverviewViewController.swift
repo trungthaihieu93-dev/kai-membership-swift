@@ -157,11 +157,20 @@ class OverviewViewController: BaseViewController {
             }, onError: { [weak self] error in
                 guard let this = self else { return }
                 
-                debugPrint("Createt topup error: \((error as? APIErrorResult)?.message ?? "ERROR")")
                 AlertManagement.shared.showBulletin(with: "Fail?", image: "🤔".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Maybe the provider service is wrong. Check your inputed phone number also.", fromController: this, primaryButtonTitle: "Check again", secondaryButtonTitle: nil, primaryHandler: nil, secondaryHandler: nil)
             }).disposed(by: disposeBag)
         case .send:
-            debugPrint("")
+            viewModel.createSend().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                guard let this = self else { return }
+                
+                AlertManagement.shared.showBulletin(with: "Sent", image: "🤑".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Happy Trading!", fromController: this, primaryButtonTitle: "Back to My Wallet", secondaryButtonTitle: nil, primaryHandler: { [weak self] (item) in
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }, secondaryHandler: nil)
+            }, onError: { [weak self] error in
+                guard let this = self else { return }
+                
+                AlertManagement.shared.showBulletin(with: "Fail?", image: "🙄".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Maybe the address is wrong somehow... Or you don't have enough $KAI.. Check both!", fromController: this, primaryButtonTitle: "Check again", secondaryButtonTitle: nil, primaryHandler: nil, secondaryHandler: nil)
+            }).disposed(by: disposeBag)
         }
     }
 }

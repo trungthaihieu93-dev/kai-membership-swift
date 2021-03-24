@@ -12,16 +12,28 @@ class KAIInputCalendarPicker: UIView {
     // MARK: Properties
     private let transparentView = UIView()
     
+    private let calendarImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "ic_calendar")?.withRenderingMode(.alwaysTemplate))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.tintColor = .init(hex: "C9CED6")
+        
+        return imageView
+    }()
+    
+    private let valueLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.textColor = UIColor.black.withAlphaComponent(0.87)
+        label.font = .workSansFont(ofSize: 14, weight: .medium)
+        
+        return label
+    }()
+    
     private lazy var selectedButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .init(hex: "FAFBFB")
-        button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
-        button.setTitleColor(UIColor.black.withAlphaComponent(0.87), for: .normal)
-        button.titleLabel?.font = UIFont.workSansFont(ofSize: 14, weight: .medium)
-        let formatTime = Date().timeIntervalSince1970.formatTimeIntervalToString("dd/MM/yyyy")
-        button.setTitle(formatTime, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.borderColor = UIColor.init(hex: "E6EAEF").cgColor
         button.layer.borderWidth = 1
@@ -50,6 +62,12 @@ class KAIInputCalendarPicker: UIView {
     
     private let selectedDateChanged: ((Date) -> Void)
     
+    private var isOpenCalendar: Bool = false {
+        didSet {
+            calendarImageView.tintColor = .init(hex: isOpenCalendar ? "67798E" : "C9CED6")
+        }
+    }
+    
     // MARK: Life cycle's
     init(baseDate: Date, frame: CGRect = .zero, _ selectedDateChanged: @escaping ((Date) -> Void)) {
         self.selectedDate = baseDate
@@ -60,6 +78,19 @@ class KAIInputCalendarPicker: UIView {
         
         setupView()
     }
+    
+    init(baseTimeInterval: Double? = nil, frame: CGRect = .zero, _ selectedDateChanged: @escaping ((Date) -> Void)) {
+        let baseDate = (baseTimeInterval ?? 0) > 0 ? Date(timeIntervalSince1970: baseTimeInterval!) : Date()
+        self.selectedDate = baseDate
+        self.baseDate = baseDate
+        self.selectedDateChanged = selectedDateChanged
+        
+        super.init(frame: frame)
+        
+        let formatTime = baseDate.timeIntervalSince1970.formatTimeIntervalToString("dd/MM/yyyy")
+        setText(formatTime)
+        setupView()
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -68,6 +99,8 @@ class KAIInputCalendarPicker: UIView {
     // MARK: Layout
     func setupView() {
         addSubview(selectedButton)
+        addSubview(valueLabel)
+        addSubview(calendarImageView)
         
         NSLayoutConstraint.activate([
             selectedButton.topAnchor.constraint(equalTo: topAnchor),
@@ -75,6 +108,15 @@ class KAIInputCalendarPicker: UIView {
             selectedButton.bottomAnchor.constraint(equalTo: bottomAnchor),
             selectedButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             selectedButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            valueLabel.centerYAnchor.constraint(equalTo: selectedButton.centerYAnchor),
+            valueLabel.leadingAnchor.constraint(equalTo: selectedButton.leadingAnchor, constant: 16),
+            
+            calendarImageView.centerYAnchor.constraint(equalTo: selectedButton.centerYAnchor),
+            calendarImageView.leadingAnchor.constraint(greaterThanOrEqualTo: valueLabel.trailingAnchor, constant: 8),
+            calendarImageView.trailingAnchor.constraint(equalTo: selectedButton.trailingAnchor, constant: -14),
+            calendarImageView.widthAnchor.constraint(equalToConstant: 16),
+            calendarImageView.heightAnchor.constraint(equalToConstant: 16),
         ])
     }
     
@@ -93,9 +135,9 @@ class KAIInputCalendarPicker: UIView {
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
         transparentView.addGestureRecognizer(tapgesture)
         transparentView.alpha = 0
+        isOpenCalendar = true
         let itemWidth = frames.width / 7
-        let height = itemWidth * CGFloat(calendarPicker.numberOfWeeksInBaseDate)
-        
+        let height: CGFloat = itemWidth * CGFloat(calendarPicker.numberOfWeeksInBaseDate) + KAICalendarPicker.titleHeight
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.transparentView.alpha = 0.5
             self.calendarPicker.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: height)
@@ -103,16 +145,17 @@ class KAIInputCalendarPicker: UIView {
     }
     
     func setAttributedTitle(_ attributedString: NSAttributedString) {
-        selectedButton.setAttributedTitle(attributedString, for: .normal)
+        valueLabel.attributedText = attributedString
     }
     
     func setText(_ text: String) {
-        selectedButton.setTitle(text, for: .normal)
+        valueLabel.text = text
     }
     
     // MARK: Handle actions
     @objc func removeTransparentView() {
         let frames: CGRect = selectedButton.convert(selectedButton.frame, to: nil)
+        isOpenCalendar = false
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.transparentView.alpha = 0

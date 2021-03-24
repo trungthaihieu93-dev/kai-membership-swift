@@ -26,7 +26,6 @@ class WalletViewController: BaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = Constants.backroundColorDefault
-        tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(RecentTransactionsTableViewCell.self, forCellReuseIdentifier: RecentTransactionsTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
@@ -73,9 +72,9 @@ class WalletViewController: BaseViewController {
     private func setupFloatyButton() {
         let floaty = Floaty()
         
-        /*floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send")) { [weak self] (_) in
+        floaty.addItem("SEND", icon: UIImage(named: "ic_floaty_send")) { [weak self] (_) in
             Navigator.navigateToSendVC(from: self)
-        }*/
+        }
         floaty.addItem("RECEIVE", icon: UIImage(named: "ic_floaty_receive")) { [weak self] (_) in
             Navigator.navigateToReceiveVC(from: self)
         }
@@ -94,6 +93,7 @@ class WalletViewController: BaseViewController {
             item.titleLabel.textAlignment = .center
         }
         
+        floaty.frame.origin = CGPoint(x: Constants.Device.screenBounds.width - 68, y: 100)
         self.view.addSubview(floaty)
         
         floaty.buttonColor = UIColor.init(hex: "67798E")

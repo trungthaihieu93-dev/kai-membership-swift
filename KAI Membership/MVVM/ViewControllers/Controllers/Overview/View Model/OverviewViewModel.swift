@@ -56,4 +56,26 @@ class OverviewViewModel {
             return Disposables.create()
         }
     }
+    
+    func createSend() -> Observable<Void> {
+        let walletAddress = self.address
+        let kai = self.amount.kai
+        
+        showLoading.accept(true)
+        return Observable.create { [weak self] observer -> Disposable in
+            TransactionServices.send(walletAddress: walletAddress, amount: kai) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+                
+                self?.showLoading.accept(false)
+            }
+
+            return Disposables.create()
+        }
+    }
 }

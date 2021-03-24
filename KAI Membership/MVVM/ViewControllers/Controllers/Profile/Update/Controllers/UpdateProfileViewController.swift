@@ -42,7 +42,7 @@ class UpdateProfileViewController: BaseViewController {
     }()
     
     private lazy var inputCalendarPicker: KAIInputCalendarPicker = {
-        let view = KAIInputCalendarPicker(baseDate: Date()) { [weak self] date in
+        let view = KAIInputCalendarPicker(baseTimeInterval: viewModel.birthday) { [weak self] date in
             guard let this = self else { return }
             
             this.viewModel.birthday = date.timeIntervalSince1970
@@ -237,27 +237,5 @@ extension UpdateProfileViewController {
     
     @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         view.endEditing(true)
-    }
-    
-    @objc private func onPressedBirthDay() {
-        view.endEditing(true)
-        datePicker.backgroundColor = UIColor.white
-                
-        datePicker.autoresizingMask = .flexibleWidth
-        datePicker.datePickerMode = .date
-                
-        datePicker.addTarget(self, action: #selector(self.dateChanged(_:)), for: .valueChanged)
-        datePicker.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        self.view.addSubview(datePicker)
-    }
-    
-    @objc func dateChanged(_ sender: UIDatePicker) {
-        viewModel.birthday = sender.date.timeIntervalSince1970
-        inputCalendarPicker.setAttributedTitle(NSAttributedString(string: sender.date.toString("dd/MM/yyyy"), attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87),
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium)
-        ]))
-        
-        isConfirmEnabled = viewModel.hasChanged
     }
 }
