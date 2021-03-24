@@ -30,6 +30,7 @@ class Constants {
         ConfigRemote(with: "Vinaphone", value: "Vinaphone")
     ]
     static let linkBuyAppDefault: String = "itms-apps://itunes.apple.com/us/app/apple-store/nami-exchange-crypto-futures/id1480302334"
+    static let firstDayWeekday: Int = DayOfWeek.mon.rawValue
     
     static var isDebug: Bool {
         #if DEBUG
@@ -73,4 +74,33 @@ struct API {
 struct Amount {
     var money: Double
     var kai: Double
+}
+
+enum DayOfWeek: Int {
+    case sun = 1
+    case mon = 2
+    case tue = 3
+    case wed = 4
+    case thu = 5
+    case fri = 6
+    case sat = 7
+    
+    var letter: String {
+        switch self {
+        case .sun:
+            return "Sun"
+        case .mon:
+            return "Mon"
+        case .tue:
+            return "Tue"
+        case .wed:
+            return "Wed"
+        case .thu:
+            return "Thu"
+        case .fri:
+            return "Fri"
+        case .sat:
+            return "Sat"
+        }
+    }
 }

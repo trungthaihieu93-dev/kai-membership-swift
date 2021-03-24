@@ -9,7 +9,7 @@ import UIKit
 
 extension Double {
     
-    func formatTimeIntervalToString(_ dateFormat: String, addTime time: TimeInterval? = nil, timeZone: TimeZone? = TimeZone(abbreviation: "GMT+7:00")) -> String {
+    func formatTimeIntervalToString(_ dateFormat: String, addTime time: TimeInterval? = nil, timeZone: TimeZone = TimeZone.current) -> String {
         var day = Date(timeIntervalSince1970: self)
         
         if let time = time { day.addTimeInterval(time) }

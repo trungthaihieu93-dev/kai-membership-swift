@@ -35,20 +35,14 @@ class KAICalendarPicker: UIView {
         return view
     }()
     
-    private var selectedDate: Date {
+    private var selectedDate: Date
+    private var baseDate: Date {
         didSet {
             days = generateDaysInMonth(for: baseDate)
             collectionView.reloadData()
             headerView.baseDate = baseDate
         }
     }
-    private var baseDate: Date /*{
-        didSet {
-            days = generateDaysInMonth(for: baseDate)
-            collectionView.reloadData()
-            headerView.baseDate = baseDate
-        }
-    }*/
     
     private lazy var days = generateDaysInMonth(for: baseDate)
     
@@ -57,7 +51,13 @@ class KAICalendarPicker: UIView {
     }
     
     private let selectedDateChanged: ((Date) -> Void)
-    private let calendar = Calendar(identifier: .gregorian)
+    private let calendar: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone.current
+        calendar.locale = Locale.current
+        
+        return calendar
+    }()
     
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -159,7 +159,7 @@ extension KAICalendarPicker {
     func generateDay(offsetBy dayOffset: Int, for baseDate: Date, isWithinDisplayedMonth: Bool) -> Day {
         let date = calendar.date(byAdding: .day, value: dayOffset, to: baseDate) ?? baseDate
         
-        return Day(date: date, number: dateFormatter.string(from: date), isSelected: calendar.isDate(date, inSameDayAs: selectedDate), isWithinDisplayedMonth: isWithinDisplayedMonth)
+        return Day(date: date, number: dateFormatter.string(from: date), isNow: calendar.isDateInToday(date), isSelected: calendar.isDate(date, inSameDayAs: selectedDate), isSunday: calendar.component(.weekday, from: date) == DayOfWeek.sun.rawValue, isWithinDisplayedMonth: isWithinDisplayedMonth)
     }
     
     func generateStartOfNextMonth(using firstDayOfDisplayedMonth: Date) -> [Day] {
@@ -195,8 +195,8 @@ extension KAICalendarPicker: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let day = days[indexPath.row]
-//        baseDate = day.date
         selectedDate = day.date
+        baseDate = day.date
         selectedDateChanged(day.date)
     }
     

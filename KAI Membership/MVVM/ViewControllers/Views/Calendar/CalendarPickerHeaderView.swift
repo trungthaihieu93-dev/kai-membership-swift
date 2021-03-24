@@ -104,7 +104,7 @@ class CalendarPickerHeaderView: UIView {
             dayLabel.font = .workSansFont(ofSize: 12, weight: .regular)
             dayLabel.textColor = UIColor.init(hex: "4E5D78")
             dayLabel.textAlignment = .center
-            dayLabel.text = dayOfWeekLetter(for: dayNumber)
+            dayLabel.text = DayOfWeek(rawValue: dayNumber)?.letter
             dayOfWeekStackView.addArrangedSubview(dayLabel)
         }
         
@@ -128,28 +128,6 @@ class CalendarPickerHeaderView: UIView {
             dayOfWeekStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
-    
-    // MARK: Methods
-    private func dayOfWeekLetter(for dayNumber: Int) -> String {
-        switch dayNumber {
-        case 1:
-            return "Sun"
-        case 2:
-            return "Mon"
-        case 3:
-            return "Tue"
-        case 4:
-            return "Wed"
-        case 5:
-            return "Thu"
-        case 6:
-            return "Fri"
-        default:
-            return "Sat"
-        }
-    }
-    
-    // MARK: Handle actions
     
     // MARK: Handle actions
     @objc private func onPressedPreviousMonthButton() {

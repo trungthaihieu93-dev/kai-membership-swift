@@ -11,10 +11,12 @@ enum CalendarDataError: Error {
     case metadataGeneration
 }
 
-struct  Day  {
+struct Day {
     let date: Date
     let number: String
+    let isNow: Bool
     let isSelected: Bool
+    let isSunday: Bool
     let isWithinDisplayedMonth: Bool
 }
 

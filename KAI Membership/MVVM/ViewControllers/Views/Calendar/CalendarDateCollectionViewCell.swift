@@ -13,7 +13,7 @@ class CalendarDateCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = .init(hex: "29323D")
+        view.backgroundColor = nil
         
         return view
     }()
@@ -50,10 +50,7 @@ class CalendarDateCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        isAccessibilityElement = true
-        accessibilityTraits = .button
-        contentView.addSubview(selectionBackgroundView)
-        contentView.addSubview(numberLabel)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -61,7 +58,31 @@ class CalendarDateCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Layout
-    override func layoutSubviews() {
+    private func setupView() {
+        isAccessibilityElement = true
+        accessibilityTraits = .button
+        contentView.addSubview(selectionBackgroundView)
+        contentView.addSubview(numberLabel)
+        
+        NSLayoutConstraint.deactivate(selectionBackgroundView.constraints)
+    
+        let size = traitCollection.horizontalSizeClass == .compact ?
+            min(min(frame.width, frame.height) - 10, 60) : 45
+        
+        NSLayoutConstraint.activate([
+            numberLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            numberLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            selectionBackgroundView.centerYAnchor.constraint(equalTo: numberLabel.centerYAnchor),
+            selectionBackgroundView.centerXAnchor.constraint(equalTo: numberLabel.centerXAnchor),
+            selectionBackgroundView.widthAnchor.constraint(equalToConstant: size),
+            selectionBackgroundView.heightAnchor.constraint(equalTo: selectionBackgroundView.widthAnchor)
+        ])
+        
+        selectionBackgroundView.layer.cornerRadius = size / 2
+    }
+    
+    /*override func layoutSubviews() {
         super.layoutSubviews()
         
         NSLayoutConstraint.deactivate(selectionBackgroundView.constraints)
@@ -86,7 +107,7 @@ class CalendarDateCollectionViewCell: UICollectionViewCell {
         super.traitCollectionDidChange(previousTraitCollection)
         
         layoutSubviews()
-    }
+    }*/
 }
 
 // MARK: Appearance
@@ -98,31 +119,48 @@ private extension CalendarDateCollectionViewCell {
         if day.isSelected {
             applySelectedStyle()
         } else {
-            applyDefaultStyle(isWithinDisplayedMonth: day.isWithinDisplayedMonth)
+            if day.isNow {
+                applyNowStyle()
+            } else {
+                applyDefaultStyle(isWithinDisplayedMonth: day.isWithinDisplayedMonth, isSunday: day.isSunday)
+            }
         }
     }
     
-    var isSmallScreenSize: Bool {
+    /*var isSmallScreenSize: Bool {
         let isCompact = traitCollection.horizontalSizeClass == .compact
         let smallWidth = UIScreen.main.bounds.width <= 350
         let widthGreaterThanHeight = UIScreen.main.bounds.width > UIScreen.main.bounds.height
         
         return isCompact && (smallWidth || widthGreaterThanHeight)
-    }
+    }*/
     
     func applySelectedStyle() {
         accessibilityTraits.insert(.selected)
         accessibilityHint = nil
         
-        numberLabel.textColor = isSmallScreenSize ? .systemRed : .white
-        selectionBackgroundView.isHidden = isSmallScreenSize
+        numberLabel.textColor = .white
+        selectionBackgroundView.backgroundColor = .init(hex: "29323D")
     }
     
-    func applyDefaultStyle(isWithinDisplayedMonth: Bool) {
+    func applyNowStyle() {
+        accessibilityTraits.remove(.selected)
+        accessibilityHint = nil
+        
+        numberLabel.textColor = .init(hex: "67798E")
+        selectionBackgroundView.backgroundColor = .init(hex: "E6EAEF")
+    }
+    
+    func applyDefaultStyle(isWithinDisplayedMonth: Bool, isSunday: Bool) {
         accessibilityTraits.remove(.selected)
         accessibilityHint = "Tap to select"
         
-        numberLabel.textColor = UIColor.black.withAlphaComponent(isWithinDisplayedMonth ? 0.54 : 0.12)
-        selectionBackgroundView.isHidden = true
+        if isWithinDisplayedMonth {
+            numberLabel.textColor = isSunday ? .init(hex: "94A2B2") : UIColor.black.withAlphaComponent(0.54)
+        } else {
+            numberLabel.textColor = UIColor.black.withAlphaComponent(0.12)
+        }
+        
+        selectionBackgroundView.backgroundColor = nil
     }
 }
