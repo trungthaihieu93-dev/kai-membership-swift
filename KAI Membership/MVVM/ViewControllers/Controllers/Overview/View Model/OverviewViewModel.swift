@@ -44,7 +44,8 @@ class OverviewViewModel {
             TransactionServices.topup(phoneNumber: phone, providerCode: providerCode, amount: money) {
                 switch $0 {
                 case .success:
-                    debugPrint("")
+                    observer.onNext(())
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }
