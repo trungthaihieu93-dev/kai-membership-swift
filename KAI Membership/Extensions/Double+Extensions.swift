@@ -30,7 +30,7 @@ extension Double {
         
         let numberStr: String = formatter.string(for: self) ?? "0"
         
-        return "\(numberStr) \(unit.rawValue)"
+        return "\(numberStr)\(unit.rawValue)"
     }
     
     func formatCurrencyToAttributedString(unit: UnitCurrency = .kai, groupingSeparator: CurrencySeparator = .comma, decimalSeparator: CurrencySeparator = .dots, font: UIFont, unitFont: UIFont? = nil, textColor: UIColor = .black) -> NSAttributedString {

@@ -8,17 +8,13 @@
 import UIKit
 
 protocol SendTableViewCellDelegate: class {
-    func sendTableViewCellTextFieldDidValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField, inputType: SendTableViewCell.InputType)
+    func sendTableViewCellWalletAddressValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField)
+    func sendTableViewCellAmountValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField, amount: Double?)
 }
 
 class SendTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    enum InputType {
-        case walletAddress
-        case amount
-    }
-    
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +103,7 @@ class SendTableViewCell: UITableViewCell {
 extension SendTableViewCell: KAITextFieldDelegate {
 
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
-        delegate?.sendTableViewCellTextFieldDidValueChanged(self, textField: textField, inputType: .walletAddress)
+        delegate?.sendTableViewCellWalletAddressValueChanged(self, textField: textField)
     }
     
     func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
@@ -122,15 +118,7 @@ extension SendTableViewCell: KAITextFieldDelegate {
 // MARK: KAIInputNumberDelegate
 extension SendTableViewCell: KAIInputNumberDelegate {
 
-    func kAIInputNumberDidChange(_ textField: UITextField, for view: UIView) {
-        delegate?.sendTableViewCellTextFieldDidValueChanged(self, textField: textField, inputType: .amount)
-    }
-    
-    func kAIInputNumberShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
-        return false
-    }
-    
-    func kAIInputNumberShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
-        return true
+    func kAIInputNumberValueHasChanged(_ value: Double?, textField: UITextField, for view: UIView) {
+        delegate?.sendTableViewCellAmountValueChanged(self, textField: textField, amount: value)
     }
 }

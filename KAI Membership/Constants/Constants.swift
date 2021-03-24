@@ -13,8 +13,8 @@ enum CurrencySeparator: String {
 }
 
 enum UnitCurrency: String {
-    case kai = "KAI"
-    case vnd = "VNĐ"
+    case kai = " KAI"
+    case vnd = " VNĐ"
     case none = ""
 }
 

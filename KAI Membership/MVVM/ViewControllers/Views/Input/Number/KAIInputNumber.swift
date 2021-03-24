@@ -8,17 +8,7 @@
 import UIKit
 
 protocol KAIInputNumberDelegate: class {
-    func kAIInputNumberDidBeginEditing(_ textField: UITextField, for view: UIView)
-    func kAIInputNumberDidEndEditing(_ textField: UITextField, for view: UIView)
-    func kAIInputNumberDidChange(_ textField: UITextField, for view: UIView)
-    func kAIInputNumberShouldReturn(_ textField: UITextField, for view: UIView) -> Bool
-    func kAIInputNumberShouldClear(_ textField: UITextField, for view: UIView) -> Bool
-}
-
-extension KAIInputNumberDelegate {
-    func kAIInputNumberDidBeginEditing(_ textField: UITextField, for view: UIView) {}
-    func kAIInputNumberDidEndEditing(_ textField: UITextField, for view: UIView) {}
-    func kAIInputNumberDidChange(_ textField: UITextField, for view: UIView) {}
+    func kAIInputNumberValueHasChanged(_ value: Double?, textField: UITextField, for view: UIView)
 }
 
 class KAIInputNumber: UIView {
@@ -57,7 +47,6 @@ class KAIInputNumber: UIView {
         textField.keyboardType = .decimalPad
         textField.textColor = UIColor.black.withAlphaComponent(0.84)
         textField.font = .workSansFont(ofSize: 14, weight: .medium)
-//        textField.clearButtonMode = .always
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         textField.delegate = self
         
@@ -66,7 +55,11 @@ class KAIInputNumber: UIView {
     
     private let placeholder: String?
     
-    var contentInput: String = ""
+    private var value: Double? = nil {
+        didSet {
+            delegate?.kAIInputNumberValueHasChanged(value, textField: textField, for: self)
+        }
+    }
     
     weak var delegate: KAIInputNumberDelegate?
     
@@ -127,45 +120,53 @@ class KAIInputNumber: UIView {
     }
     
     func reset() {
+        value = nil
         textField.text = nil
         textField.becomeFirstResponder()
     }
     
-    func setText(_ text: String) {
-        contentInput = text
-        textField.text = text
-        placeholderLabel.isHidden = !text.isEmpty
-    }
-    
-    func setAttributedText(_ attributedText: NSAttributedString) {
-        contentInput = attributedText.string
-        textField.attributedText = attributedText
-        placeholderLabel.isHidden = !contentInput.isEmpty
+    func setNumber(_ number: Double? = nil) {
+        value = number
+        textField.text = number?.formatCurrencyToString(unit: .kai)
+        placeholderLabel.isHidden = !(textField.text ?? "").isEmpty
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        contentInput = textField.text ?? ""
-        placeholderLabel.isHidden = !contentInput.isEmpty
-        delegate?.kAIInputNumberDidChange(textField, for: self)
+        let text = textField.text ?? ""
+        placeholderLabel.isHidden = !text.isEmpty
+        value = text.isEmpty ? nil : Double(text)
     }
 }
 
 // MARK: UITextFieldDelegate
 extension KAIInputNumber: UITextFieldDelegate {
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text, !text.isEmpty else {
+            return string != CurrencySeparator.comma.rawValue && string != CurrencySeparator.dots.rawValue
+        }
+        
+        if string == CurrencySeparator.dots.rawValue {
+            return !(text.contains(CurrencySeparator.dots.rawValue))
+        } else if string == CurrencySeparator.comma.rawValue {
+            if !(text.contains(CurrencySeparator.dots.rawValue)) {
+                textField.text?.append(CurrencySeparator.dots.rawValue)
+                
+                let text = textField.text ?? ""
+                value = text.isEmpty ? nil : Double(text)
+            }
+            
+            return false
+        }
+        
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.kAIInputNumberDidBeginEditing(textField, for: self)
+        textField.text = textField.text?.currencyToString(with: .kai)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.kAIInputNumberDidEndEditing(textField, for: self)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return delegate?.kAIInputNumberShouldReturn(textField, for: self) ?? false
-    }
-    
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        return delegate?.kAIInputNumberShouldClear(textField, for: self) ?? true
+        textField.text = value?.formatCurrencyToString(unit: .kai)
     }
 }

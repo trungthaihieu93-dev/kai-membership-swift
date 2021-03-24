@@ -42,14 +42,13 @@ extension SendViewController: UITableViewDelegate {
 // MARk: SendTableViewCellDelegate
 extension SendViewController: SendTableViewCellDelegate {
     
-    func sendTableViewCellTextFieldDidValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField, inputType: SendTableViewCell.InputType) {
-        switch inputType {
-        case .walletAddress:
-            viewModel.walletAddress = textField.text ?? ""
-        case .amount:
-            viewModel.amount = Amount(money: 0, kai: Double(textField.text ?? "") ?? 0)
-        }
-        
+    func sendTableViewCellWalletAddressValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField) {
+        viewModel.walletAddress = textField.text ?? ""
+        isConfirmEnabled = !viewModel.walletAddress.isEmpty && (viewModel.amount.kai > 0)
+    }
+    
+    func sendTableViewCellAmountValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField, amount: Double?) {
+        viewModel.amount = Amount(money: 0, kai: amount ?? 0)
         isConfirmEnabled = !viewModel.walletAddress.isEmpty && (viewModel.amount.kai > 0)
     }
 }

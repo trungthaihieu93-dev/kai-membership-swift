@@ -46,6 +46,21 @@ extension String {
             return false
         }
     }
+    
+    var isValidEmail: Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: self)
+        
+        return result
+    }
+    
+    func toUnsignedString() -> String {
+        let mStringRef = NSMutableString(string: self) as CFMutableString
+        CFStringTransform(mStringRef, nil, kCFStringTransformStripCombiningMarks, false)
+        
+        return mStringRef as String
+    }
 }
 
 extension String {
@@ -70,5 +85,17 @@ extension String {
         }
         
         return attributedText
+    }
+    
+    func currencyToString(with unit: UnitCurrency = .none) -> String {
+        let rawValue = unit.rawValue
+        var cleanNumericString: String = self
+        
+        if !(cleanNumericString.isEmpty) && !(rawValue.isEmpty) {
+            let tmp = cleanNumericString.components(separatedBy: rawValue)
+            cleanNumericString = tmp.joined(separator: "")
+        }
+        
+        return cleanNumericString
     }
 }

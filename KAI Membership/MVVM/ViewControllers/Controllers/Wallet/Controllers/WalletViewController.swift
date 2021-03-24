@@ -118,8 +118,8 @@ class WalletViewController: BaseViewController {
     }
     
     // MARK: Handle actions
-    @objc private func didReceiveKaiValueChanged(_ notification: Any) {
-        guard let kai = notification as? KAIRemote else { return }
+    @objc private func didReceiveKaiValueChanged(_ notification: Notification) {
+        guard let kai = notification.object as? KAIRemote else { return }
         
         cardView.configure(kai)
     }

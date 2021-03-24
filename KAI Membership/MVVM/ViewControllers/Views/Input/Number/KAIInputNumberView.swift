@@ -30,9 +30,7 @@ class KAIInputNumberView: UIView {
     
     private let inputNumber: KAIInputNumber
     
-    var contentInput: String = ""
-    
-    weak var delegate: KAITextFieldDelegate?
+    weak var delegate: KAIInputNumberDelegate?
     
     // MARK: Life cycle's
     init(withTitle title: String, text: String? = nil, isEnabled: Bool = true, isSelected: Bool = true, returnKeyType: UIReturnKeyType = .default, placeholder: String? = nil, textAlignment: NSTextAlignment = .left, frame: CGRect = .zero) {
@@ -90,39 +88,16 @@ class KAIInputNumberView: UIView {
         inputNumber.inputBecomeFirstResponder()
     }
     
-    func setText(_ text: String) {
-        contentInput = text
-        inputNumber.setText(text)
-    }
-    
-    func setAttributedText(_ attributedText: NSAttributedString) {
-        contentInput = attributedText.string
-        inputNumber.setAttributedText(attributedText)
+    func setNumber(_ number: Double? = nil) {
+        inputNumber.setNumber(number)
     }
 }
 
-// MARK: KAITextFieldDelegate
+// MARK: KAIInputNumberDelegate
 extension KAIInputNumberView: KAIInputNumberDelegate {
     
-    func kAIInputNumberDidBeginEditing(_ textField: UITextField, for view: UIView) {
-        delegate?.kAITextFieldDidBeginEditing(textField, for: self)
-    }
-    
-    func kAIInputNumberDidEndEditing(_ textField: UITextField, for view: UIView) {
-        delegate?.kAITextFieldDidEndEditing(textField, for: self)
-    }
-    
-    func kAIInputNumberDidChange(_ textField: UITextField, for view: UIView) {
-        contentInput = textField.text ?? ""
+    func kAIInputNumberValueHasChanged(_ value: Double?, textField: UITextField, for view: UIView) {
         messageLabel.attributedText = nil
-        delegate?.kAITextFieldDidChange(textField, for: self)
-    }
-    
-    func kAIInputNumberShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
-        return delegate?.kAITextFieldShouldReturn(textField, for: self) ?? false
-    }
-    
-    func kAIInputNumberShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
-        return delegate?.kAITextFieldShouldClear(textField, for: self) ?? true
+        delegate?.kAIInputNumberValueHasChanged(value, textField: textField, for: self)
     }
 }

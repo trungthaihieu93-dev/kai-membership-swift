@@ -24,6 +24,7 @@ class SendViewController: BaseViewController {
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0.01, height: 0.01))
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0.01, height: 0.01))
         tableView.backgroundColor = Constants.backroundColorDefault
+        tableView.showsVerticalScrollIndicator = false
         tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom, right: 0)
         tableView.register(CardCollapseTableViewCell.self, forCellReuseIdentifier: CardCollapseTableViewCell.identifier)
         tableView.register(SendTableViewCell.self, forCellReuseIdentifier: SendTableViewCell.identifier)

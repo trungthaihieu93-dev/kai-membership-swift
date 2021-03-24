@@ -44,6 +44,7 @@ class PasscodeViewController: BaseViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
         
         return scrollView
     }()
@@ -103,6 +104,8 @@ class PasscodeViewController: BaseViewController {
         
         return label
     }()
+    
+    private var contentInputBottomAnchor: NSLayoutConstraint?
     
     var isPasscodeShowed: Bool = false {
         didSet {
@@ -195,26 +198,33 @@ class PasscodeViewController: BaseViewController {
     
     private func setupView() {
         view.addSubview(descriptionLabel)
-        view.addSubview(passcodeView)
-        view.addSubview(showPasscodeButton)
+        view.addSubview(scrollView)
         view.addSubview(footerLabel)
         view.addSubview(confirmButton)
+        
+        scrollView.addSubview(passcodeView)
+        scrollView.addSubview(showPasscodeButton)
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            passcodeView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 52),
-            passcodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            passcodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            passcodeView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 44),
+            passcodeView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            passcodeView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            passcodeView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             showPasscodeButton.topAnchor.constraint(equalTo: passcodeView.bottomAnchor, constant: 18),
-            showPasscodeButton.leadingAnchor.constraint(lessThanOrEqualTo: view.leadingAnchor, constant: 20),
-            showPasscodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            showPasscodeButton.leadingAnchor.constraint(lessThanOrEqualTo: scrollView.leadingAnchor, constant: 20),
+            showPasscodeButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             showPasscodeButton.heightAnchor.constraint(equalToConstant: 40),
             
-            footerLabel.topAnchor.constraint(equalTo: showPasscodeButton.bottomAnchor, constant: 94),
+            footerLabel.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10),
             footerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             footerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -223,6 +233,9 @@ class PasscodeViewController: BaseViewController {
             confirmButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             confirmButton.heightAnchor.constraint(equalToConstant: 52)
         ])
+        
+        contentInputBottomAnchor = confirmButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 20))
+        contentInputBottomAnchor?.isActive = true
         
         configureFooterLabel()
         
@@ -308,13 +321,13 @@ extension PasscodeViewController {
         if notification.name == UIResponder.keyboardWillShowNotification {
             guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             
-//            let bottomOffset = Constants.Device.screenBounds.height - (scrollView.frame.origin.y + signInView.frame.origin.y + signInView.frame.height + 10)
-//
-//            if keyboardFrame.height > bottomOffset {
-//                self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardFrame.height - bottomOffset), animated: true)
-//            }
+            contentInputBottomAnchor?.constant = -(keyboardFrame.height + 20)
         } else {
-            self.scrollView.setContentOffset(.zero, animated: true)
+            contentInputBottomAnchor?.constant = -(safeAreaInsets.bottom + 20)
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
     

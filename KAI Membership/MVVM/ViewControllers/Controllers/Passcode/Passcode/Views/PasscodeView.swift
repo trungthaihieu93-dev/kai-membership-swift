@@ -58,12 +58,14 @@ class PasscodeView: UIView {
         return view
     }()
     
-    private let containerStackView: UIStackView = {
+    private lazy var containerStackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.spacing = 16
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(codeBecomeFirstResponder)))
         
         return view
     }()
@@ -166,6 +168,11 @@ class PasscodeView: UIView {
         for codeView in codeViews {
             codeView.code = nil
         }
+    }
+    
+    // MARK: Handle actions
+    @objc private func codeBecomeFirstResponder() {
+        textField.becomeFirstResponder()
     }
 }
 
