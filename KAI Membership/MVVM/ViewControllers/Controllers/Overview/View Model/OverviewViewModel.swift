@@ -63,7 +63,7 @@ class OverviewViewModel {
         
         showLoading.accept(true)
         return Observable.create { [weak self] observer -> Disposable in
-            TransactionServices.send(walletAddress: walletAddress, amount: kai) {
+            AccountManagement.sendKAI(walletAddress: walletAddress, kai: kai) {
                 switch $0 {
                 case .success:
                     observer.onNext(())

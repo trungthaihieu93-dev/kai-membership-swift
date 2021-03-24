@@ -81,17 +81,6 @@ class SendViewController: BaseViewController {
         tableView.addGestureRecognizer(singleTap)
     }
     
-    private lazy var cameraButton2: UIButton = {
-        let button = UIButton(type: .system)
-        button.frame.size = CGSize(width: 32, height: 32)
-        button.setImage(UIImage(named: "ic_delete")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        button.createShadow(radius: 8)
-        
-        return button
-    }()
-    
     // MARK: Layout
     private func setupView() {
         view.addSubview(tableView)

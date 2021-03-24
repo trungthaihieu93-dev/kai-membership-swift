@@ -252,4 +252,33 @@ class AccountManagement {
             }
         }
     }
+    
+    class func sendKAI(walletAddress: String, kai: Double, _ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
+        TransactionServices.send(walletAddress: walletAddress, amount: kai) {
+            switch $0 {
+            case .success:
+                if let currentInfo = AccountManagement.accountInfo, let kaiInfo = currentInfo.kai, let wallet = kaiInfo.wallet {
+                    if let balance = wallet.balance {
+                        wallet.balance = balance - kai
+                    }
+
+                    AccountManagement.accountInfo = currentInfo
+                    NotificationCenter.default.post(name: .kaiValueChanged, object: currentInfo.kai)
+                    completion(.success(currentInfo))
+                } else {
+                    AccountManagement.getInfoUser {
+                        switch $0 {
+                        case .success(let info):
+                            NotificationCenter.default.post(name: .kaiValueChanged, object: info.kai)
+                            completion(.success(info))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

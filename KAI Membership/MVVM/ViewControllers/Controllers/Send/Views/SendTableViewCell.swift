@@ -49,19 +49,8 @@ class SendTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let amountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.font = .workSansFont(ofSize: 10, weight: .medium)
-        label.textColor = .init(hex: "364766")
-        label.text = "SEND AMOUNT"
-        
-        return label
-    }()
-    
-    private lazy var amountTextField: KAITextField = {
-        let view = KAITextField(with: .default, keyboardType: .phonePad, placeholder: "KAI Amount")
+    private lazy var inputAmountView: KAIInputNumberView = {
+        let view = KAIInputNumberView(withTitle: "SEND AMOUNT", placeholder: "KAI Amount")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -90,8 +79,7 @@ class SendTableViewCell: UITableViewCell {
             
         containerView.addSubview(walletAddressLabel)
         containerView.addSubview(walletAddressTextField)
-        containerView.addSubview(amountLabel)
-        containerView.addSubview(amountTextField)
+        containerView.addSubview(inputAmountView)
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -107,14 +95,10 @@ class SendTableViewCell: UITableViewCell {
             walletAddressTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             walletAddressTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             
-            amountLabel.topAnchor.constraint(equalTo: walletAddressTextField.bottomAnchor, constant: 12),
-            amountLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            amountLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            
-            amountTextField.topAnchor.constraint(equalTo: amountLabel.bottomAnchor, constant: 4),
-            amountTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            amountTextField.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-            amountTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            inputAmountView.topAnchor.constraint(equalTo: walletAddressTextField.bottomAnchor, constant: 12),
+            inputAmountView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            inputAmountView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            inputAmountView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
         ])
     }
 }
@@ -123,11 +107,7 @@ class SendTableViewCell: UITableViewCell {
 extension SendTableViewCell: KAITextFieldDelegate {
 
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {
-        if view == walletAddressTextField {
-            delegate?.sendTableViewCellTextFieldDidValueChanged(self, textField: textField, inputType: .walletAddress)
-        } else if view == amountTextField {
-            delegate?.sendTableViewCellTextFieldDidValueChanged(self, textField: textField, inputType: .amount)
-        }
+        delegate?.sendTableViewCellTextFieldDidValueChanged(self, textField: textField, inputType: .walletAddress)
     }
     
     func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
@@ -135,6 +115,22 @@ extension SendTableViewCell: KAITextFieldDelegate {
     }
     
     func kAITextFieldShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
+        return true
+    }
+}
+
+// MARK: KAIInputNumberDelegate
+extension SendTableViewCell: KAIInputNumberDelegate {
+
+    func kAIInputNumberDidChange(_ textField: UITextField, for view: UIView) {
+        delegate?.sendTableViewCellTextFieldDidValueChanged(self, textField: textField, inputType: .amount)
+    }
+    
+    func kAIInputNumberShouldReturn(_ textField: UITextField, for view: UIView) -> Bool {
+        return false
+    }
+    
+    func kAIInputNumberShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
         return true
     }
 }

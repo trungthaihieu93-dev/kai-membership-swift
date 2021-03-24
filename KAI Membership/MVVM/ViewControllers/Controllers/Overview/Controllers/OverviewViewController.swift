@@ -163,6 +163,12 @@ class OverviewViewController: BaseViewController {
             viewModel.createSend().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
                 guard let this = self else { return }
                 
+                if let cell = this.tableView.cellForRow(at: IndexPath(row: 0, section: Section.title.rawValue)) as? CardCollapseTableViewCell {
+                    cell.configure()
+                } else {
+                    this.tableView.reloadData()
+                }
+                
                 AlertManagement.shared.showBulletin(with: "Sent", image: "🤑".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Happy Trading!", fromController: this, primaryButtonTitle: "Back to My Wallet", secondaryButtonTitle: nil, primaryHandler: { [weak self] (item) in
                     self?.navigationController?.popToRootViewController(animated: true)
                 }, secondaryHandler: nil)

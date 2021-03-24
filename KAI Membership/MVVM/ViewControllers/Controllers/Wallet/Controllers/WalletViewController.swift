@@ -51,6 +51,8 @@ class WalletViewController: BaseViewController {
         
         navigationItem.title = "My Wallet"
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveKaiValueChanged(_:)), name: .kaiValueChanged, object: nil)
+        
         setupView()
         setupTableHeaderView()
         setupFloatyButton()
@@ -113,6 +115,13 @@ class WalletViewController: BaseViewController {
     override func refresh(_ sender: UIRefreshControl) {
         super.refresh(sender)
         fetchData()
+    }
+    
+    // MARK: Handle actions
+    @objc private func didReceiveKaiValueChanged(_ notification: Any) {
+        guard let kai = notification as? KAIRemote else { return }
+        
+        cardView.configure(kai)
     }
 }
 

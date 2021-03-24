@@ -110,6 +110,6 @@ class OverviewSendTableViewCell: UITableViewCell {
     // MARK: Methods
     func configure(walletAddress: String, amount: Double) {
         walletAddressTextField.setText(walletAddress)
-        amountTextField.setText("\(Int(amount))")
+        amountTextField.setText("\(amount.formatCurrencyToString(unit: .none))")
     }
 }

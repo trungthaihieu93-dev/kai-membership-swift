@@ -164,10 +164,10 @@ class KAITextField: UIView {
         switch type {
         case .default:
             updateTypeDefault()
-            textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
         case .password:
             updateTypePassword()
-            textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -44)
+            textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -44)
         }
         
         textFieldTrailingAnchor?.isActive = true

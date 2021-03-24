@@ -33,6 +33,9 @@
 		493043F925F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043F825F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift */; };
 		493043FD25F8AFA200EED242 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */; };
 		4930440125F8B82C00EED242 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930440025F8B82C00EED242 /* PasswordViewModel.swift */; };
+		494099EF260B467400F92119 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494099EE260B467400F92119 /* Notification+Extension.swift */; };
+		494099F4260B4F8D00F92119 /* KAIInputNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494099F3260B4F8D00F92119 /* KAIInputNumber.swift */; };
+		494099F8260B524900F92119 /* KAIInputNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494099F7260B524900F92119 /* KAIInputNumberView.swift */; };
 		494C0AB525F9EE0400E30115 /* KAITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AB425F9EE0300E30115 /* KAITextField.swift */; };
 		494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0ACE25FA094800E30115 /* CardCollapseTableViewCell.swift */; };
 		494C0AD525FA09E400E30115 /* TopupViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0AD425FA09E400E30115 /* TopupViewController+DataSource.swift */; };
@@ -253,6 +256,9 @@
 		493043F825F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForgotPasswordViewController+Delegate.swift"; sourceTree = "<group>"; };
 		493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		4930440025F8B82C00EED242 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		494099EE260B467400F92119 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
+		494099F3260B4F8D00F92119 /* KAIInputNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputNumber.swift; sourceTree = "<group>"; };
+		494099F7260B524900F92119 /* KAIInputNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputNumberView.swift; sourceTree = "<group>"; };
 		494C0AB425F9EE0300E30115 /* KAITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAITextField.swift; sourceTree = "<group>"; };
 		494C0ACE25FA094800E30115 /* CardCollapseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollapseTableViewCell.swift; sourceTree = "<group>"; };
 		494C0AD425FA09E400E30115 /* TopupViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopupViewController+DataSource.swift"; sourceTree = "<group>"; };
@@ -602,6 +608,15 @@
 			path = Overview;
 			sourceTree = "<group>";
 		};
+		494099F2260B4F6C00F92119 /* Number */ = {
+			isa = PBXGroup;
+			children = (
+				494099F3260B4F8D00F92119 /* KAIInputNumber.swift */,
+				494099F7260B524900F92119 /* KAIInputNumberView.swift */,
+			);
+			path = Number;
+			sourceTree = "<group>";
+		};
 		494C0ACD25FA092000E30115 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -736,8 +751,9 @@
 		49CAC0EC25FB42CC00577D33 /* Input */ = {
 			isa = PBXGroup;
 			children = (
-				49CAC0EF25FB42F600577D33 /* Text */,
 				49CAC0EE25FB42ED00577D33 /* Code */,
+				494099F2260B4F6C00F92119 /* Number */,
+				49CAC0EF25FB42F600577D33 /* Text */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -910,6 +926,7 @@
 				4928738926020F6E002BAE39 /* Date+Extensions.swift */,
 				525DB96C25EA4490001491AE /* Double+Extensions.swift */,
 				4928738D2602FA98002BAE39 /* Int+Extensions.swift */,
+				494099EE260B467400F92119 /* Notification+Extension.swift */,
 				5270BE2625E160AA0046E224 /* String+Extensions.swift */,
 				226DA41D2600ACC6009BC8CC /* UIButton+Extensions.swift */,
 				525DBADE25F22F96001491AE /* UICollectionViewCell+Extensions.swift */,
@@ -1987,6 +2004,7 @@
 				49976C3E260875520005F8F8 /* ShareCollectionViewCell.swift in Sources */,
 				525DB95425E96018001491AE /* UIFont+Extensions.swift in Sources */,
 				495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */,
+				494099F4260B4F8D00F92119 /* KAIInputNumber.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
 				525DBAE325F2399B001491AE /* NewsLastestCollectionViewCell.swift in Sources */,
 				49976C822609D6140005F8F8 /* CalendarPickerHeaderView.swift in Sources */,
@@ -2058,6 +2076,7 @@
 				525DBB0125F28917001491AE /* KAIRemote.swift in Sources */,
 				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
 				498BCFE925F7470800F04160 /* Helper.swift in Sources */,
+				494099F8260B524900F92119 /* KAIInputNumberView.swift in Sources */,
 				498E45C92604B0E400D62AAA /* VerificationViewController.swift in Sources */,
 				525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */,
 				494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */,
@@ -2133,6 +2152,7 @@
 				226DA40226008BB4009BC8CC /* PaddingLabel.swift in Sources */,
 				529AE17B25DD96FD00635807 /* SceneDelegate.swift in Sources */,
 				525DBA6125F00F70001491AE /* NewRemote.swift in Sources */,
+				494099EF260B467400F92119 /* Notification+Extension.swift in Sources */,
 				5265497125F5ED9C003AE21A /* PasswordViewController+Delegate.swift in Sources */,
 				525DBA7525F016F2001491AE /* QuestViewController+DataSource.swift in Sources */,
 				525DBA5D25F00F2B001491AE /* NewsViewModel.swift in Sources */,

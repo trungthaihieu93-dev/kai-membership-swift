@@ -41,6 +41,13 @@ class PasscodeViewController: BaseViewController {
     let privacyPolicy: String = "Privacy Policy"
     let clickHere: String = " Click here"
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return scrollView
+    }()
+    
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -142,8 +149,17 @@ class PasscodeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         setTitle()
         setupView()
+        
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
+        singleTap.numberOfTapsRequired = 1
+        singleTap.cancelsTouchesInView = true
+        scrollView.addGestureRecognizer(singleTap)
+        
         
         viewModel.showLoading.asObservable().observe(on: MainScheduler.instance).subscribe { [weak self] isLoading in
             guard let this = self else { return }
@@ -288,6 +304,24 @@ class PasscodeViewController: BaseViewController {
 // MARK: Handle actions
 extension PasscodeViewController {
     
+    @objc private func handleKeyboardNotification(_ notification: NSNotification) {
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+            
+//            let bottomOffset = Constants.Device.screenBounds.height - (scrollView.frame.origin.y + signInView.frame.origin.y + signInView.frame.height + 10)
+//
+//            if keyboardFrame.height > bottomOffset {
+//                self.scrollView.setContentOffset(CGPoint(x: 0, y: keyboardFrame.height - bottomOffset), animated: true)
+//            }
+        } else {
+            self.scrollView.setContentOffset(.zero, animated: true)
+        }
+    }
+    
+    @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     @objc private func onPressedConfirm() {
         switch type {
         case .register:
@@ -392,4 +426,3 @@ extension PasscodeViewController {
         }
     }
 }
-
