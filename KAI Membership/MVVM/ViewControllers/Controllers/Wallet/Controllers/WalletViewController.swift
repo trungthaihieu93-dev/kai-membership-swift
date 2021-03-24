@@ -83,6 +83,7 @@ class WalletViewController: BaseViewController {
         }
         
         floaty.size = 48
+        floaty.paddingY = (self.tabBarController?.tabBar.frame.height ?? 50) + 16
         
         for item in floaty.items {
             item.titleLabel.font = UIFont.workSansFont(ofSize: 10, weight: .semiBold)
