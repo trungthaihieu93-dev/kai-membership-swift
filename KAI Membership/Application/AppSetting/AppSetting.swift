@@ -103,4 +103,13 @@ class AppSetting {
             return UserDefaults.standard.bool(forKey: Key.UserDefault.isRequestOpenSpin.rawValue)
         }
     }
+    
+    static var userReferralID: String? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.userReferralID.rawValue)
+        }
+        get {
+            return UserDefaults.standard.string(forKey: Key.UserDefault.userReferralID.rawValue)
+        }
+    }
 }

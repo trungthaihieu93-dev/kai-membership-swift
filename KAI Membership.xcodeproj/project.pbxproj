@@ -858,9 +858,9 @@
 		521754A525DE7544009355BC /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				528789D6260A5BC100AB00DC /* KAI Membership.entitlements */,
 				525DB92025E9598E001491AE /* Fonts */,
 				529AE18625DD96FD00635807 /* Info.plist */,
+				528789D6260A5BC100AB00DC /* KAI Membership.entitlements */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";

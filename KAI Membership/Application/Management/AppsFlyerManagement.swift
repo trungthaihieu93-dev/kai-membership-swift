@@ -47,51 +47,12 @@ class AppsFlyerManagement: NSObject {
         AppsFlyerLib.shared().logEvent(name, withValues: params)
     }
     
-    private func walkToSceneWithParams(params: [AnyHashable:Any]) {
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
-//
-//        var fruitNameStr = ""
-//
-//        if let thisFruitName = params["deep_link_value"] as? String {
-//            fruitNameStr = thisFruitName
-//        } else if let linkParam = params["link"] as? String {
-//            guard let url = URLComponents(string: linkParam) else {
-//                print("Could not extract query params from link")
-//                return
-//            }
-//            if let thisFruitName = url.queryItems?.first(where: { $0.name == "deep_link_value" })?.value {
-//                fruitNameStr = thisFruitName
-//            }
-//        }
-//
-//        let destVC = fruitNameStr + "_vc"
-//        if let newVC = storyBoard.instantiateVC(withIdentifier: destVC) {
-//
-//            print("AppsFlyer routing to section: \(destVC)")
-//            newVC.attributionData = params
-//
-//            UIApplication.shared.windows.first?.rootViewController?.present(newVC, animated: true, completion: nil)
-//        } else {
-//            print("AppsFlyer: could not find section: \(destVC)")
-//        }
+    private func walkToSceneWithParams(params: [AnyHashable : Any]) {
+        AppSetting.userReferralID = params["user"] as? String
     }
     
     private func walkToSceneWithParams(deepLinkObj: DeepLink) {
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
-//        guard let fruitNameStr = deepLinkObj.clickEvent["deep_link_value"] as? String else {
-//             debugPrint("Could not extract query params from link")
-//             return
-//        }
-//        let destVC = fruitNameStr + "_vc"
-//        if let newVC = storyBoard.instantiateVC(withIdentifier: destVC) {
-//           debugPrint("AppsFlyer routing to section: \(destVC)")
-//           newVC.deepLinkData = deepLinkObj
-//           UIApplication.shared.windows.first?.rootViewController?.present(newVC, animated: true, completion: nil)
-//        } else {
-//            debugPrint("AppsFlyer: could not find section: \(destVC)")
-//        }
+        AppSetting.userReferralID = deepLinkObj.clickEvent["user"] as? String
     }
 }
 
