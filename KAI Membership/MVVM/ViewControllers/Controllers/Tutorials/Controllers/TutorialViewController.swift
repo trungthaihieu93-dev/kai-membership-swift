@@ -40,7 +40,7 @@ class TutorialViewController: BaseViewController {
         pageControl.numberOfPages = 3
         pageControl.isUserInteractionEnabled = false
         pageControl.currentPageIndicatorTintColor = .init(hex: "181E25")
-        pageControl.pageIndicatorTintColor = .init(hex: "E6EAEF")
+        pageControl.pageIndicatorTintColor = UIColor.Base.x100
         
         if #available(iOS 14.0, *) {
             pageControl.setIndicatorImage(currentIndicatorImage, forPage: currentPageIndex)
@@ -65,7 +65,7 @@ class TutorialViewController: BaseViewController {
     
     private let indicatorImage: UIImage = {
         let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 9, height: 9)))
-        view.backgroundColor = .init(hex: "E6EAEF")
+        view.backgroundColor = UIColor.Base.x100
         view.layer.cornerRadius = 4.5
         
         let renderer = UIGraphicsImageRenderer(bounds: view.frame)
@@ -153,7 +153,7 @@ class TutorialViewController: BaseViewController {
                 pageControl.setIndicatorImage(nil, forPage: oldValue)
                 pageControl.setIndicatorImage(currentIndicatorImage, forPage: currentPageIndex)
                 pageControl.currentPageIndicatorTintColor = .init(hex: "181E25")
-                pageControl.pageIndicatorTintColor = .init(hex: "E6EAEF")
+                pageControl.pageIndicatorTintColor = UIColor.Base.x100
             } else {
                 // Fallback on earlier versions
             }

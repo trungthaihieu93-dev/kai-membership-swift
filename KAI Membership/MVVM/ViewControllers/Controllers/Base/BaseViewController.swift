@@ -122,6 +122,10 @@ class BaseViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
         extendedLayoutIncludesOpaqueBars = true
         
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
+        
         /*if let scrollView = scroller {
             scrollView.addSubview(_refreshControl)
         }*/

@@ -32,7 +32,7 @@ class InputCodeView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = false
-        view.backgroundColor = .init(hex: "67798E")
+        view.backgroundColor = UIColor.Base.x500
         view.layer.cornerRadius = 2
         
         return view

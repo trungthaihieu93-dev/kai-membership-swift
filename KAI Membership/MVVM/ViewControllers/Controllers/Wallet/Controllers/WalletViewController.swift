@@ -99,7 +99,7 @@ class WalletViewController: BaseViewController {
         floaty.frame.origin = CGPoint(x: Constants.Device.screenBounds.width - 68, y: 100)
         self.view.addSubview(floaty)
         
-        floaty.buttonColor = UIColor.init(hex: "67798E")
+        floaty.buttonColor = UIColor.Base.x500
         floaty.buttonShadowColor = .clear
         floaty.plusColor = .white
     }

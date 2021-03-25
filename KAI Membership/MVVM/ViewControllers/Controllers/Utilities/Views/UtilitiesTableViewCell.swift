@@ -44,7 +44,7 @@ class UtilitiesTableViewCell: UITableViewCell {
     private lazy var button: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .init(hex: "E6EAEF")
+        button.backgroundColor = UIColor.Base.x100
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(onPressedAction), for: .touchUpInside)
         

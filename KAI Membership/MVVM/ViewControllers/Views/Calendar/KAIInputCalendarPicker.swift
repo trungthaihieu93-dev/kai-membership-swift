@@ -35,7 +35,7 @@ class KAIInputCalendarPicker: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .init(hex: "FAFBFB")
         button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor.init(hex: "E6EAEF").cgColor
+        button.layer.borderColor = UIColor.Base.x100.cgColor
         button.layer.borderWidth = 1
         button.addTarget(self, action: #selector(onPressedCalendar), for: .touchUpInside)
         
@@ -64,7 +64,7 @@ class KAIInputCalendarPicker: UIView {
     
     private var isOpenCalendar: Bool = false {
         didSet {
-            calendarImageView.tintColor = .init(hex: isOpenCalendar ? "67798E" : "C9CED6")
+            calendarImageView.tintColor = isOpenCalendar ? UIColor.Base.x500 : .init(hex: "C9CED6")
         }
     }
     

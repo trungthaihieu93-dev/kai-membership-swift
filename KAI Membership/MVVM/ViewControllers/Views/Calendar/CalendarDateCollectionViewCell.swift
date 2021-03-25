@@ -147,8 +147,8 @@ private extension CalendarDateCollectionViewCell {
         accessibilityTraits.remove(.selected)
         accessibilityHint = nil
         
-        numberLabel.textColor = .init(hex: "67798E")
-        selectionBackgroundView.backgroundColor = .init(hex: "E6EAEF")
+        numberLabel.textColor = UIColor.Base.x500
+        selectionBackgroundView.backgroundColor = UIColor.Base.x100
     }
     
     func applyDefaultStyle(isWithinDisplayedMonth: Bool, isSunday: Bool) {

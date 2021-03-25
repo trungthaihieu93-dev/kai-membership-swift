@@ -134,7 +134,7 @@ class KAICardCollapseView: UIView {
     
     // MARK: Methods
     func configure() {
-        kaiLabel.attributedText = AccountManagement.accountInfo?.kai?.wallet?.balance?.formatCurrencyToAttributedString(unit: .kai, font: .workSansFont(ofSize: 28, weight: .medium), textColor: .init(hex: "67798E"))
+        kaiLabel.attributedText = AccountManagement.accountInfo?.kai?.wallet?.balance?.formatCurrencyToAttributedString(unit: .kai, font: .workSansFont(ofSize: 28, weight: .medium), textColor: UIColor.Base.x500)
 //        monetaryValueLabel.text = "0,033 USD/ KAI"
 //        profit = 35.5
     }

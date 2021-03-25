@@ -46,7 +46,7 @@ class HistoryTableViewCell: UITableViewCell {
     
     private lazy var actionButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .init(hex: "E6EAEF")
+        button.backgroundColor = UIColor.Base.x100
         button.setAttributedTitle(NSAttributedString(string: "Redeem", attributes: [
             NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 12, weight: .medium),
             NSAttributedString.Key.foregroundColor: UIColor.init(hex: "29323D")

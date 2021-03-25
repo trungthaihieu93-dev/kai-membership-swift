@@ -281,11 +281,11 @@ class PasscodeViewController: BaseViewController {
             let mutableAttributedString = footerString1.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textAlignment: .center, lineHeight: 28, textColor: UIColor.black.withAlphaComponent(0.54))
             let termsAndConditionsRange = (footerString1 as NSString).range(of: termsAndConditions)
             mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: termsAndConditionsRange)
-            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: termsAndConditionsRange)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Link.normal, range: termsAndConditionsRange)
             
             let privacyPolicyRange = (footerString1 as NSString).range(of: privacyPolicy)
             mutableAttributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.workSansFont(ofSize: 14, weight: .medium), range: privacyPolicyRange)
-            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "0F5DFA"), range: privacyPolicyRange)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Link.normal, range: privacyPolicyRange)
             
             footerLabel.attributedText = mutableAttributedString
         case .login, .updateProfile:
