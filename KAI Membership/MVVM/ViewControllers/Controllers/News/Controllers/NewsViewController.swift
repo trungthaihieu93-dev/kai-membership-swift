@@ -67,6 +67,13 @@ class NewsViewController: BaseViewController {
     // MARK: Data fetching
     func fetchData() {
         viewModel.createData()
+        viewModel.getNewsFromMedium() { news in
+            
+        }
+        
+        viewModel.getNewsFromTwitter() { news in
+            
+        }
         tableView.reloadData()
     }
 }

@@ -88,6 +88,7 @@
 		49D8F11E26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8F11D26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		49ECF7B6260C3618000A8AB2 /* ReferralsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */; };
+		49ECF7BA260C92FC000A8AB2 /* NewsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */; };
 		49F5FE862601AD5700D53D82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */; };
 		49F5FE8C2601E73400D53D82 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8B2601E73400D53D82 /* SendViewController.swift */; };
 		49F5FE902601E93F00D53D82 /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */; };
@@ -310,6 +311,7 @@
 		49D8F11D26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyQuestViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsServices.swift; sourceTree = "<group>"; };
+		49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServices.swift; sourceTree = "<group>"; };
 		49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		49F5FE8B2601E73400D53D82 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
@@ -1163,6 +1165,7 @@
 				525DB9DE25EE92EF001491AE /* TransactionServices.swift */,
 				525DB8F525E6B91E001491AE /* UserServices.swift */,
 				49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */,
+				49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1623,8 +1626,8 @@
 		529AE19325DD97AD00635807 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				498BCFE725F746F700F04160 /* Helper */,
 				525DB90625E91A3B001491AE /* AppSetting */,
+				498BCFE725F746F700F04160 /* Helper */,
 				521754D825DEAE39009355BC /* Key */,
 				521754CF25DEAD72009355BC /* Management */,
 				52F37CA425E0021C009F311F /* Navigate */,
@@ -2113,6 +2116,7 @@
 				525DBAA825F164AA001491AE /* DailyQuestViewController.swift in Sources */,
 				525DB8E725E6B641001491AE /* UserDataSource.swift in Sources */,
 				52F37CF125E03459009F311F /* SignInInputView.swift in Sources */,
+				49ECF7BA260C92FC000A8AB2 /* NewsServices.swift in Sources */,
 				494C0ADB25FA0E9A00E30115 /* TopupTableViewCell.swift in Sources */,
 				525DBA9425F0FDA6001491AE /* TabPageView.swift in Sources */,
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,

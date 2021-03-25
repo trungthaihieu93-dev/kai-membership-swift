@@ -30,4 +30,12 @@ class NewsViewModel {
         
         lastests = [last1, last2, last3, last4, last5, last6]
     }
+    
+    func getNewsFromTwitter(_ completion: @escaping ((APIResult<[TwitterNews], APIErrorResult>) -> Void)) {
+        NewsServices.getNewsFromTwitter(completion)
+    }
+    
+    func getNewsFromMedium(_ completion: @escaping ((APIResult<[MediumNews], APIErrorResult>) -> Void)) {
+        NewsServices.getNewsFromMedium(completion)
+    }
 }

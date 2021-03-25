@@ -55,7 +55,19 @@ class APIInput: APIInputBase {
         if let authorizationToken = AccountManagement.accessToken {
             headers.add(HTTPHeader.authorization(bearerToken: authorizationToken))
         }
-         
+        
+        self.domain = domain
+        self.path = path
+        self.params = params
+        self.method = method
+        self.encoding = (method == .get || method == .delete) ? URLEncoding.default : JSONEncoding.default
+    }
+    
+    init(withDomain domain: String, path: String = "", params: Parameters = [:], method: HTTPMethod = .get, customHeaders: HTTPHeaders = []) {
+        for header in customHeaders {
+            headers.add(header)
+        }
+        
         self.domain = domain
         self.path = path
         self.params = params
