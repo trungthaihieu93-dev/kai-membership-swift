@@ -10,15 +10,15 @@ import UIKit
 class NewsLastestTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    static let height: CGFloat = 232
+    static let height: CGFloat = 252
     
     private let minimumInteritemSpacing: CGFloat = 20
-    private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
+    private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 20, right: 20)
     private var lastests = [NewRemote]()
     
     private lazy var itemSize: CGSize = {
         let width: CGFloat = collectionView.frame.width - (sectionInset.left + sectionInset.right)
-        let height: CGFloat = (NewsLastestTableViewCell.height - (minimumInteritemSpacing * 2)) / 3
+        let height: CGFloat = ((NewsLastestTableViewCell.height - (sectionInset.top + sectionInset.bottom)) - (minimumInteritemSpacing * 2)) / 3
         
         return CGSize(width: width, height: height)
     }()

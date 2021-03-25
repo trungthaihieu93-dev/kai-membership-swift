@@ -120,15 +120,14 @@ class BaseViewController: UIViewController {
         view.backgroundColor = backroundColorDefault
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        extendedLayoutIncludesOpaqueBars = true
         
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
         
-        /*if let scrollView = scroller {
+        if let scrollView = scroller {
             scrollView.addSubview(_refreshControl)
-        }*/
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
