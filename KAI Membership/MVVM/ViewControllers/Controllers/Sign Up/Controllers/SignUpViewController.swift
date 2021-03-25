@@ -140,7 +140,6 @@ class SignUpViewController: BaseViewController {
             guard let this = self else { return }
             
             TrackingManagement.registrationSuccessfully(registrationMethod: .google, userID: AccountManagement.accountID, email: email, time: Int(Date().timeIntervalSince1970 * 1000))
-            this.userReferral()
             this.signUpView.isLoading = false
             Navigator.navigateToPasscodeVC(from: this, with: .register, email: email)
         }, onError: { [weak self] error in
@@ -154,12 +153,6 @@ class SignUpViewController: BaseViewController {
             
             AlertManagement.shared.showToast(with: error.message, position: .top)
         }).disposed(by: disposeBag)
-    }
-    
-    private func userReferral() {
-        guard let userReferralID = AppSetting.userReferralID, !userReferralID.isEmpty else { return }
-        
-        // TODO: Call Api
     }
 }
 

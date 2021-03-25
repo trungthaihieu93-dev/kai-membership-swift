@@ -200,8 +200,8 @@ final class Navigator {
      - parameter address: địa chỉ ví
      - parameter amount: giá trị
      */
-    class func navigateToOverviewVC(from viewController: UIViewController? = nil, address: String, amount: Amount) {
-        let vc = OverviewViewController(address: address, amount: amount)
+    class func navigateToOverviewVC(from viewController: UIViewController? = nil, address: String, amount: Amount, completion: (() -> Void)? = nil) {
+        let vc = OverviewViewController(address: address, amount: amount, completion)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -212,8 +212,8 @@ final class Navigator {
      - parameter providerCode: nhà cung cấp dịch vụ
      - parameter phoneNumber: mệnh giá
      */
-    class func navigateToOverviewVC(from viewController: UIViewController? = nil, phoneNumber: String, providerCode: String, amount: Amount) {
-        let vc = OverviewViewController(phoneNumber: phoneNumber, providerCode: providerCode, amount: amount)
+    class func navigateToOverviewVC(from viewController: UIViewController? = nil, phoneNumber: String, providerCode: String, amount: Amount, completion: (() -> Void)? = nil) {
+        let vc = OverviewViewController(phoneNumber: phoneNumber, providerCode: providerCode, amount: amount, completion)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

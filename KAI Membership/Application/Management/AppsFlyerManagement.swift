@@ -48,11 +48,11 @@ class AppsFlyerManagement: NSObject {
     }
     
     private func walkToSceneWithParams(params: [AnyHashable : Any]) {
-        AppSetting.userReferralID = params["user"] as? String
+        AppSetting.referrerID = params["user"] as? String
     }
     
     private func walkToSceneWithParams(deepLinkObj: DeepLink) {
-        AppSetting.userReferralID = deepLinkObj.clickEvent["user"] as? String
+        AppSetting.referrerID = deepLinkObj.clickEvent["user"] as? String
     }
 }
 

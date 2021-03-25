@@ -17,7 +17,7 @@ class Key {
         case configure = "KAI.UserDefault.Configure"
         case haveFreeSpin = "KAI.UserDefault.HaveFreeSpin"
         case isRequestOpenSpin = "KAI.UserDefault.IsRequestOpenSpin"
-        case userReferralID = "KAI.UserDefault.UserReferralID"
+        case referrerID = "KAI.UserDefault.ReferrerID"
     }
     
     enum KeyChain: String {

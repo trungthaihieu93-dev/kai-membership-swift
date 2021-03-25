@@ -74,16 +74,20 @@ class OverviewViewController: BaseViewController {
         }
     }
     
+    private let completion: (() -> Void)?
+    
     // MARK: Life cycle's
-    init(address: String, amount: Amount) {
+    init(address: String, amount: Amount, _ completion: (() -> Void)? = nil) {
         self.type = .send
+        self.completion = completion
         self.viewModel = OverviewViewModel(address: address, amount: amount)
         
         super.init(nibName: nil, bundle: nil)
     }
     
-    init(phoneNumber: String, providerCode: String, amount: Amount) {
+    init(phoneNumber: String, providerCode: String, amount: Amount, _ completion: (() -> Void)? = nil) {
         self.type = .topup
+        self.completion = completion
         self.viewModel = OverviewViewModel(phoneNumber: phoneNumber, providerCode: providerCode, amount: amount)
         
         super.init(nibName: nil, bundle: nil)
@@ -147,35 +151,19 @@ class OverviewViewController: BaseViewController {
         switch type {
         case .topup:
             viewModel.createTopup().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
-                guard let this = self else { return }
-                
-                AlertManagement.shared.showBulletin(with: "Success", image: "👏".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Happy Trading!", fromController: this, primaryButtonTitle: "Back to Utilities", secondaryButtonTitle: nil, primaryHandler: { [weak self] (item) in
-                    self?.navigationController?.popToRootViewController(animated: true)
-                }, secondaryHandler: nil)
-                
-                TrackingManagement.topupMobileSuccessfully(userID: AccountManagement.accountID)
+                self?.completion?()
             }, onError: { [weak self] error in
                 guard let this = self else { return }
                 
-                AlertManagement.shared.showBulletin(with: "Fail?", image: "🤔".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Maybe the provider service is wrong. Check your inputed phone number also.", fromController: this, primaryButtonTitle: "Check again", secondaryButtonTitle: nil, primaryHandler: nil, secondaryHandler: nil)
+                AlertManagement.shared.showBulletin(with: "Fail?", image: "🤔".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Maybe the provider service is wrong. Check your inputed phone number also.", fromController: this, primaryButtonTitle: "Check again")
             }).disposed(by: disposeBag)
         case .send:
             viewModel.createSend().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
-                guard let this = self else { return }
-                
-                if let cell = this.tableView.cellForRow(at: IndexPath(row: 0, section: Section.title.rawValue)) as? CardCollapseTableViewCell {
-                    cell.configure()
-                } else {
-                    this.tableView.reloadData()
-                }
-                
-                AlertManagement.shared.showBulletin(with: "Sent", image: "🤑".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Happy Trading!", fromController: this, primaryButtonTitle: "Back to My Wallet", secondaryButtonTitle: nil, primaryHandler: { [weak self] (item) in
-                    self?.navigationController?.popToRootViewController(animated: true)
-                }, secondaryHandler: nil)
+                self?.completion?()
             }, onError: { [weak self] error in
                 guard let this = self else { return }
                 
-                AlertManagement.shared.showBulletin(with: "Fail?", image: "🙄".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Maybe the address is wrong somehow... Or you don't have enough $KAI.. Check both!", fromController: this, primaryButtonTitle: "Check again", secondaryButtonTitle: nil, primaryHandler: nil, secondaryHandler: nil)
+                AlertManagement.shared.showBulletin(with: "Fail?", image: "🙄".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Maybe the address is wrong somehow... Or you don't have enough $KAI.. Check both!", fromController: this, primaryButtonTitle: "Check again")
             }).disposed(by: disposeBag)
         }
     }

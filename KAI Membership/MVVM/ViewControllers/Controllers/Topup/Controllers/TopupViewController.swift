@@ -122,8 +122,15 @@ extension TopupViewController {
             return
         }
         
-        Navigator.navigateToOverviewVC(from: self, phoneNumber: viewModel.phoneNumber, providerCode: viewModel.serviceProviders[viewModel.serviceProviderIndex].value, amount: viewModel.amount)
         view.endEditing(true)
+        Navigator.navigateToOverviewVC(from: self, phoneNumber: viewModel.phoneNumber, providerCode: viewModel.serviceProviders[viewModel.serviceProviderIndex].value, amount: viewModel.amount) { [weak self] in
+            guard let self = self else { return }
+            
+            TrackingManagement.topupMobileSuccessfully(userID: AccountManagement.accountID)
+            AlertManagement.shared.showBulletin(with: "Success", image: "👏".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Happy Trading!", fromController: self, isDismissable: false, primaryButtonTitle: "Back to Utilities", primaryHandler: { [weak self] (item) in
+                self?.dismiss(animated: true, completion: nil)
+            })
+        }
     }
     
     @objc private func handleKeyboardNotification(_ notification: NSNotification) {

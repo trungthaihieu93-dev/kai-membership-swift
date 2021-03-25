@@ -152,6 +152,10 @@ class AccountManagement {
         UserServices.register(username: username, email: email, password: password) {
             switch $0 {
             case .success(let result):
+                if let referrerID = AppSetting.referrerID, !referrerID.isEmpty {
+                    ReferralsServices.create(referrerID: referrerID)
+                }
+                
                 if let data = result.data {
                     AccountManagement.accessToken = data.accessToken
                     AccountManagement.refreshToken = data.refreshToken

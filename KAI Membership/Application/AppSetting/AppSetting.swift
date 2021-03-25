@@ -104,12 +104,12 @@ class AppSetting {
         }
     }
     
-    static var userReferralID: String? {
+    static var referrerID: String? {
         set {
-            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.userReferralID.rawValue)
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.referrerID.rawValue)
         }
         get {
-            return UserDefaults.standard.string(forKey: Key.UserDefault.userReferralID.rawValue)
+            return UserDefaults.standard.string(forKey: Key.UserDefault.referrerID.rawValue)
         }
     }
 }

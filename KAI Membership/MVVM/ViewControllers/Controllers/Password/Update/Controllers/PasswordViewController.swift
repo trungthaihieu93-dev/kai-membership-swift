@@ -207,7 +207,7 @@ extension PasswordViewController {
             case .new:
                 Navigator.showCongratsVC(from: this, with: .password)
             case .change:
-                AlertManagement.shared.showBulletin(with: "Password changed", image: UIImage(named: "ic_change_password_success"), descriptionText: "Your new password is now applied.\nKeep it safe & sound", fromController: this, primaryButtonTitle: "OK, I got it", secondaryButtonTitle: nil, primaryHandler: { [weak self] item in
+                AlertManagement.shared.showBulletin(with: "Password changed", image: UIImage(named: "ic_change_password_success"), descriptionText: "Your new password is now applied.\nKeep it safe & sound", fromController: this, primaryButtonTitle: "OK, I got it", primaryHandler: { [weak self] item in
                     guard let this = self else { return }
                     
                     if let profileVC = this.navigationController?.viewControllers.first(where: { $0 is ProfileViewController }) {
@@ -215,7 +215,7 @@ extension PasswordViewController {
                     } else {
                         this.navigationController?.popToRootViewController(animated: true)
                     }
-                }, secondaryHandler: nil)
+                })
             }
         }, onError: { error in
             AlertManagement.shared.showToast(with: "🤔 Request forgot password by email failure!", position: .top)

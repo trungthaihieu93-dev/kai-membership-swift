@@ -115,8 +115,14 @@ extension SendViewController {
     }
     
     @objc private func onPressedSend() {
-        Navigator.navigateToOverviewVC(from: self, address: viewModel.walletAddress, amount: viewModel.amount)
         view.endEditing(true)
+        Navigator.navigateToOverviewVC(from: self, address: viewModel.walletAddress, amount: viewModel.amount) { [weak self] in
+            guard let self = self else { return }
+            
+            AlertManagement.shared.showBulletin(with: "Sent", image: "🤑".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Happy Trading!", fromController: self, isDismissable: false, primaryButtonTitle: "Back to My Wallet", primaryHandler: { [weak self] (item) in
+                self?.dismiss(animated: true, completion: nil)
+            })
+        }
     }
     
     @objc private func handleKeyboardNotification(_ notification: NSNotification) {

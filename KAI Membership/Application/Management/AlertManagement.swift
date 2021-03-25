@@ -18,20 +18,21 @@ class AlertManagement {
             return BLTNItemManager(rootItem: rootItem)
         }()
     
-    func showBulletin(with title: String, image: UIImage?, descriptionText: String?, fromController: UIViewController, primaryButtonTitle: String?, secondaryButtonTitle: String?, primaryHandler: ((BLTNActionItem) -> Void)?, secondaryHandler: ((BLTNActionItem) -> Void)?) {
+    func showBulletin(with title: String, image: UIImage?, descriptionText: String?, fromController: UIViewController, isDismissable: Bool = true, primaryButtonTitle: String? = nil, primaryHandler: ((BLTNActionItem) -> Void)? = nil, secondaryButtonTitle: String? = nil, secondaryHandler: ((BLTNActionItem) -> Void)? = nil) {
         
         let bulletinItem = BLTNPageItem(title: title)
         
         bulletinItem.image = image
         bulletinItem.imageView?.contentMode = .scaleAspectFit
-        
+
         bulletinItem.descriptionText = descriptionText
         bulletinItem.requiresCloseButton = false
+        bulletinItem.isDismissable = isDismissable
         
         bulletinItem.actionButtonTitle = primaryButtonTitle
         bulletinItem.actionHandler = { [weak self] item in
-            primaryHandler?(item)
             self?.bulletin?.dismissBulletin(animated: true)
+            primaryHandler?(item)
             self?.bulletin = nil
         }
         
