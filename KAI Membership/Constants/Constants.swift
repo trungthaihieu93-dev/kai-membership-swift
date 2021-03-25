@@ -24,7 +24,7 @@ class Constants {
     static let environment = Constants.isDebug ? Environment.development : Environment.development
     static let lengthPasswordMinimum: Int = 8
     static let backroundColorDefault: UIColor = .init(hex: "F7F8F9")
-    static let spinLink: String = "https://game-003-tego022.bcms.tech?token=$%@&lang=$%@&device=$%@&platfrom=ios"
+    static let spinLink: String = "https://game-003-tego022.bcms.tech?token=%@&lang=%@&device=%@&platfrom=ios"
     static let serviceProviderDefault: [ConfigRemote] = [
         ConfigRemote(with: "Viettel", value: "Viettel"),
         ConfigRemote(with: "Mobifone", value: "Mobifone"),

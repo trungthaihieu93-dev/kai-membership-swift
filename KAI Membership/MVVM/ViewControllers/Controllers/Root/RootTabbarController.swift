@@ -34,7 +34,7 @@ class RootTabbarController: UITabBarController {
         }
         
         requestUserQuestSignIn()
-        ActivityServices.activity(userId: AccountManagement.accountID)
+        TrackingServices.activity(userId: AccountManagement.accountID)
     }
     
     // MARK: Layout

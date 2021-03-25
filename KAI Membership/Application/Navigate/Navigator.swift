@@ -188,9 +188,10 @@ final class Navigator {
     /*
      Điều hướng tới màn hình WebKit
      - parameter url: đường dẫn của trang web
+     - parameter isMultipleTouchEnabled: 
      */
-    class func navigateToWebKitVC(from viewController: UIViewController? = nil, url: URL) {
-        let vc = WebViewController(with: url)
+    class func navigateToWebKitVC(from viewController: UIViewController? = nil, url: URL, isMultipleTouchEnabled: Bool = true) {
+        let vc = WebViewController(with: url, isMultipleTouchEnabled: isMultipleTouchEnabled)
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true, completion: nil)
     }
@@ -248,7 +249,7 @@ final class Navigator {
             guard let url = URL(string: String(format: Constants.spinLink, arguments: [token, Constants.Device.languageCode, Constants.Device.id])) else { return }
             
             TrackingServices.gameSpin()
-            let vc = WebViewController(with: url)
+            let vc = WebViewController(with: url, isMultipleTouchEnabled: false)
             vc.modalPresentationStyle = .fullScreen
             viewController.present(vc, animated: true, completion: nil)
         } else {

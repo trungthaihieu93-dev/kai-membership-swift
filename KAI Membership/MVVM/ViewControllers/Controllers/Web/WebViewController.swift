@@ -35,10 +35,12 @@ class WebViewController: BaseViewController {
     }()
     
     // MARK: Life cycle's
-    init(with url: URL) {
+    init(with url: URL, isMultipleTouchEnabled: Bool = true) {
         self.url = url
         
         super.init(nibName: nil, bundle: nil)
+        
+        webView.isMultipleTouchEnabled = isMultipleTouchEnabled
     }
     
     required init?(coder: NSCoder) {

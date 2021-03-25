@@ -160,7 +160,6 @@
 		525DB9E825EE96A6001491AE /* WalletViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9E725EE96A6001491AE /* WalletViewController+DataSource.swift */; };
 		525DB9EC25EE96CD001491AE /* WalletViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9EB25EE96CD001491AE /* WalletViewController+Delegate.swift */; };
 		525DB9F025EFD254001491AE /* SelectAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9EF25EFD254001491AE /* SelectAccountViewModel.swift */; };
-		525DB9F425EFD3EB001491AE /* ActivityServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9F325EFD3EB001491AE /* ActivityServices.swift */; };
 		525DB9F725EFD5B7001491AE /* DeviceServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9F625EFD5B7001491AE /* DeviceServices.swift */; };
 		525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB9FB25EFD95E001491AE /* DeviceRemote.swift */; };
 		525DBA3725EFEAF9001491AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525DBA3625EFEAF9001491AE /* Main.storyboard */; };
@@ -383,7 +382,6 @@
 		525DB9E725EE96A6001491AE /* WalletViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletViewController+DataSource.swift"; sourceTree = "<group>"; };
 		525DB9EB25EE96CD001491AE /* WalletViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletViewController+Delegate.swift"; sourceTree = "<group>"; };
 		525DB9EF25EFD254001491AE /* SelectAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountViewModel.swift; sourceTree = "<group>"; };
-		525DB9F325EFD3EB001491AE /* ActivityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityServices.swift; sourceTree = "<group>"; };
 		525DB9F625EFD5B7001491AE /* DeviceServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceServices.swift; sourceTree = "<group>"; };
 		525DB9FB25EFD95E001491AE /* DeviceRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRemote.swift; sourceTree = "<group>"; };
 		525DBA3625EFEAF9001491AE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1156,7 +1154,6 @@
 		525DB8F425E6B905001491AE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				525DB9F325EFD3EB001491AE /* ActivityServices.swift */,
 				4951731426008D8D0063AEF7 /* CaptchaServices.swift */,
 				4963D07A25FEF8CD00720B34 /* ConfigServices.swift */,
 				525DB9F625EFD5B7001491AE /* DeviceServices.swift */,
@@ -2100,7 +2097,6 @@
 				5265495025F53C4E003AE21A /* SignUpViewController+Delegate.swift in Sources */,
 				493043E325F8818200EED242 /* UpdateProfileViewController+Delegate.swift in Sources */,
 				498BCFF225F785F000F04160 /* ProfileHeaderView.swift in Sources */,
-				525DB9F425EFD3EB001491AE /* ActivityServices.swift in Sources */,
 				4951731526008D8D0063AEF7 /* CaptchaServices.swift in Sources */,
 				525DBA8D25F0190B001491AE /* KAICardCollapseView.swift in Sources */,
 				49F5FE932601EAF200D53D82 /* SendViewController+DataSource.swift in Sources */,
