@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DZNEmptyDataSet
 
 class DailyQuestViewController: UIViewController {
 
@@ -20,10 +19,9 @@ class DailyQuestViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = Constants.backroundColorDefault
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 12))
+        tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.identifier)
         tableView.register(QuestTableViewCell.self, forCellReuseIdentifier: QuestTableViewCell.identifier)
         tableView.dataSource = self
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
         
         return tableView
     }()

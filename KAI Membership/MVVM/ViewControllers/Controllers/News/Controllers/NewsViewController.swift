@@ -76,9 +76,9 @@ class NewsViewController: BaseViewController {
         view.addSubview(loaderView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             loaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -94,10 +94,14 @@ class NewsViewController: BaseViewController {
             guard let this = self else { return }
             
             this.reloadData()
+            this.endRefreshing()
             this.loaderView.removeFromSuperview()
         }, onError: { [weak self] error in
+            guard let this = self else { return }
+            
             AlertManagement.shared.showToast(with: "🤔 Get news failure!", position: .top)
-            self?.loaderView.removeFromSuperview()
+            this.endRefreshing()
+            this.loaderView.removeFromSuperview()
         }).disposed(by: disposeBag)
     }
     

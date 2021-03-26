@@ -84,8 +84,7 @@
 		49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */; };
 		49CAC10C25FB6B9A00577D33 /* TrackingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */; };
 		49CAC11025FB74C900577D33 /* PasscodeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10F25FB74C900577D33 /* PasscodeServices.swift */; };
-		49D8F11B26031E0A004CE1C2 /* DailyQuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8F11A26031E0A004CE1C2 /* DailyQuestViewController+Delegate.swift */; };
-		49D8F11E26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8F11D26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift */; };
+		49D9ACA1260DAFA700A459AF /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		49ECF7B6260C3618000A8AB2 /* ReferralsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */; };
 		49ECF7BA260C92FC000A8AB2 /* NewsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */; };
@@ -309,8 +308,7 @@
 		49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestRemote.swift; sourceTree = "<group>"; };
 		49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServices.swift; sourceTree = "<group>"; };
 		49CAC10F25FB74C900577D33 /* PasscodeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeServices.swift; sourceTree = "<group>"; };
-		49D8F11A26031E0A004CE1C2 /* DailyQuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyQuestViewController+Delegate.swift"; sourceTree = "<group>"; };
-		49D8F11D26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyQuestViewController+Delegate.swift"; sourceTree = "<group>"; };
+		49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsServices.swift; sourceTree = "<group>"; };
 		49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServices.swift; sourceTree = "<group>"; };
@@ -1467,7 +1465,6 @@
 			children = (
 				525DBAA725F164AA001491AE /* DailyQuestViewController.swift */,
 				525DBAB025F1689A001491AE /* DailyQuestViewController+DataSource.swift */,
-				49D8F11A26031E0A004CE1C2 /* DailyQuestViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1477,7 +1474,6 @@
 			children = (
 				525DBAAB25F164C0001491AE /* MonthlyQuestViewController.swift */,
 				525DBAB725F16921001491AE /* MonthlyQuestViewController+DataSource.swift */,
-				49D8F11D26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1785,6 +1781,7 @@
 				49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */,
 				4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */,
 				49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */,
+				49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2018,6 +2015,7 @@
 				494099F4260B4F8D00F92119 /* KAIInputNumber.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
 				525DBAE325F2399B001491AE /* NewsLastestCollectionViewCell.swift in Sources */,
+				49D9ACA1260DAFA700A459AF /* EmptyTableViewCell.swift in Sources */,
 				49976C822609D6140005F8F8 /* CalendarPickerHeaderView.swift in Sources */,
 				525DBA6F25F0121F001491AE /* NewsViewController+ Delegate.swift in Sources */,
 				4963D08A25FF2D5700720B34 /* RewardsTableViewCell.swift in Sources */,
@@ -2026,7 +2024,6 @@
 				525DBAF825F286B8001491AE /* LoginRemote.swift in Sources */,
 				525DBB0525F28949001491AE /* WalletRemote.swift in Sources */,
 				49F5FE9A2601EC1200D53D82 /* SendTableViewCell.swift in Sources */,
-				49D8F11E26031E3D004CE1C2 /* MonthlyQuestViewController+Delegate.swift in Sources */,
 				529AE1A525DD98E200635807 /* RootTabbarController.swift in Sources */,
 				49976C392608457E0005F8F8 /* ShareViewController.swift in Sources */,
 				226DA3FD2600750A009BC8CC /* Floaty.swift in Sources */,
@@ -2066,7 +2063,6 @@
 				226DA42E2600B5E2009BC8CC /* BuyViewController.swift in Sources */,
 				494C0AEC25FA249900E30115 /* HistoryRemote.swift in Sources */,
 				529AE17925DD96FD00635807 /* AppDelegate.swift in Sources */,
-				49D8F11B26031E0A004CE1C2 /* DailyQuestViewController+Delegate.swift in Sources */,
 				525DB9CE25ED40FF001491AE /* SignInViewController+Delegate.swift in Sources */,
 				4930440125F8B82C00EED242 /* PasswordViewModel.swift in Sources */,
 				525DB96D25EA4490001491AE /* Double+Extensions.swift in Sources */,

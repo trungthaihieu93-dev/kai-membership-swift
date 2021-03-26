@@ -20,10 +20,11 @@ class WalletViewModel {
                 case .success(let result):
                     self?.transactions = result.datas
                     observer.onNext(result.datas)
-                    observer.onCompleted()
                 case .failure(let error):
-                    observer.onError(error)
+                    debugPrint("Error get transactions: \(error.message)")
                 }
+                
+                observer.onCompleted()
             }
             
             return Disposables.create()
@@ -31,13 +32,13 @@ class WalletViewModel {
     }
     
     private func getUserInfo() -> Observable<AccountInfoRemote> {
-        return Observable<AccountInfoRemote>.create { [weak self] observer -> Disposable in
+        return Observable<AccountInfoRemote>.create { observer -> Disposable in
             AccountManagement.getInfoUser {
                 switch $0 {
                 case .success(let info):
                     observer.onNext(info)
                 case .failure(let error):
-                    debugPrint("Error get user infomation: \(error.localizedDescription)")
+                    debugPrint("Error get user infomation: \(error.message)")
                 }
                 
                 observer.onCompleted()

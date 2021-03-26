@@ -21,7 +21,7 @@ class WalletViewController: BaseViewController {
         return view
     }()
     
-    private lazy var tableView: UITableView = {
+    private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
@@ -69,9 +69,9 @@ class WalletViewController: BaseViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
@@ -90,7 +90,7 @@ class WalletViewController: BaseViewController {
         }
         
         floaty.size = 48
-        floaty.paddingY = (self.tabBarController?.tabBar.frame.height ?? 50) + 16
+//        floaty.paddingY = tabbarHeight + 16
         
         for item in floaty.items {
             item.titleLabel.font = UIFont.workSansFont(ofSize: 10, weight: .semiBold)
@@ -101,7 +101,6 @@ class WalletViewController: BaseViewController {
             item.titleLabel.textAlignment = .center
         }
         
-        floaty.frame.origin = CGPoint(x: Constants.Device.screenBounds.width - 68, y: 100)
         self.view.addSubview(floaty)
         
         floaty.buttonColor = UIColor.Base.x500
@@ -110,7 +109,7 @@ class WalletViewController: BaseViewController {
     }
     
     private func setupTableHeaderView() {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: 252))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: KAICardView.height))
         cardView.frame = CGRect(x: 30, y: 25, width: headerView.frame.width - 60, height: headerView.frame.height - 50)
         headerView.addSubview(cardView)
         

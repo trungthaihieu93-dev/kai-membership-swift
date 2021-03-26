@@ -10,6 +10,8 @@ import UIKit
 class KAICardView: UIView {
     
     // MARK: Properties
+    static let height: CGFloat = 252
+    
     private let cardImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "bg_card"))
         imageView.translatesAutoresizingMaskIntoConstraints = false

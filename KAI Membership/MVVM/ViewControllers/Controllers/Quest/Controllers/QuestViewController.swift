@@ -48,10 +48,6 @@ class QuestViewController: BaseViewController {
         return 0
     }
     
-    override var scroller: UIScrollView? {
-        return childViewController.overlayScrollView
-    }
-    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,11 +70,5 @@ class QuestViewController: BaseViewController {
             self?.endRefreshing()
             debugPrint("Get the quests list error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
-    }
-    
-    // MARK: Handle actions
-    override func refresh(_ sender: UIRefreshControl) {
-        super.refresh(sender)
-        fetchData()
     }
 }
