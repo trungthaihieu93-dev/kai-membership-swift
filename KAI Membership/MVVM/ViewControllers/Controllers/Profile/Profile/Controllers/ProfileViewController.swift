@@ -178,10 +178,13 @@ class ProfileViewController: BaseViewController {
     }
     
     func uploadImage(_ image: UIImage) {
+        cameraButton.isEnabled = false
         viewModel.updateAvatar(image).subscribe(on: MainScheduler.instance).subscribe { [weak self] accountInfo in
             self?.headerView.configure(accountInfo)
+            self?.cameraButton.isEnabled = true
             AlertManagement.shared.showToast(with: "👍 Update avatar successfully!", position: .top)
-        } onError: { error in
+        } onError: { [weak self] error in
+            self?.cameraButton.isEnabled = true
             AlertManagement.shared.showToast(with: "🤔 Update avatar failure!", position: .top)
         }.disposed(by: disposeBag)
     }
