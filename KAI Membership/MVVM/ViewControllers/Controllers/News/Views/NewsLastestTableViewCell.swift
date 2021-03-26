@@ -14,7 +14,7 @@ class NewsLastestTableViewCell: UITableViewCell {
     
     private let minimumInteritemSpacing: CGFloat = 20
     private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 20, right: 20)
-    private var lastests = [NewRemote]()
+    private var lastests = [TwitterNews]()
     
     private lazy var itemSize: CGSize = {
         let width: CGFloat = collectionView.frame.width - (sectionInset.left + sectionInset.right)
@@ -24,22 +24,25 @@ class NewsLastestTableViewCell: UITableViewCell {
     }()
     
     private(set) lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = HorizontalPagingCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 12
         layout.minimumInteritemSpacing = minimumInteritemSpacing
         layout.sectionInset = sectionInset
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
-        view.isPagingEnabled = true
+        view.isPagingEnabled = false
+        view.decelerationRate = .fast
         view.register(NewsLastestCollectionViewCell.self, forCellWithReuseIdentifier: NewsLastestCollectionViewCell.identifier)
         view.dataSource = self
         view.delegate = self
         
         return view
     }()
+    
+    var didSelectDirectLinking: ((String?) -> Void)?
     
     // MARK: Life cycle's
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -55,6 +58,7 @@ class NewsLastestTableViewCell: UITableViewCell {
     // MARK: Layout
     private func setupView() {
         selectionStyle = .none
+        backgroundColor = .clear
         contentView.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -66,8 +70,8 @@ class NewsLastestTableViewCell: UITableViewCell {
     }
     
     // MARK: Configure
-    func reloadWithData(_ lastests: [NewRemote]) {
-        self.lastests = lastests
+    func reloadWithData(_ twitters: [TwitterNews]) {
+        self.lastests = twitters
         collectionView.reloadData()
     }
 }
@@ -95,6 +99,6 @@ extension NewsLastestTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        didSelectDirectLinking?(lastests[indexPath.row].link)
     }
 }

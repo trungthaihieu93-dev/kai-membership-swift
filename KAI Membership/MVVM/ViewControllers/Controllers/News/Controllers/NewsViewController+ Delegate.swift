@@ -65,7 +65,7 @@ extension NewsViewController: UITableViewDelegate {
         
         switch sectionType {
         case .suggestion:
-            return NewsSuggestionTableViewCell.height
+            return NewsSuggestionTableViewCell.itemSize.height
         case .lastest:
             return NewsLastestTableViewCell.height
         }

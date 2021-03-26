@@ -15,6 +15,7 @@ class NewsLastestCollectionViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
         view.backgroundColor = .init(hex: "C4C4C4")
+        view.clipsToBounds = true
         view.layer.cornerRadius = 8
         
         return view
@@ -89,8 +90,9 @@ class NewsLastestCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Configure
-    func configure(_ new: NewRemote) {
-        publicDateLabel.text = new.publicDate
+    func configure(_ new: TwitterNews) {
+        coverImageView.setImage(from: new.mediaLink)
+        publicDateLabel.text = new.createdAt
         titleLabel.attributedText = new.title?.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .semiBold), lineHeight: 20, textColor: UIColor.black.withAlphaComponent(0.87), lineHeightMultiple: 1.22)
     }
 }

@@ -59,6 +59,11 @@ class WalletViewController: BaseViewController {
         fetchData()
     }
     
+    override func refresh(_ sender: UIRefreshControl) {
+        super.refresh(sender)
+        fetchData()
+    }
+    
     // MARK: Layout
     private func setupView() {
         view.addSubview(tableView)
@@ -110,11 +115,6 @@ class WalletViewController: BaseViewController {
         headerView.addSubview(cardView)
         
         tableView.tableHeaderView = headerView
-    }
-    
-    override func refresh(_ sender: UIRefreshControl) {
-        super.refresh(sender)
-        fetchData()
     }
     
     // MARK: Handle actions

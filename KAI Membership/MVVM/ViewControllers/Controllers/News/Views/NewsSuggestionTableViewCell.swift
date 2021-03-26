@@ -10,9 +10,9 @@ import UIKit
 class NewsSuggestionTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    static let height: CGFloat = 360
+    static let itemSize: CGSize = CGSize(width: 275, height: 360)
     
-    private var suggestions = [NewRemote]()
+    private var suggestions = [MediumNews]()
     
     private(set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,7 +21,7 @@ class NewsSuggestionTableViewCell: UITableViewCell {
         layout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
         view.register(NewsSuggestionCollectionViewCell.self, forCellWithReuseIdentifier: NewsSuggestionCollectionViewCell.identifier)
         view.dataSource = self
@@ -29,6 +29,8 @@ class NewsSuggestionTableViewCell: UITableViewCell {
         
         return view
     }()
+    
+    var didSelectDirectLinking: ((String?) -> Void)?
     
     // MARK: Life cycle's
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -44,6 +46,7 @@ class NewsSuggestionTableViewCell: UITableViewCell {
     // MARK: Layout
     private func setupView() {
         selectionStyle = .none
+        backgroundColor = .clear
         contentView.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -55,8 +58,8 @@ class NewsSuggestionTableViewCell: UITableViewCell {
     }
     
     // MARK: Configure
-    func reloadWithData(_ suggestions: [NewRemote]) {
-        self.suggestions = suggestions
+    func reloadWithData(_ mediums: [MediumNews]) {
+        self.suggestions = mediums
         collectionView.reloadData()
     }
 }
@@ -80,10 +83,10 @@ extension NewsSuggestionTableViewCell: UICollectionViewDataSource {
 extension NewsSuggestionTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 275, height: NewsSuggestionTableViewCell.height)
+        return NewsSuggestionTableViewCell.itemSize
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        didSelectDirectLinking?(suggestions[indexPath.row].link)
     }
 }

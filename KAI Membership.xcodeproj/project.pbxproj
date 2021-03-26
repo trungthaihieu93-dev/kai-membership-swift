@@ -89,6 +89,8 @@
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		49ECF7B6260C3618000A8AB2 /* ReferralsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */; };
 		49ECF7BA260C92FC000A8AB2 /* NewsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */; };
+		49ECF7BF260D84AF000A8AB2 /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */; };
+		49ECF7C8260D8D19000A8AB2 /* NewsSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7C7260D8D19000A8AB2 /* NewsSkeletonView.swift */; };
 		49F5FE862601AD5700D53D82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */; };
 		49F5FE8C2601E73400D53D82 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8B2601E73400D53D82 /* SendViewController.swift */; };
 		49F5FE902601E93F00D53D82 /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */; };
@@ -312,6 +314,8 @@
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsServices.swift; sourceTree = "<group>"; };
 		49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServices.swift; sourceTree = "<group>"; };
+		49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		49ECF7C7260D8D19000A8AB2 /* NewsSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSkeletonView.swift; sourceTree = "<group>"; };
 		49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		49F5FE8B2601E73400D53D82 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
@@ -1353,6 +1357,7 @@
 			children = (
 				525DBAE225F2399B001491AE /* NewsLastestCollectionViewCell.swift */,
 				525DBA6925F010BA001491AE /* NewsLastestTableViewCell.swift */,
+				49ECF7C7260D8D19000A8AB2 /* NewsSkeletonView.swift */,
 				525DBADB25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift */,
 				525DBA6525F010AE001491AE /* NewsSuggestionTableViewCell.swift */,
 			);
@@ -1779,6 +1784,7 @@
 				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
 				49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */,
 				4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */,
+				49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2001,6 +2007,7 @@
 				525DB8F125E6B898001491AE /* UserRemote.swift in Sources */,
 				525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */,
 				49976C45260877070005F8F8 /* ShareViewController+Delegate.swift in Sources */,
+				49ECF7BF260D84AF000A8AB2 /* CollectionViewFlowLayout.swift in Sources */,
 				4963D07B25FEF8CD00720B34 /* ConfigServices.swift in Sources */,
 				49ECF7B6260C3618000A8AB2 /* ReferralsServices.swift in Sources */,
 				49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */,
@@ -2071,6 +2078,7 @@
 				5270BE2725E160AA0046E224 /* String+Extensions.swift in Sources */,
 				4951732A2600AAF90063AEF7 /* OverviewTopupTableViewCell.swift in Sources */,
 				525E6BE525FE0DC600A7BAC5 /* ProfileViewModel.swift in Sources */,
+				49ECF7C8260D8D19000A8AB2 /* NewsSkeletonView.swift in Sources */,
 				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
 				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
 				226DA3FE2600750A009BC8CC /* FloatyDelegate.swift in Sources */,

@@ -15,7 +15,18 @@ class NewsSuggestionCollectionViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
         view.backgroundColor = .black
+        view.clipsToBounds = true
         view.layer.cornerRadius = 16
+        
+        return view
+    }()
+    
+    private let coverBackgroundTitleView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 16
+        view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         return view
     }()
@@ -53,6 +64,7 @@ class NewsSuggestionCollectionViewCell: UICollectionViewCell {
     // MARK: Layout
     private func setupView() {
         contentView.addSubview(coverImageView)
+        contentView.addSubview(coverBackgroundTitleView)
         contentView.addSubview(publicDateLabel)
         contentView.addSubview(titleLabel)
         
@@ -61,6 +73,11 @@ class NewsSuggestionCollectionViewCell: UICollectionViewCell {
             coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             coverImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            coverBackgroundTitleView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            coverBackgroundTitleView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            coverBackgroundTitleView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            coverBackgroundTitleView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
             
             publicDateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             publicDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
@@ -72,8 +89,17 @@ class NewsSuggestionCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    override func layoutSubviews() {
+       super.layoutSubviews()
+        
+        if !(coverBackgroundTitleView.layer.name == UIView.gradientLayerKey) {
+            coverBackgroundTitleView.gradientBackgroundColors([UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.7).cgColor], direction: .vertical)
+        }
+     } 
+    
     // MARK: Configure
-    func configure(_ new: NewRemote) {
+    func configure(_ new: MediumNews) {
+        coverImageView.setImage(from: new.thumbnail)
         publicDateLabel.text = new.publicDate
         titleLabel.attributedText = new.title?.setTextWithFormat(font: .workSansFont(ofSize: 16, weight: .semiBold), lineHeight: 26, textColor: .white, lineHeightMultiple: 1.39)
     }

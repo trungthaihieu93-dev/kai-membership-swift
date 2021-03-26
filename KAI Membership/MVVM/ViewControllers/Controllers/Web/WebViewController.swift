@@ -12,6 +12,7 @@ class WebViewController: BaseViewController {
     
     // MARK: Properties
     let url: URL
+    private let iSafeAreaLayout: Bool
     
     private let webView: WKWebView = {
         let view = WKWebView()
@@ -35,8 +36,9 @@ class WebViewController: BaseViewController {
     }()
     
     // MARK: Life cycle's
-    init(with url: URL, isMultipleTouchEnabled: Bool = true) {
+    init(with url: URL, iSafeAreaLayout: Bool = false, isMultipleTouchEnabled: Bool = true) {
         self.url = url
+        self.iSafeAreaLayout = iSafeAreaLayout
         
         super.init(nibName: nil, bundle: nil)
         
@@ -54,7 +56,7 @@ class WebViewController: BaseViewController {
         view.addSubview(closeButton)
         
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: iSafeAreaLayout ? (statusBarHeight + 44) : 0),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

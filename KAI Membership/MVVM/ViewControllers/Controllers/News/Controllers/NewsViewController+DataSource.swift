@@ -25,11 +25,19 @@ extension NewsViewController: UITableViewDataSource {
         case .suggestion:
             let cell = tableView.dequeueReusableCell(withIdentifier: NewsSuggestionTableViewCell.identifier, for: indexPath) as! NewsSuggestionTableViewCell
             cell.reloadWithData(viewModel.suggestions)
+            cell.didSelectDirectLinking = {
+                Helper.openSafari($0)
+//                Navigator.navigateToWebKitVC(from: self, url: $0, iSafeAreaLayout: true)
+            }
             
             return cell
         case .lastest:
             let cell = tableView.dequeueReusableCell(withIdentifier: NewsLastestTableViewCell.identifier, for: indexPath) as! NewsLastestTableViewCell
             cell.reloadWithData(viewModel.lastests)
+            cell.didSelectDirectLinking = {
+//                Navigator.navigateToWebKitVC(from: self, url: $0, iSafeAreaLayout: true)
+                Helper.openSafari($0)
+            }
             
             return cell
         }
