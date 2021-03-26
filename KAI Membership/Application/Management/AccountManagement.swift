@@ -232,25 +232,24 @@ class AccountManagement {
         }
     }
     
-    class func updateAvatar(_ image: UIImage, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
+    class func updateAvatar(_ image: UIImage, _ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
         UserServices.updateAvatar(image) {
             switch $0 {
             case .success(let result):
-                completion(.success(result))
-                /*if let currentInfo = AccountManagement.accountInfo, let user = currentInfo.user {
-                    AccountManagement.accountInfo = currentInfo
-                    
-                    completion(.success(currentInfo))
-                } else {
+//                if let avatarLink = result.data, let currentInfo = AccountManagement.accountInfo, let user = currentInfo.user {
+//                    user.avatarLink = avatarLink
+//                    AccountManagement.accountInfo = currentInfo
+//                    completion(.success(currentInfo))
+//                } else {
                     AccountManagement.getInfoUser {
                         switch $0 {
                         case .success(let info):
                             completion(.success(info))
                         case .failure(let error):
-                            completion(.success(AccountManagement.accountInfo ?? AccountInfoRemote()))
+                            completion(.failure(error))
                         }
                     }
-                }*/
+//                }
             case .failure(let error):
                 completion(.failure(error))
             }

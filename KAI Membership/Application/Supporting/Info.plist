@@ -90,16 +90,13 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>We need to access your camera your take photos</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need to access your photo library</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

@@ -62,18 +62,6 @@ class APIInput: APIInputBase {
         self.method = method
         self.encoding = (method == .get || method == .delete) ? URLEncoding.default : JSONEncoding.default
     }
-    
-    init(withDomain domain: String, path: String = "", params: Parameters = [:], method: HTTPMethod = .get, customHeaders: HTTPHeaders = []) {
-        for header in customHeaders {
-            headers.add(header)
-        }
-        
-        self.domain = domain
-        self.path = path
-        self.params = params
-        self.method = method
-        self.encoding = (method == .get || method == .delete) ? URLEncoding.default : JSONEncoding.default
-    }
 }
 
 class APIOutput: APIOutputBase {
@@ -200,13 +188,13 @@ struct APIDataListResults<D: BaseModel>: APIBaseDataListResults {
     var datas: [D]
     var message: String?
     var error: APIErrorResult
-
+    
     enum CodingKeys: String, CodingKey {
         case data
         case message
         case error
     }
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         datas = try container.decodeIfPresent([D].self, forKey: .data) ?? []
@@ -220,7 +208,7 @@ struct APIDataListResults<D: BaseModel>: APIBaseDataListResults {
 class APIServices {
     
     private class func _request<T: APIOutputBase>(input: APIInputBase, output: T.Type, _ completion: @escaping (T) -> Void) {
-        AF.request(input.url, method: input.method, parameters: input.params, encoding: input.encoding, headers: input.headers).validate().responseJSON(queue: .main) { response in
+        let someRequest = AF.request(input.url, method: input.method, parameters: input.params, encoding: input.encoding, headers: input.headers).validate().responseJSON(queue: .main) { response in
             completion(T(response: response))
         }
     }
@@ -235,7 +223,7 @@ class APIServices {
                 }
                 
             }
-        }, to: input.url).responseJSON { (response) in
+        }, to: input.url, method: input.method, headers: input.headers).responseJSON { (response) in
             completion(T(response: response))
         }
     }
@@ -328,13 +316,13 @@ class RealmServices {
     
     func get<T: RealmSwift.Object, KeyType>(ofType type: T.Type, forPrimaryKey key: KeyType) -> T? {
         let realm = try? Realm()
-
+        
         return realm?.object(ofType: type, forPrimaryKey: key)
     }
     
     func getAll<T: RealmSwift.Object>(ofType type: T.Type, ofPredicate predicateString: String? = nil) -> [T] {
         let realm = try? Realm()
-
+        
         if let filter = predicateString {
             if let result = realm?.objects(type).filter(filter) {
                 return Array(result)
@@ -434,5 +422,14 @@ protocol BaseModel: Codable {
 extension BaseModel where Self: Hashable {
     static func ==(lhs: Self , rhs: Self) -> Bool {
         return lhs.hashValue == rhs.hashValue
+    }
+}
+
+extension Request {
+    public func cURL() -> Self {
+        #if DEBUG
+        debugPrint(self)
+        #endif
+        return self
     }
 }
