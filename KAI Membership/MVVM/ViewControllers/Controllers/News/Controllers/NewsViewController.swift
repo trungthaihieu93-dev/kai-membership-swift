@@ -94,10 +94,10 @@ class NewsViewController: BaseViewController {
             guard let this = self else { return }
             
             this.reloadData()
-            this.loaderView.isHidden = true
+            this.loaderView.removeFromSuperview()
         }, onError: { [weak self] error in
             AlertManagement.shared.showToast(with: "🤔 Get news failure!", position: .top)
-            self?.loaderView.isHidden = true
+            self?.loaderView.removeFromSuperview()
         }).disposed(by: disposeBag)
     }
     
