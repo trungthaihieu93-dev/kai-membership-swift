@@ -33,6 +33,12 @@ enum APIResult<T, E> {
     case failure(E)
 }
 
+enum ProgressResult<T, E, P> {
+    case success(T)
+    case failure(E)
+    case progress(P)
+}
+
 class APIInput: APIInputBase {
     
     let domain: String
@@ -216,8 +222,15 @@ class APIServices {
     private class func _upload<T: APIOutputBase>(input: APIInputBase, output: T.Type, completion: @escaping (T) -> Void) {
         AF.upload(multipartFormData: { multipartFormData in
             for (key, value) in input.params {
-                if let image = (value as? UIImage) {
-                    multipartFormData.append(image.pngData()!, withName: key)
+                if let urls = value as? [URL] {
+                    urls.forEach {
+                        multipartFormData.append($0, withName: key)
+                    }
+                } else if let url = value as? URL {
+                    multipartFormData.append(url, withName: key)
+                } else if let image = (value as? UIImage) {
+                    let url = Helper.saveImageToLibrary(image: image)
+                    multipartFormData.append(url, withName: key)
                 } else {
                     multipartFormData.append(Data(from: value), withName: key)
                 }

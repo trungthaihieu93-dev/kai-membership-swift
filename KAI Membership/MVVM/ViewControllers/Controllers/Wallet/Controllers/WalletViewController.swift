@@ -51,6 +51,7 @@ class WalletViewController: BaseViewController {
         
         navigationItem.title = "My Wallet"
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveAvatarValueChanged(_:)), name: .avatarChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveKaiValueChanged(_:)), name: .kaiValueChanged, object: nil)
         
         setupView()
@@ -121,6 +122,10 @@ class WalletViewController: BaseViewController {
         guard let kai = notification.object as? KAIRemote else { return }
         
         cardView.configure(kai)
+    }
+    
+    @objc private func didReceiveAvatarValueChanged(_ notificaton: Notification) {
+        rightBarButtonItemView.refresh()
     }
 }
 

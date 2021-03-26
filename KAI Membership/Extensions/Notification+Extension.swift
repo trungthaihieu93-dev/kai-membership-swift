@@ -9,5 +9,6 @@ import Foundation
 
 extension Notification.Name {
     
-    static let kaiValueChanged = Notification.Name("kaiValueChanged")
+    static let kaiValueChanged = Notification.Name("KaiValueChanged")
+    static let avatarChanged = Notification.Name("AvatarChanged")
 }

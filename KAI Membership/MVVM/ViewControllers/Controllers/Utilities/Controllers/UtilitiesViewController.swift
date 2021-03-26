@@ -35,6 +35,8 @@ class UtilitiesViewController: BaseViewController {
         
         navigationItem.title = "Utilities"
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveAvatarValueChanged(_:)), name: .avatarChanged, object: nil)
+        
         setupView()
     }
     
@@ -53,5 +55,10 @@ class UtilitiesViewController: BaseViewController {
     // MARK: Methods
     func mobileTopup() {
         Navigator.navigateToTopupVC(from: self)
+    }
+    
+    // MARK: Handle actions
+    @objc private func didReceiveAvatarValueChanged(_ notificaton: Notification) {
+        rightBarButtonItemView.refresh()
     }
 }

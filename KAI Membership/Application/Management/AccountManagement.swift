@@ -239,11 +239,13 @@ class AccountManagement {
 //                if let avatarLink = result.data, let currentInfo = AccountManagement.accountInfo, let user = currentInfo.user {
 //                    user.avatarLink = avatarLink
 //                    AccountManagement.accountInfo = currentInfo
+//                    NotificationCenter.default.post(name: .avatarChanged, object: user)
 //                    completion(.success(currentInfo))
 //                } else {
                     AccountManagement.getInfoUser {
                         switch $0 {
                         case .success(let info):
+                            NotificationCenter.default.post(name: .avatarChanged, object: info.user)
                             completion(.success(info))
                         case .failure(let error):
                             completion(.failure(error))

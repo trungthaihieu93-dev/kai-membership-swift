@@ -61,5 +61,27 @@ class Helper {
     class func getConfig(forKey key: ConfigKey) -> [ConfigRemote] {
         return AppSetting.configures.first(where: { $0.name == key.rawValue })?.configs ?? []
     }
+    
+    class func saveImageToLibrary(image: UIImage, destinationURL: URL? = nil) -> URL {
+        var destURL: URL!
+        
+        if let url = destinationURL {
+            try? FileManager.default.removeItem(at: url)
+            destURL = url
+        } else {
+            let imageName = "\(UUID().uuidString).png"
+            var documentsDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            documentsDirectoryPath.appendPathComponent(imageName)
+            destURL = documentsDirectoryPath
+        }
+
+        do {
+            try image.pngData()?.write(to: destURL)
+        } catch let error {
+            print(error)
+        }
+        
+        return destURL
+    }
 }
 

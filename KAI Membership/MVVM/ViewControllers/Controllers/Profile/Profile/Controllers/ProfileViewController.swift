@@ -87,6 +87,7 @@ class ProfileViewController: BaseViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(UIBarButtonItem(customView: cameraButton), animated: true)
+        
         setupView()
         setupTableHeaderView()
         fetchData()
@@ -177,7 +178,8 @@ class ProfileViewController: BaseViewController {
     }
     
     func uploadImage(_ image: UIImage) {
-        viewModel.updateAvatar(image).subscribe(on: MainScheduler.instance).subscribe {
+        viewModel.updateAvatar(image).subscribe(on: MainScheduler.instance).subscribe { [weak self] accountInfo in
+            self?.headerView.configure(accountInfo)
             AlertManagement.shared.showToast(with: "👍 Update avatar successfully!", position: .top)
         } onError: { error in
             AlertManagement.shared.showToast(with: "🤔 Update avatar failure!", position: .top)

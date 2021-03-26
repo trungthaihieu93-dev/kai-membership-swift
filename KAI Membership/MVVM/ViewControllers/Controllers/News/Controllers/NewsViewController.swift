@@ -55,6 +55,7 @@ class NewsViewController: BaseViewController {
         
         navigationItem.title = "Today News"
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveAvatarValueChanged(_:)), name: .avatarChanged, object: nil)
         
         setupView()
         fetchData()
@@ -112,5 +113,10 @@ class NewsViewController: BaseViewController {
         } else {
             tableView.reloadData()
         }
+    }
+    
+    // MARK: Handle actions
+    @objc private func didReceiveAvatarValueChanged(_ notificaton: Notification) {
+        rightBarButtonItemView.refresh()
     }
 }

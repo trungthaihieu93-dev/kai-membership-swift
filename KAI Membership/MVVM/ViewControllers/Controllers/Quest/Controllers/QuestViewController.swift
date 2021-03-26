@@ -54,6 +54,8 @@ class QuestViewController: BaseViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveAvatarValueChanged(_:)), name: .avatarChanged, object: nil)
+        
         self.add(childViewController)
         fetchData()
     }
@@ -70,5 +72,10 @@ class QuestViewController: BaseViewController {
             self?.endRefreshing()
             debugPrint("Get the quests list error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
+    }
+    
+    // MARK: Handle actions
+    @objc private func didReceiveAvatarValueChanged(_ notificaton: Notification) {
+        rightBarButtonItemView.refresh()
     }
 }

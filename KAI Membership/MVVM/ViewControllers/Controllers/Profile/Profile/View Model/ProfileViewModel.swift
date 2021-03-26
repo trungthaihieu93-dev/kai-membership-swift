@@ -60,12 +60,12 @@ class ProfileViewModel {
         }
     }
     
-    func updateAvatar(_ image: UIImage) -> Observable<Void> {
-        return Observable.create { (observer) -> Disposable in
+    func updateAvatar(_ image: UIImage) -> Observable<AccountInfoRemote> {
+        return Observable<AccountInfoRemote>.create { (observer) -> Disposable in
             AccountManagement.updateAvatar(image) {
                 switch $0 {
-                case .success:
-                    observer.onNext(())
+                case .success(let info):
+                    observer.onNext(info)
                     observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
