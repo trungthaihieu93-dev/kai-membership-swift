@@ -12,6 +12,13 @@ class DailyQuestViewController: UIViewController {
     // MARK: Properties
     private(set) var quests = [QuestRemote]()
     
+    private let loaderView: QuestSkeletonView = {
+        let view = QuestSkeletonView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,12 +43,18 @@ class DailyQuestViewController: UIViewController {
     // MARK: Layout
     private func setupView() {
         view.addSubview(tableView)
+        view.addSubview(loaderView)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            loaderView.topAnchor.constraint(equalTo: view.topAnchor),
+            loaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     
@@ -49,5 +62,6 @@ class DailyQuestViewController: UIViewController {
     func configure(_ quests: [QuestRemote]) {
         self.quests = quests
         tableView.reloadData()
+        loaderView.removeFromSuperview()
     }
 }

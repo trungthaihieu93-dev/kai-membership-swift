@@ -73,6 +73,7 @@ class RecentTransactionsTableViewCell: UITableViewCell {
     
     // MARK: Layout
     private func setupView() {
+        backgroundColor = .clear
         selectionStyle = .none
         
         contentView.addSubview(transactionsImageView)

@@ -118,11 +118,7 @@ class QuestHeaderView: UIView {
         ])
     }
     
-    // MARK: Configure
-    func configure() {
-        
-    }
-    
+    // MARK: Methods
     func zoomImage(with value: CGFloat) {
         bacgroundTopAnchor?.constant = value
     }

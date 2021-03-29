@@ -35,7 +35,7 @@ class NewsLastestCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.font = .workSansFont(ofSize: 14, weight: .medium)
-        label.textColor = UIColor.white.withAlphaComponent(0.7)
+        label.textColor = UIColor.black.withAlphaComponent(0.54)
         
         return label
     }()

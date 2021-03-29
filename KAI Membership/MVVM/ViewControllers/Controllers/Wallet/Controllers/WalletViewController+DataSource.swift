@@ -30,7 +30,7 @@ extension WalletViewController: DZNEmptyDataSetSource {
     }
     
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return KAICardView.height / 2
+        return (tableView.tableHeaderView?.frame.height ?? 0) / 2
     }
 }
 

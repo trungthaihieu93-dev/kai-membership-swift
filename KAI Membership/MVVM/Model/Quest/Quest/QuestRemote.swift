@@ -25,6 +25,7 @@ class QuestRemote: BaseModel {
     var createdDate: String?
     var updatedDate: String?
     var name: String?
+    var screenName: String?
     var key: QuestKey = .signIn
     var type: QuestType = .daily
     var progress: Int?
@@ -35,6 +36,7 @@ class QuestRemote: BaseModel {
         case createdDate = "created_date"
         case updatedDate = "updated_date"
         case name = "mission"
+        case screenName = "screen_name"
         case key
         case type
         case progress = "process"
@@ -47,6 +49,7 @@ class QuestRemote: BaseModel {
         createdDate = try container.decodeIfPresent(String.self, forKey: .createdDate)
         updatedDate = try container.decodeIfPresent(String.self, forKey: .updatedDate)
         name = try container.decodeIfPresent(String.self, forKey: .name)
+        screenName = try container.decodeIfPresent(String.self, forKey: .screenName)
         
         if let key = try container.decodeIfPresent(String.self, forKey: .key) {
             self.key = QuestKey(rawValue: key) ?? .signIn

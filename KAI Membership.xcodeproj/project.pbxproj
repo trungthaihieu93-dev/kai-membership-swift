@@ -90,6 +90,8 @@
 		49ECF7BA260C92FC000A8AB2 /* NewsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */; };
 		49ECF7BF260D84AF000A8AB2 /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */; };
 		49ECF7C8260D8D19000A8AB2 /* NewsSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7C7260D8D19000A8AB2 /* NewsSkeletonView.swift */; };
+		49F561802611B246006BEBE8 /* WalletSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5617F2611B246006BEBE8 /* WalletSkeletonView.swift */; };
+		49F561842611D473006BEBE8 /* QuestSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F561832611D473006BEBE8 /* QuestSkeletonView.swift */; };
 		49F5FE862601AD5700D53D82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */; };
 		49F5FE8C2601E73400D53D82 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8B2601E73400D53D82 /* SendViewController.swift */; };
 		49F5FE902601E93F00D53D82 /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */; };
@@ -314,6 +316,8 @@
 		49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServices.swift; sourceTree = "<group>"; };
 		49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		49ECF7C7260D8D19000A8AB2 /* NewsSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSkeletonView.swift; sourceTree = "<group>"; };
+		49F5617F2611B246006BEBE8 /* WalletSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSkeletonView.swift; sourceTree = "<group>"; };
+		49F561832611D473006BEBE8 /* QuestSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestSkeletonView.swift; sourceTree = "<group>"; };
 		49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		49F5FE8B2601E73400D53D82 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
@@ -818,6 +822,14 @@
 			children = (
 				498BCFF125F785F000F04160 /* ProfileHeaderView.swift */,
 				498BCFF425F78D4D00F04160 /* ProfileTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		49F5617E2611B229006BEBE8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49F5617F2611B246006BEBE8 /* WalletSkeletonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1374,6 +1386,7 @@
 			isa = PBXGroup;
 			children = (
 				525DBA9C25F137A1001491AE /* QuestHeaderView.swift */,
+				49F561832611D473006BEBE8 /* QuestSkeletonView.swift */,
 				525DBAA025F16213001491AE /* QuestTableViewCell.swift */,
 			);
 			path = Views;
@@ -1696,6 +1709,7 @@
 			children = (
 				525DB88225E5578F001491AE /* Controllers */,
 				525DB9E225EE95EE001491AE /* View Model */,
+				49F5617E2611B229006BEBE8 /* Views */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -2047,6 +2061,7 @@
 				525DB9E425EE9600001491AE /* WalletViewModel.swift in Sources */,
 				226DA3FC2600750A009BC8CC /* FloatyViewController.swift in Sources */,
 				525DBA8725F01842001491AE /* OverviewViewController.swift in Sources */,
+				49F561802611B246006BEBE8 /* WalletSkeletonView.swift in Sources */,
 				525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */,
 				4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
@@ -2078,6 +2093,7 @@
 				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
 				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
 				226DA3FE2600750A009BC8CC /* FloatyDelegate.swift in Sources */,
+				49F561842611D473006BEBE8 /* QuestSkeletonView.swift in Sources */,
 				525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */,
 				226DA3F82600750A009BC8CC /* FloatyWindow.swift in Sources */,
 				49976C41260876FE0005F8F8 /* ShareViewController+DataSource.swift in Sources */,

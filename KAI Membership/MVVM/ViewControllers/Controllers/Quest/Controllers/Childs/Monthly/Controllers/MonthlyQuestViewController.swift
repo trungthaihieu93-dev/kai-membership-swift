@@ -12,6 +12,13 @@ class MonthlyQuestViewController: UIViewController {
     // MARK: Properties
     private(set) var quests = [QuestRemote]()
     
+    private let loaderView: QuestSkeletonView = {
+        let view = QuestSkeletonView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -25,6 +32,12 @@ class MonthlyQuestViewController: UIViewController {
         
         return tableView
     }()
+    
+    private var isHiddenLoader: Bool = false {
+        didSet {
+            loaderView.removeFromSuperview()
+        }
+    }
     
     // MARK: Life cycle's
     override func viewDidLoad() {
@@ -43,11 +56,23 @@ class MonthlyQuestViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        if !isHiddenLoader {
+            view.addSubview(loaderView)
+            
+            NSLayoutConstraint.activate([
+                loaderView.topAnchor.constraint(equalTo: view.topAnchor),
+                loaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                loaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                loaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        }
     }
     
     // MARK: Configure
     func configure(_ quests: [QuestRemote]) {
         self.quests = quests
         tableView.reloadData()
+        isHiddenLoader = true
     }
 }

@@ -49,13 +49,11 @@ class QuestViewModel {
     }
         
     private func mapQuest(quests: [QuestRemote], userQuests: [UserQuestRemote]) -> [QuestRemote] {
-        var newValue: [QuestRemote] = []
+        let newValue = quests.compactMap { $0.screenName == "GameScreen" ? nil : $0 }
         
         for userQuest in userQuests {
-            for i in 0..<quests.count where quests[i].key == userQuest.key {
-                let tmp = quests[i]
-                tmp.userQuest = userQuest
-                newValue.append(tmp)
+            for i in 0..<newValue.count where newValue[i].key == userQuest.key {
+                newValue[i].userQuest = userQuest
             }
         }
         

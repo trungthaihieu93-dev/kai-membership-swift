@@ -35,6 +35,13 @@ class WalletViewController: BaseViewController {
         return tableView
     }()
     
+    private let loaderView: WalletSkeletonView = {
+        let view = WalletSkeletonView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var cardView: KAICardView = {
         let view = KAICardView(with: AccountManagement.accountInfo?.kai)
         
@@ -68,12 +75,18 @@ class WalletViewController: BaseViewController {
     // MARK: Layout
     private func setupView() {
         view.addSubview(tableView)
+        view.addSubview(loaderView)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            loaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            loaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     
@@ -110,7 +123,7 @@ class WalletViewController: BaseViewController {
     }
     
     private func setupTableHeaderView() {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: KAICardView.height))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: cardView.height + 50))
         cardView.frame = CGRect(x: 30, y: 25, width: headerView.frame.width - 60, height: headerView.frame.height - 50)
         headerView.addSubview(cardView)
         
@@ -139,8 +152,12 @@ extension WalletViewController {
             this.cardView.configure(user.kai)
             this.tableView.reloadData()
             this.endRefreshing()
+            this.loaderView.removeFromSuperview()
         }, onError: { [weak self] error in
-            self?.endRefreshing()
+            guard let this = self else { return }
+            
+            this.endRefreshing()
+            this.loaderView.removeFromSuperview()
             debugPrint("Get transaction errror: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
     }

@@ -10,12 +10,15 @@ import UIKit
 class KAICardView: UIView {
     
     // MARK: Properties
-    static let height: CGFloat = 252
+    var height: CGFloat {
+        return cardImageView.frame.height
+    }
     
     private let cardImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "bg_card"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -167,11 +170,11 @@ class KAICardView: UIView {
             
             balanceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 26),
             balanceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            balanceLabel.trailingAnchor.constraint(greaterThanOrEqualTo: logoImageView.leadingAnchor, constant: 20),
+            balanceLabel.trailingAnchor.constraint(greaterThanOrEqualTo: logoImageView.leadingAnchor, constant: -20),
             
             kaiLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor),
             kaiLabel.leadingAnchor.constraint(equalTo: balanceLabel.leadingAnchor),
-            kaiLabel.trailingAnchor.constraint(greaterThanOrEqualTo: logoImageView.leadingAnchor, constant: 10),
+            kaiLabel.trailingAnchor.constraint(greaterThanOrEqualTo: logoImageView.leadingAnchor, constant: -10),
             
             walletAddressLabel.topAnchor.constraint(greaterThanOrEqualTo: kaiLabel.bottomAnchor, constant: 24),
             walletAddressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
