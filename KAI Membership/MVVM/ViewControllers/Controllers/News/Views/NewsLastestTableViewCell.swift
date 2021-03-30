@@ -17,14 +17,14 @@ class NewsLastestTableViewCell: UITableViewCell {
     
     private var lastests = [TwitterNews]()
     
-    private var imageNames = [
-        "news_8",
-        "news_9",
-        "news_10",
-        "news_11",
-        "news_12",
-        "news_13",
-        "news_14"
+    private var images = [
+        UIImage(named: "news_8")?.resizeImage(newWidth: 64 * 4),
+        UIImage(named: "news_9")?.resizeImage(newWidth: 64 * 4),
+        UIImage(named: "news_10")?.resizeImage(newWidth: 64 * 4),
+        UIImage(named: "news_11")?.resizeImage(newWidth: 64 * 4),
+        UIImage(named: "news_12")?.resizeImage(newWidth: 64 * 4),
+        UIImage(named: "news_13")?.resizeImage(newWidth: 64 * 4),
+        UIImage(named: "news_14")?.resizeImage(newWidth: 64 * 4)
     ]
     
     private lazy var itemSize: CGSize = {
@@ -97,9 +97,9 @@ extension NewsLastestTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsLastestCollectionViewCell.identifier, for: indexPath) as! NewsLastestCollectionViewCell
         
-        let randomIndex = Int(arc4random_uniform(UInt32(imageNames.count)))
-        let imageName = self.imageNames[randomIndex]
-        cell.configure(lastests[indexPath.row], image: UIImage(named: imageName)?.resizeImage(newWidth: 64 * 4))
+        let randomIndex = Int(arc4random_uniform(UInt32(images.count)))
+        let image = self.images[randomIndex]
+        cell.configure(lastests[indexPath.row], image: image)
         
         return cell
     }

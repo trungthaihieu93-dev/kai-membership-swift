@@ -14,14 +14,14 @@ class NewsSuggestionTableViewCell: UITableViewCell {
     
     private var suggestions = [MediumNews]()
     
-    private var imageNames = [
-        "news_1",
-        "news_2",
-        "news_3",
-        "news_4",
-        "news_5",
-        "news_6",
-        "news_7"
+    private let images = [
+        UIImage(named: "news_1")?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4),
+        UIImage(named: "news_2")?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4),
+        UIImage(named: "news_3")?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4),
+        UIImage(named: "news_4")?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4),
+        UIImage(named: "news_5")?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4),
+        UIImage(named: "news_6")?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4),
+        UIImage(named: "news_7")?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4)
     ]
     
     private(set) lazy var collectionView: UICollectionView = {
@@ -84,9 +84,9 @@ extension NewsSuggestionTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsSuggestionCollectionViewCell.identifier, for: indexPath) as! NewsSuggestionCollectionViewCell
         
-        let randomIndex = Int(arc4random_uniform(UInt32(imageNames.count)))
-        let imageName = self.imageNames[randomIndex]
-        cell.configure(suggestions[indexPath.row], image: UIImage(named: imageName)?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4))
+        let randomIndex = Int(arc4random_uniform(UInt32(images.count)))
+        let image = self.images[randomIndex]
+        cell.configure(suggestions[indexPath.row], image: image)
         
         return cell
     }
