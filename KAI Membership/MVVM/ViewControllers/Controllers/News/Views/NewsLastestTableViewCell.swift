@@ -17,7 +17,15 @@ class NewsLastestTableViewCell: UITableViewCell {
     
     private var lastests = [TwitterNews]()
     
-    
+    private var imageNames = [
+        "news_8",
+        "news_9",
+        "news_10",
+        "news_11",
+        "news_12",
+        "news_13",
+        "news_14"
+    ]
     
     private lazy var itemSize: CGSize = {
         let width: CGFloat = collectionView.frame.width - (sectionInset.left + sectionInset.right)
@@ -88,7 +96,10 @@ extension NewsLastestTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsLastestCollectionViewCell.identifier, for: indexPath) as! NewsLastestCollectionViewCell
-        cell.configure(lastests[indexPath.row])
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(imageNames.count)))
+        let imageName = self.imageNames[randomIndex]
+        cell.configure(lastests[indexPath.row], image: UIImage(named: imageName))
         
         return cell
     }
