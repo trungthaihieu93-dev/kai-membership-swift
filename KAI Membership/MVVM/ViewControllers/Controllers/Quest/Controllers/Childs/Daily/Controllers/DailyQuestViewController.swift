@@ -33,6 +33,10 @@ class DailyQuestViewController: UIViewController {
         return tableView
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()

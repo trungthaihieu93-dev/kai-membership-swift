@@ -39,6 +39,10 @@ class MonthlyQuestViewController: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()

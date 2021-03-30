@@ -32,7 +32,7 @@ class QuestHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.attributedText = NSAttributedString(string: "Mission", attributes: [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 36, weight: .regular),
+            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 36, weight: .black),
             NSAttributedString.Key.foregroundColor: UIColor.white
         ])
         
