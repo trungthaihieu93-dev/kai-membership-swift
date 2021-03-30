@@ -36,14 +36,14 @@ class RootNavigationController: UINavigationController {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.setBackgroundImage(UIImage(), for: .compact)
         navigationBar.shadowImage = UIImage()
-        navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 20, weight: .regular),
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
-        ]
-        navigationBar.largeTitleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 36, weight: .regular),
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
-        ]
+//        navigationBar.titleTextAttributes = [
+//            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 20, weight: .regular),
+//            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+//        ]
+//        navigationBar.largeTitleTextAttributes = [
+//            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 36, weight: .regular),
+//            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+//        ]
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -12), for: .default)
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -12), for: .compact)
     }
@@ -55,6 +55,10 @@ class RootNavigationController: UINavigationController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return visibleViewController?.preferredStatusBarStyle ?? .lightContent
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
