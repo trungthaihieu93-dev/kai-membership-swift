@@ -250,6 +250,7 @@ final class Navigator {
             guard let url = URL(string: String(format: Constants.spinLink, arguments: [token, Constants.Device.languageCode, Constants.Device.id])) else { return }
             
             TrackingServices.gameSpin()
+            TrackingServices.trackingGame()
             let vc = WebViewController(with: url)
             vc.modalPresentationStyle = .fullScreen
             viewController.present(vc, animated: true, completion: nil)
