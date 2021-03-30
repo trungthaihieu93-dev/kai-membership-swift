@@ -14,7 +14,10 @@ class NewsLastestTableViewCell: UITableViewCell {
     
     private let minimumInteritemSpacing: CGFloat = 20
     private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 20, right: 20)
+    
     private var lastests = [TwitterNews]()
+    
+    
     
     private lazy var itemSize: CGSize = {
         let width: CGFloat = collectionView.frame.width - (sectionInset.left + sectionInset.right)

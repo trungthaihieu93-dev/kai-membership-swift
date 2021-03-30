@@ -14,6 +14,16 @@ class NewsSuggestionTableViewCell: UITableViewCell {
     
     private var suggestions = [MediumNews]()
     
+    private var imageNames = [
+        "news_1",
+        "news_2",
+        "news_3",
+        "news_4",
+        "news_5",
+        "news_6",
+        "news_7"
+    ]
+    
     private(set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -73,7 +83,10 @@ extension NewsSuggestionTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsSuggestionCollectionViewCell.identifier, for: indexPath) as! NewsSuggestionCollectionViewCell
-        cell.configure(suggestions[indexPath.row])
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(imageNames.count)))
+        let imageName = self.imageNames[randomIndex]
+        cell.configure(suggestions[indexPath.row], image: UIImage(named: imageName))
         
         return cell
     }

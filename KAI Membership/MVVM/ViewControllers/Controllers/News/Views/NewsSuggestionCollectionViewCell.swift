@@ -90,8 +90,8 @@ class NewsSuggestionCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Configure
-    func configure(_ new: MediumNews) {
-        coverImageView.setImage(from: new.thumbnail)
+    func configure(_ new: MediumNews, image: UIImage?) {
+        coverImageView.image = image
         publicDateLabel.text = new.publicDate
         titleLabel.attributedText = new.title?.setTextWithFormat(font: .workSansFont(ofSize: 16, weight: .semiBold), lineHeight: 26, textColor: .white, lineHeightMultiple: 1.39)
     }
