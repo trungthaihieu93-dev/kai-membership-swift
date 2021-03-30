@@ -86,7 +86,7 @@ extension NewsSuggestionTableViewCell: UICollectionViewDataSource {
         
         let randomIndex = Int(arc4random_uniform(UInt32(imageNames.count)))
         let imageName = self.imageNames[randomIndex]
-        cell.configure(suggestions[indexPath.row], image: UIImage(named: imageName))
+        cell.configure(suggestions[indexPath.row], image: UIImage(named: imageName)?.resizeImage(newWidth: NewsSuggestionTableViewCell.itemSize.width * 4))
         
         return cell
     }

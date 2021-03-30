@@ -99,7 +99,7 @@ extension NewsLastestTableViewCell: UICollectionViewDataSource {
         
         let randomIndex = Int(arc4random_uniform(UInt32(imageNames.count)))
         let imageName = self.imageNames[randomIndex]
-        cell.configure(lastests[indexPath.row], image: UIImage(named: imageName))
+        cell.configure(lastests[indexPath.row], image: UIImage(named: imageName)?.resizeImage(newWidth: 64 * 4))
         
         return cell
     }
