@@ -92,7 +92,7 @@ class NewsLastestCollectionViewCell: UICollectionViewCell {
     // MARK: Configure
     func configure(_ new: TwitterNews) {
         coverImageView.setImage(from: new.mediaLink, placeholder: UIImage(named: "logo"))
-        publicDateLabel.text = new.createdAt
+        publicDateLabel.text = new.createdAt?.toDate("EEE MMM dd HH:mm:ss Z yyyy")?.toString("EEE, dd MMM yyyy")
         titleLabel.attributedText = new.title?.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .semiBold), lineHeight: 20, textColor: UIColor.black.withAlphaComponent(0.87), lineHeightMultiple: 1.22)
     }
 }

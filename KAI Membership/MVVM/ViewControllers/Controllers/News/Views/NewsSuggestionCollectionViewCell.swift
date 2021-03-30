@@ -92,7 +92,7 @@ class NewsSuggestionCollectionViewCell: UICollectionViewCell {
     // MARK: Configure
     func configure(_ new: MediumNews) {
         coverImageView.setImage(from: new.thumbnail)
-        publicDateLabel.text = new.publicDate
+        publicDateLabel.text = new.publicDate?.toDate("yyyy-MM-dd HH:mm:ss")?.toString("EEE, dd MMM yyyy")
         titleLabel.attributedText = new.title?.setTextWithFormat(font: .workSansFont(ofSize: 16, weight: .semiBold), lineHeight: 26, textColor: .white, lineHeightMultiple: 1.39)
     }
 }

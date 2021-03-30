@@ -18,13 +18,21 @@ class TrackingServices {
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
     
-    // MARK: Tracking game spin
-    class func gameSpin(_ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
+    // MARK: Tracking game
+    class func trackingGame(_ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/trackings", method: .post)
         input.params["type_tracking"] = "GAME"
         input.params["description"] = "Flying bird"
         input.params["device_id"] = Constants.Device.id
         
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
+    
+    // MARK: Game spin
+    class func gameSpin(_ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/spins", method: .post)
+        input.params["device_id"] = Constants.Device.id
+
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
 }
