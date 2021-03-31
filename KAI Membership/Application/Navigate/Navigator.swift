@@ -249,7 +249,7 @@ final class Navigator {
         if let token = AccountManagement.accessToken {
             guard let url = URL(string: String(format: Constants.spinLink, arguments: [token, Constants.Device.languageCode, Constants.Device.id])) else { return }
             
-            TrackingServices.gameSpin()
+//            TrackingServices.gameSpin()
             TrackingServices.trackingGame()
             let vc = WebViewController(with: url)
             vc.modalPresentationStyle = .fullScreen
