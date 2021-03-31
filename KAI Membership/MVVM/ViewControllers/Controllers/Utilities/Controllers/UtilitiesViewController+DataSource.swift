@@ -11,14 +11,22 @@ import UIKit
 extension UtilitiesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return Section.allCases.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let sectionType = Section(rawValue: indexPath.row) else { return UITableViewCell() }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: UtilitiesTableViewCell.identifier, for: indexPath) as! UtilitiesTableViewCell
-        cell.configure(with: .mobileTopup)
-        cell.didFinishTouchingAction = { [weak self] in
-            self?.mobileTopup()
+        cell.delegate = self
+        
+        switch sectionType {
+        case .mobileTopup:
+            cell.configure(with: .mobileTopup)
+        case .getVouchers:
+            cell.configure(with: .getVouchers)
+        case .kaiStarter:
+            cell.configure(with: .kaiStarter)
         }
         
         return cell

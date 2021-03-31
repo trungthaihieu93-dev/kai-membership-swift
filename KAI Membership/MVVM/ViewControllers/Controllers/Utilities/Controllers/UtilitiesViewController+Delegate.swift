@@ -27,3 +27,18 @@ extension UtilitiesViewController: KAIBarButtonItemViewDelegate {
         }
     }
 }
+
+// MARK: UtilitiesTableViewCellDelegate
+extension UtilitiesViewController: UtilitiesTableViewCellDelegate {
+    
+    func utilitiesTableViewCell(_ utilitiesTableViewCell: UtilitiesTableViewCell, didSelectEvent event: UtilitiesTableViewCell.`Type`) {
+        switch event {
+        case .mobileTopup:
+            Navigator.navigateToTopupVC(from: self)
+        case .getVouchers:
+            break
+        case .kaiStarter:
+            Navigator.navigateToKaiStarterVC(from: self)
+        }
+    }
+}

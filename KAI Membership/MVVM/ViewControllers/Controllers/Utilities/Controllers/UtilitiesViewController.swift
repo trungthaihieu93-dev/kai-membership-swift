@@ -10,6 +10,12 @@ import UIKit
 class UtilitiesViewController: BaseViewController {
 
     // MARK: Properties
+    enum Section: Int, CaseIterable {
+        case mobileTopup
+        case kaiStarter
+        case getVouchers
+    }
+    
     private lazy var rightBarButtonItemView: KAIBarButtonItemView = {
         let view = KAIBarButtonItemView()
         view.delegate = self
@@ -50,11 +56,6 @@ class UtilitiesViewController: BaseViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-    }
-    
-    // MARK: Methods
-    func mobileTopup() {
-        Navigator.navigateToTopupVC(from: self)
     }
     
     // MARK: Handle actions

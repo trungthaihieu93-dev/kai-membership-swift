@@ -7,13 +7,20 @@
 
 import UIKit
 
+protocol UtilitiesTableViewCellDelegate: class {
+    func utilitiesTableViewCell(_ utilitiesTableViewCell: UtilitiesTableViewCell, didSelectEvent event: UtilitiesTableViewCell.`Type`)
+}
+
 class UtilitiesTableViewCell: UITableViewCell {
     
     // MARK: Properties
     enum `Type` {
         case mobileTopup
         case getVouchers
+        case kaiStarter
     }
+    
+    private var type: `Type` = .mobileTopup
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -34,9 +41,9 @@ class UtilitiesTableViewCell: UITableViewCell {
     }()
     
     private let contentImageView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "image_mobile_topup"))
+        let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         
         return view
     }()
@@ -61,7 +68,7 @@ class UtilitiesTableViewCell: UITableViewCell {
         return view
     }()
     
-    var didFinishTouchingAction: (() -> Void)?
+    weak var delegate: UtilitiesTableViewCellDelegate?
     
     // MARK: Life cycle's
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -92,13 +99,11 @@ class UtilitiesTableViewCell: UITableViewCell {
             
             contentImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 32),
             contentImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            contentImageView.widthAnchor.constraint(equalToConstant: 141.632),
-            contentImageView.heightAnchor.constraint(equalToConstant: 98.68),
-            contentImageView.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -24),
+            contentImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24),
             
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 22),
-            titleLabel.trailingAnchor.constraint(equalTo: contentImageView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentImageView.leadingAnchor),
             
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -114,8 +119,11 @@ class UtilitiesTableViewCell: UITableViewCell {
     
     // MARK: Layout
     func configure(with type: `Type`) {
+        self.type = type
+        
         switch type {
         case .mobileTopup:
+            contentImageView.image = UIImage(named: "image_mobile_topup")
             titleLabel.text = "Mobile Topup"
             descriptionLabel.attributedText = "Topup your mobile account \nwith KAI.".setTextWithFormat(font: .workSansFont(ofSize: 10, weight: .medium), lineHeight: 16, textColor: UIColor.black.withAlphaComponent(0.54))
             button.setAttributedTitle(NSAttributedString(string: "Topup Now", attributes: [
@@ -123,9 +131,18 @@ class UtilitiesTableViewCell: UITableViewCell {
                 NSAttributedString.Key.foregroundColor: UIColor.init(hex: "29323D")
             ]), for: .normal)
         case .getVouchers:
+            contentImageView.image = UIImage(named: "image_get_vouchers")
             titleLabel.text = "Get Vouchers"
             descriptionLabel.attributedText = "Voucher here, vouchers there, \nvouchers everywhere.".setTextWithFormat(font: .workSansFont(ofSize: 10, weight: .medium), lineHeight: 16, textColor: UIColor.black.withAlphaComponent(0.54))
             button.setAttributedTitle(NSAttributedString(string: "Get my Vouchers", attributes: [
+                NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 12, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.init(hex: "29323D")
+            ]), for: .normal)
+        case .kaiStarter:
+            contentImageView.image = UIImage(named: "image_kai_starter")
+            titleLabel.text = "KAI Starter"
+            descriptionLabel.attributedText = "Think Kickstarter meets \nLock&Earn".setTextWithFormat(font: .workSansFont(ofSize: 10, weight: .medium), lineHeight: 16, textColor: UIColor.black.withAlphaComponent(0.54))
+            button.setAttributedTitle(NSAttributedString(string: "Invest", attributes: [
                 NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 12, weight: .medium),
                 NSAttributedString.Key.foregroundColor: UIColor.init(hex: "29323D")
             ]), for: .normal)
@@ -137,6 +154,6 @@ class UtilitiesTableViewCell: UITableViewCell {
 extension UtilitiesTableViewCell {
     
     @objc private func onPressedAction() {
-        didFinishTouchingAction?()
+        delegate?.utilitiesTableViewCell(self, didSelectEvent: self.type)
     }
 }
