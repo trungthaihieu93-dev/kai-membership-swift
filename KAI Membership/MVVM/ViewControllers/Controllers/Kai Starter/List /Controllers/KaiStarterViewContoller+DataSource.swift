@@ -18,6 +18,8 @@ extension KaiStarterViewContoller: UITableViewDataSource {
         guard let itemType = ItemType(rawValue: indexPath.row) else { return UITableViewCell() }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: KaiStarterTableViewCell.identifier, for: indexPath) as! KaiStarterTableViewCell
+        cell.collectionView.tag = indexPath.row
+        cell.delegate = self
         
         switch itemType {
         case .ongoing:

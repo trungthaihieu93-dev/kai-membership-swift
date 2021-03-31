@@ -277,4 +277,15 @@ final class Navigator {
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    /*
+     Điều hướng tới màn hình chi tiết Kai Starter
+     - parameter id:
+     - parameter title:
+     */
+    class func navigateToKaiStarterDetailVC(from viewController: UIViewController? = nil, with id: String, and title: String) {
+        let vc = KaiStarterDetailViewContoller(with: id, and: title)
+        vc.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

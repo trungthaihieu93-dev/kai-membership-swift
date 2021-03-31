@@ -92,6 +92,9 @@
 		49D49EA526144EB600E5AB91 /* KaiStarterViewContoller+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EA426144EB600E5AB91 /* KaiStarterViewContoller+DataSource.swift */; };
 		49D49EB4261475BC00E5AB91 /* KaiStarterDetailViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EB3261475BC00E5AB91 /* KaiStarterDetailViewContoller.swift */; };
 		49D49EB7261475E800E5AB91 /* KaiStarterDetailViewContoller+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EB6261475E800E5AB91 /* KaiStarterDetailViewContoller+DataSource.swift */; };
+		49D49EC32614805400E5AB91 /* KaiStarterViewContoller+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EC22614805400E5AB91 /* KaiStarterViewContoller+Delegate.swift */; };
+		49D49EC7261482B800E5AB91 /* KaiStarterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EC6261482B800E5AB91 /* KaiStarterDetailViewModel.swift */; };
+		49D49ECA261484C700E5AB91 /* KaiStarterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EC9261484C700E5AB91 /* KaiStarterCollectionViewCell.swift */; };
 		49D9ACA1260DAFA700A459AF /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		49ECF7B6260C3618000A8AB2 /* ReferralsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */; };
@@ -326,6 +329,9 @@
 		49D49EA426144EB600E5AB91 /* KaiStarterViewContoller+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KaiStarterViewContoller+DataSource.swift"; sourceTree = "<group>"; };
 		49D49EB3261475BC00E5AB91 /* KaiStarterDetailViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterDetailViewContoller.swift; sourceTree = "<group>"; };
 		49D49EB6261475E800E5AB91 /* KaiStarterDetailViewContoller+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KaiStarterDetailViewContoller+DataSource.swift"; sourceTree = "<group>"; };
+		49D49EC22614805400E5AB91 /* KaiStarterViewContoller+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KaiStarterViewContoller+Delegate.swift"; sourceTree = "<group>"; };
+		49D49EC6261482B800E5AB91 /* KaiStarterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterDetailViewModel.swift; sourceTree = "<group>"; };
+		49D49EC9261484C700E5AB91 /* KaiStarterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterCollectionViewCell.swift; sourceTree = "<group>"; };
 		49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsServices.swift; sourceTree = "<group>"; };
@@ -847,6 +853,7 @@
 			children = (
 				49D49E9D26144D5B00E5AB91 /* KaiStarterViewContoller.swift */,
 				49D49EA426144EB600E5AB91 /* KaiStarterViewContoller+DataSource.swift */,
+				49D49EC22614805400E5AB91 /* KaiStarterViewContoller+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -855,6 +862,7 @@
 			isa = PBXGroup;
 			children = (
 				49D49EA126144E1000E5AB91 /* KaiStarterTableViewCell.swift */,
+				49D49EC9261484C700E5AB91 /* KaiStarterCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -872,6 +880,7 @@
 			isa = PBXGroup;
 			children = (
 				49D49EB2261475A000E5AB91 /* Controllers */,
+				49D49EC52614829F00E5AB91 /* View Model */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -883,6 +892,14 @@
 				49D49EB6261475E800E5AB91 /* KaiStarterDetailViewContoller+DataSource.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		49D49EC52614829F00E5AB91 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				49D49EC6261482B800E5AB91 /* KaiStarterDetailViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		49E03A0025F6353800119F55 /* Views */ = {
@@ -2109,6 +2126,7 @@
 				525DBA6F25F0121F001491AE /* NewsViewController+ Delegate.swift in Sources */,
 				4963D08A25FF2D5700720B34 /* RewardsTableViewCell.swift in Sources */,
 				4951731926008F200063AEF7 /* CaptchaRemote.swift in Sources */,
+				49D49EC32614805400E5AB91 /* KaiStarterViewContoller+Delegate.swift in Sources */,
 				525DB9F025EFD254001491AE /* SelectAccountViewModel.swift in Sources */,
 				525DBAF825F286B8001491AE /* LoginRemote.swift in Sources */,
 				525DBB0525F28949001491AE /* WalletRemote.swift in Sources */,
@@ -2138,6 +2156,7 @@
 				226DA3FC2600750A009BC8CC /* FloatyViewController.swift in Sources */,
 				525DBA8725F01842001491AE /* OverviewViewController.swift in Sources */,
 				49F561802611B246006BEBE8 /* WalletSkeletonView.swift in Sources */,
+				49D49ECA261484C700E5AB91 /* KaiStarterCollectionViewCell.swift in Sources */,
 				525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */,
 				4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
@@ -2258,6 +2277,7 @@
 				525DBA6125F00F70001491AE /* NewRemote.swift in Sources */,
 				494099EF260B467400F92119 /* Notification+Extension.swift in Sources */,
 				5265497125F5ED9C003AE21A /* PasswordViewController+Delegate.swift in Sources */,
+				49D49EC7261482B800E5AB91 /* KaiStarterDetailViewModel.swift in Sources */,
 				525DBA7525F016F2001491AE /* QuestViewController+DataSource.swift in Sources */,
 				525DBA5D25F00F2B001491AE /* NewsViewModel.swift in Sources */,
 				525DB8FB25E77734001491AE /* SelectAccountTableViewCell.swift in Sources */,

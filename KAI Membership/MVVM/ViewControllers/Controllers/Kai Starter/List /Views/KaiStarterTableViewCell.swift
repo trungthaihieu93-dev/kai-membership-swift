@@ -15,6 +15,8 @@ protocol KaiStarterTableViewCellDelegate: class {
 class KaiStarterTableViewCell: UITableViewCell {
     
     // MARK: Properties
+    private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,14 +49,14 @@ class KaiStarterTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 8
 //        layout.minimumInteritemSpacing = minimumInteritemSpacing
-        layout.sectionInset = .init(top: 6, left: 20, bottom: 6, right: 20)
+        layout.sectionInset = sectionInset
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
         view.isPagingEnabled = false
         view.decelerationRate = .fast
-        view.register(NewsLastestCollectionViewCell.self, forCellWithReuseIdentifier: NewsLastestCollectionViewCell.identifier)
+        view.register(KaiStarterCollectionViewCell.self, forCellWithReuseIdentifier: KaiStarterCollectionViewCell.identifier)
         view.dataSource = self
         view.delegate = self
         
@@ -82,8 +84,6 @@ class KaiStarterTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(viewAllButton)
         contentView.addSubview(collectionView)
-        
-        collectionView.backgroundColor = .red
         
         NSLayoutConstraint.activate([
             viewAllButton.topAnchor.constraint(equalTo: topAnchor, constant: 2),
@@ -115,7 +115,8 @@ extension KaiStarterTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsLastestCollectionViewCell.identifier, for: indexPath) as! NewsLastestCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KaiStarterCollectionViewCell.identifier, for: indexPath) as! KaiStarterCollectionViewCell
+        cell.configure(imageLink: nil, title: "Sugar Baby \(indexPath.row)", description: "A web drama produced by Big Cat Entertainment and broadcast on 6 million-subscribers Youtube channel - Ghien Mi Go.", curentKai: 8700000, backers: 32, totalKai: 10000000)
         
         return cell
     }
@@ -125,7 +126,9 @@ extension KaiStarterTableViewCell: UICollectionViewDataSource {
 extension KaiStarterTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 300)
+        let width: CGFloat = collectionView.frame.width - (sectionInset.left + sectionInset.right)
+        
+        return CGSize(width: width, height: KaiStarterCollectionViewCell.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

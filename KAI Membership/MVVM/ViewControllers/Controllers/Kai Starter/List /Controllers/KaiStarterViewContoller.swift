@@ -20,12 +20,11 @@ class KaiStarterViewContoller: BaseViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.rowHeight = 340
         tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         tableView.register(KaiStarterTableViewCell.self, forCellReuseIdentifier: KaiStarterTableViewCell.identifier)
         tableView.dataSource = self
-//        tableView.delegate = self
+        tableView.delegate = self
         
         return tableView
     }()
