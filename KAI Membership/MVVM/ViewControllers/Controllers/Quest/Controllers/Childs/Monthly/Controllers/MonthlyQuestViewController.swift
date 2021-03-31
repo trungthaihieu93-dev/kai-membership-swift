@@ -29,6 +29,7 @@ class MonthlyQuestViewController: UIViewController {
         tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.identifier)
         tableView.register(QuestTableViewCell.self, forCellReuseIdentifier: QuestTableViewCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         
         return tableView
     }()
@@ -38,6 +39,8 @@ class MonthlyQuestViewController: UIViewController {
             loaderView.removeFromSuperview()
         }
     }
+    
+    var didFinishTouchingInviteFriend: (() -> Void)?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

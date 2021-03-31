@@ -27,8 +27,27 @@ class QuestViewController: BaseViewController {
         return childVC
     }()
     
-    let dailyVC = DailyQuestViewController()
-    let monthlyVC = MonthlyQuestViewController()
+    lazy var dailyVC: DailyQuestViewController = {
+        let vc = DailyQuestViewController()
+        vc.didFinishTouchingInviteFriend = { [weak self] in
+            let items = [AccountManagement.accountInfo?.user?.refarralAppflyerLink ?? ""]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self?.present(ac, animated: true)
+        }
+        
+        return vc
+    }()
+    
+    lazy var monthlyVC: MonthlyQuestViewController = {
+        let vc = MonthlyQuestViewController()
+        vc.didFinishTouchingInviteFriend = { [weak self] in
+            let items = [AccountManagement.accountInfo?.user?.refarralAppflyerLink ?? ""]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self?.present(ac, animated: true)
+        }
+        
+        return vc
+    }()
     
     private(set) lazy var headerView: QuestHeaderView = {
         let view = QuestHeaderView()

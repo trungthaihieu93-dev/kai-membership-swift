@@ -85,6 +85,8 @@
 		49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */; };
 		49CAC10C25FB6B9A00577D33 /* TrackingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */; };
 		49CAC11025FB74C900577D33 /* PasscodeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10F25FB74C900577D33 /* PasscodeServices.swift */; };
+		49D49E9626142A7500E5AB91 /* DailyQuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49E9526142A7500E5AB91 /* DailyQuestViewController+Delegate.swift */; };
+		49D49E9926142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49E9826142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift */; };
 		49D9ACA1260DAFA700A459AF /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */; };
 		49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */; };
 		49ECF7B6260C3618000A8AB2 /* ReferralsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */; };
@@ -312,6 +314,8 @@
 		49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestRemote.swift; sourceTree = "<group>"; };
 		49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServices.swift; sourceTree = "<group>"; };
 		49CAC10F25FB74C900577D33 /* PasscodeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeServices.swift; sourceTree = "<group>"; };
+		49D49E9526142A7500E5AB91 /* DailyQuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyQuestViewController+Delegate.swift"; sourceTree = "<group>"; };
+		49D49E9826142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyQuestViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIBarButtonItemView.swift; sourceTree = "<group>"; };
 		49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsServices.swift; sourceTree = "<group>"; };
@@ -1481,6 +1485,7 @@
 			children = (
 				525DBAA725F164AA001491AE /* DailyQuestViewController.swift */,
 				525DBAB025F1689A001491AE /* DailyQuestViewController+DataSource.swift */,
+				49D49E9526142A7500E5AB91 /* DailyQuestViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1490,6 +1495,7 @@
 			children = (
 				525DBAAB25F164C0001491AE /* MonthlyQuestViewController.swift */,
 				525DBAB725F16921001491AE /* MonthlyQuestViewController+DataSource.swift */,
+				49D49E9826142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2077,6 +2083,7 @@
 				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
 				495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */,
+				49D49E9626142A7500E5AB91 /* DailyQuestViewController+Delegate.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
 				226DA3FB2600750A009BC8CC /* UIView+Draggable.swift in Sources */,
 				226DA42E2600B5E2009BC8CC /* BuyViewController.swift in Sources */,
@@ -2159,6 +2166,7 @@
 				525DBA5125F007CB001491AE /* KeyChain.swift in Sources */,
 				4928738E2602FA98002BAE39 /* Int+Extensions.swift in Sources */,
 				525DB9C925ED397F001491AE /* SignInViewModel.swift in Sources */,
+				49D49E9926142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift in Sources */,
 				525DB9F725EFD5B7001491AE /* DeviceServices.swift in Sources */,
 				525DBA9D25F137A1001491AE /* QuestHeaderView.swift in Sources */,
 				525DB8EE25E6B88C001491AE /* UserLocal.swift in Sources */,
