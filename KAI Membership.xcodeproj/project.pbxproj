@@ -2339,7 +2339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "KAI Membership/Application/Supporting/KAI Membership.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
 				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2363,7 +2363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "KAI Membership/Application/Supporting/KAI Membership.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
 				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
