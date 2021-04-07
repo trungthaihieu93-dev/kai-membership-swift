@@ -136,7 +136,7 @@ class SignUpViewController: BaseViewController {
         
         signUpView.isLoading = true
         let email = signUpView.emailTextField.contentInput
-        viewModel.register(captcha: signUpView.captchaTextField.contentInput, username: email, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
+        viewModel.register(captcha: signUpView.captchaTextField.contentInput, email: email, password: signUpView.confirmPasswordTextField.contentInput).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] info in
             guard let this = self else { return }
             
             TrackingManagement.registrationSuccessfully(registrationMethod: .google, userID: AccountManagement.accountID, email: email, time: Int(Date().timeIntervalSince1970 * 1000))

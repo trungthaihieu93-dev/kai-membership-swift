@@ -148,8 +148,8 @@ class AccountManagement {
         }
     }
     
-    class func register(username: String, email: String, password: String, _ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
-        UserServices.register(username: username, email: email, password: password) {
+    class func register(email: String, password: String, _ completion: @escaping (APIResult<AccountInfoRemote, APIErrorResult>) -> Void) {
+        UserServices.register(email: email, password: password) {
             switch $0 {
             case .success(let result):
                 if let referrerID = AppSetting.referrerID, !referrerID.isEmpty {

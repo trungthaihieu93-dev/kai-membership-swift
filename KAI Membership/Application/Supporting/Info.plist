@@ -36,9 +36,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We need to access your camera your take photos</string>
+	<string>We need to access your camera to help you choose a best profile picture.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We need to access your photo library</string>
+	<string>We need to access your camera to help you choose a best profile picture.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>WorkSans-Black.ttf</string>

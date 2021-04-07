@@ -10,6 +10,8 @@ import UIKit
 
 class UserServices {
     
+    // NOTE: Hiện tại username = email
+    
     // MARK: Login
     class func login(email: String, password: String, _ completion: @escaping (APIResult<APIDataResults<LoginRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/auth/login", method: .post)
@@ -28,13 +30,13 @@ class UserServices {
     }
     
     // MARK: Register
-    class func register(username: String, email: String, password: String, _ completion: @escaping (APIResult<APIDataResults<LoginRemote>, APIErrorResult>) -> Void) {
+    class func register(email: String, password: String, _ completion: @escaping (APIResult<APIDataResults<LoginRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/auth/register", method: .post)
-        input.params["username"] = username
+        input.params["username"] = email
         input.params["password"] = password
         input.params["email"] = email
-        input.params["first_name"] = username
-        input.params["last_name"] = username
+        input.params["first_name"] = "User"
+        input.params["last_name"] = "\(Date().timeIntervalSince1970)"
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
@@ -67,7 +69,7 @@ class UserServices {
     class func updateInfomation(name: String, phoneNumber: String, birthday: Double? = nil, _ completion: @escaping (APIResult<APIDataResults<String>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/users/info", method: .post)
         input.params["firstName"] = name
-        input.params["lastName"] = name
+        input.params["lastName"] = AccountManagement.accountInfo?.kai?.lastName ?? "\(Date().timeIntervalSince1970)"
         input.params["phone"] = phoneNumber
         
         if let birthday = birthday {
