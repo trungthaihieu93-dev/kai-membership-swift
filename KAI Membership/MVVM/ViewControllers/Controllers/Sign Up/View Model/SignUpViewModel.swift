@@ -13,13 +13,13 @@ class SignUpViewModel {
     private var captchaID: String = ""
     
     // MARK: Methods
-    func register(captcha: String, username: String, email: String, password: String) -> Observable<AccountInfoRemote> {
+    func register(captcha: String, email: String, password: String) -> Observable<AccountInfoRemote> {
         let captchaID = self.captchaID
         return Observable<AccountInfoRemote>.create { (observer) -> Disposable in
             CaptchaServices.verifyCaptcha(with: captchaID, captcha: captcha) {
                 switch $0 {
                 case .success:
-                    AccountManagement.register(username: username, email: email, password: password) {
+                    AccountManagement.register(email: email, password: password) {
                         switch $0 {
                         case .success(let result):
                             observer.onNext(result)
