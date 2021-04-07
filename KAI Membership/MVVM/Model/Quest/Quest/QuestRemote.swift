@@ -15,8 +15,14 @@ enum QuestType: String {
 enum QuestKey: String {
     case highestScores = "HIGHEST_SCORES"// Web
     case thiryMinutes = "THIRTY_MINUTES" // play game 30' // Web
-    case inviteFriend = "INVITE_FRIEND" // share // mobile
-    case signIn = "SIGN_IN" // activity => done
+    case inviteFriend = "INVITE_FRIEND" // ok
+    case sendKai = "SEND_KAI" //đẩy màn hình send Kai (chuyễn thành công thì mới gọi API này update nhiệm vụ send Kai)
+    case encourageKaiTeam = "ENCOURAGE_KAI_TEAM" // gọi hàm request racing => hoàn thành
+    case signIn = "SIGN_IN"
+    case verifyEmail = "VERIFY_MY_EMAIL"
+    case followTwitter = "FOLLOW_US_ON_TWITTER"
+    case likeFBPage = "LIKE_OUR_FACEBOOK_PAGE"
+    case joinTelegramGroup = "JOIN_OUR_TELEGRAM_GROUP"
 }
 
 class QuestRemote: BaseModel {
