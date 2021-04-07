@@ -123,8 +123,8 @@ class WalletViewController: BaseViewController {
     }
     
     private func setupTableHeaderView() {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: cardView.height + 50))
-        cardView.frame = CGRect(x: 30, y: 25, width: headerView.frame.width - 60, height: headerView.frame.height - 50)
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: cardView.height + 24))
+        cardView.frame = CGRect(x: 30, y: 12, width: headerView.frame.width - 60, height: headerView.frame.height - 24)
         headerView.addSubview(cardView)
         
         tableView.tableHeaderView = headerView

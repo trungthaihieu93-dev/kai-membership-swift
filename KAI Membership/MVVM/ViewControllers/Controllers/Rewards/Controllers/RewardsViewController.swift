@@ -24,7 +24,7 @@ class RewardsViewController: BaseViewController {
         view.didFinishTouchingGoToMission = { [weak self] in
             guard let this = self else { return }
             
-            Navigator.navigateToQuestVC(from: this)
+            Navigator.navigateToMissionVC(from: this)
         }
         
         return view

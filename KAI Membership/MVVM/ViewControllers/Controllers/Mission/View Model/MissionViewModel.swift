@@ -1,5 +1,5 @@
 //
-//  QuestViewModel.swift
+//  MissionViewModel.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 05/03/2021.
@@ -7,7 +7,7 @@
 
 import RxSwift
 
-class QuestViewModel {
+class MissionViewModel {
     
     // MARK: Properties
     private(set) var quests = [QuestRemote]()

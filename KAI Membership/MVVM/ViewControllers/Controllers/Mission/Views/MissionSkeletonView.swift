@@ -1,5 +1,5 @@
 //
-//  QuestSkeletonView.swift
+//  MissionSkeletonView.swift
 //  KAI Membership
 //
 //  Created by DAKiet on 29/03/2021.
@@ -7,7 +7,7 @@
 
 import SkeletonView
 
-class QuestSkeletonView: UIView {
+class MissionSkeletonView: UIView {
     
     // MARK: Properties
     private let imageView1: UIView = {

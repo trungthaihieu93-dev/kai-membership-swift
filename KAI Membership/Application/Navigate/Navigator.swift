@@ -172,8 +172,8 @@ final class Navigator {
     }
     
     /* Điều hướng sang màn hình nhiệm vụ */
-    class func navigateToQuestVC(from viewController: UIViewController? = nil) {
-        let vc = QuestViewController()
+    class func navigateToMissionVC(from viewController: UIViewController? = nil) {
+        let vc = MissionViewController()
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

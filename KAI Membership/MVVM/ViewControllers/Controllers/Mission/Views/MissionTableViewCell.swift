@@ -1,5 +1,5 @@
 //
-//  QuestTableViewCell.swift
+//  MissionTableViewCell.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 05/03/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuestTableViewCell: UITableViewCell {
+class MissionTableViewCell: UITableViewCell {
     
     // MARK: Properties
     enum `Type` {

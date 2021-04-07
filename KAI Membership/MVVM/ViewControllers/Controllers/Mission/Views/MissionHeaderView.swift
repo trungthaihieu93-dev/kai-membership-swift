@@ -1,5 +1,5 @@
 //
-//  QuestHeaderView.swift
+//  MissionHeaderView.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 04/03/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuestHeaderView: UIView {
+class MissionHeaderView: UIView {
     
     // MARK: Properties
     private let backgroundView: UIView = {
@@ -51,23 +51,7 @@ class QuestHeaderView: UIView {
         return label
     }()
     
-    private(set) lazy var segmentView: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["Daily mission", "Monthly mission"])
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .init(hex: "F7F8F9")
-        view.selectedSegmentIndex = 0
-        view.setWidth(115, forSegmentAt: 0)
-        view.setWidth(136, forSegmentAt: 1)
-        view.apportionsSegmentWidthsByContent = true
-        view.layer.cornerRadius = 12
-        view.addTarget(self, action: #selector(segmentedValueChanged(_:)), for: .valueChanged)
-        
-        return view
-    }()
-    
-    private var bacgroundTopAnchor: NSLayoutConstraint?
-    
-    var selectedSegmentIndexChanged: ((Int) -> Void)?
+    private var backgroundTopAnchor: NSLayoutConstraint?
     
     // MARK: Life cycle's
     override init(frame: CGRect) {
@@ -88,14 +72,13 @@ class QuestHeaderView: UIView {
         addSubview(titleLabel)
         addSubview(imageView)
         addSubview(descriptionLabel)
-        addSubview(segmentView)
         
-        bacgroundTopAnchor = backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
-        bacgroundTopAnchor?.isActive = true
+        backgroundTopAnchor = backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        backgroundTopAnchor?.isActive = true
         
         NSLayoutConstraint.activate([
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -22),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             titleLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 64),
@@ -104,27 +87,17 @@ class QuestHeaderView: UIView {
 
             imageView.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.bottomAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
 
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
             descriptionLabel.widthAnchor.constraint(equalToConstant: 157),
-
-            segmentView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            segmentView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 20),
-            segmentView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            segmentView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            segmentView.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
     // MARK: Methods
     func zoomImage(with value: CGFloat) {
-        bacgroundTopAnchor?.constant = value
-    }
-    
-    // MARK: Handle actions
-    @objc private func segmentedValueChanged(_ sender: UISegmentedControl) {
-        selectedSegmentIndexChanged?(sender.selectedSegmentIndex)
+        backgroundTopAnchor?.constant = value
     }
 }
