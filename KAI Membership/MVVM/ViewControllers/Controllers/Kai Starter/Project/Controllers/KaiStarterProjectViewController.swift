@@ -1,28 +1,24 @@
 //
-//  KaiStarterViewContoller.swift
+//  KaiStarterProjectViewController.swift
 //  KAI Membership
 //
-//  Created by DAKiet on 31/03/2021.
+//  Created by Anh Kiệt on 05/04/2021.
 //
 
 import UIKit
 
-class KaiStarterViewContoller: BaseViewController {
+class KaiStarterProjectViewController: BaseViewController {
 
     // MARK: Properties
-    enum ItemType: Int, CaseIterable {
-        case ongoing
-        case locking
-        case completed
-    }
+    let viewModel = KaiStarterProjectViewModel()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = Constants.backroundColorDefault
-        tableView.contentInset = .init(top: 0, left: 0, bottom: safeAreaInsets.bottom + 20, right: 0)
-        tableView.register(KaiStarterTableViewCell.self, forCellReuseIdentifier: KaiStarterTableViewCell.identifier)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.register(KaiStarterProjectTableViewCell.self, forCellReuseIdentifier: KaiStarterProjectTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -30,12 +26,21 @@ class KaiStarterViewContoller: BaseViewController {
     }()
     
     // MARK: Life cycle's
+    init(with title: String) {
+        super.init(nibName: nil, bundle: nil)
+        
+        navigationItem.title = title
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "KAI Starter"
-        
         setupView()
+        fetchData()
     }
     
     // MARK: Layout
@@ -48,5 +53,11 @@ class KaiStarterViewContoller: BaseViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+    
+    // MARK: Data fetching
+    private func fetchData() {
+        viewModel.createData()
+        tableView.reloadData()
     }
 }

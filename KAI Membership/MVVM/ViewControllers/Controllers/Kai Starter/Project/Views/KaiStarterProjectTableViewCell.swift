@@ -1,13 +1,13 @@
 //
-//  KaiStarterCollectionViewCell.swift
+//  KaiStarterProjectTableViewCell.swift
 //  KAI Membership
 //
-//  Created by DAKiet on 31/03/2021.
+//  Created by Anh Kiệt on 05/04/2021.
 //
 
 import UIKit
 
-class KaiStarterCollectionViewCell: UICollectionViewCell {
+class KaiStarterProjectTableViewCell: UITableViewCell {
     
     // MARK: Properties
     static let height: CGFloat = 418
@@ -90,18 +90,20 @@ class KaiStarterCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: Life cycle's
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
     }
-    
-    required init?(coder: NSCoder) {
+
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Layout
     private func setupView() {
+        selectionStyle = .none
+        backgroundColor = .clear
         contentView.addSubview(containerView)
         
         containerView.addSubview(contentImageView)
@@ -113,36 +115,36 @@ class KaiStarterCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(totalKaiLabel)
         
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: topAnchor),
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
             contentImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
             contentImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             contentImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             contentImageView.heightAnchor.constraint(equalTo: contentImageView.widthAnchor, multiplier: 213 / 342),
-            
+
             titleLabel.topAnchor.constraint(equalTo: contentImageView.bottomAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            
+
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            
+
             currnetKaiLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
             currnetKaiLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            
+
             backersLabel.centerYAnchor.constraint(equalTo: currnetKaiLabel.centerYAnchor),
             backersLabel.leadingAnchor.constraint(lessThanOrEqualTo: currnetKaiLabel.trailingAnchor, constant: 8),
             backersLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            
+
             progressBar.topAnchor.constraint(equalTo: currnetKaiLabel.bottomAnchor, constant: 4),
             progressBar.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             progressBar.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             progressBar.heightAnchor.constraint(equalToConstant: 8),
-            
+
             totalKaiLabel.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 4),
             totalKaiLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             totalKaiLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
@@ -151,13 +153,14 @@ class KaiStarterCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Methods
-    func configure(imageLink: String? = nil, title: String? = nil, description: String? = nil, curentKai: Double = 0, backers: Int = 0, totalKai: Double = 0) {
-        contentImageView.setImage(from: imageLink, placeholder: nil)
-        titleLabel.text = title
-        descriptionLabel.attributedText = description?.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textColor: UIColor.black.withAlphaComponent(0.54), lineHeightMultiple: 1.22)
-        currnetKaiLabel.text = curentKai.formatCurrencyToString(unit: .kai)
-        backersLabel.text = "\(backers) backers"
-        let progress = curentKai / totalKai
+    func configure(with project: KaiProjectRemote) {
+        contentImageView.setImage(from: project.imageLink, placeholder: nil)
+        titleLabel.text = project.name
+        descriptionLabel.attributedText = project.description?.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textColor: UIColor.black.withAlphaComponent(0.54), lineHeightMultiple: 1.22)
+        currnetKaiLabel.text = project.current.formatCurrencyToString(unit: .kai)
+        backersLabel.text = "\(project.backers ?? 0) backers"
+        let totalKai = project.target ?? 0
+        let progress = totalKai > 0 ? project.current / totalKai : 1
         progressBar.progress = Float(progress)
         totalKaiLabel.text = "\(progress * 100)% of \(totalKai.formatCurrencyToString(unit: .kai))"
     }

@@ -32,11 +32,10 @@ class KaiStarterTableViewCell: UITableViewCell {
             NSAttributedString.Key.foregroundColor: UIColor(hex: "023AFF")
         ]), for: .normal)
         button.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
+        button.addTarget(self, action: #selector(onPressedViewAll), for: .touchUpInside)
         
         return button
     }()
-    
-    var didFinishTouchingViewAll: (() -> Void)?
     
     var contentTitle: String = "" {
         didSet {
@@ -104,6 +103,11 @@ class KaiStarterTableViewCell: UITableViewCell {
     // MARK: Layout
     func reloadWithData() {
         collectionView.reloadData()
+    }
+    
+    // MARK: Handle actions
+    @objc private func onPressedViewAll() {
+        delegate?.kaiStarterTableViewCellDidSelectViewAll(self)
     }
 }
 

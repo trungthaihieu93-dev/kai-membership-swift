@@ -23,11 +23,11 @@ extension KaiStarterViewContoller: KaiStarterTableViewCellDelegate {
         
         switch itemType {
         case .ongoing:
-            debugPrint("")
+            Navigator.navigateToKaiStarterProjectVC(from: self, with: "Ongoing Projects")
         case .locking:
-            debugPrint("")
+            Navigator.navigateToKaiStarterProjectVC(from: self, with: "Locking Projects")
         case .completed:
-            debugPrint("")
+            Navigator.navigateToKaiStarterProjectVC(from: self, with: "Completed Projects")
         }
     }
     
@@ -36,11 +36,11 @@ extension KaiStarterViewContoller: KaiStarterTableViewCellDelegate {
         
         switch itemType {
         case .ongoing:
-            debugPrint("")
+            Navigator.navigateToKaiStarterDetailVC(from: self, with: "", and: "Sugar Baby \(indexPath.row)")
         case .locking:
-            debugPrint("")
+            Navigator.navigateToKaiStarterDetailVC(from: self, with: "", and: "Locking Sugar Baby \(indexPath.row)")
         case .completed:
-            debugPrint("")
+            Navigator.navigateToKaiStarterDetailVC(from: self, with: "", and: "Futsal Prize Farming \(indexPath.row)")
         }
     }
 }
