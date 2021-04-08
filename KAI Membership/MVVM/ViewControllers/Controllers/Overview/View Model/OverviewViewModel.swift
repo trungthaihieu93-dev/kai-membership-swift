@@ -100,6 +100,7 @@ class OverviewViewModel {
             switch $0 {
             case .success:
                 AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                NotificationCenter.default.post(name: .requestQuestSuccess, object: QuestKey.sendKai)
             case .failure:
                 AlertManagement.shared.showToast(with: "🤔 Request incorrect!", position: .top)
             }

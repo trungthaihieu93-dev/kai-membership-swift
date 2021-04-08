@@ -119,10 +119,12 @@ class Helper {
                     
                     QuestServices.requestUserQuest(with: .verifyEmail) { result in
                         AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                        NotificationCenter.default.post(name: .requestQuestSuccess, object: QuestKey.verifyEmail)
                     }
                 case .failure:
                     QuestServices.requestUserQuest(with: .verifyEmail) { result in
                         AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                        NotificationCenter.default.post(name: .requestQuestSuccess, object: QuestKey.verifyEmail)
                     }
                 }
             }

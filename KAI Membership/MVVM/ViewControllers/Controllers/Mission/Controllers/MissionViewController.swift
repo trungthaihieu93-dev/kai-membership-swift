@@ -82,6 +82,7 @@ class MissionViewController: BaseViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(UIBarButtonItem(customView: rightBarButtonItemView), animated: true)
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveAvatarValueChanged(_:)), name: .avatarChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveRequestQuestSuccess(_:)), name: .requestQuestSuccess, object: nil)
         
         setupView()
         setupTableHeaderView()
@@ -166,8 +167,18 @@ class MissionViewController: BaseViewController {
             }).disposed(by: disposeBag)
         } else {
             viewModel.requestUserQuest(with: key).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                guard let this = self else { return }
+                
+                if let index = this.viewModel.requestQuestSuccess(with: key) {
+                    if let cell = this.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? MissionTableViewCell {
+                        cell.configure(this.viewModel.quests[index])
+                    } else {
+                        this.tableView.reloadData()
+                    }
+                }
+                
                 AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
-                self?.isLoading = false
+                this.isLoading = false
             }, onError: { [weak self] error in
                 AlertManagement.shared.showToast(with: "🤔 Request incorrect!", position: .top)
                 self?.isLoading = false
@@ -178,5 +189,15 @@ class MissionViewController: BaseViewController {
     // MARK: Handle actions
     @objc private func didReceiveAvatarValueChanged(_ notificaton: Notification) {
         rightBarButtonItemView.refresh()
+    }
+    
+    @objc private func didReceiveRequestQuestSuccess(_ notificaton: Notification) {
+        guard let questKey = notificaton.object as? QuestKey, let index = viewModel.requestQuestSuccess(with: questKey) else { return }
+        
+        if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? MissionTableViewCell {
+            cell.configure(viewModel.quests[index])
+        } else {
+            tableView.reloadData()
+        }
     }
 }

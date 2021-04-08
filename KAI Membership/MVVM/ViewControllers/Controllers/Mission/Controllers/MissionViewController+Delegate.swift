@@ -7,6 +7,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import StoreKit
 
 // MARK: DZNEmptyDataSetDelegate
 extension MissionViewController: DZNEmptyDataSetDelegate {
@@ -69,6 +70,7 @@ extension MissionViewController: UITableViewDelegate {
             Navigator.navigateToSendVC(from: self)
         case .rateApp:
             checkMissionCompleted(with: .rateApp)
+            SKStoreReviewController.requestReview()
         case .verifyEmail:
             checkMissionCompleted(with: .verifyEmail)
         case .followTwitter:
