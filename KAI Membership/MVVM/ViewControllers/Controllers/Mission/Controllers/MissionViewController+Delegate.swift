@@ -60,8 +60,6 @@ extension MissionViewController: UITableViewDelegate {
         
         switch viewModel.quests[indexPath.row].key {
         case .highestScores, .thiryMinutes, .signIn:
-            // Làm trên web
-            checkMissionCompleted(with: .verifyEmail)
             break
         case .inviteFriend:
             let items = [AccountManagement.accountInfo?.user?.refarralAppflyerLink ?? ""]

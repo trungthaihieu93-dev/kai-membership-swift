@@ -34,6 +34,17 @@ class MissionViewController: BaseViewController {
         return view
     }()
     
+    private let loadingView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .whiteLarge)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.startAnimating()
+        view.hidesWhenStopped = true
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        view.isHidden = true
+        
+        return view
+    }()
+    
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +60,12 @@ class MissionViewController: BaseViewController {
         
         return tableView
     }()
+    
+    var isLoading: Bool = false {
+        didSet {
+            loadingView.isHidden = !isLoading
+        }
+    }
     
     override var navigationAlphaDefault: CGFloat {
         return 0
@@ -74,6 +91,7 @@ class MissionViewController: BaseViewController {
     // MARK: Layout
     private func setupView() {
         view.addSubview(tableView)
+        view.addSubview(loadingView)
         view.addSubview(loaderView)
         
         NSLayoutConstraint.activate([
@@ -81,6 +99,11 @@ class MissionViewController: BaseViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             loaderView.topAnchor.constraint(equalTo: view.topAnchor),
             loaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -115,6 +138,9 @@ class MissionViewController: BaseViewController {
     }
     
     func checkMissionCompleted(with key: QuestKey) {
+        guard !isLoading else { return }
+        
+        isLoading = true
         viewModel.checkMissionCompleted(userID: AccountManagement.accountID, key: key).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
             guard let this = self, !$0 else { return }
             
@@ -125,7 +151,7 @@ class MissionViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
     
-    func requestUserQuest(with key: QuestKey) {
+    private func requestUserQuest(with key: QuestKey) {
         if key == .verifyEmail {
             let email = AccountManagement.email
             
@@ -133,14 +159,18 @@ class MissionViewController: BaseViewController {
                 guard let this = self else { return }
                 
                 Navigator.navigateToCheckMailVC(from: this, with: .verify, email: email)
-            }, onError: { error in
+                this.isLoading = false
+            }, onError: { [weak self] error in
                 AlertManagement.shared.showToast(with: "🤔 Verify email incorrect!", position: .top)
+                self?.isLoading = false
             }).disposed(by: disposeBag)
         } else {
-            viewModel.requestUserQuest(with: key).subscribe(on: MainScheduler.instance).subscribe(onNext: {
+            viewModel.requestUserQuest(with: key).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
                 AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
-            }, onError: { error in
+                self?.isLoading = false
+            }, onError: { [weak self] error in
                 AlertManagement.shared.showToast(with: "🤔 Request incorrect!", position: .top)
+                self?.isLoading = false
             }).disposed(by: disposeBag)
         }
     }
