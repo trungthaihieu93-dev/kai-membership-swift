@@ -73,10 +73,13 @@ extension MissionViewController: UITableViewDelegate {
             checkMissionCompleted(with: .verifyEmail)
         case .followTwitter:
             checkMissionCompleted(with: .followTwitter)
+            Helper.openSafari(AppSetting.twitterLink)
         case .likeFacebook:
             checkMissionCompleted(with: .likeFacebook)
+            Helper.openSafari(AppSetting.facebookLink)
         case .joinTelegram:
             checkMissionCompleted(with: .joinTelegram)
+            Helper.openSafari(AppSetting.telegramLink)
         }
     }
 }
