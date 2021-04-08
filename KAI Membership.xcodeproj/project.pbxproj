@@ -111,6 +111,8 @@
 		524CF7C8261DBD82000B9A61 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7C7261DBD82000B9A61 /* MissionViewController.swift */; };
 		524CF7CD261DBF55000B9A61 /* MissionViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7CC261DBF55000B9A61 /* MissionViewController+Delegate.swift */; };
 		524CF7D0261DC002000B9A61 /* MissionViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7CF261DC002000B9A61 /* MissionViewController+DataSource.swift */; };
+		524CF7DF261EB34C000B9A61 /* QuickScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */; };
+		524CF7E2261EB632000B9A61 /* QuickScannerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */; };
 		525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */; };
 		525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87425E51DA1001491AE /* PasscodeViewController.swift */; };
 		525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87C25E5543E001491AE /* CongratsViewController.swift */; };
@@ -334,6 +336,8 @@
 		524CF7C7261DBD82000B9A61 /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
 		524CF7CC261DBF55000B9A61 /* MissionViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MissionViewController+Delegate.swift"; sourceTree = "<group>"; };
 		524CF7CF261DC002000B9A61 /* MissionViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MissionViewController+DataSource.swift"; sourceTree = "<group>"; };
+		524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickScannerViewController.swift; sourceTree = "<group>"; };
+		524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickScannerViewController+Delegate.swift"; sourceTree = "<group>"; };
 		525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMailViewController.swift; sourceTree = "<group>"; };
 		525DB87425E51DA1001491AE /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		525DB87C25E5543E001491AE /* CongratsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsViewController.swift; sourceTree = "<group>"; };
@@ -1054,6 +1058,23 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		524CF7DC261EB335000B9A61 /* Quick Scanner  */ = {
+			isa = PBXGroup;
+			children = (
+				524CF7DD261EB33D000B9A61 /* Controllers */,
+			);
+			path = "Quick Scanner ";
+			sourceTree = "<group>";
+		};
+		524CF7DD261EB33D000B9A61 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */,
+				524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		525DB86D25E3F28A001491AE /* Check Mail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1605,6 +1626,7 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				524CF7DC261EB335000B9A61 /* Quick Scanner  */,
 				524CF7C4261DBD37000B9A61 /* Mission */,
 				49976C372608456C0005F8F8 /* Share */,
 				529AE1BB25DD9B4B00635807 /* Base */,
@@ -1955,6 +1977,7 @@
 				52F37D0625E1581C009F311F /* ResetPasscodeViewController.swift in Sources */,
 				4963D08725FF165500720B34 /* ProviderCollectionViewCell.swift in Sources */,
 				493043F625F8A0CF00EED242 /* RewardsEmptyView.swift in Sources */,
+				524CF7DF261EB34C000B9A61 /* QuickScannerViewController.swift in Sources */,
 				525DBA9525F0FDA6001491AE /* NestedScrollViewController+Protocol.swift in Sources */,
 				525DBA4225EFEE2F001491AE /* MainViewModel.swift in Sources */,
 				49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */,
@@ -2095,6 +2118,7 @@
 				226DA3F92600750A009BC8CC /* FloatyManager.swift in Sources */,
 				4963D07725FEF8AB00720B34 /* ConfigRemote.swift in Sources */,
 				498E45CD2604B47600D62AAA /* VerificationViewController+Delegate.swift in Sources */,
+				524CF7E2261EB632000B9A61 /* QuickScannerViewController+Delegate.swift in Sources */,
 				494C0AE325FA147A00E30115 /* ResetPasscodeViewModel.swift in Sources */,
 				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
 				5265495C25F5E909003AE21A /* ProfileViewController.swift in Sources */,

@@ -90,7 +90,7 @@ class MissionViewController: BaseViewController {
     }
     
     private func setupTableHeaderView() {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: 335))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: Constants.Device.screenBounds.width, height: MissionHeaderView.height))
         headerView.frame = view.frame
         view.addSubview(headerView)
         

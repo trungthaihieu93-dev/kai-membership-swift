@@ -127,6 +127,8 @@ class MissionTableViewCell: UITableViewCell {
     
     // MARK: Methods
     func configure(_ quest: QuestRemote) {
+        let progress = quest.userQuest?.progress ?? 0
+        
         switch quest.key {
         case .highestScores:
             contentImageView.image = UIImage(named: "ic_mission_progress")
@@ -141,9 +143,7 @@ class MissionTableViewCell: UITableViewCell {
             ]))
             
             descriptionLabel.attributedText = mutableAttributedString
-        case .thiryMinutes, .inviteFriend, .signIn:
-            let progress = quest.userQuest?.progress ?? 0
-            
+        case .thiryMinutes, .inviteFriend, .signIn, .sendKai:
             if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
                 progressBar.progress = Float(progress) / Float(totalProgress)
                 descriptionStackVỉew.addArrangedSubview(progressBar)
@@ -151,6 +151,76 @@ class MissionTableViewCell: UITableViewCell {
                 descriptionLabel.attributedText = NSAttributedString(string: "\(progress)/\(totalProgress)", attributes: [
                     NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
                     NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .encourageKaiTeam:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet rating", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .verifyEmail:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Unverified", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Verified", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .followTwitter:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet follow", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .likeFBPage:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet like", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .joinTelegramGroup:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet join", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
                 ])
             } else {
                 contentImageView.image = UIImage(named: "ic_mission_completed")

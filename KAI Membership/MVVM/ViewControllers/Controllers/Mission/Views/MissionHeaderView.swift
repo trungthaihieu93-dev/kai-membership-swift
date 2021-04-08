@@ -10,6 +10,8 @@ import UIKit
 class MissionHeaderView: UIView {
     
     // MARK: Properties
+    static let height: CGFloat = 335
+    
     private let backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false

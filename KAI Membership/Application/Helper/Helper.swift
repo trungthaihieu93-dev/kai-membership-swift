@@ -83,5 +83,24 @@ class Helper {
         
         return destURL
     }
+    
+    class func launchApp(from viewController: UIViewController, decodedURL: String) {
+        if viewController.presentedViewController != nil { return }
+        
+        let alertPrompt = UIAlertController(title: "Open App", message: "You're going to open \(decodedURL)", preferredStyle: .actionSheet)
+        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+            if let url = URL(string: decodedURL) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        alertPrompt.addAction(confirmAction)
+        alertPrompt.addAction(cancelAction)
+        
+        viewController.present(alertPrompt, animated: true, completion: nil)
+    }
 }
 

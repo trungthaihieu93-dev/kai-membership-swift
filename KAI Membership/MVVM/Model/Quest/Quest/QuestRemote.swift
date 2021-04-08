@@ -17,7 +17,7 @@ enum QuestKey: String {
     case thiryMinutes = "THIRTY_MINUTES" // play game 30' // Web
     case inviteFriend = "INVITE_FRIEND" // ok
     case sendKai = "SEND_KAI" //đẩy màn hình send Kai (chuyễn thành công thì mới gọi API này update nhiệm vụ send Kai)
-    case encourageKaiTeam = "ENCOURAGE_KAI_TEAM" // gọi hàm request racing => hoàn thành
+    case encourageKaiTeam = "RATE_APP" // gọi hàm request racing => hoàn thành
     case signIn = "SIGN_IN"
     case verifyEmail = "VERIFY_MY_EMAIL"
     case followTwitter = "FOLLOW_US_ON_TWITTER"

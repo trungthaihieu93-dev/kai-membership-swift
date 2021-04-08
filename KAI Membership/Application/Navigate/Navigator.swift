@@ -270,4 +270,16 @@ final class Navigator {
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    /*
+     Điều hướng tới màn hình quét QR code
+     - parameter completion:
+     */
+    class func navigateToQuickScannerVC(from viewController: UIViewController? = nil, completion: ((String) -> Void)? = nil) {
+        let vc = QuickScannerViewController()
+        vc.completion = completion
+        let nv = RootNavigationController(rootViewController: vc)
+        nv.modalPresentationStyle = .fullScreen
+        viewController?.present(nv, animated: true, completion: nil)
+    }
 }

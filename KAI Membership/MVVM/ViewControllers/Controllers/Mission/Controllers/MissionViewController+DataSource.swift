@@ -22,15 +22,8 @@ extension MissionViewController: DZNEmptyDataSetSource {
         ])
     }
     
-    /*func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "Start your first transaction", attributes: [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.54)
-        ])
-    }*/
-    
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return (tableView.tableHeaderView?.frame.height ?? 0) / 2
+        return MissionHeaderView.height / 2
     }
 }
 

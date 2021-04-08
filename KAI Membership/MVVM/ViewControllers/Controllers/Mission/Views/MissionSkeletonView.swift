@@ -285,7 +285,7 @@ class MissionSkeletonView: UIView {
         addSubview(descriptionView7)
         
         NSLayoutConstraint.activate([
-            imageView1.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            imageView1.topAnchor.constraint(equalTo: topAnchor, constant: MissionHeaderView.height + 30),
             imageView1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28),
             imageView1.widthAnchor.constraint(equalToConstant: 52),
             imageView1.heightAnchor.constraint(equalToConstant: 52),
