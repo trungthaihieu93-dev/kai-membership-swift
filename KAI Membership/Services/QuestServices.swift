@@ -27,6 +27,7 @@ class QuestServices {
     class func requestUserQuest(with key: QuestKey, _ completion: ((APIResult<APIDataResults<UserQuestRemote>, APIErrorResult>) -> Void)? = nil) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/quests", method: .post)
         input.params["key"] = key.rawValue
+        input.params["process"] = 1
 
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }

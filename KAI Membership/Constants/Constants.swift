@@ -21,7 +21,7 @@ enum UnitCurrency: String {
 class Constants {
     
     static let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "undefined"
-    static let environment = Constants.isDebug ? Environment.development : Environment.development
+    static let environment = Constants.isDebug ? Environment.development : Environment.production
     static let lengthPasswordMinimum: Int = 8
     static let backroundColorDefault: UIColor = .init(hex: "F7F8F9")
     static let spinLink: String = "https://game-003-tego022.bcms.tech?token=%@&lang=%@&device=%@&platfrom=ios"
@@ -70,7 +70,7 @@ enum Environment {
 struct API {
     enum Domain: String {
         case production = "https://membership.kardiachain.io"
-        case development = "https://membership-backend.kardiachain.io"
+        case development = "https://membership-backend-qc.kardiachain.io"
     }
 }
 
