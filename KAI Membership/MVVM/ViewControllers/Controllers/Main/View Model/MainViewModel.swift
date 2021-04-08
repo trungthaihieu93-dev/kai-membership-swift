@@ -34,6 +34,9 @@ class MainViewModel {
                 case .success(let result):
                     AppSetting.serviceProviders = result.datas.first(where: { $0.name == ConfigKey.mobileCard.rawValue })?.configs ?? Constants.serviceProviderDefault
                     AppSetting.linkBuyApp = result.datas.first(where: { $0.name == ConfigKey.linkBuy.rawValue })?.configs.first(where: { $0.key == "IOS" })?.value ?? Constants.linkBuyAppDefault
+                    AppSetting.facebookLink = result.datas.first(where: { $0.name == ConfigKey.facebookURL.rawValue })?.configs.first(where: { $0.key == "URL" })?.value ?? Constants.facebookLinkDefault
+                    AppSetting.twitterLink = result.datas.first(where: { $0.name == ConfigKey.twitterURL.rawValue })?.configs.first(where: { $0.key == "URL" })?.value ?? Constants.twitterLinkDefault
+                    AppSetting.telegramLink = result.datas.first(where: { $0.name == ConfigKey.telegramURL.rawValue })?.configs.first(where: { $0.key == "URL" })?.value ?? Constants.telegramLinkDefault
                     AppSetting.configures = result.datas
                     observer.onNext(result.datas)
                     observer.onCompleted()

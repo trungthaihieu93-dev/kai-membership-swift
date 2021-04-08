@@ -159,7 +159,7 @@ class MissionTableViewCell: UITableViewCell {
                     NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
                 ])
             }
-        case .encourageKaiTeam:
+        case .rateApp:
             if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
                 contentImageView.image = UIImage(named: "ic_mission_progress")
                 descriptionLabel.attributedText = NSAttributedString(string: "Not yet rating", attributes: [
@@ -201,7 +201,7 @@ class MissionTableViewCell: UITableViewCell {
                     NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
                 ])
             }
-        case .likeFBPage:
+        case .likeFacebook:
             if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
                 contentImageView.image = UIImage(named: "ic_mission_progress")
                 descriptionLabel.attributedText = NSAttributedString(string: "Not yet like", attributes: [
@@ -215,7 +215,7 @@ class MissionTableViewCell: UITableViewCell {
                     NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
                 ])
             }
-        case .joinTelegramGroup:
+        case .joinTelegram:
             if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
                 contentImageView.image = UIImage(named: "ic_mission_progress")
                 descriptionLabel.attributedText = NSAttributedString(string: "Not yet join", attributes: [

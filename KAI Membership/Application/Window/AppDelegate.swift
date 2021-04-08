@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Open URI-scheme for iOS 8 and below
     private func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         AppsFlyerManagement.shared.continue(userActivity, restorationHandler: restorationHandler)
+        
         return true
     }
     

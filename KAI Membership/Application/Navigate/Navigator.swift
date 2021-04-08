@@ -93,10 +93,11 @@ final class Navigator {
     
     /*
      Điều hướng sang màn hình kiểm tra email
+     - parameter type:
      - parameter email: Địa chỉ email
      */
-    class func navigateToCheckMailVC(from viewController: UIViewController? = nil, with email: String) {
-        let vc = CheckMailViewController(with: email)
+    class func navigateToCheckMailVC(from viewController: UIViewController? = nil, with type: CheckMailViewController.`Type`, email: String) {
+        let vc = CheckMailViewController(with: type, email: email)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }

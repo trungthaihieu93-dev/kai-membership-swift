@@ -85,24 +85,24 @@ class AccountManagement {
     
     static var accountInfo: AccountInfoRemote? {
         get {
-            guard let data = KeyChain.load(forKey: .AccountInfo), let jsonString = String(data: data, encoding: .utf8) else { return nil }
+            guard let data = KeyChain.load(forKey: .accountInfo), let jsonString = String(data: data, encoding: .utf8) else { return nil }
             
             return Helper.toObject(ofType: AccountInfoRemote.self, jsonString: jsonString)
         }
         set {
             guard let data = Helper.toJSONString(newValue)?.data(using: .utf8) else {
-                KeyChain.delete(forKey: .AccountInfo)
+                KeyChain.delete(forKey: .accountInfo)
                 return
             }
             
-            KeyChain.save(forKey: .AccountInfo, data: data)
+            KeyChain.save(forKey: .accountInfo, data: data)
         }
     }
     
     class func logout() {
         KeyChain.delete(forKey: .email)
         KeyChain.delete(forKey: .userID)
-        KeyChain.delete(forKey: .AccountInfo)
+        KeyChain.delete(forKey: .accountInfo)
         KeyChain.delete(forKey: .authorizationToken)
         KeyChain.delete(forKey: .refreshToken)
     }
@@ -114,6 +114,11 @@ class AccountManagement {
                 if let data = result.data {
                     AccountManagement.userID = data.user?.id
                     AccountManagement.accountInfo = data
+                    
+                    if let email = data.user?.email, !email.isEmpty {
+                        AccountManagement.email = email
+                    }
+                    
                     completion(.success(data))
                 } else {
                     completion(.failure(APIErrorResult(with: .emptyResults)))
@@ -129,6 +134,7 @@ class AccountManagement {
             switch $0 {
             case .success(let result):
                 if let data = result.data {
+                    AccountManagement.email = email
                     AccountManagement.accessToken = data.accessToken
                     AccountManagement.refreshToken = data.refreshToken
                     AccountManagement.getInfoUser {
@@ -157,6 +163,7 @@ class AccountManagement {
                 }
                 
                 if let data = result.data {
+                    AccountManagement.email = email
                     AccountManagement.accessToken = data.accessToken
                     AccountManagement.refreshToken = data.refreshToken
                     AccountManagement.getInfoUser {
@@ -182,6 +189,7 @@ class AccountManagement {
             case .success(let result):
                 if let data = result.data {
                     AppSetting.haveFreeSpin = data.isFirst
+                    AccountManagement.email = email
                     AccountManagement.accessToken = data.accessToken
                     AccountManagement.refreshToken = data.refreshToken
                     AccountManagement.getInfoUser {

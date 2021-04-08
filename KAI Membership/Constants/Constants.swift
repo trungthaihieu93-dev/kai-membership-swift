@@ -31,6 +31,9 @@ class Constants {
         ConfigRemote(with: "Vinaphone", value: "Vinaphone")
     ]
     static let linkBuyAppDefault: String = "itms-apps://itunes.apple.com/us/app/apple-store/nami-exchange-crypto-futures/id1480302334"
+    static let facebookLinkDefault: String = "https://www.facebook.com/KardiaChainFoundation"
+    static let twitterLinkDefault: String = "https://twitter.com/kardiachain"
+    static let telegramLinkDefault: String = "https://t.me/kardiachain"
     
     static var isDebug: Bool {
         #if DEBUG

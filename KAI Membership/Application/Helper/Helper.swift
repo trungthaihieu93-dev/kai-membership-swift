@@ -58,6 +58,13 @@ class Helper {
         UIApplication.shared.open(url)
     }
     
+    class func openAppMail(_ email: String) -> Bool {
+        guard let url = URL(string: "mailto:\(email)") else { return false }
+        
+        UIApplication.shared.open(url)
+        return true
+    }
+    
     class func getConfig(forKey key: ConfigKey) -> [ConfigRemote] {
         return AppSetting.configures.first(where: { $0.name == key.rawValue })?.configs ?? []
     }
@@ -101,6 +108,25 @@ class Helper {
         alertPrompt.addAction(cancelAction)
         
         viewController.present(alertPrompt, animated: true, completion: nil)
+    }
+    
+    class func requestVerifyEmail() {
+        if AccountManagement.isLoggedIn, let userID = AccountManagement.userID, !userID.isEmpty {
+            QuestServices.checkMissionCompleted(userID: userID, key: .verifyEmail) {
+                switch $0 {
+                case .success(let result):
+                    guard result.data != true else { return }
+                    
+                    QuestServices.requestUserQuest(with: .verifyEmail) { result in
+                        AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                    }
+                case .failure:
+                    QuestServices.requestUserQuest(with: .verifyEmail) { result in
+                        AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                    }
+                }
+            }
+        }
     }
 }
 

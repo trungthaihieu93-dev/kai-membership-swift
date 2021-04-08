@@ -114,6 +114,37 @@ class MissionViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
     
+    func checkMissionCompleted(with key: QuestKey) {
+        viewModel.checkMissionCompleted(userID: AccountManagement.accountID, key: key).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+            guard let this = self, !$0 else { return }
+            
+            this.requestUserQuest(with: key)
+        }, onError: { [weak self] error in
+            debugPrint("Error request user quest: \((error as? APIErrorResult)?.message ?? "ERROR")")
+            self?.requestUserQuest(with: key)
+        }).disposed(by: disposeBag)
+    }
+    
+    func requestUserQuest(with key: QuestKey) {
+        if key == .verifyEmail {
+            let email = AccountManagement.email
+            
+            viewModel.verifyEmail(email).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+                guard let this = self else { return }
+                
+                Navigator.navigateToCheckMailVC(from: this, with: .verify, email: email)
+            }, onError: { error in
+                AlertManagement.shared.showToast(with: "🤔 Verify email incorrect!", position: .top)
+            }).disposed(by: disposeBag)
+        } else {
+            viewModel.requestUserQuest(with: key).subscribe(on: MainScheduler.instance).subscribe(onNext: {
+                AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+            }, onError: { error in
+                AlertManagement.shared.showToast(with: "🤔 Request incorrect!", position: .top)
+            }).disposed(by: disposeBag)
+        }
+    }
+    
     // MARK: Handle actions
     @objc private func didReceiveAvatarValueChanged(_ notificaton: Notification) {
         rightBarButtonItemView.refresh()

@@ -113,6 +113,7 @@
 		524CF7D0261DC002000B9A61 /* MissionViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7CF261DC002000B9A61 /* MissionViewController+DataSource.swift */; };
 		524CF7DF261EB34C000B9A61 /* QuickScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */; };
 		524CF7E2261EB632000B9A61 /* QuickScannerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */; };
+		524CF7E5261EE706000B9A61 /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */; };
 		525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */; };
 		525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87425E51DA1001491AE /* PasscodeViewController.swift */; };
 		525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87C25E5543E001491AE /* CongratsViewController.swift */; };
@@ -338,6 +339,7 @@
 		524CF7CF261DC002000B9A61 /* MissionViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MissionViewController+DataSource.swift"; sourceTree = "<group>"; };
 		524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickScannerViewController.swift; sourceTree = "<group>"; };
 		524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickScannerViewController+Delegate.swift"; sourceTree = "<group>"; };
+		524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
 		525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMailViewController.swift; sourceTree = "<group>"; };
 		525DB87425E51DA1001491AE /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		525DB87C25E5543E001491AE /* CongratsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsViewController.swift; sourceTree = "<group>"; };
@@ -936,6 +938,7 @@
 		521754AC25DE75FA009355BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */,
 				525DBA5625F008E7001491AE /* Data+Extensions.swift */,
 				4928738926020F6E002BAE39 /* Date+Extensions.swift */,
 				525DB96C25EA4490001491AE /* Double+Extensions.swift */,
@@ -946,12 +949,12 @@
 				525DBADE25F22F96001491AE /* UICollectionViewCell+Extensions.swift */,
 				521754B125DE79D1009355BC /* UIColor+Extensions.swift */,
 				525DB95325E96018001491AE /* UIFont+Extensions.swift */,
+				22B74F2D26130DE1007777B2 /* UIImage+Extensions.swift */,
 				525DBA4525EFF48A001491AE /* UIImageView+Extensions.swift */,
 				525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */,
 				52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */,
 				521754B425DE7C5B009355BC /* UIView+Extensions.swift */,
 				521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */,
-				22B74F2D26130DE1007777B2 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2002,6 +2005,7 @@
 				495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */,
 				494099F4260B4F8D00F92119 /* KAIInputNumber.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
+				524CF7E5261EE706000B9A61 /* Bool+Extensions.swift in Sources */,
 				525DBAE325F2399B001491AE /* NewsLastestCollectionViewCell.swift in Sources */,
 				49D9ACA1260DAFA700A459AF /* EmptyTableViewCell.swift in Sources */,
 				49976C822609D6140005F8F8 /* CalendarPickerHeaderView.swift in Sources */,

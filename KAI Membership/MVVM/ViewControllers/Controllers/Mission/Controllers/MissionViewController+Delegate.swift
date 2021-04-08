@@ -56,26 +56,29 @@ extension MissionViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard AccountManagement.accessToken != nil else { return }
+        
         switch viewModel.quests[indexPath.row].key {
         case .highestScores, .thiryMinutes, .signIn:
             // Làm trên web
+            checkMissionCompleted(with: .verifyEmail)
             break
         case .inviteFriend:
             let items = [AccountManagement.accountInfo?.user?.refarralAppflyerLink ?? ""]
             let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
             present(ac, animated: true)
         case .sendKai:
-            debugPrint("Send Kai thanh cong moi lam")
-        case .encourageKaiTeam:
-            debugPrint("Nhan zo là gọi API")
+            Navigator.navigateToSendVC(from: self)
+        case .rateApp:
+            checkMissionCompleted(with: .rateApp)
         case .verifyEmail:
-            debugPrint("Thanh cong thi goi")
+            checkMissionCompleted(with: .verifyEmail)
         case .followTwitter:
-            debugPrint("Nhan zo là gọi API")
-        case .likeFBPage:
-            debugPrint("Nhan zo là gọi API")
-        case .joinTelegramGroup:
-            debugPrint("Nhan zo là gọi API")
+            checkMissionCompleted(with: .followTwitter)
+        case .likeFacebook:
+            checkMissionCompleted(with: .likeFacebook)
+        case .joinTelegram:
+            checkMissionCompleted(with: .joinTelegram)
         }
     }
 }

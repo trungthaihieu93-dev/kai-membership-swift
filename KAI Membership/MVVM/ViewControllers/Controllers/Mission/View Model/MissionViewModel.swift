@@ -59,4 +59,52 @@ class MissionViewModel {
         
         return newValue
     }
+    
+    func requestUserQuest(with key: QuestKey) -> Observable<Void> {
+        return Observable.create { (observer) -> Disposable in
+            QuestServices.requestUserQuest(with: key) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func checkMissionCompleted(userID: String, key: QuestKey) -> Observable<Bool> {
+        return Observable<Bool>.create { (observer) -> Disposable in
+            QuestServices.checkMissionCompleted(userID: userID, key: key) {
+                switch $0 {
+                case .success(let result):
+                    observer.onNext(result.data == true)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func verifyEmail(_ email: String) -> Observable<Void> {
+        return Observable.create { (observer) -> Disposable in
+            PasscodeServices.verifyEmail(with: email) {
+                switch $0 {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
 }
