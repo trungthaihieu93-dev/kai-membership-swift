@@ -10,7 +10,7 @@ import DZNEmptyDataSet
 import RxSwift
 
 class WalletViewController: BaseViewController {
-
+    
     // MARK: Properties
     let viewModel = WalletViewModel()
     
@@ -104,7 +104,7 @@ class WalletViewController: BaseViewController {
         }
         
         floaty.size = 48
-//        floaty.paddingY = tabbarHeight + 16
+        //        floaty.paddingY = tabbarHeight + 16
         
         for item in floaty.items {
             item.titleLabel.font = UIFont.workSansFont(ofSize: 10, weight: .semiBold)
@@ -151,14 +151,11 @@ extension WalletViewController {
             
             this.cardView.configure(user.kai)
             this.tableView.reloadData()
-            this.endRefreshing()
-            this.loaderView.removeFromSuperview()
-        }, onError: { [weak self] error in
+        }, onCompleted: { [weak self] in
             guard let this = self else { return }
             
             this.endRefreshing()
             this.loaderView.removeFromSuperview()
-            debugPrint("Get transaction errror: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
     }
 }

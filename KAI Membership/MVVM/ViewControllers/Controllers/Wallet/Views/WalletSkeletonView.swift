@@ -401,12 +401,12 @@ class WalletSkeletonView: UIView {
             titleView1.topAnchor.constraint(equalTo: sectionTitleView.bottomAnchor, constant: 12),
             titleView1.centerYAnchor.constraint(equalTo: contentImageView1.centerYAnchor),
             titleView1.leadingAnchor.constraint(equalTo: contentImageView1.trailingAnchor, constant: 12),
-            titleView1.widthAnchor.constraint(equalToConstant: 200),
+            titleView1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1 / 2),
             titleView1.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView1.topAnchor.constraint(equalTo: titleView1.topAnchor),
             descriptionView1.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            descriptionView1.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1 / 4),
             descriptionView1.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView2.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -416,12 +416,12 @@ class WalletSkeletonView: UIView {
             titleView2.topAnchor.constraint(equalTo: titleView1.bottomAnchor, constant: 12),
             titleView2.centerYAnchor.constraint(equalTo: contentImageView2.centerYAnchor),
             titleView2.leadingAnchor.constraint(equalTo: contentImageView2.trailingAnchor, constant: 12),
-            titleView2.widthAnchor.constraint(equalToConstant: 200),
+            titleView2.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView2.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView2.topAnchor.constraint(equalTo: titleView2.topAnchor),
             descriptionView2.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView2.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView2.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView2.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView3.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -431,12 +431,12 @@ class WalletSkeletonView: UIView {
             titleView3.topAnchor.constraint(equalTo: titleView2.bottomAnchor, constant: 12),
             titleView3.centerYAnchor.constraint(equalTo: contentImageView3.centerYAnchor),
             titleView3.leadingAnchor.constraint(equalTo: contentImageView3.trailingAnchor, constant: 12),
-            titleView3.widthAnchor.constraint(equalToConstant: 200),
+            titleView3.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView3.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView3.topAnchor.constraint(equalTo: titleView3.topAnchor),
             descriptionView3.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView3.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView3.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView3.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView4.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -446,12 +446,12 @@ class WalletSkeletonView: UIView {
             titleView4.topAnchor.constraint(equalTo: titleView3.bottomAnchor, constant: 12),
             titleView4.centerYAnchor.constraint(equalTo: contentImageView4.centerYAnchor),
             titleView4.leadingAnchor.constraint(equalTo: contentImageView4.trailingAnchor, constant: 12),
-            titleView4.widthAnchor.constraint(equalToConstant: 200),
+            titleView4.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView4.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView4.topAnchor.constraint(equalTo: titleView4.topAnchor),
             descriptionView4.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView4.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView4.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView4.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView5.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -461,12 +461,12 @@ class WalletSkeletonView: UIView {
             titleView5.topAnchor.constraint(equalTo: titleView4.bottomAnchor, constant: 12),
             titleView5.centerYAnchor.constraint(equalTo: contentImageView5.centerYAnchor),
             titleView5.leadingAnchor.constraint(equalTo: contentImageView5.trailingAnchor, constant: 12),
-            titleView5.widthAnchor.constraint(equalToConstant: 200),
+            titleView5.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView5.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView5.topAnchor.constraint(equalTo: titleView5.topAnchor),
             descriptionView5.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView5.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView5.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView5.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView6.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -476,12 +476,12 @@ class WalletSkeletonView: UIView {
             titleView6.topAnchor.constraint(equalTo: titleView5.bottomAnchor, constant: 12),
             titleView6.centerYAnchor.constraint(equalTo: contentImageView6.centerYAnchor),
             titleView6.leadingAnchor.constraint(equalTo: contentImageView6.trailingAnchor, constant: 12),
-            titleView6.widthAnchor.constraint(equalToConstant: 200),
+            titleView6.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView6.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView6.topAnchor.constraint(equalTo: titleView6.topAnchor),
             descriptionView6.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView6.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView6.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView6.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView7.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -491,12 +491,12 @@ class WalletSkeletonView: UIView {
             titleView7.topAnchor.constraint(equalTo: titleView6.bottomAnchor, constant: 12),
             titleView7.centerYAnchor.constraint(equalTo: contentImageView7.centerYAnchor),
             titleView7.leadingAnchor.constraint(equalTo: contentImageView7.trailingAnchor, constant: 12),
-            titleView7.widthAnchor.constraint(equalToConstant: 200),
+            titleView7.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView7.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView7.topAnchor.constraint(equalTo: titleView7.topAnchor),
             descriptionView7.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView7.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView7.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView7.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView8.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -506,12 +506,12 @@ class WalletSkeletonView: UIView {
             titleView8.topAnchor.constraint(equalTo: titleView7.bottomAnchor, constant: 12),
             titleView8.centerYAnchor.constraint(equalTo: contentImageView8.centerYAnchor),
             titleView8.leadingAnchor.constraint(equalTo: contentImageView8.trailingAnchor, constant: 12),
-            titleView8.widthAnchor.constraint(equalToConstant: 200),
+            titleView8.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView8.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView8.topAnchor.constraint(equalTo: titleView8.topAnchor),
             descriptionView8.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView8.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView8.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView8.heightAnchor.constraint(equalToConstant: 40),
             
             contentImageView9.leadingAnchor.constraint(equalTo: contentImageView1.leadingAnchor),
@@ -521,12 +521,12 @@ class WalletSkeletonView: UIView {
             titleView9.topAnchor.constraint(equalTo: titleView8.bottomAnchor, constant: 12),
             titleView9.centerYAnchor.constraint(equalTo: contentImageView9.centerYAnchor),
             titleView9.leadingAnchor.constraint(equalTo: contentImageView9.trailingAnchor, constant: 12),
-            titleView9.widthAnchor.constraint(equalToConstant: 200),
+            titleView9.widthAnchor.constraint(equalTo: titleView1.widthAnchor),
             titleView9.heightAnchor.constraint(equalToConstant: 40),
             
             descriptionView9.topAnchor.constraint(equalTo: titleView9.topAnchor),
             descriptionView9.trailingAnchor.constraint(equalTo: descriptionView1.trailingAnchor),
-            descriptionView9.widthAnchor.constraint(equalToConstant: 120),
+            descriptionView9.widthAnchor.constraint(equalTo: descriptionView1.widthAnchor),
             descriptionView9.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
