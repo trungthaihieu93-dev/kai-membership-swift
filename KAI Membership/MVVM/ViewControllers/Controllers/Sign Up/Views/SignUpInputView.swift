@@ -243,6 +243,7 @@ class SignUpInputView: UIView {
     func setCaptchaImage(_ url: URL) {
         captchaImageView.setImage(from: url)
         activityCaptchaView.isHidden = true
+        captchaTextField.setText("")
     }
 }
 

@@ -114,6 +114,7 @@
 		524CF7DF261EB34C000B9A61 /* QuickScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */; };
 		524CF7E2261EB632000B9A61 /* QuickScannerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */; };
 		524CF7E5261EE706000B9A61 /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */; };
+		524CF82C26205CC7000B9A61 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */; };
 		525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */; };
 		525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87425E51DA1001491AE /* PasscodeViewController.swift */; };
 		525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87C25E5543E001491AE /* CongratsViewController.swift */; };
@@ -340,6 +341,7 @@
 		524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickScannerViewController.swift; sourceTree = "<group>"; };
 		524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickScannerViewController+Delegate.swift"; sourceTree = "<group>"; };
 		524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
+		524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMailViewController.swift; sourceTree = "<group>"; };
 		525DB87425E51DA1001491AE /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		525DB87C25E5543E001491AE /* CongratsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsViewController.swift; sourceTree = "<group>"; };
@@ -951,6 +953,7 @@
 				525DB95325E96018001491AE /* UIFont+Extensions.swift */,
 				22B74F2D26130DE1007777B2 /* UIImage+Extensions.swift */,
 				525DBA4525EFF48A001491AE /* UIImageView+Extensions.swift */,
+				524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */,
 				525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */,
 				52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */,
 				521754B425DE7C5B009355BC /* UIView+Extensions.swift */,
@@ -2020,6 +2023,7 @@
 				49976C392608457E0005F8F8 /* ShareViewController.swift in Sources */,
 				226DA3FD2600750A009BC8CC /* Floaty.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
+				524CF82C26205CC7000B9A61 /* UIStackView+Extensions.swift in Sources */,
 				525DBA6A25F010BA001491AE /* NewsLastestTableViewCell.swift in Sources */,
 				498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */,
 				525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */,

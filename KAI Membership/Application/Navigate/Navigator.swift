@@ -115,16 +115,6 @@ final class Navigator {
     }
     
     /*
-     Điều hướng sang màn hình chúc mừng (đã đăng ký tài khoản hoăc đã cập nhật mật khẩu) thành công
-     - parameter type: Loại hiển thị
-     */
-    class func navigateToCongratsVC(from viewController: UIViewController? = nil, with type: CongratsViewController.`Type`) {
-        let vc = CongratsViewController(with: type)
-        vc.hidesBottomBarWhenPushed = true
-        viewController?.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    /*
      Hiển thị màn hình chúc mừng (đã đăng ký tài khoản hoăc đã cập nhật mật khẩu) thành công
      - parameter type: Loại hiển thị
      */

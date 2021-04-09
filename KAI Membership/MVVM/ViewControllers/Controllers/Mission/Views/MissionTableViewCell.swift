@@ -127,6 +127,7 @@ class MissionTableViewCell: UITableViewCell {
     
     // MARK: Methods
     func configure(_ quest: QuestRemote) {
+        descriptionStackVỉew.removeAllArrangedSubviews()
         let progress = quest.userQuest?.progress ?? 0
         
         switch quest.key {
@@ -144,11 +145,19 @@ class MissionTableViewCell: UITableViewCell {
             
             descriptionLabel.attributedText = mutableAttributedString
         case .thiryMinutes, .inviteFriend, .signIn, .sendKai:
-            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+            if let totalProgress = quest.progress, totalProgress > 0 {
+                var description: String = "\(progress)/\(totalProgress)"
+                
+                if progress < totalProgress {
+                    contentImageView.image = UIImage(named: "ic_mission_progress")
+                } else {
+                    description = "\(totalProgress)/\(totalProgress)"
+                    contentImageView.image = UIImage(named: "ic_mission_completed")
+                }
+                
                 progressBar.progress = Float(progress) / Float(totalProgress)
                 descriptionStackVỉew.addArrangedSubview(progressBar)
-                contentImageView.image = UIImage(named: "ic_mission_progress")
-                descriptionLabel.attributedText = NSAttributedString(string: "\(progress)/\(totalProgress)", attributes: [
+                descriptionLabel.attributedText = NSAttributedString(string: description, attributes: [
                     NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
                     NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
                 ])
