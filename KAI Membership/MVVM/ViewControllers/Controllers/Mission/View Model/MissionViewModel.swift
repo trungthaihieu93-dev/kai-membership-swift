@@ -94,7 +94,7 @@ class MissionViewModel {
     
     func verifyEmail(_ email: String) -> Observable<Void> {
         return Observable.create { (observer) -> Disposable in
-            PasscodeServices.verifyEmail(with: email) { [weak self] in
+            PasscodeServices.verifyEmail(with: email) {
                 switch $0 {
                 case .success:
                     observer.onNext(())
@@ -111,8 +111,13 @@ class MissionViewModel {
     func requestQuestSuccess(with key: QuestKey) -> Int? {
         guard let index = quests.firstIndex(where: { $0.key == key }) else { return nil }
         
-        let progress = quests[index].progress ?? 0
-        quests[index].progress = progress + 1
+        if let userQuest = quests[index].userQuest {
+            let progress = userQuest.progress ?? 0
+            userQuest.progress = progress + 1
+            quests[index].userQuest = userQuest
+        } else {
+            quests[index].progress = 0
+        }
         
         return index
     }
