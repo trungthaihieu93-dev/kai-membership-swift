@@ -13,6 +13,8 @@ class QuestServices {
     class func getList(_ completion: @escaping (APIResult<APIDataListResults<QuestRemote>, APIErrorResult>) -> Void) {
         let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/quests", method: .get)
         
+        input.params = ["type" : "new"]
+        
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
     

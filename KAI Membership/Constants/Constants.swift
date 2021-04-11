@@ -69,7 +69,7 @@ enum Environment {
 
 struct API {
     enum Domain: String {
-        case production = "https://membership.kardiachain.io"
+        case production = "https://membership-backend.kardiachain.io"
         case development = "https://membership-backend-qc.kardiachain.io"
     }
 }
