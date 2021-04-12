@@ -93,10 +93,11 @@ final class Navigator {
     
     /*
      Điều hướng sang màn hình kiểm tra email
+     - parameter type:
      - parameter email: Địa chỉ email
      */
-    class func navigateToCheckMailVC(from viewController: UIViewController? = nil, with email: String) {
-        let vc = CheckMailViewController(with: email)
+    class func navigateToCheckMailVC(from viewController: UIViewController? = nil, with type: CheckMailViewController.`Type`, email: String) {
+        let vc = CheckMailViewController(with: type, email: email)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -109,16 +110,6 @@ final class Navigator {
     class func navigateToPasscodeVC(from viewController: UIViewController? = nil, with type: PasscodeViewController.`Type`, email: String, _ completion: (() -> Void)? = nil) {
         let vc = PasscodeViewController(with: type, email: email)
         vc.completion = completion
-        vc.hidesBottomBarWhenPushed = true
-        viewController?.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    /*
-     Điều hướng sang màn hình chúc mừng (đã đăng ký tài khoản hoăc đã cập nhật mật khẩu) thành công
-     - parameter type: Loại hiển thị
-     */
-    class func navigateToCongratsVC(from viewController: UIViewController? = nil, with type: CongratsViewController.`Type`) {
-        let vc = CongratsViewController(with: type)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -172,8 +163,8 @@ final class Navigator {
     }
     
     /* Điều hướng sang màn hình nhiệm vụ */
-    class func navigateToQuestVC(from viewController: UIViewController? = nil) {
-        let vc = QuestViewController()
+    class func navigateToMissionVC(from viewController: UIViewController? = nil) {
+        let vc = MissionViewController()
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -270,7 +261,7 @@ final class Navigator {
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
     /* Điều hướng tới màn hình Kai Starter */
     class func navigateToKaiStarterVC(from viewController: UIViewController? = nil) {
         let vc = KaiStarterViewContoller()
@@ -296,5 +287,16 @@ final class Navigator {
         let vc = KaiStarterProjectViewController(with: title)
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    /*
+     Điều hướng tới màn hình quét QR code
+     - parameter completion:
+     */
+    class func navigateToQuickScannerVC(from viewController: UIViewController? = nil, completion: ((String) -> Void)? = nil) {
+        let vc = QuickScannerViewController()
+        vc.completion = completion
+        let nv = RootNavigationController(rootViewController: vc)
+        nv.modalPresentationStyle = .fullScreen
+        viewController?.present(nv, animated: true, completion: nil)
     }
 }

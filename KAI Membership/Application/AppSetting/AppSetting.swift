@@ -61,6 +61,33 @@ class AppSetting {
         }
     }
     
+    static var facebookLink: String {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.facebookLink.rawValue)
+        }
+        get {
+            return UserDefaults.standard.string(forKey: Key.UserDefault.facebookLink.rawValue) ?? Constants.facebookLinkDefault
+        }
+    }
+    
+    static var twitterLink: String {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.twitterLink.rawValue)
+        }
+        get {
+            return UserDefaults.standard.string(forKey: Key.UserDefault.twitterLink.rawValue) ?? Constants.twitterLinkDefault
+        }
+    }
+    
+    static var telegramLink: String {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.telegramLink.rawValue)
+        }
+        get {
+            return UserDefaults.standard.string(forKey: Key.UserDefault.telegramLink.rawValue) ?? Constants.telegramLinkDefault
+        }
+    }
+    
     static var configures: [ConfigGroupRemote] {
         set {
             do {
@@ -110,6 +137,15 @@ class AppSetting {
         }
         get {
             return UserDefaults.standard.string(forKey: Key.UserDefault.referrerID.rawValue)
+        }
+    }
+    
+    static var isRequestVerifyEmail: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: Key.UserDefault.isRequestVerifyEmail.rawValue)
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: Key.UserDefault.isRequestVerifyEmail.rawValue)
         }
     }
 }

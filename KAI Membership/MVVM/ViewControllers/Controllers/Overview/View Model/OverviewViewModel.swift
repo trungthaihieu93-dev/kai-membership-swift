@@ -57,7 +57,7 @@ class OverviewViewModel {
         }
     }
     
-    func createSend() -> Observable<Void> {
+    func createSend() -> Observable<Bool> {
         let walletAddress = self.address
         let kai = self.amount.kai
         
@@ -66,16 +66,44 @@ class OverviewViewModel {
             AccountManagement.sendKAI(walletAddress: walletAddress, kai: kai) {
                 switch $0 {
                 case .success:
-                    observer.onNext(())
-                    observer.onCompleted()
+                    QuestServices.checkMissionCompleted(userID: AccountManagement.accountID, key: .sendKai) {
+                        switch $0 {
+                        case .success(let result):
+                            if result.data == true {
+                                observer.onNext(false)
+                            } else {
+                                self?.requestUserQuest()
+                                observer.onNext(true)
+                            }
+                            
+                            observer.onCompleted()
+                        case .failure:
+                            self?.requestUserQuest()
+                            observer.onNext((true))
+                            observer.onCompleted()
+                        }
+                        
+                        self?.showLoading.accept(false)
+                    }
                 case .failure(let error):
                     observer.onError(error)
+                    self?.showLoading.accept(false)
                 }
-                
-                self?.showLoading.accept(false)
             }
 
             return Disposables.create()
+        }
+    }
+    
+    func requestUserQuest() {
+        QuestServices.requestUserQuest(with: .sendKai) {
+            switch $0 {
+            case .success:
+                AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                NotificationCenter.default.post(name: .requestQuestSuccess, object: QuestKey.sendKai)
+            case .failure:
+                AlertManagement.shared.showToast(with: "🤔 Request incorrect!", position: .top)
+            }
         }
     }
 }

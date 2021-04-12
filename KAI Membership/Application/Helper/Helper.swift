@@ -58,6 +58,13 @@ class Helper {
         UIApplication.shared.open(url)
     }
     
+    class func openAppMail(_ email: String) -> Bool {
+        guard let url = URL(string: "mailto:\(email)") else { return false }
+        
+        UIApplication.shared.open(url)
+        return true
+    }
+    
     class func getConfig(forKey key: ConfigKey) -> [ConfigRemote] {
         return AppSetting.configures.first(where: { $0.name == key.rawValue })?.configs ?? []
     }
@@ -82,6 +89,46 @@ class Helper {
         }
         
         return destURL
+    }
+    
+    class func launchApp(from viewController: UIViewController, decodedURL: String) {
+        if viewController.presentedViewController != nil { return }
+        
+        let alertPrompt = UIAlertController(title: "Open App", message: "You're going to open \(decodedURL)", preferredStyle: .actionSheet)
+        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+            if let url = URL(string: decodedURL) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        alertPrompt.addAction(confirmAction)
+        alertPrompt.addAction(cancelAction)
+        
+        viewController.present(alertPrompt, animated: true, completion: nil)
+    }
+    
+    class func requestVerifyEmail() {
+        if AccountManagement.isLoggedIn, let userID = AccountManagement.userID, !userID.isEmpty {
+            QuestServices.checkMissionCompleted(userID: userID, key: .verifyEmail) {
+                switch $0 {
+                case .success(let result):
+                    guard result.data != true else { return }
+                    
+                    QuestServices.requestUserQuest(with: .verifyEmail) { result in
+                        AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                        NotificationCenter.default.post(name: .requestQuestSuccess, object: QuestKey.verifyEmail)
+                    }
+                case .failure:
+                    QuestServices.requestUserQuest(with: .verifyEmail) { result in
+                        AlertManagement.shared.showToast(with: "🎁 You have 01 free spin", position: .top)
+                        NotificationCenter.default.post(name: .requestQuestSuccess, object: QuestKey.verifyEmail)
+                    }
+                }
+            }
+        }
     }
 }
 

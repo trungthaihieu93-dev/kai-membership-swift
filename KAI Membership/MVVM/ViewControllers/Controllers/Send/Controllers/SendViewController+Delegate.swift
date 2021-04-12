@@ -43,12 +43,18 @@ extension SendViewController: UITableViewDelegate {
 extension SendViewController: SendTableViewCellDelegate {
     
     func sendTableViewCellWalletAddressValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField) {
-        viewModel.walletAddress = textField.text ?? ""
-        isConfirmEnabled = !viewModel.walletAddress.isEmpty && (viewModel.amount.kai > 0)
+        setWalletAddress(textField.text ?? "")
     }
     
     func sendTableViewCellAmountValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField, amount: Double?) {
         viewModel.amount = Amount(money: 0, kai: amount ?? 0)
         isConfirmEnabled = !viewModel.walletAddress.isEmpty && (viewModel.amount.kai > 0)
+    }
+    
+    func sendTableViewCellQuickScan(_ sendTableViewCell: SendTableViewCell, textField: UITextField) {
+        Navigator.navigateToQuickScannerVC(from: self) { [weak self] in
+            sendTableViewCell.walletAddressTextField.setText($0)
+            self?.setWalletAddress($0)
+        }
     }
 }

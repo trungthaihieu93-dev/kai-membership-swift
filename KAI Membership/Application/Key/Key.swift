@@ -18,6 +18,10 @@ class Key {
         case haveFreeSpin = "KAI.UserDefault.HaveFreeSpin"
         case isRequestOpenSpin = "KAI.UserDefault.IsRequestOpenSpin"
         case referrerID = "KAI.UserDefault.ReferrerID"
+        case facebookLink = "KAI.UserDefault.facebookLink"
+        case twitterLink = "KAI.UserDefault.twitterLink"
+        case telegramLink = "KAI.UserDefault.telegramLink"
+        case isRequestVerifyEmail = "KAI.UserDefault.isRequestVerifyEmail"
     }
     
     enum KeyChain: String {
@@ -25,6 +29,6 @@ class Key {
         case refreshToken = "KAI.KeyChain.refreshToken"
         case userID = "KAI.KeyChain.UserID"
         case email = "KAI.KeyChain.Email"
-        case AccountInfo = "KAI.KeyChain.AccountInfomation"
+        case accountInfo = "KAI.KeyChain.AccountInfomation"
     }
 }

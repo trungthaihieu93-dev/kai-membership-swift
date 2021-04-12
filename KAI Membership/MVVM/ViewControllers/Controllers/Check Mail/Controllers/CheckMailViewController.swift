@@ -10,7 +10,14 @@ import UIKit
 class CheckMailViewController: BaseViewController {
 
     // MARK: Properties
-    private let footerString: String = "Did not receive any email? Check your spam filter, \nor resend another mail"
+    enum `Type` {
+        case request
+        case verify
+    }
+    
+    private let type: `Type`
+    
+    private let footerString: String = "Did not receive any email? Check your spam filter,\n or resend another mail"
     private let detectActionFooter: String = "resend another mail"
     
     private let containerView: UIView = {
@@ -80,7 +87,8 @@ class CheckMailViewController: BaseViewController {
     private let email: String
     
     // MARK: Life cycle's
-    init(with email: String) {
+    init(with type: `Type`, email: String) {
+        self.type = type
         self.email = email
         
         super.init(nibName: nil, bundle: nil)
@@ -104,7 +112,6 @@ class CheckMailViewController: BaseViewController {
         containerView.addSubview(titleLabel)
         containerView.addSubview(descriptionLabel)
         containerView.addSubview(openEmailAppButton)
-        containerView.addSubview(footerLabel)
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: statusBarHeight),
@@ -127,12 +134,7 @@ class CheckMailViewController: BaseViewController {
             openEmailAppButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 32),
             openEmailAppButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             openEmailAppButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            openEmailAppButton.heightAnchor.constraint(equalToConstant: 52),
-            
-            footerLabel.topAnchor.constraint(equalTo: openEmailAppButton.bottomAnchor, constant: 12),
-            footerLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            footerLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            footerLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
+            openEmailAppButton.heightAnchor.constraint(equalToConstant: 52)
         ])
         
         let description: String = "We have sent you a email comfirmation to \(email) email. Please check."
@@ -142,7 +144,19 @@ class CheckMailViewController: BaseViewController {
         descriptionAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(hex: "377AA9"), range: range)
         descriptionLabel.attributedText = descriptionAttributedString
         
-        configureFooterLabel()
+        
+        if type == .request {
+            containerView.addSubview(footerLabel)
+            
+            footerLabel.topAnchor.constraint(equalTo: openEmailAppButton.bottomAnchor, constant: 12).isActive = true
+            footerLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+            footerLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+            footerLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
+            
+            configureFooterLabel()
+        } else {
+            openEmailAppButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        }
         
         DispatchQueue.main.async {
             self.openEmailAppButton.gradientBackgroundColors([UIColor.init(hex: "394656").cgColor, UIColor.init(hex: "181E25").cgColor], direction: .vertical)
@@ -163,7 +177,12 @@ class CheckMailViewController: BaseViewController {
 extension CheckMailViewController {
     
     @objc private func onPressedOpenEmailApp() {
-        Navigator.navigateToVerificationVC(from: self, with: email)
+        switch type {
+        case .request:
+            Navigator.navigateToVerificationVC(from: self, with: email)
+        case .verify:
+            AppSetting.isRequestVerifyEmail = Helper.openAppMail(email)
+        }
     }
     
     @objc private func onTapResendAnotherMail(_ recognizer: UITapGestureRecognizer) {

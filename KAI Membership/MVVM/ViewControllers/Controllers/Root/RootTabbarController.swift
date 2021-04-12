@@ -51,7 +51,7 @@ class RootTabbarController: UITabBarController {
                 navigationController.tabBarItem.selectedImage = UIImage(named: "tabbar_news_selected")?.withRenderingMode(.alwaysOriginal)
                 navigationControllers.append(navigationController)
             case .quest:
-                let quest = QuestViewController()
+                let quest = MissionViewController()
                 let navigationController = RootNavigationController(rootViewController: quest)
                 navigationController.tabBarItem.title = "Mission"
                 navigationController.tabBarItem.image = UIImage(named: "tabbar_quests")?.withRenderingMode(.alwaysOriginal)

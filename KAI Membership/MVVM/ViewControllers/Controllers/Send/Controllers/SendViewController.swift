@@ -101,6 +101,12 @@ class SendViewController: BaseViewController {
         continueButtonBottomAnchor = continueButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(safeAreaInsets.bottom + 20))
         continueButtonBottomAnchor?.isActive = true
     }
+    
+    // MARK: Methods
+    func setWalletAddress(_ address: String) {
+        viewModel.walletAddress = address
+        isConfirmEnabled = !viewModel.walletAddress.isEmpty && (viewModel.amount.kai > 0)
+    }
 }
 
 // MARK: Handle actions

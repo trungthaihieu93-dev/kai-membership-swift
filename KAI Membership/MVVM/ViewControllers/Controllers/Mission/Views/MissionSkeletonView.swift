@@ -1,5 +1,5 @@
 //
-//  QuestSkeletonView.swift
+//  MissionSkeletonView.swift
 //  KAI Membership
 //
 //  Created by DAKiet on 29/03/2021.
@@ -7,7 +7,7 @@
 
 import SkeletonView
 
-class QuestSkeletonView: UIView {
+class MissionSkeletonView: UIView {
     
     // MARK: Properties
     private let imageView1: UIView = {
@@ -285,7 +285,7 @@ class QuestSkeletonView: UIView {
         addSubview(descriptionView7)
         
         NSLayoutConstraint.activate([
-            imageView1.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            imageView1.topAnchor.constraint(equalTo: topAnchor, constant: MissionHeaderView.height + 30),
             imageView1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28),
             imageView1.widthAnchor.constraint(equalToConstant: 52),
             imageView1.heightAnchor.constraint(equalToConstant: 52),

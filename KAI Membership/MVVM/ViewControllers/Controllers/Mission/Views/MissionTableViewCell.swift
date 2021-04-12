@@ -1,5 +1,5 @@
 //
-//  QuestTableViewCell.swift
+//  MissionTableViewCell.swift
 //  KAI Membership
 //
 //  Created by Anh Kiệt on 05/03/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuestTableViewCell: UITableViewCell {
+class MissionTableViewCell: UITableViewCell {
     
     // MARK: Properties
     enum `Type` {
@@ -127,6 +127,9 @@ class QuestTableViewCell: UITableViewCell {
     
     // MARK: Methods
     func configure(_ quest: QuestRemote) {
+        descriptionStackVỉew.removeAllArrangedSubviews()
+        let progress = quest.userQuest?.progress ?? 0
+        
         switch quest.key {
         case .highestScores:
             contentImageView.image = UIImage(named: "ic_mission_progress")
@@ -141,16 +144,92 @@ class QuestTableViewCell: UITableViewCell {
             ]))
             
             descriptionLabel.attributedText = mutableAttributedString
-        case .thiryMinutes, .inviteFriend, .signIn:
-            let progress = quest.userQuest?.progress ?? 0
-            
-            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+        case .thiryMinutes, .inviteFriend, .signIn, .sendKai:
+            if let totalProgress = quest.progress, totalProgress > 0 {
+                var description: String = "\(progress)/\(totalProgress)"
+                
+                if progress < totalProgress {
+                    contentImageView.image = UIImage(named: "ic_mission_progress")
+                } else {
+                    description = "\(totalProgress)/\(totalProgress)"
+                    contentImageView.image = UIImage(named: "ic_mission_completed")
+                }
+                
                 progressBar.progress = Float(progress) / Float(totalProgress)
                 descriptionStackVỉew.addArrangedSubview(progressBar)
-                contentImageView.image = UIImage(named: "ic_mission_progress")
-                descriptionLabel.attributedText = NSAttributedString(string: "\(progress)/\(totalProgress)", attributes: [
+                descriptionLabel.attributedText = NSAttributedString(string: description, attributes: [
                     NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
                     NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.87)
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .rateApp:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet rating", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .verifyEmail:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Unverified", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Verified", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .followTwitter:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet follow", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .likeFacebook:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet like", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
+                ])
+            } else {
+                contentImageView.image = UIImage(named: "ic_mission_completed")
+                descriptionLabel.attributedText = NSAttributedString(string: "Completed", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "0E8C31")
+                ])
+            }
+        case .joinTelegram:
+            if let totalProgress = quest.progress, totalProgress > 0, progress < totalProgress {
+                contentImageView.image = UIImage(named: "ic_mission_progress")
+                descriptionLabel.attributedText = NSAttributedString(string: "Not yet join", attributes: [
+                    NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 10, weight: .medium),
+                    NSAttributedString.Key.foregroundColor: UIColor.init(hex: "4E5D78")
                 ])
             } else {
                 contentImageView.image = UIImage(named: "ic_mission_completed")

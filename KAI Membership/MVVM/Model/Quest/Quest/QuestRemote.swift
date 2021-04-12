@@ -13,10 +13,16 @@ enum QuestType: String {
 }
 
 enum QuestKey: String {
-    case highestScores = "HIGHEST_SCORES"// Web
-    case thiryMinutes = "THIRTY_MINUTES" // play game 30' // Web
-    case inviteFriend = "INVITE_FRIEND" // share // mobile
-    case signIn = "SIGN_IN" // activity => done
+    case highestScores = "HIGHEST_SCORES"
+    case thiryMinutes = "THIRTY_MINUTES"
+    case inviteFriend = "INVITE_FRIEND"
+    case sendKai = "SEND_KAI"
+    case rateApp = "RATE_APP"
+    case signIn = "SIGN_IN"
+    case verifyEmail = "VERIFY_EMAIL"
+    case followTwitter = "FOLLOW_TWITTER"
+    case likeFacebook = "LIKE_FACEBOOK"
+    case joinTelegram = "JOIN_TELEGRAM"
 }
 
 class QuestRemote: BaseModel {

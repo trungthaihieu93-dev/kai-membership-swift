@@ -158,7 +158,7 @@ class OverviewViewController: BaseViewController {
                 AlertManagement.shared.showBulletin(with: "Fail?", image: "🤔".toImage(with: CGSize(width: 104, height: 104), font: UIFont.workSansFont(ofSize: 64, weight: .extraBold)), descriptionText: "Maybe the provider service is wrong. Check your inputed phone number also.", fromController: this, primaryButtonTitle: "Check again")
             }).disposed(by: disposeBag)
         case .send:
-            viewModel.createSend().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
+            viewModel.createSend().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 self?.completion?()
             }, onError: { [weak self] error in
                 guard let this = self else { return }

@@ -13,12 +13,14 @@ protocol KAITextFieldDelegate: class {
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView)
     func kAITextFieldShouldReturn(_ textField: UITextField, for view: UIView) -> Bool
     func kAITextFieldShouldClear(_ textField: UITextField, for view: UIView) -> Bool
+    func kAITextFieldQuickScan(_ textField: UITextField, for view: UIView)
 }
 
 extension KAITextFieldDelegate {
     func kAITextFieldDidBeginEditing(_ textField: UITextField, for view: UIView) {}
     func kAITextFieldDidEndEditing(_ textField: UITextField, for view: UIView) {}
     func kAITextFieldDidChange(_ textField: UITextField, for view: UIView) {}
+    func kAITextFieldQuickScan(_ textField: UITextField, for view: UIView) {}
 }
 
 class KAITextField: UIView {
@@ -27,6 +29,7 @@ class KAITextField: UIView {
     enum `Type` {
         case `default`
         case password
+        case scan
     }
     
     enum State {
@@ -70,7 +73,7 @@ class KAITextField: UIView {
         textField.isSecureTextEntry = isSecureTextEntry
         textField.textColor = UIColor.black.withAlphaComponent(0.84)
         textField.font = .workSansFont(ofSize: 14, weight: .medium)
-//        textField.clearButtonMode = .always
+        //        textField.clearButtonMode = .always
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         textField.delegate = self
         
@@ -98,6 +101,8 @@ class KAITextField: UIView {
                 updateTypeDefault()
             case .password:
                 updateTypePassword()
+            case .scan:
+                updateTypeScan()
             }
         }
     }
@@ -168,6 +173,9 @@ class KAITextField: UIView {
         case .password:
             updateTypePassword()
             textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -44)
+        case .scan:
+            updateTypeScan()
+            textFieldTrailingAnchor = textField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -44)
         }
         
         textFieldTrailingAnchor?.isActive = true
@@ -200,6 +208,33 @@ class KAITextField: UIView {
             actionButton.setImage(UIImage(named: "ic_success")?.withRenderingMode(.alwaysOriginal), for: .normal)
             textField.isEnabled = true
             actionButton.isHidden = false
+            actionButton.isEnabled = false
+            containerView.layer.borderColor = UIColor.init(hex: "0E8C31").cgColor
+            containerView.backgroundColor = .init(hex: "FAFBFB")
+        }
+    }
+    
+    private func updateTypeScan() {
+        switch state {
+        case .normal:
+            actionButton.setImage(UIImage(named: "ic_scan")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            textField.isEnabled = true
+            containerView.layer.borderColor = UIColor.init(hex: "E1E4E8").cgColor
+            containerView.backgroundColor = .init(hex: "FAFBFB")
+        case .disabled:
+            actionButton.setImage(UIImage(named: "ic_scan")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            textField.isEnabled = false
+            containerView.layer.borderColor = UIColor.init(hex: "E1E4E8").cgColor
+            containerView.backgroundColor = .init(hex: "F1F2F4")
+        case .failed:
+            actionButton.setImage(UIImage(named: "ic_failed")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            textField.isEnabled = true
+            actionButton.isEnabled = false
+            containerView.layer.borderColor = UIColor.init(hex: "C42C15").cgColor
+            containerView.backgroundColor = .init(hex: "FAFBFB")
+        case .success:
+            actionButton.setImage(UIImage(named: "ic_success")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            textField.isEnabled = true
             actionButton.isEnabled = false
             containerView.layer.borderColor = UIColor.init(hex: "0E8C31").cgColor
             containerView.backgroundColor = .init(hex: "FAFBFB")
@@ -268,17 +303,25 @@ class KAITextField: UIView {
     
     // MARK: Handle actions
     @objc private func onPressedAction() {
-        switch state {
-        case .normal:
-            isSecureTextEntry = !isSecureTextEntry
-            textField.isSecureTextEntry = isSecureTextEntry
-            actionButton.setImage(UIImage(named: isSecureTextEntry ? "ic_show_password" : "ic_hide_password")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        case .disabled:
-            debugPrint("Không cho tương tác")
-        case .failed:
-            debugPrint("Không cho tương tác")
-        case .success:
-            debugPrint("Không cho tương tác")
+        switch type {
+        case .default:
+            break
+        case .password:
+            switch state {
+            case .normal:
+                isSecureTextEntry = !isSecureTextEntry
+                textField.isSecureTextEntry = isSecureTextEntry
+                actionButton.setImage(UIImage(named: isSecureTextEntry ? "ic_show_password" : "ic_hide_password")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            default:
+                break
+            }
+        case .scan:
+            switch state {
+            case .normal:
+                delegate?.kAITextFieldQuickScan(textField, for: self)
+            default:
+                break
+            }
         }
     }
     

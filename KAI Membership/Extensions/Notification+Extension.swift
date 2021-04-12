@@ -11,4 +11,5 @@ extension Notification.Name {
     
     static let kaiValueChanged = Notification.Name("KaiValueChanged")
     static let avatarChanged = Notification.Name("AvatarChanged")
+    static let requestQuestSuccess = Notification.Name("RequestQuestSuccess")
 }

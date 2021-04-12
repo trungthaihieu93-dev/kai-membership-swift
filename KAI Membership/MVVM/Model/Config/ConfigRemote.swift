@@ -12,6 +12,9 @@ enum ConfigKey: String {
     case missionKey = "Mission Key"
     case mobileCard = "Mobile Card"
     case linkBuy = "Link Buy"
+    case facebookURL = "FACEBOOK_URL"
+    case twitterURL = "TWITTER_URL"
+    case telegramURL = "TELEGRAM_URL"
 }
 
 class ConfigGroupRemote: BaseModel {

@@ -190,8 +190,10 @@ extension CongratsViewController {
         case .signUp:
             AppSetting.isRequestOpenSpin = true
             Navigator.showRootTabbarController()
-        case .passcode, .password:
+        case .passcode:
             Navigator.showRootTabbarController()
+        case .password:
+            Navigator.showSignInVC()
         }
     }
 }

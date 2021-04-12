@@ -102,7 +102,7 @@
 		49ECF7BF260D84AF000A8AB2 /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */; };
 		49ECF7C8260D8D19000A8AB2 /* NewsSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECF7C7260D8D19000A8AB2 /* NewsSkeletonView.swift */; };
 		49F561802611B246006BEBE8 /* WalletSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5617F2611B246006BEBE8 /* WalletSkeletonView.swift */; };
-		49F561842611D473006BEBE8 /* QuestSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F561832611D473006BEBE8 /* QuestSkeletonView.swift */; };
+		49F561842611D473006BEBE8 /* MissionSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F561832611D473006BEBE8 /* MissionSkeletonView.swift */; };
 		49F5FE862601AD5700D53D82 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */; };
 		49F5FE8C2601E73400D53D82 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8B2601E73400D53D82 /* SendViewController.swift */; };
 		49F5FE902601E93F00D53D82 /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */; };
@@ -124,10 +124,16 @@
 		5236498D261AE54500A37E90 /* KaiStarterProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236498C261AE54500A37E90 /* KaiStarterProjectTableViewCell.swift */; };
 		52364992261B0FD100A37E90 /* KaiProjectRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52364991261B0FD100A37E90 /* KaiProjectRemote.swift */; };
 		52364997261B198700A37E90 /* KaiStarterProjectViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52364996261B198700A37E90 /* KaiStarterProjectViewController+Delegate.swift */; };
+		524CF7C8261DBD82000B9A61 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7C7261DBD82000B9A61 /* MissionViewController.swift */; };
+		524CF7CD261DBF55000B9A61 /* MissionViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7CC261DBF55000B9A61 /* MissionViewController+Delegate.swift */; };
+		524CF7D0261DC002000B9A61 /* MissionViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7CF261DC002000B9A61 /* MissionViewController+DataSource.swift */; };
+		524CF7DF261EB34C000B9A61 /* QuickScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */; };
+		524CF7E2261EB632000B9A61 /* QuickScannerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */; };
+		524CF7E5261EE706000B9A61 /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */; };
+		524CF82C26205CC7000B9A61 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */; };
 		525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */; };
 		525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87425E51DA1001491AE /* PasscodeViewController.swift */; };
 		525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87C25E5543E001491AE /* CongratsViewController.swift */; };
-		525DB88625E557BC001491AE /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB88525E557BC001491AE /* QuestViewController.swift */; };
 		525DB8AC25E6A7D7001491AE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8AA25E6A7D6001491AE /* Constants.swift */; };
 		525DB8AD25E6A7D7001491AE /* ServicesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8AB25E6A7D7001491AE /* ServicesRepository.swift */; };
 		525DB8E725E6B641001491AE /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB8E625E6B641001491AE /* UserDataSource.swift */; };
@@ -196,7 +202,6 @@
 		525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA6525F010AE001491AE /* NewsSuggestionTableViewCell.swift */; };
 		525DBA6A25F010BA001491AE /* NewsLastestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA6925F010BA001491AE /* NewsLastestTableViewCell.swift */; };
 		525DBA6F25F0121F001491AE /* NewsViewController+ Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA6E25F0121F001491AE /* NewsViewController+ Delegate.swift */; };
-		525DBA7525F016F2001491AE /* QuestViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA7425F016F2001491AE /* QuestViewController+DataSource.swift */; };
 		525DBA7D25F017AA001491AE /* TopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA7C25F017AA001491AE /* TopupViewController.swift */; };
 		525DBA8025F017BF001491AE /* TopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA7F25F017BF001491AE /* TopupViewModel.swift */; };
 		525DBA8725F01842001491AE /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA8625F01842001491AE /* OverviewViewController.swift */; };
@@ -204,16 +209,11 @@
 		525DBA9425F0FDA6001491AE /* TabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA9125F0FDA6001491AE /* TabPageView.swift */; };
 		525DBA9525F0FDA6001491AE /* NestedScrollViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA9225F0FDA6001491AE /* NestedScrollViewController+Protocol.swift */; };
 		525DBA9625F0FDA6001491AE /* NestedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA9325F0FDA6001491AE /* NestedScrollViewController.swift */; };
-		525DBA9D25F137A1001491AE /* QuestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA9C25F137A1001491AE /* QuestHeaderView.swift */; };
-		525DBAA125F16213001491AE /* QuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAA025F16213001491AE /* QuestTableViewCell.swift */; };
-		525DBAA825F164AA001491AE /* DailyQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAA725F164AA001491AE /* DailyQuestViewController.swift */; };
-		525DBAAC25F164C0001491AE /* MonthlyQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAAB25F164C0001491AE /* MonthlyQuestViewController.swift */; };
-		525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAB025F1689A001491AE /* DailyQuestViewController+DataSource.swift */; };
-		525DBAB825F16921001491AE /* MonthlyQuestViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAB725F16921001491AE /* MonthlyQuestViewController+DataSource.swift */; };
-		525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBABA25F173AC001491AE /* QuestViewController+Delegate.swift */; };
+		525DBA9D25F137A1001491AE /* MissionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBA9C25F137A1001491AE /* MissionHeaderView.swift */; };
+		525DBAA125F16213001491AE /* MissionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAA025F16213001491AE /* MissionTableViewCell.swift */; };
 		525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBABE25F175A3001491AE /* QuestRemote.swift */; };
 		525DBAC425F17802001491AE /* QuestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAC325F17802001491AE /* QuestServices.swift */; };
-		525DBAC725F178E0001491AE /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAC625F178E0001491AE /* QuestViewModel.swift */; };
+		525DBAC725F178E0001491AE /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAC625F178E0001491AE /* MissionViewModel.swift */; };
 		525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBADB25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift */; };
 		525DBADF25F22F96001491AE /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBADE25F22F96001491AE /* UICollectionViewCell+Extensions.swift */; };
 		525DBAE325F2399B001491AE /* NewsLastestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DBAE225F2399B001491AE /* NewsLastestCollectionViewCell.swift */; };
@@ -345,7 +345,7 @@
 		49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		49ECF7C7260D8D19000A8AB2 /* NewsSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSkeletonView.swift; sourceTree = "<group>"; };
 		49F5617F2611B246006BEBE8 /* WalletSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSkeletonView.swift; sourceTree = "<group>"; };
-		49F561832611D473006BEBE8 /* QuestSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestSkeletonView.swift; sourceTree = "<group>"; };
+		49F561832611D473006BEBE8 /* MissionSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSkeletonView.swift; sourceTree = "<group>"; };
 		49F5FE852601AD5700D53D82 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		49F5FE8B2601E73400D53D82 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		49F5FE8F2601E93F00D53D82 /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
@@ -367,10 +367,16 @@
 		5236498C261AE54500A37E90 /* KaiStarterProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterProjectTableViewCell.swift; sourceTree = "<group>"; };
 		52364991261B0FD100A37E90 /* KaiProjectRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiProjectRemote.swift; sourceTree = "<group>"; };
 		52364996261B198700A37E90 /* KaiStarterProjectViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KaiStarterProjectViewController+Delegate.swift"; sourceTree = "<group>"; };
+		524CF7C7261DBD82000B9A61 /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
+		524CF7CC261DBF55000B9A61 /* MissionViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MissionViewController+Delegate.swift"; sourceTree = "<group>"; };
+		524CF7CF261DC002000B9A61 /* MissionViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MissionViewController+DataSource.swift"; sourceTree = "<group>"; };
+		524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickScannerViewController.swift; sourceTree = "<group>"; };
+		524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickScannerViewController+Delegate.swift"; sourceTree = "<group>"; };
+		524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
+		524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMailViewController.swift; sourceTree = "<group>"; };
 		525DB87425E51DA1001491AE /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		525DB87C25E5543E001491AE /* CongratsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsViewController.swift; sourceTree = "<group>"; };
-		525DB88525E557BC001491AE /* QuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
 		525DB8AA25E6A7D6001491AE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		525DB8AB25E6A7D7001491AE /* ServicesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRepository.swift; sourceTree = "<group>"; };
 		525DB8E625E6B641001491AE /* UserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
@@ -439,7 +445,6 @@
 		525DBA6525F010AE001491AE /* NewsSuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		525DBA6925F010BA001491AE /* NewsLastestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLastestTableViewCell.swift; sourceTree = "<group>"; };
 		525DBA6E25F0121F001491AE /* NewsViewController+ Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+ Delegate.swift"; sourceTree = "<group>"; };
-		525DBA7425F016F2001491AE /* QuestViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestViewController+DataSource.swift"; sourceTree = "<group>"; };
 		525DBA7C25F017AA001491AE /* TopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopupViewController.swift; sourceTree = "<group>"; };
 		525DBA7F25F017BF001491AE /* TopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopupViewModel.swift; sourceTree = "<group>"; };
 		525DBA8625F01842001491AE /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
@@ -448,16 +453,11 @@
 		525DBA9125F0FDA6001491AE /* TabPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabPageView.swift; sourceTree = "<group>"; };
 		525DBA9225F0FDA6001491AE /* NestedScrollViewController+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NestedScrollViewController+Protocol.swift"; sourceTree = "<group>"; };
 		525DBA9325F0FDA6001491AE /* NestedScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedScrollViewController.swift; sourceTree = "<group>"; };
-		525DBA9C25F137A1001491AE /* QuestHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestHeaderView.swift; sourceTree = "<group>"; };
-		525DBAA025F16213001491AE /* QuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTableViewCell.swift; sourceTree = "<group>"; };
-		525DBAA725F164AA001491AE /* DailyQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestViewController.swift; sourceTree = "<group>"; };
-		525DBAAB25F164C0001491AE /* MonthlyQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyQuestViewController.swift; sourceTree = "<group>"; };
-		525DBAB025F1689A001491AE /* DailyQuestViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyQuestViewController+DataSource.swift"; sourceTree = "<group>"; };
-		525DBAB725F16921001491AE /* MonthlyQuestViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyQuestViewController+DataSource.swift"; sourceTree = "<group>"; };
-		525DBABA25F173AC001491AE /* QuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestViewController+Delegate.swift"; sourceTree = "<group>"; };
+		525DBA9C25F137A1001491AE /* MissionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionHeaderView.swift; sourceTree = "<group>"; };
+		525DBAA025F16213001491AE /* MissionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTableViewCell.swift; sourceTree = "<group>"; };
 		525DBABE25F175A3001491AE /* QuestRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRemote.swift; sourceTree = "<group>"; };
 		525DBAC325F17802001491AE /* QuestServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestServices.swift; sourceTree = "<group>"; };
-		525DBAC625F178E0001491AE /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
+		525DBAC625F178E0001491AE /* MissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
 		525DBADB25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		525DBADE25F22F96001491AE /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		525DBAE225F2399B001491AE /* NewsLastestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLastestCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1037,6 +1037,7 @@
 		521754AC25DE75FA009355BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */,
 				525DBA5625F008E7001491AE /* Data+Extensions.swift */,
 				4928738926020F6E002BAE39 /* Date+Extensions.swift */,
 				525DB96C25EA4490001491AE /* Double+Extensions.swift */,
@@ -1047,12 +1048,13 @@
 				525DBADE25F22F96001491AE /* UICollectionViewCell+Extensions.swift */,
 				521754B125DE79D1009355BC /* UIColor+Extensions.swift */,
 				525DB95325E96018001491AE /* UIFont+Extensions.swift */,
+				22B74F2D26130DE1007777B2 /* UIImage+Extensions.swift */,
 				525DBA4525EFF48A001491AE /* UIImageView+Extensions.swift */,
+				524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */,
 				525DB97A25EB52A2001491AE /* UITableViewCell+Extensions.swift */,
 				52F37CF325E0385A009F311F /* UITapGestureRecognizer+Extensions.swift */,
 				521754B425DE7C5B009355BC /* UIView+Extensions.swift */,
 				521754DD25DECBEF009355BC /* UIViewController+Extensions.swift */,
-				22B74F2D26130DE1007777B2 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1175,6 +1177,51 @@
 			path = "Kai Project";
 			sourceTree = "<group>";
 		};
+		524CF7C4261DBD37000B9A61 /* Mission */ = {
+			isa = PBXGroup;
+			children = (
+				524CF7C5261DBD41000B9A61 /* Controllers */,
+				524CF7C6261DBD47000B9A61 /* View Model */,
+				525DBA7325F016E3001491AE /* Views */,
+			);
+			path = Mission;
+			sourceTree = "<group>";
+		};
+		524CF7C5261DBD41000B9A61 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				524CF7C7261DBD82000B9A61 /* MissionViewController.swift */,
+				524CF7CF261DC002000B9A61 /* MissionViewController+DataSource.swift */,
+				524CF7CC261DBF55000B9A61 /* MissionViewController+Delegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		524CF7C6261DBD47000B9A61 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				525DBAC625F178E0001491AE /* MissionViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		524CF7DC261EB335000B9A61 /* Quick Scanner  */ = {
+			isa = PBXGroup;
+			children = (
+				524CF7DD261EB33D000B9A61 /* Controllers */,
+			);
+			path = "Quick Scanner ";
+			sourceTree = "<group>";
+		};
+		524CF7DD261EB33D000B9A61 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				524CF7DE261EB34C000B9A61 /* QuickScannerViewController.swift */,
+				524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		525DB86D25E3F28A001491AE /* Check Mail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1251,27 +1298,6 @@
 				529AE1B225DD99B900635807 /* WalletViewController.swift */,
 				525DB9E725EE96A6001491AE /* WalletViewController+DataSource.swift */,
 				525DB9EB25EE96CD001491AE /* WalletViewController+Delegate.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		525DB88325E5579E001491AE /* Quest */ = {
-			isa = PBXGroup;
-			children = (
-				525DB88425E557A4001491AE /* Controllers */,
-				525DBA7225F016DB001491AE /* View Model */,
-				525DBA7325F016E3001491AE /* Views */,
-			);
-			path = Quest;
-			sourceTree = "<group>";
-		};
-		525DB88425E557A4001491AE /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				525DBAA325F1642E001491AE /* Childs */,
-				525DB88525E557BC001491AE /* QuestViewController.swift */,
-				525DBA7425F016F2001491AE /* QuestViewController+DataSource.swift */,
-				525DBABA25F173AC001491AE /* QuestViewController+Delegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1518,20 +1544,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		525DBA7225F016DB001491AE /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-				525DBAC625F178E0001491AE /* QuestViewModel.swift */,
-			);
-			path = "View Model";
-			sourceTree = "<group>";
-		};
 		525DBA7325F016E3001491AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				525DBA9C25F137A1001491AE /* QuestHeaderView.swift */,
-				49F561832611D473006BEBE8 /* QuestSkeletonView.swift */,
-				525DBAA025F16213001491AE /* QuestTableViewCell.swift */,
+				525DBA9C25F137A1001491AE /* MissionHeaderView.swift */,
+				49F561832611D473006BEBE8 /* MissionSkeletonView.swift */,
+				525DBAA025F16213001491AE /* MissionTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1590,51 +1608,6 @@
 				525DBA9125F0FDA6001491AE /* TabPageView.swift */,
 			);
 			path = "Nested Scroll";
-			sourceTree = "<group>";
-		};
-		525DBAA325F1642E001491AE /* Childs */ = {
-			isa = PBXGroup;
-			children = (
-				525DBAA425F16483001491AE /* Daily */,
-				525DBAA525F1648D001491AE /* Monthly */,
-			);
-			path = Childs;
-			sourceTree = "<group>";
-		};
-		525DBAA425F16483001491AE /* Daily */ = {
-			isa = PBXGroup;
-			children = (
-				525DBAA625F1649D001491AE /* Controllers */,
-			);
-			path = Daily;
-			sourceTree = "<group>";
-		};
-		525DBAA525F1648D001491AE /* Monthly */ = {
-			isa = PBXGroup;
-			children = (
-				525DBAAE25F164C8001491AE /* Controllers */,
-			);
-			path = Monthly;
-			sourceTree = "<group>";
-		};
-		525DBAA625F1649D001491AE /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				525DBAA725F164AA001491AE /* DailyQuestViewController.swift */,
-				525DBAB025F1689A001491AE /* DailyQuestViewController+DataSource.swift */,
-				49D49E9526142A7500E5AB91 /* DailyQuestViewController+Delegate.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		525DBAAE25F164C8001491AE /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				525DBAAB25F164C0001491AE /* MonthlyQuestViewController.swift */,
-				525DBAB725F16921001491AE /* MonthlyQuestViewController+DataSource.swift */,
-				49D49E9826142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		525DBABD25F17592001491AE /* Quest */ = {
@@ -1801,6 +1774,8 @@
 			isa = PBXGroup;
 			children = (
 				49D49E9B26144D3A00E5AB91 /* Kai Starter */,
+				524CF7DC261EB335000B9A61 /* Quick Scanner  */,
+				524CF7C4261DBD37000B9A61 /* Mission */,
 				49976C372608456C0005F8F8 /* Share */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				226DA42C2600B5DB009BC8CC /* Buy */,
@@ -1813,7 +1788,6 @@
 				525DB87225E51D88001491AE /* Passcode */,
 				52F37D0925E15952009F311F /* Password */,
 				5265495925F5E8B6003AE21A /* Profile */,
-				525DB88325E5579E001491AE /* Quest */,
 				226DA40426009741009BC8CC /* Receive */,
 				525DB98125EB8FD9001491AE /* Recent Transactions */,
 				493043E525F88C2000EED242 /* Rewards */,
@@ -2152,6 +2126,7 @@
 				52F37D0625E1581C009F311F /* ResetPasscodeViewController.swift in Sources */,
 				4963D08725FF165500720B34 /* ProviderCollectionViewCell.swift in Sources */,
 				493043F625F8A0CF00EED242 /* RewardsEmptyView.swift in Sources */,
+				524CF7DF261EB34C000B9A61 /* QuickScannerViewController.swift in Sources */,
 				525DBA9525F0FDA6001491AE /* NestedScrollViewController+Protocol.swift in Sources */,
 				525DBA4225EFEE2F001491AE /* MainViewModel.swift in Sources */,
 				49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */,
@@ -2179,6 +2154,7 @@
 				495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */,
 				494099F4260B4F8D00F92119 /* KAIInputNumber.swift in Sources */,
 				525DB9FC25EFD95E001491AE /* DeviceRemote.swift in Sources */,
+				524CF7E5261EE706000B9A61 /* Bool+Extensions.swift in Sources */,
 				525DBAE325F2399B001491AE /* NewsLastestCollectionViewCell.swift in Sources */,
 				49D9ACA1260DAFA700A459AF /* EmptyTableViewCell.swift in Sources */,
 				49976C822609D6140005F8F8 /* CalendarPickerHeaderView.swift in Sources */,
@@ -2194,22 +2170,22 @@
 				49976C392608457E0005F8F8 /* ShareViewController.swift in Sources */,
 				226DA3FD2600750A009BC8CC /* Floaty.swift in Sources */,
 				521754D125DEAD91009355BC /* AccountManagement.swift in Sources */,
+				524CF82C26205CC7000B9A61 /* UIStackView+Extensions.swift in Sources */,
 				525DBA6A25F010BA001491AE /* NewsLastestTableViewCell.swift in Sources */,
 				498BCFEC25F756EE00F04160 /* InputCodeView.swift in Sources */,
-				525DB88625E557BC001491AE /* QuestViewController.swift in Sources */,
 				525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */,
 				49976C732609A2960005F8F8 /* CalendarDateCollectionViewCell.swift in Sources */,
 				525DB9DB25EE9168001491AE /* TransactionRemote.swift in Sources */,
 				525DBA9625F0FDA6001491AE /* NestedScrollViewController.swift in Sources */,
 				22FA81A62601B18200E3C460 /* AlertManagement.swift in Sources */,
 				22B74F2E26130DE1007777B2 /* UIImage+Extensions.swift in Sources */,
-				525DBAC725F178E0001491AE /* QuestViewModel.swift in Sources */,
+				525DBAC725F178E0001491AE /* MissionViewModel.swift in Sources */,
 				525DB9BD25ED374B001491AE /* NewsViewController+DataSource.swift in Sources */,
 				226DA4062600974B009BC8CC /* ReceiveViewController.swift in Sources */,
 				525DBADF25F22F96001491AE /* UICollectionViewCell+Extensions.swift in Sources */,
 				52F37CEB25E031D1009F311F /* SignUpViewController.swift in Sources */,
+				524CF7D0261DC002000B9A61 /* MissionViewController+DataSource.swift in Sources */,
 				525DB9D525EE8467001491AE /* UtilitiesTableViewCell.swift in Sources */,
-				525DBAB825F16921001491AE /* MonthlyQuestViewController+DataSource.swift in Sources */,
 				525DB98525EB9012001491AE /* RecentTransactionsViewController.swift in Sources */,
 				525DB9E425EE9600001491AE /* WalletViewModel.swift in Sources */,
 				226DA3FC2600750A009BC8CC /* FloatyViewController.swift in Sources */,
@@ -2219,7 +2195,6 @@
 				525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */,
 				4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
-				525DBAAC25F164C0001491AE /* MonthlyQuestViewController.swift in Sources */,
 				49A79473260442BF00915584 /* NotificationManagement.swift in Sources */,
 				525E6B8325F9010C00A7BAC5 /* RootNavigationController.swift in Sources */,
 				525DBA8025F017BF001491AE /* TopupViewModel.swift in Sources */,
@@ -2228,7 +2203,6 @@
 				52364997261B198700A37E90 /* KaiStarterProjectViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
 				495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */,
-				49D49E9626142A7500E5AB91 /* DailyQuestViewController+Delegate.swift in Sources */,
 				52F37D0C25E1596D009F311F /* ForgotPasswordViewController.swift in Sources */,
 				226DA3FB2600750A009BC8CC /* UIView+Draggable.swift in Sources */,
 				226DA42E2600B5E2009BC8CC /* BuyViewController.swift in Sources */,
@@ -2249,7 +2223,7 @@
 				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
 				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
 				226DA3FE2600750A009BC8CC /* FloatyDelegate.swift in Sources */,
-				49F561842611D473006BEBE8 /* QuestSkeletonView.swift in Sources */,
+				49F561842611D473006BEBE8 /* MissionSkeletonView.swift in Sources */,
 				525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */,
 				226DA3F82600750A009BC8CC /* FloatyWindow.swift in Sources */,
 				49976C41260876FE0005F8F8 /* ShareViewController+DataSource.swift in Sources */,
@@ -2261,8 +2235,9 @@
 				525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */,
 				494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */,
 				525DBA5725F008E7001491AE /* Data+Extensions.swift in Sources */,
-				525DBAA125F16213001491AE /* QuestTableViewCell.swift in Sources */,
+				525DBAA125F16213001491AE /* MissionTableViewCell.swift in Sources */,
 				525DB9DF25EE92EF001491AE /* TransactionServices.swift in Sources */,
+				524CF7CD261DBF55000B9A61 /* MissionViewController+Delegate.swift in Sources */,
 				49976C8A2609F28C0005F8F8 /* KAICalendarPicker.swift in Sources */,
 				52364992261B0FD100A37E90 /* KaiProjectRemote.swift in Sources */,
 				525DB97B25EB52A2001491AE /* UITableViewCell+Extensions.swift in Sources */,
@@ -2291,7 +2266,6 @@
 				4928737826020493002BAE39 /* OverviewSendTableViewCell.swift in Sources */,
 				525DB8AD25E6A7D7001491AE /* ServicesRepository.swift in Sources */,
 				4928738A26020F6E002BAE39 /* Date+Extensions.swift in Sources */,
-				525DBAA825F164AA001491AE /* DailyQuestViewController.swift in Sources */,
 				525DB8E725E6B641001491AE /* UserDataSource.swift in Sources */,
 				52F37CF125E03459009F311F /* SignInInputView.swift in Sources */,
 				49ECF7BA260C92FC000A8AB2 /* NewsServices.swift in Sources */,
@@ -2306,6 +2280,7 @@
 				4963D07725FEF8AB00720B34 /* ConfigRemote.swift in Sources */,
 				498E45CD2604B47600D62AAA /* VerificationViewController+Delegate.swift in Sources */,
 				5236498D261AE54500A37E90 /* KaiStarterProjectTableViewCell.swift in Sources */,
+				524CF7E2261EB632000B9A61 /* QuickScannerViewController+Delegate.swift in Sources */,
 				494C0AE325FA147A00E30115 /* ResetPasscodeViewModel.swift in Sources */,
 				498BCFF925F78D5A00F04160 /* ProfileViewController+DataSource.swift in Sources */,
 				5265495C25F5E909003AE21A /* ProfileViewController.swift in Sources */,
@@ -2317,7 +2292,7 @@
 				49D49EB7261475E800E5AB91 /* KaiStarterDetailViewContoller+DataSource.swift in Sources */,
 				49D49E9926142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift in Sources */,
 				525DB9F725EFD5B7001491AE /* DeviceServices.swift in Sources */,
-				525DBA9D25F137A1001491AE /* QuestHeaderView.swift in Sources */,
+				525DBA9D25F137A1001491AE /* MissionHeaderView.swift in Sources */,
 				525DB8EE25E6B88C001491AE /* UserLocal.swift in Sources */,
 				49E039F425F62B2D00119F55 /* KAIBarButtonItemView.swift in Sources */,
 				49F5FE962601EB4D00D53D82 /* SendViewController+Delegate.swift in Sources */,
@@ -2330,6 +2305,7 @@
 				49976C7E2609D3F00005F8F8 /* CalendarPickerModel.swift in Sources */,
 				525E6BD825FE087200A7BAC5 /* WebViewController.swift in Sources */,
 				521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */,
+				524CF7C8261DBD82000B9A61 /* MissionViewController.swift in Sources */,
 				525DB90825E91A52001491AE /* AppSetting.swift in Sources */,
 				525DB9D125EE8437001491AE /* UtilitiesViewController+DataSource.swift in Sources */,
 				525DB96425EA3B86001491AE /* PasscodeView.swift in Sources */,
@@ -2491,7 +2467,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "KAI Membership/Application/Supporting/KAI Membership.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
 				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2499,7 +2475,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kardiachain.kms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2515,7 +2491,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "KAI Membership/Application/Supporting/KAI Membership.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2UXQPMP7YD;
 				INFOPLIST_FILE = "$(SRCROOT)/KAI Membership/Application/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2523,7 +2499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kardiachain.kms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

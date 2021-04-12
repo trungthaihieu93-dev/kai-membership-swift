@@ -10,6 +10,7 @@ import UIKit
 protocol SendTableViewCellDelegate: class {
     func sendTableViewCellWalletAddressValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField)
     func sendTableViewCellAmountValueChanged(_ sendTableViewCell: SendTableViewCell, textField: UITextField, amount: Double?)
+    func sendTableViewCellQuickScan(_ sendTableViewCell: SendTableViewCell, textField: UITextField)
 }
 
 class SendTableViewCell: UITableViewCell {
@@ -37,8 +38,8 @@ class SendTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var walletAddressTextField: KAITextField = {
-        let view = KAITextField(with: .default, placeholder: "Recipient Address")
+    private(set) lazy var walletAddressTextField: KAITextField = {
+        let view = KAITextField(with: .scan, placeholder: "Recipient Address")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         
@@ -112,6 +113,10 @@ extension SendTableViewCell: KAITextFieldDelegate {
     
     func kAITextFieldShouldClear(_ textField: UITextField, for view: UIView) -> Bool {
         return true
+    }
+    
+    func kAITextFieldQuickScan(_ textField: UITextField, for view: UIView) {
+        delegate?.sendTableViewCellQuickScan(self, textField: textField)
     }
 }
 

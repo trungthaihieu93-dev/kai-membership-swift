@@ -101,9 +101,10 @@ class PasscodeViewModel {
     
     func resetPasscode(token: String, passcode: String) -> Observable<Void> {
         let email = self.email
+        showLoading.accept(true)
         
         return Observable.create { (observer) -> Disposable in
-            PasscodeServices.resetPasscode(token: token, passcode: passcode, email: email) {
+            PasscodeServices.resetPasscode(token: token, passcode: passcode, email: email) { [weak self] in
                 switch $0 {
                 case .success:
                     observer.onNext(())
@@ -111,6 +112,8 @@ class PasscodeViewModel {
                 case .failure(let error):
                     observer.onError(error)
                 }
+                
+                self?.showLoading.accept(false)
             }
             
             return Disposables.create()

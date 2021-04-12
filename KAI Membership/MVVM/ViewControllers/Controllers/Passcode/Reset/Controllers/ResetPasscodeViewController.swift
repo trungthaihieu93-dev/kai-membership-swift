@@ -137,7 +137,7 @@ extension ResetPasscodeViewController {
         viewModel.requestResetPasscode(with: email).subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
             guard let this = self else { return }
             
-            Navigator.navigateToCheckMailVC(from: this, with: email)
+            Navigator.navigateToCheckMailVC(from: this, with: .request, email: email)
             this.isLoading = false
         }, onError: { [weak self] error in
             AlertManagement.shared.showToast(with: "🤔 Request forgot passcode by email failure!", position: .top)

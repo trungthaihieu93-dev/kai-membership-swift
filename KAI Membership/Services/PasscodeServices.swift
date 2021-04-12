@@ -60,4 +60,12 @@ class PasscodeServices {
         
         APIServices.request(input: input, output: APIOutput.self, completion: completion)
     }
+    
+    // MARK: Verify email
+    class func verifyEmail(with email: String, _ completion: ((APIResult<APIDataResults<String>, APIErrorResult>) -> Void)? = nil) {
+        let input = APIInput(withDomain: Constants.environment.domain, path: "/api/v1/passcodes/verify", method: .post)
+        input.params["email"] = email
+        
+        APIServices.request(input: input, output: APIOutput.self, completion: completion)
+    }
 }

@@ -110,12 +110,14 @@ class SignUpViewController: BaseViewController {
     }
     
     // MARK: Data fetching
-    func generateCaptcha() {
+    func generateCaptcha(_ complection: (() -> Void)? = nil) {
         viewModel.generateCaptcha().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in
             guard let this = self else { return }
             
             this.signUpView.setCaptchaImage($0)
+            complection?()
         }, onError: { error in
+            complection?()
             debugPrint("Generate captcha error: \((error as? APIErrorResult)?.message ?? "ERROR")")
         }).disposed(by: disposeBag)
     }
@@ -143,15 +145,11 @@ class SignUpViewController: BaseViewController {
             this.signUpView.isLoading = false
             Navigator.navigateToPasscodeVC(from: this, with: .register, email: email)
         }, onError: { [weak self] error in
-            self?.signUpView.isLoading = false
-            
-            guard let error = error as? APIErrorResult else {
-                AlertManagement.shared.showToast(with: "🤔 Register account failure!", position: .top)
-                
-                return
+            self?.generateCaptcha() { [weak self] in
+                self?.signUpView.isLoading = false
             }
-            
-            AlertManagement.shared.showToast(with: error.message, position: .top)
+            let message = (error as? APIErrorResult)?.message ?? "🤔 Register account failure!"
+            AlertManagement.shared.showToast(with: message, position: .top)
         }).disposed(by: disposeBag)
     }
 }
