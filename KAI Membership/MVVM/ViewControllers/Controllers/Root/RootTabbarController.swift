@@ -13,6 +13,7 @@ class RootTabbarController: UITabBarController {
     enum TabbarType: Int, CaseIterable {
         case news = 0
         case quest
+        case nft
         case wallet
         case utilities
     }
@@ -56,6 +57,13 @@ class RootTabbarController: UITabBarController {
                 navigationController.tabBarItem.title = "Mission"
                 navigationController.tabBarItem.image = UIImage(named: "tabbar_quests")?.withRenderingMode(.alwaysOriginal)
                 navigationController.tabBarItem.selectedImage = UIImage(named: "tabbar_quests_selected")?.withRenderingMode(.alwaysOriginal)
+                navigationControllers.append(navigationController)
+            case .nft:
+                let nft = NFTViewController()
+                let navigationController = RootNavigationController(rootViewController: nft)
+                navigationController.tabBarItem.title = "My Pet"
+                navigationController.tabBarItem.image = UIImage(named: "tabbar_nft")?.withRenderingMode(.alwaysOriginal)
+                navigationController.tabBarItem.selectedImage = UIImage(named: "tabbar_nft_selected")?.withRenderingMode(.alwaysOriginal)
                 navigationControllers.append(navigationController)
             case .wallet:
                 let wallet = WalletViewController()

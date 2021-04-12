@@ -19,5 +19,6 @@ target 'KAI Membership' do
   pod 'SkeletonView'
   pod 'AppsFlyerFramework'
   pod 'BulletinBoard', :git => 'https://github.com/peihsendoyle/BulletinBoard.git', :branch => 'develop'
+  pod 'lottie-ios'
   
 end

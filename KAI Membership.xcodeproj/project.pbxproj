@@ -34,6 +34,7 @@
 		493043F925F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043F825F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift */; };
 		493043FD25F8AFA200EED242 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */; };
 		4930440125F8B82C00EED242 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930440025F8B82C00EED242 /* PasswordViewModel.swift */; };
+		493502B72623F239004504A3 /* NFTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493502B62623F239004504A3 /* NFTViewController.swift */; };
 		494099EF260B467400F92119 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494099EE260B467400F92119 /* Notification+Extension.swift */; };
 		494099F4260B4F8D00F92119 /* KAIInputNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494099F3260B4F8D00F92119 /* KAIInputNumber.swift */; };
 		494099F8260B524900F92119 /* KAIInputNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494099F7260B524900F92119 /* KAIInputNumberView.swift */; };
@@ -262,6 +263,7 @@
 		493043F825F8ACCB00EED242 /* ForgotPasswordViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForgotPasswordViewController+Delegate.swift"; sourceTree = "<group>"; };
 		493043FC25F8AFA200EED242 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		4930440025F8B82C00EED242 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		493502B62623F239004504A3 /* NFTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTViewController.swift; sourceTree = "<group>"; };
 		494099EE260B467400F92119 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		494099F3260B4F8D00F92119 /* KAIInputNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputNumber.swift; sourceTree = "<group>"; };
 		494099F7260B524900F92119 /* KAIInputNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAIInputNumberView.swift; sourceTree = "<group>"; };
@@ -616,6 +618,14 @@
 				495173282600AAD30063AEF7 /* Views */,
 			);
 			path = Overview;
+			sourceTree = "<group>";
+		};
+		493502B52623F227004504A3 /* NFT */ = {
+			isa = PBXGroup;
+			children = (
+				493502B62623F239004504A3 /* NFTViewController.swift */,
+			);
+			path = NFT;
 			sourceTree = "<group>";
 		};
 		494099F2260B4F6C00F92119 /* Number */ = {
@@ -1632,26 +1642,27 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				524CF7DC261EB335000B9A61 /* Quick Scanner  */,
-				524CF7C4261DBD37000B9A61 /* Mission */,
-				49976C372608456C0005F8F8 /* Share */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				226DA42C2600B5DB009BC8CC /* Buy */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
 				525DB87A25E55413001491AE /* Congrats */,
 				525DBA3D25EFEDCB001491AE /* Main */,
+				524CF7C4261DBD37000B9A61 /* Mission */,
 				525DBA9025F0FDA6001491AE /* Nested Scroll */,
 				529AE1AA25DD996E00635807 /* News */,
+				493502B52623F227004504A3 /* NFT */,
 				4930441125F8CBC600EED242 /* Overview */,
 				525DB87225E51D88001491AE /* Passcode */,
 				52F37D0925E15952009F311F /* Password */,
 				5265495925F5E8B6003AE21A /* Profile */,
+				524CF7DC261EB335000B9A61 /* Quick Scanner  */,
 				226DA40426009741009BC8CC /* Receive */,
 				525DB98125EB8FD9001491AE /* Recent Transactions */,
 				493043E525F88C2000EED242 /* Rewards */,
 				529AE1BD25DD9B5D00635807 /* Root */,
 				521754C825DEACC9009355BC /* Select Account */,
 				49F5FE882601E6A100D53D82 /* Send */,
+				49976C372608456C0005F8F8 /* Share */,
 				52F37C9D25E00004009F311F /* Sign In */,
 				52F37CE825E031B5009F311F /* Sign Up */,
 				525DBA7825F01765001491AE /* Topup */,
@@ -2071,6 +2082,7 @@
 				49ECF7C8260D8D19000A8AB2 /* NewsSkeletonView.swift in Sources */,
 				498BCFE425F71B2F00F04160 /* AccountInfoRemote.swift in Sources */,
 				498BCFF525F78D4D00F04160 /* ProfileTableViewCell.swift in Sources */,
+				493502B72623F239004504A3 /* NFTViewController.swift in Sources */,
 				226DA3FE2600750A009BC8CC /* FloatyDelegate.swift in Sources */,
 				49F561842611D473006BEBE8 /* MissionSkeletonView.swift in Sources */,
 				525DBABF25F175A3001491AE /* QuestRemote.swift in Sources */,
