@@ -79,6 +79,22 @@ class NFTViewController: BaseViewController {
         return animationView
     }()
     
+    private let infomationPetView: NFTInfomationPetView = {
+        let view = NFTInfomationPetView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 16
+        
+        return  view
+    }()
+    
+    private let progressView: NFTProgressView = {
+        let view = NFTProgressView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return  view
+    }()
+    
     override var navigationAlphaDefault: CGFloat {
         return 0
     }
@@ -99,6 +115,8 @@ class NFTViewController: BaseViewController {
     private func setupView() {
         view.addSubview(backgroundAnimationView)
         view.addSubview(mainFuncButton)
+        view.addSubview(infomationPetView)
+        view.addSubview(progressView)
         view.addSubview(animationView)
         
         view.addSubview(stackView)
@@ -111,21 +129,33 @@ class NFTViewController: BaseViewController {
             backgroundAnimationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             backgroundAnimationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            exploitButton.heightAnchor.constraint(equalToConstant: 60),
-            
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackView.widthAnchor.constraint(equalToConstant: 60),
-            
             mainFuncButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             mainFuncButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25),
             mainFuncButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             mainFuncButton.heightAnchor.constraint(equalToConstant: 60),
             
+            infomationPetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            infomationPetView.bottomAnchor.constraint(equalTo: mainFuncButton.topAnchor, constant: -16),
+            infomationPetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            progressView.bottomAnchor.constraint(equalTo: infomationPetView.topAnchor, constant: -40),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+//            progressView.heightAnchor.constraint(equalToConstant: 46),
+            
+            animationView.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -24),
             animationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             animationView.heightAnchor.constraint(equalToConstant: 240),
+            
+            exploitButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            stackView.widthAnchor.constraint(equalToConstant: 60),
         ])
+        
+        progressView.configure(level: 12, currentExp: 1275, totalExp: 2000)
     }
 }
 
