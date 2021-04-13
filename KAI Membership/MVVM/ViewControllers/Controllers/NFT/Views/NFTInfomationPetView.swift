@@ -52,6 +52,8 @@ class NFTInfomationPetView: UIView {
         textField.backgroundColor = nil
         textField.textColor = UIColor.black.withAlphaComponent(0.84)
         textField.font = .workSansFont(ofSize: 14, weight: .medium)
+        textField.returnKeyType = .done
+        textField.delegate = self
         
         return textField
     }()
@@ -95,6 +97,8 @@ class NFTInfomationPetView: UIView {
         
         return view
     }()
+    
+    var didFinishChangePetName: ((String?) -> Void)?
     
     // MARK: Life cycle's
     override init(frame: CGRect) {
@@ -158,5 +162,15 @@ extension NFTInfomationPetView {
     
     @objc private func onPressedEditName() {
         
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension NFTInfomationPetView: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        didFinishChangePetName?(textField.text)
+        
+        return textField.resignFirstResponder()
     }
 }

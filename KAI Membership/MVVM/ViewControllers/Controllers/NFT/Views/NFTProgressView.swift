@@ -24,8 +24,8 @@ class NFTProgressView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .init(hex: "5AD0F8")
-//        view.layer.cornerRadius = 4
-//        view.layer.maskedCorners = [.layerMaxXMinYCorner]
+        view.layer.cornerRadius = 4
+        view.layer.maskedCorners = [.layerMaxXMinYCorner]
         
         return view
     }()
@@ -34,8 +34,8 @@ class NFTProgressView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .init(hex: "409EF1")
-//        view.layer.cornerRadius = 4
-//        view.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        view.layer.cornerRadius = 4
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner]
         
         return view
     }()
@@ -131,7 +131,10 @@ class NFTProgressView: UIView {
         let totalExp = totalExp ?? 0
         progressLabel.text = "\(currentExp.formatToString())/\(totalExp.formatToString())"
         levelLabel.text = "\(level)"
-        NSLayoutConstraint.deactivate([progressTopView.widthAnchor.constraint(equalTo: progressBarView.widthAnchor, multiplier: 0)])
-        NSLayoutConstraint.activate([progressTopView.widthAnchor.constraint(equalTo: progressBarView.widthAnchor, multiplier: CGFloat(currentExp / totalExp))])
+        
+        if totalExp > 0 {
+            NSLayoutConstraint.deactivate([progressTopView.widthAnchor.constraint(equalTo: progressBarView.widthAnchor, multiplier: 0)])
+            NSLayoutConstraint.activate([progressTopView.widthAnchor.constraint(equalTo: progressBarView.widthAnchor, multiplier: CGFloat(currentExp / totalExp))])
+        }
     }
 }

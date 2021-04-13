@@ -79,11 +79,20 @@ class NFTViewController: BaseViewController {
         return animationView
     }()
     
-    private let infomationPetView: NFTInfomationPetView = {
+    private lazy var infomationPetView: NFTInfomationPetView = {
         let view = NFTInfomationPetView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.layer.cornerRadius = 16
+        view.didFinishChangePetName = { [weak self] name in
+            guard let this = self else { return }
+            
+            if let name = name, !name.isEmpty {
+                // Call API change pet name
+            } else {
+                AlertManagement.shared.showToast(with: "🤔 Pet name not be blank!", position: .top)
+            }
+        }
         
         return  view
     }()
@@ -94,6 +103,8 @@ class NFTViewController: BaseViewController {
         
         return  view
     }()
+    
+    private var keyboardBottomAnchor: NSLayoutConstraint?
     
     override var navigationAlphaDefault: CGFloat {
         return 0
@@ -108,16 +119,19 @@ class NFTViewController: BaseViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         setupView()
     }
     
     // MARK: Layout
     private func setupView() {
         view.addSubview(backgroundAnimationView)
-        view.addSubview(mainFuncButton)
-        view.addSubview(infomationPetView)
         view.addSubview(progressView)
         view.addSubview(animationView)
+        view.addSubview(mainFuncButton)
+        view.addSubview(infomationPetView)
         
         view.addSubview(stackView)
         stackView.addArrangedSubview(feedingButton)
@@ -130,7 +144,6 @@ class NFTViewController: BaseViewController {
             backgroundAnimationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             mainFuncButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            mainFuncButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25),
             mainFuncButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             mainFuncButton.heightAnchor.constraint(equalToConstant: 60),
             
@@ -138,15 +151,14 @@ class NFTViewController: BaseViewController {
             infomationPetView.bottomAnchor.constraint(equalTo: mainFuncButton.topAnchor, constant: -16),
             infomationPetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
-            progressView.bottomAnchor.constraint(equalTo: infomationPetView.topAnchor, constant: -40),
-            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
-//            progressView.heightAnchor.constraint(equalToConstant: 46),
-            
-            animationView.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -24),
+            animationView.topAnchor.constraint(equalTo: view.topAnchor, constant: 180),
             animationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             animationView.heightAnchor.constraint(equalToConstant: 240),
+            
+            progressView.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 24),
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             
             exploitButton.heightAnchor.constraint(equalToConstant: 60),
             
@@ -155,12 +167,29 @@ class NFTViewController: BaseViewController {
             stackView.widthAnchor.constraint(equalToConstant: 60),
         ])
         
+        keyboardBottomAnchor = mainFuncButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25)
+        keyboardBottomAnchor?.isActive = true
+        
         progressView.configure(level: 12, currentExp: 1275, totalExp: 2000)
     }
 }
 
 // MARK: Handle actions
 extension NFTViewController {
+    
+    @objc private func handleKeyboardNotification(_ notification: NSNotification) {
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            guard let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+            
+            keyboardBottomAnchor?.constant = -(keyboardFrame.height + 25) + tabbarHeight
+        } else {
+            keyboardBottomAnchor?.constant = -25
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
     
     @objc private func onPressedExploitButton() {
         
