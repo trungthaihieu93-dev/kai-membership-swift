@@ -29,6 +29,8 @@ class KaiStarterViewContoller: BaseViewController {
         return tableView
     }()
     
+    let viewModel = KaiStarterViewModel()
+    
     // MARK: Life cycle's
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,7 @@ class KaiStarterViewContoller: BaseViewController {
         navigationItem.title = "KAI Starter"
         
         setupView()
+        fetchData()
     }
     
     // MARK: Layout
@@ -48,5 +51,11 @@ class KaiStarterViewContoller: BaseViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+    
+    // MARK: Data fetching
+    private func fetchData() {
+        viewModel.createData()
+        tableView.reloadData()
     }
 }

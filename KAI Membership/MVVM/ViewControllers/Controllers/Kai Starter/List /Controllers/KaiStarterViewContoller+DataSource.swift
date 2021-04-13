@@ -24,10 +24,13 @@ extension KaiStarterViewContoller: UITableViewDataSource {
         switch itemType {
         case .ongoing:
             cell.contentTitle = "Ongoing Projects"
+            cell.reloadWithData(viewModel.ongoingProjects)
         case .locking:
             cell.contentTitle = "Locking Projects"
+            cell.reloadWithData(viewModel.lockingProjects)
         case .completed:
             cell.contentTitle = "Completed Projects"
+            cell.reloadWithData(viewModel.completedProjects)
         }
         
         return cell

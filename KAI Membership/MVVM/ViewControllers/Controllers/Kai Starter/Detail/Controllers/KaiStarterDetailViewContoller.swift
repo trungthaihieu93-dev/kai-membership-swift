@@ -10,16 +10,27 @@ import UIKit
 class KaiStarterDetailViewContoller: BaseViewController {
 
     // MARK: Properties
+    enum SectionType: Int, CaseIterable {
+        case title
+        case description
+    }
+    
+    enum TitleItemType: Int, CaseIterable {
+        case media
+        case manufacturer
+    }
+    
     let viewModel: KaiStarterDetailViewModel
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.rowHeight = 340
         tableView.backgroundColor = Constants.backroundColorDefault
         tableView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.register(KaiStarterTableViewCell.self, forCellReuseIdentifier: KaiStarterTableViewCell.identifier)
+        tableView.register(KaiStarterDetailMediaTableViewCell.self, forCellReuseIdentifier: KaiStarterDetailMediaTableViewCell.identifier)
+        tableView.register(ManufacturerTableViewCell.self, forCellReuseIdentifier: ManufacturerTableViewCell.identifier)
+        tableView.register(KaiStarterDetailDescriptionTableViewCell.self, forCellReuseIdentifier: KaiStarterDetailDescriptionTableViewCell.identifier)
         tableView.dataSource = self
 //        tableView.delegate = self
         

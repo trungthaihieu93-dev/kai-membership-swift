@@ -1,18 +1,13 @@
 //
-//  KaiStarterTableViewCell.swift
+//  KaiStarterDetailMediaTableViewCell.swift
 //  KAI Membership
 //
-//  Created by DAKiet on 31/03/2021.
+//  Created by Anh Kiệt on 13/04/2021.
 //
 
 import UIKit
 
-protocol KaiStarterTableViewCellDelegate: class {
-    func kaiStarterTableViewCellDidSelectViewAll(_ kaiStarterTableViewCell: KaiStarterTableViewCell)
-    func kaiStarterTableViewCell(_ kaiStarterTableViewCell: KaiStarterTableViewCell, didSelectItemAt indexPath: IndexPath)
-}
-
-class KaiStarterTableViewCell: UITableViewCell {
+class KaiStarterDetailMediaTableViewCell: UITableViewCell {
     
     // MARK: Properties
     private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
@@ -34,7 +29,6 @@ class KaiStarterTableViewCell: UITableViewCell {
             NSAttributedString.Key.foregroundColor: UIColor(hex: "023AFF")
         ]), for: .normal)
         button.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
-        button.addTarget(self, action: #selector(onPressedViewAll), for: .touchUpInside)
         
         return button
     }()
@@ -63,8 +57,6 @@ class KaiStarterTableViewCell: UITableViewCell {
         
         return view
     }()
-    
-    weak var delegate: KaiStarterTableViewCellDelegate?
     
     // MARK: Life cycle's
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -107,15 +99,10 @@ class KaiStarterTableViewCell: UITableViewCell {
         self.kaiProjects = kaiProjects
         collectionView.reloadData()
     }
-    
-    // MARK: Handle actions
-    @objc private func onPressedViewAll() {
-        delegate?.kaiStarterTableViewCellDidSelectViewAll(self)
-    }
 }
 
 // MARK: UICollectionViewDataSource
-extension KaiStarterTableViewCell: UICollectionViewDataSource {
+extension KaiStarterDetailMediaTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return kaiProjects.count
@@ -130,7 +117,7 @@ extension KaiStarterTableViewCell: UICollectionViewDataSource {
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
-extension KaiStarterTableViewCell: UICollectionViewDelegateFlowLayout {
+extension KaiStarterDetailMediaTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.frame.width - (sectionInset.left + sectionInset.right)
@@ -139,6 +126,6 @@ extension KaiStarterTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.kaiStarterTableViewCell(self, didSelectItemAt: indexPath)
+        
     }
 }

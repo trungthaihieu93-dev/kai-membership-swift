@@ -85,8 +85,6 @@
 		49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */; };
 		49CAC10C25FB6B9A00577D33 /* TrackingServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */; };
 		49CAC11025FB74C900577D33 /* PasscodeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAC10F25FB74C900577D33 /* PasscodeServices.swift */; };
-		49D49E9626142A7500E5AB91 /* DailyQuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49E9526142A7500E5AB91 /* DailyQuestViewController+Delegate.swift */; };
-		49D49E9926142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49E9826142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift */; };
 		49D49E9E26144D5B00E5AB91 /* KaiStarterViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49E9D26144D5B00E5AB91 /* KaiStarterViewContoller.swift */; };
 		49D49EA226144E1000E5AB91 /* KaiStarterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EA126144E1000E5AB91 /* KaiStarterTableViewCell.swift */; };
 		49D49EA526144EB600E5AB91 /* KaiStarterViewContoller+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D49EA426144EB600E5AB91 /* KaiStarterViewContoller+DataSource.swift */; };
@@ -131,6 +129,10 @@
 		524CF7E2261EB632000B9A61 /* QuickScannerViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */; };
 		524CF7E5261EE706000B9A61 /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */; };
 		524CF82C26205CC7000B9A61 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */; };
+		524CF855262587D5000B9A61 /* KaiStarterDetailMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF854262587D5000B9A61 /* KaiStarterDetailMediaTableViewCell.swift */; };
+		524CF867262587E8000B9A61 /* KaiStarterDetailDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF866262587E8000B9A61 /* KaiStarterDetailDescriptionTableViewCell.swift */; };
+		524CF86B2625882D000B9A61 /* KaiStarterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF86A2625882D000B9A61 /* KaiStarterViewModel.swift */; };
+		524CF87126259781000B9A61 /* ManufacturerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CF87026259781000B9A61 /* ManufacturerTableViewCell.swift */; };
 		525DB87025E3F2AC001491AE /* CheckMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */; };
 		525DB87525E51DA1001491AE /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87425E51DA1001491AE /* PasscodeViewController.swift */; };
 		525DB87D25E5543E001491AE /* CongratsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DB87C25E5543E001491AE /* CongratsViewController.swift */; };
@@ -328,7 +330,6 @@
 		49CAC10725FB5C6000577D33 /* UserQuestRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestRemote.swift; sourceTree = "<group>"; };
 		49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServices.swift; sourceTree = "<group>"; };
 		49CAC10F25FB74C900577D33 /* PasscodeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeServices.swift; sourceTree = "<group>"; };
-		49D49E9526142A7500E5AB91 /* DailyQuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyQuestViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49D49E9826142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlyQuestViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49D49E9D26144D5B00E5AB91 /* KaiStarterViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterViewContoller.swift; sourceTree = "<group>"; };
 		49D49EA126144E1000E5AB91 /* KaiStarterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterTableViewCell.swift; sourceTree = "<group>"; };
@@ -374,6 +375,10 @@
 		524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickScannerViewController+Delegate.swift"; sourceTree = "<group>"; };
 		524CF7E4261EE706000B9A61 /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
 		524CF82B26205CC7000B9A61 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		524CF854262587D5000B9A61 /* KaiStarterDetailMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterDetailMediaTableViewCell.swift; sourceTree = "<group>"; };
+		524CF866262587E8000B9A61 /* KaiStarterDetailDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterDetailDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		524CF86A2625882D000B9A61 /* KaiStarterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaiStarterViewModel.swift; sourceTree = "<group>"; };
+		524CF87026259781000B9A61 /* ManufacturerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerTableViewCell.swift; sourceTree = "<group>"; };
 		525DB86F25E3F2AC001491AE /* CheckMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMailViewController.swift; sourceTree = "<group>"; };
 		525DB87425E51DA1001491AE /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		525DB87C25E5543E001491AE /* CongratsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsViewController.swift; sourceTree = "<group>"; };
@@ -854,9 +859,9 @@
 		49D49E9B26144D3A00E5AB91 /* Kai Starter */ = {
 			isa = PBXGroup;
 			children = (
-				52364979261AB06800A37E90 /* Project */,
 				49D49EB12614759200E5AB91 /* Detail */,
 				49D49EB02614758D00E5AB91 /* List  */,
+				52364979261AB06800A37E90 /* Project */,
 			);
 			path = "Kai Starter";
 			sourceTree = "<group>";
@@ -884,6 +889,7 @@
 			isa = PBXGroup;
 			children = (
 				49D49E9C26144D4900E5AB91 /* Controllers */,
+				524CF86926258819000B9A61 /* View Model */,
 				49D49EA026144DDB00E5AB91 /* Views */,
 			);
 			path = "List ";
@@ -894,6 +900,7 @@
 			children = (
 				49D49EB2261475A000E5AB91 /* Controllers */,
 				49D49EC52614829F00E5AB91 /* View Model */,
+				524CF853262587BD000B9A61 /* Views */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1220,6 +1227,31 @@
 				524CF7E1261EB632000B9A61 /* QuickScannerViewController+Delegate.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		524CF84126255D86000B9A61 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				49D49E9826142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		524CF853262587BD000B9A61 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				524CF854262587D5000B9A61 /* KaiStarterDetailMediaTableViewCell.swift */,
+				524CF866262587E8000B9A61 /* KaiStarterDetailDescriptionTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		524CF86926258819000B9A61 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				524CF86A2625882D000B9A61 /* KaiStarterViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		525DB86D25E3F28A001491AE /* Check Mail */ = {
@@ -1730,6 +1762,7 @@
 				529AE17625DD96FD00635807 /* Products */,
 				7AC363A001BC7394CE0F5013 /* Pods */,
 				C2C1FFCAACE62CA8EB4DA26B /* Frameworks */,
+				524CF84126255D86000B9A61 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1773,27 +1806,27 @@
 		529AE19425DD97C500635807 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				49D49E9B26144D3A00E5AB91 /* Kai Starter */,
-				524CF7DC261EB335000B9A61 /* Quick Scanner  */,
-				524CF7C4261DBD37000B9A61 /* Mission */,
-				49976C372608456C0005F8F8 /* Share */,
 				529AE1BB25DD9B4B00635807 /* Base */,
 				226DA42C2600B5DB009BC8CC /* Buy */,
 				525DB86D25E3F28A001491AE /* Check Mail */,
 				525DB87A25E55413001491AE /* Congrats */,
+				49D49E9B26144D3A00E5AB91 /* Kai Starter */,
 				525DBA3D25EFEDCB001491AE /* Main */,
+				524CF7C4261DBD37000B9A61 /* Mission */,
 				525DBA9025F0FDA6001491AE /* Nested Scroll */,
 				529AE1AA25DD996E00635807 /* News */,
 				4930441125F8CBC600EED242 /* Overview */,
 				525DB87225E51D88001491AE /* Passcode */,
 				52F37D0925E15952009F311F /* Password */,
 				5265495925F5E8B6003AE21A /* Profile */,
+				524CF7DC261EB335000B9A61 /* Quick Scanner  */,
 				226DA40426009741009BC8CC /* Receive */,
 				525DB98125EB8FD9001491AE /* Recent Transactions */,
 				493043E525F88C2000EED242 /* Rewards */,
 				529AE1BD25DD9B5D00635807 /* Root */,
 				521754C825DEACC9009355BC /* Select Account */,
 				49F5FE882601E6A100D53D82 /* Send */,
+				49976C372608456C0005F8F8 /* Share */,
 				52F37C9D25E00004009F311F /* Sign In */,
 				52F37CE825E031B5009F311F /* Sign Up */,
 				525DBA7825F01765001491AE /* Topup */,
@@ -1911,12 +1944,13 @@
 			children = (
 				498615FA260AE376000BF4AD /* Calendar */,
 				49CAC0ED25FB42DC00577D33 /* Card */,
+				49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */,
+				49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */,
 				49CAC0EC25FB42CC00577D33 /* Input */,
 				49E039F325F62B2D00119F55 /* KAIBarButtonItemView.swift */,
 				49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */,
+				524CF87026259781000B9A61 /* ManufacturerTableViewCell.swift */,
 				4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */,
-				49ECF7BE260D84AF000A8AB2 /* CollectionViewFlowLayout.swift */,
-				49D9ACA0260DAFA700A459AF /* EmptyTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2119,6 +2153,7 @@
 				529AE1B325DD99B900635807 /* WalletViewController.swift in Sources */,
 				525DBA4E25F0036D001491AE /* PasscodeViewModel.swift in Sources */,
 				49D49EB4261475BC00E5AB91 /* KaiStarterDetailViewContoller.swift in Sources */,
+				524CF86B2625882D000B9A61 /* KaiStarterViewModel.swift in Sources */,
 				498E45C126045A1600D62AAA /* TrackingManagement+Registration.swift in Sources */,
 				493043F325F89D4800EED242 /* RewardsViewController+Delegate.swift in Sources */,
 				521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */,
@@ -2181,6 +2216,7 @@
 				22B74F2E26130DE1007777B2 /* UIImage+Extensions.swift in Sources */,
 				525DBAC725F178E0001491AE /* MissionViewModel.swift in Sources */,
 				525DB9BD25ED374B001491AE /* NewsViewController+DataSource.swift in Sources */,
+				524CF867262587E8000B9A61 /* KaiStarterDetailDescriptionTableViewCell.swift in Sources */,
 				226DA4062600974B009BC8CC /* ReceiveViewController.swift in Sources */,
 				525DBADF25F22F96001491AE /* UICollectionViewCell+Extensions.swift in Sources */,
 				52F37CEB25E031D1009F311F /* SignUpViewController.swift in Sources */,
@@ -2192,14 +2228,13 @@
 				525DBA8725F01842001491AE /* OverviewViewController.swift in Sources */,
 				49F561802611B246006BEBE8 /* WalletSkeletonView.swift in Sources */,
 				49D49ECA261484C700E5AB91 /* KaiStarterCollectionViewCell.swift in Sources */,
-				525DBAB125F1689A001491AE /* DailyQuestViewController+DataSource.swift in Sources */,
 				4963D09825FF3DCE00720B34 /* OverviewViewModel.swift in Sources */,
 				52F37CFF25E0E05E009F311F /* KAIInputTextFieldView.swift in Sources */,
+				524CF855262587D5000B9A61 /* KaiStarterDetailMediaTableViewCell.swift in Sources */,
 				49A79473260442BF00915584 /* NotificationManagement.swift in Sources */,
 				525E6B8325F9010C00A7BAC5 /* RootNavigationController.swift in Sources */,
 				525DBA8025F017BF001491AE /* TopupViewModel.swift in Sources */,
 				52F37C9F25E0001A009F311F /* SignInViewController.swift in Sources */,
-				525DBABB25F173AC001491AE /* QuestViewController+Delegate.swift in Sources */,
 				52364997261B198700A37E90 /* KaiStarterProjectViewController+Delegate.swift in Sources */,
 				525DBA6625F010AE001491AE /* NewsSuggestionTableViewCell.swift in Sources */,
 				495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */,
@@ -2290,7 +2325,7 @@
 				4928738E2602FA98002BAE39 /* Int+Extensions.swift in Sources */,
 				525DB9C925ED397F001491AE /* SignInViewModel.swift in Sources */,
 				49D49EB7261475E800E5AB91 /* KaiStarterDetailViewContoller+DataSource.swift in Sources */,
-				49D49E9926142AD600E5AB91 /* MonthlyQuestViewController+Delegate.swift in Sources */,
+				524CF87126259781000B9A61 /* ManufacturerTableViewCell.swift in Sources */,
 				525DB9F725EFD5B7001491AE /* DeviceServices.swift in Sources */,
 				525DBA9D25F137A1001491AE /* MissionHeaderView.swift in Sources */,
 				525DB8EE25E6B88C001491AE /* UserLocal.swift in Sources */,
@@ -2318,7 +2353,6 @@
 				494099EF260B467400F92119 /* Notification+Extension.swift in Sources */,
 				5265497125F5ED9C003AE21A /* PasswordViewController+Delegate.swift in Sources */,
 				49D49EC7261482B800E5AB91 /* KaiStarterDetailViewModel.swift in Sources */,
-				525DBA7525F016F2001491AE /* QuestViewController+DataSource.swift in Sources */,
 				525DBA5D25F00F2B001491AE /* NewsViewModel.swift in Sources */,
 				525DB8FB25E77734001491AE /* SelectAccountTableViewCell.swift in Sources */,
 				498BCFFC25F78D6800F04160 /* ProfileViewController+Delegate.swift in Sources */,

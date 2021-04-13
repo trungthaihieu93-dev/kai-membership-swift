@@ -151,13 +151,14 @@ class KaiStarterCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Methods
-    func configure(imageLink: String? = nil, title: String? = nil, description: String? = nil, curentKai: Double = 0, backers: Int = 0, totalKai: Double = 0) {
-        contentImageView.setImage(from: imageLink, placeholder: nil)
-        titleLabel.text = title
-        descriptionLabel.attributedText = description?.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textColor: UIColor.black.withAlphaComponent(0.54), lineHeightMultiple: 1.22)
-        currnetKaiLabel.text = curentKai.formatCurrencyToString(unit: .kai)
-        backersLabel.text = "\(backers) backers"
-        let progress = curentKai / totalKai
+    func configure(with project: KaiProjectRemote) {
+        contentImageView.setImage(from: project.imageLink, placeholder: nil)
+        titleLabel.text = project.name
+        descriptionLabel.attributedText = project.description?.setTextWithFormat(font: .workSansFont(ofSize: 14, weight: .medium), textColor: UIColor.black.withAlphaComponent(0.54), lineHeightMultiple: 1.22)
+        currnetKaiLabel.text = project.current.formatCurrencyToString(unit: .kai)
+        backersLabel.text = "\(project.backers ?? 0) backers"
+        let totalKai = project.target ?? 0
+        let progress = totalKai > 0 ? project.current / totalKai : 1
         progressBar.progress = Float(progress)
         totalKaiLabel.text = "\(progress * 100)% of \(totalKai.formatCurrencyToString(unit: .kai))"
     }
