@@ -12,37 +12,32 @@ class KaiStarterDetailMediaTableViewCell: UITableViewCell {
     // MARK: Properties
     private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
     
+    private let itemSize: CGSize = CGSize(width: 107, height: 60)
+    
     private var kaiProjects: [KaiProjectRemote] = []
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private let bannerImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 8
         
-        return label
+        return imageView
     }()
     
-    private lazy var viewAllButton: UIButton = {
+    private lazy var youtubePlayButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setAttributedTitle(NSAttributedString(string: "View all", attributes: [
-            NSAttributedString.Key.font: UIFont.workSansFont(ofSize: 14, weight: .medium),
-            NSAttributedString.Key.foregroundColor: UIColor(hex: "023AFF")
-        ]), for: .normal)
-        button.contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
+        button.setImage(UIImage(named: "ic_button_play_youtu")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(onPressedYoutuPlayButton), for: .touchUpOutside)
         
         return button
     }()
     
-    var contentTitle: String = "" {
-        didSet {
-            titleLabel.text = contentTitle
-        }
-    }
-    
     private(set) lazy var collectionView: UICollectionView = {
         let layout = HorizontalPagingCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 8
+        layout.minimumLineSpacing = 12
 //        layout.minimumInteritemSpacing = minimumInteritemSpacing
         layout.sectionInset = sectionInset
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -74,23 +69,26 @@ class KaiStarterDetailMediaTableViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .clear
         
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(viewAllButton)
+        contentView.addSubview(bannerImageView)
+        contentView.addSubview(youtubePlayButton)
         contentView.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            viewAllButton.topAnchor.constraint(equalTo: topAnchor, constant: 2),
-            viewAllButton.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor),
-            viewAllButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            viewAllButton.heightAnchor.constraint(equalToConstant: 40),
+            bannerImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+            bannerImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            bannerImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            bannerImageView.heightAnchor.constraint(equalTo: bannerImageView.widthAnchor, multiplier: 210 / 374),
 
-            titleLabel.centerYAnchor.constraint(equalTo: viewAllButton.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            youtubePlayButton.centerXAnchor.constraint(equalTo: bannerImageView.centerXAnchor),
+            youtubePlayButton.centerYAnchor.constraint(equalTo: bannerImageView.centerYAnchor),
+            youtubePlayButton.widthAnchor.constraint(equalToConstant: 48),
+            youtubePlayButton.heightAnchor.constraint(equalToConstant: 33.61),
             
-            collectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 2),
+            collectionView.topAnchor.constraint(equalTo: bannerImageView.bottomAnchor, constant: 2),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: itemSize.height),
         ])
     }
     
@@ -98,6 +96,11 @@ class KaiStarterDetailMediaTableViewCell: UITableViewCell {
     func reloadWithData(_ kaiProjects: [KaiProjectRemote]) {
         self.kaiProjects = kaiProjects
         collectionView.reloadData()
+    }
+    
+    // MARK: Handle actions
+    @objc private func onPressedYoutuPlayButton() {
+        
     }
 }
 
@@ -120,9 +123,7 @@ extension KaiStarterDetailMediaTableViewCell: UICollectionViewDataSource {
 extension KaiStarterDetailMediaTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = collectionView.frame.width - (sectionInset.left + sectionInset.right)
-        
-        return CGSize(width: width, height: KaiStarterCollectionViewCell.height)
+        return itemSize
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

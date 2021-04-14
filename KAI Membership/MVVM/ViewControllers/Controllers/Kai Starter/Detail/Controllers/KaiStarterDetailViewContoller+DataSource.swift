@@ -34,8 +34,8 @@ extension KaiStarterDetailViewContoller: UITableViewDataSource {
             
             switch itemType {
             case .media:
-                let cell = tableView.dequeueReusableCell(withIdentifier: ManufacturerTableViewCell.identifier, for: indexPath) as! ManufacturerTableViewCell
-                cell.configure(imageLink: nil, name: "Media", description: "436a/73 Duong 3 Thang 2 Str., W.12, District 10, Ho Chi Minh City")
+                let cell = tableView.dequeueReusableCell(withIdentifier: KaiStarterDetailMediaTableViewCell.identifier, for: indexPath) as! KaiStarterDetailMediaTableViewCell
+//                cell.reloadWithData()
                 
                 return cell
             case .manufacturer:
@@ -47,6 +47,7 @@ extension KaiStarterDetailViewContoller: UITableViewDataSource {
         case .description:
             let cell = tableView.dequeueReusableCell(withIdentifier: KaiStarterDetailDescriptionTableViewCell.identifier, for: indexPath) as! KaiStarterDetailDescriptionTableViewCell
             cell.configure(title: "Lock & Earn Policy")
+            cell.isSuccess = isSuccess
             
             return cell
         }
