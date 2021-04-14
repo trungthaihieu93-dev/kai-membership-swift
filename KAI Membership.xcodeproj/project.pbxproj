@@ -51,6 +51,7 @@
 		495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173222600A80B0063AEF7 /* OverviewViewController+DataSource.swift */; };
 		495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173252600AA800063AEF7 /* OverviewViewController+Delegate.swift */; };
 		4951732A2600AAF90063AEF7 /* OverviewTopupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */; };
+		4954E37A2626C70600C571D8 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4954E3792626C70600C571D8 /* ImageCollectionViewCell.swift */; };
 		4963D07725FEF8AB00720B34 /* ConfigRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D07625FEF8AB00720B34 /* ConfigRemote.swift */; };
 		4963D07B25FEF8CD00720B34 /* ConfigServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D07A25FEF8CD00720B34 /* ConfigServices.swift */; };
 		4963D08725FF165500720B34 /* ProviderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */; };
@@ -297,6 +298,7 @@
 		495173222600A80B0063AEF7 /* OverviewViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OverviewViewController+DataSource.swift"; sourceTree = "<group>"; };
 		495173252600AA800063AEF7 /* OverviewViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OverviewViewController+Delegate.swift"; sourceTree = "<group>"; };
 		495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTopupTableViewCell.swift; sourceTree = "<group>"; };
+		4954E3792626C70600C571D8 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4963D07625FEF8AB00720B34 /* ConfigRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigRemote.swift; sourceTree = "<group>"; };
 		4963D07A25FEF8CD00720B34 /* ConfigServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServices.swift; sourceTree = "<group>"; };
 		4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1951,6 +1953,7 @@
 				49CAC0DF25FB1F0B00577D33 /* KAICombobox.swift */,
 				524CF87026259781000B9A61 /* ManufacturerTableViewCell.swift */,
 				4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */,
+				4954E3792626C70600C571D8 /* ImageCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2266,6 +2269,7 @@
 				525DB9B725ED36E6001491AE /* SelectAccountViewController+DataSource.swift in Sources */,
 				498BCFE925F7470800F04160 /* Helper.swift in Sources */,
 				494099F8260B524900F92119 /* KAIInputNumberView.swift in Sources */,
+				4954E37A2626C70600C571D8 /* ImageCollectionViewCell.swift in Sources */,
 				498E45C92604B0E400D62AAA /* VerificationViewController.swift in Sources */,
 				525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */,
 				494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */,

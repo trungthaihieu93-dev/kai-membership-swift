@@ -10,8 +10,6 @@ import UIKit
 class KaiStarterDetailMediaTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    private let sectionInset: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
-    
     private let itemSize: CGSize = CGSize(width: 107, height: 60)
     
     private var kaiProjects: [KaiProjectRemote] = []
@@ -38,15 +36,14 @@ class KaiStarterDetailMediaTableViewCell: UITableViewCell {
         let layout = HorizontalPagingCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 12
-//        layout.minimumInteritemSpacing = minimumInteritemSpacing
-        layout.sectionInset = sectionInset
+        layout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
         view.isPagingEnabled = false
         view.decelerationRate = .fast
-        view.register(KaiStarterCollectionViewCell.self, forCellWithReuseIdentifier: KaiStarterCollectionViewCell.identifier)
+        view.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         view.dataSource = self
         view.delegate = self
         
@@ -108,12 +105,14 @@ class KaiStarterDetailMediaTableViewCell: UITableViewCell {
 extension KaiStarterDetailMediaTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return kaiProjects.count
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KaiStarterCollectionViewCell.identifier, for: indexPath) as! KaiStarterCollectionViewCell
-        cell.configure(with: kaiProjects[indexPath.row])
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
+        cell.layer.cornerRadius = 4
+        cell.clipsToBounds = true
+        cell.configure(imageLink: nil)
         
         return cell
     }
