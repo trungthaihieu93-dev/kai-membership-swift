@@ -104,6 +104,7 @@
 		49F5FE932601EAF200D53D82 /* SendViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE922601EAF200D53D82 /* SendViewController+DataSource.swift */; };
 		49F5FE962601EB4D00D53D82 /* SendViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE952601EB4D00D53D82 /* SendViewController+Delegate.swift */; };
 		49F5FE9A2601EC1200D53D82 /* SendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */; };
+		49FCCE852627031400DF01D1 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FCCE022626FDB100DF01D1 /* Art.scnassets */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
 		521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B425DE7C5B009355BC /* UIView+Extensions.swift */; };
@@ -336,6 +337,7 @@
 		49F5FE922601EAF200D53D82 /* SendViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SendViewController+DataSource.swift"; sourceTree = "<group>"; };
 		49F5FE952601EB4D00D53D82 /* SendViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SendViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTableViewCell.swift; sourceTree = "<group>"; };
+		49FCCE022626FDB100DF01D1 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		521754B425DE7C5B009355BC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -1630,6 +1632,7 @@
 			isa = PBXGroup;
 			children = (
 				529AE17725DD96FD00635807 /* KAI Membership */,
+				49FCCE022626FDB100DF01D1 /* Art.scnassets */,
 				529AE18125DD96FD00635807 /* Assets.xcassets */,
 				529AE17625DD96FD00635807 /* Products */,
 				7AC363A001BC7394CE0F5013 /* Pods */,
@@ -1947,6 +1950,7 @@
 				525DBA3725EFEAF9001491AE /* Main.storyboard in Resources */,
 				525DB94D25E959C0001491AE /* WorkSans-LightItalic.ttf in Resources */,
 				525DB93925E959C0001491AE /* WorkSans-SemiBoldItalic.ttf in Resources */,
+				49FCCE852627031400DF01D1 /* Art.scnassets in Resources */,
 				525DB93B25E959C0001491AE /* WorkSans-ThinItalic.ttf in Resources */,
 				525DB93E25E959C0001491AE /* WorkSans-BlackItalic.ttf in Resources */,
 				525DB94225E959C0001491AE /* WorkSans-Hairline.otf in Resources */,

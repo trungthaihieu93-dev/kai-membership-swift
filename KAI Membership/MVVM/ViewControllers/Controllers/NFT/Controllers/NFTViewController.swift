@@ -7,6 +7,8 @@
 
 import UIKit
 import Lottie
+import SceneKit
+import ARKit
 
 class NFTViewController: BaseViewController {
     
@@ -50,7 +52,7 @@ class NFTViewController: BaseViewController {
     }()
     
     private lazy var shopButton: MaterialVerticalButton = {
-        let button = MaterialVerticalButton(icon: UIImage(named: "ic_shop")!, text: "Mall", font: .workSansFont(ofSize: 10, weight: .bold), foregroundColor: .white, bgColor: .init(hex: "FF8433"), preserveIconColor: true, cornerRadius: 8)
+        let button = MaterialVerticalButton(icon: UIImage(named: "ic_shop")!, text: "Mall", font: .workSansFont(ofSize: 10, weight: .bold), foregroundColor: .white, bgColor: .init(hex: "FF8433"), useOriginalImg: true, cornerRadius: 8)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(onPressedShopButton), for: .touchUpInside)
         
@@ -78,11 +80,14 @@ class NFTViewController: BaseViewController {
         return animationView
     }()
     
-    private let animationView: AnimationView = {
-        let animationView = AnimationView(name: "")
+    private lazy var animationView: ARSCNView = {
+        let animationView = ARSCNView()
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.contentMode = .scaleAspectFit
         animationView.backgroundColor = .yellow
+        animationView.showsStatistics = false
+        let scene = SCNScene(named: "art.scnassets/Helicopter.scn")!
+        animationView.scene = scene
         
         return animationView
     }()
@@ -131,6 +136,23 @@ class NFTViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Create a session configuration
+        let configuration = ARWorldTrackingConfiguration()
+        
+        // Run the view's session
+        animationView.session.run(configuration)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Pause the view's session
+        animationView.session.pause()
     }
     
     // MARK: Layout
