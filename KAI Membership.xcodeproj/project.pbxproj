@@ -55,6 +55,7 @@
 		495173232600A80B0063AEF7 /* OverviewViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173222600A80B0063AEF7 /* OverviewViewController+DataSource.swift */; };
 		495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173252600AA800063AEF7 /* OverviewViewController+Delegate.swift */; };
 		4951732A2600AAF90063AEF7 /* OverviewTopupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */; };
+		4954E35E2626920700C571D8 /* VerticalAlignedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4954E35D2626920700C571D8 /* VerticalAlignedButton.swift */; };
 		4963D07725FEF8AB00720B34 /* ConfigRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D07625FEF8AB00720B34 /* ConfigRemote.swift */; };
 		4963D07B25FEF8CD00720B34 /* ConfigServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D07A25FEF8CD00720B34 /* ConfigServices.swift */; };
 		4963D08725FF165500720B34 /* ProviderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */; };
@@ -287,6 +288,7 @@
 		495173222600A80B0063AEF7 /* OverviewViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OverviewViewController+DataSource.swift"; sourceTree = "<group>"; };
 		495173252600AA800063AEF7 /* OverviewViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OverviewViewController+Delegate.swift"; sourceTree = "<group>"; };
 		495173292600AAF90063AEF7 /* OverviewTopupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTopupTableViewCell.swift; sourceTree = "<group>"; };
+		4954E35D2626920700C571D8 /* VerticalAlignedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignedButton.swift; sourceTree = "<group>"; };
 		4963D07625FEF8AB00720B34 /* ConfigRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigRemote.swift; sourceTree = "<group>"; };
 		4963D07A25FEF8CD00720B34 /* ConfigServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServices.swift; sourceTree = "<group>"; };
 		4963D08625FF165500720B34 /* ProviderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -709,6 +711,14 @@
 				4928737726020493002BAE39 /* OverviewSendTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4954E35C262691ED00C571D8 /* VerticalAlignedButton */ = {
+			isa = PBXGroup;
+			children = (
+				4954E35D2626920700C571D8 /* VerticalAlignedButton.swift */,
+			);
+			path = VerticalAlignedButton;
 			sourceTree = "<group>";
 		};
 		4963D07925FEF8B300720B34 /* Config */ = {
@@ -1803,6 +1813,7 @@
 		52F37CF825E0DCC5009F311F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4954E35C262691ED00C571D8 /* VerticalAlignedButton */,
 				498615FA260AE376000BF4AD /* Calendar */,
 				49CAC0ED25FB42DC00577D33 /* Card */,
 				49CAC0EC25FB42CC00577D33 /* Input */,
@@ -2023,6 +2034,7 @@
 				525DBA9525F0FDA6001491AE /* NestedScrollViewController+Protocol.swift in Sources */,
 				525DBA4225EFEE2F001491AE /* MainViewModel.swift in Sources */,
 				49A79470260441FE00915584 /* AppsFlyerManagement.swift in Sources */,
+				4954E35E2626920700C571D8 /* VerticalAlignedButton.swift in Sources */,
 				525DBAC425F17802001491AE /* QuestServices.swift in Sources */,
 				493043E025F87FA800EED242 /* UpdateProfileViewModel.swift in Sources */,
 				49CAC10225FB51FD00577D33 /* RequestQuestUser.swift in Sources */,

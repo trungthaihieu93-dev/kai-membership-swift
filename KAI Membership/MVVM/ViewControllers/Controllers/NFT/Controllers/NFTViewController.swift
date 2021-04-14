@@ -49,6 +49,14 @@ class NFTViewController: BaseViewController {
         return button
     }()
     
+    private lazy var shopButton: MaterialVerticalButton = {
+        let button = MaterialVerticalButton(icon: UIImage(named: "ic_shop")!, text: "Mall", font: .workSansFont(ofSize: 10, weight: .bold), foregroundColor: .white, bgColor: .init(hex: "FF8433"), preserveIconColor: true, cornerRadius: 8)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(onPressedShopButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private let stackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -136,6 +144,7 @@ class NFTViewController: BaseViewController {
         view.addSubview(stackView)
         stackView.addArrangedSubview(feedingButton)
         stackView.addArrangedSubview(exploitButton)
+        stackView.addArrangedSubview(shopButton)
         
         NSLayoutConstraint.activate([
             backgroundAnimationView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -196,6 +205,10 @@ extension NFTViewController {
     }
     
     @objc private func onPressedFeedingButton() {
+        
+    }
+    
+    @objc private func onPressedShopButton() {
         
     }
     

@@ -90,3 +90,37 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    /*
+     Set the corner radius of the view.
+     
+     - Parameter color:        The color of the border.
+     - Parameter cornerRadius: The radius of the rounded corner.
+     - Parameter borderWidth:  The width of the border.
+     */
+    open func setCornerBorder(color: UIColor? = nil, cornerRadius: CGFloat = 15.0, borderWidth: CGFloat = 1) {
+        self.layer.borderColor = color != nil ? color!.cgColor : UIColor.clear.cgColor
+        self.layer.borderWidth = borderWidth
+        self.layer.cornerRadius = cornerRadius
+        self.clipsToBounds = true
+    }
+    
+    /*
+     Set the shadow layer of the view.
+     
+     - Parameter bounds:       The bounds in CGRect of the shadow.
+     - Parameter cornerRadius: The radius of the shadow path.
+     - Parameter shadowRadius: The radius of the shadow.
+     */
+    func setAsShadow(bounds: CGRect, cornerRadius: CGFloat = 0.0, shadowRadius: CGFloat = 1, color: UIColor) {
+        self.backgroundColor = UIColor.clear
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+        self.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowRadius = shadowRadius
+        self.layer.masksToBounds = true
+        self.clipsToBounds = false
+    }
+}
