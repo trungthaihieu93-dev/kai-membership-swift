@@ -98,7 +98,7 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         //        sceneView.loops = true
         sceneView.isPlaying = true
         sceneView.autoenablesDefaultLighting = true
-        sceneView.allowsCameraControl = false
+        sceneView.allowsCameraControl = true
         
         return sceneView
     }()
@@ -150,6 +150,8 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         setupDragon()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGestureRecognizer(_:)))
+        panGesture.minimumNumberOfTouches = 2
+        panGesture.maximumNumberOfTouches = 2
         animationView.addGestureRecognizer(panGesture)
     }
     
