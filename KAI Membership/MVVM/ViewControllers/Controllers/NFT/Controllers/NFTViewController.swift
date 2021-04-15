@@ -8,9 +8,8 @@
 import UIKit
 import Lottie
 import SceneKit
-import ARKit
 
-class NFTViewController: BaseViewController {
+class NFTViewController: BaseViewController, UIScrollViewDelegate {
     
     // MARK: Properties
     private lazy var exploitButton: UIButton = {
@@ -74,22 +73,25 @@ class NFTViewController: BaseViewController {
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
-//          animationView.animationSpeed = 0.5
+        //          animationView.animationSpeed = 0.5
         animationView.play()
         
         return animationView
     }()
     
-    private lazy var animationView: ARSCNView = {
-        let animationView = ARSCNView()
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        animationView.contentMode = .scaleAspectFit
-        animationView.backgroundColor = .yellow
-        animationView.showsStatistics = false
-        let scene = SCNScene(named: "art.scnassets/Helicopter.scn")!
-        animationView.scene = scene
+    private lazy var animationView: SCNView = {
+        let sceneView = SCNView()
+        sceneView.translatesAutoresizingMaskIntoConstraints = false
+        sceneView.contentMode = .scaleAspectFit
+        sceneView.backgroundColor = .clear
+        let scene = SCNScene(named: "Art.scnassets/Helicopter.scn")!
+        sceneView.scene = scene
+        sceneView.loops = true
+        sceneView.isPlaying = true
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.allowsCameraControl = true
         
-        return animationView
+        return sceneView
     }()
     
     private lazy var infomationPetView: NFTInfomationPetView = {
@@ -136,23 +138,6 @@ class NFTViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        
-        // Run the view's session
-        animationView.session.run(configuration)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Pause the view's session
-        animationView.session.pause()
     }
     
     // MARK: Layout
@@ -238,3 +223,4 @@ extension NFTViewController {
         
     }
 }
+
