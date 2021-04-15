@@ -82,11 +82,11 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
     private lazy var animationView: SCNView = {
         let sceneView = SCNView()
         sceneView.translatesAutoresizingMaskIntoConstraints = false
-        sceneView.contentMode = .scaleAspectFit
+//        sceneView.contentMode = .scaleAspectFit
         sceneView.backgroundColor = .clear
-        let scene = SCNScene(named: "Art.scnassets/Helicopter.scn")!
+        let scene = SCNScene(named: "Art.scnassets/Dragon_0/dragon_0.scn")!
         sceneView.scene = scene
-        sceneView.loops = true
+//        sceneView.loops = true
         sceneView.isPlaying = true
         sceneView.autoenablesDefaultLighting = true
         sceneView.allowsCameraControl = true
