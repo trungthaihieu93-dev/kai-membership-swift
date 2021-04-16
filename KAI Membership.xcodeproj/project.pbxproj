@@ -105,6 +105,9 @@
 		49F5FE962601EB4D00D53D82 /* SendViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE952601EB4D00D53D82 /* SendViewController+Delegate.swift */; };
 		49F5FE9A2601EC1200D53D82 /* SendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */; };
 		49FCCE852627031400DF01D1 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FCCE022626FDB100DF01D1 /* Art.scnassets */; };
+		49FCCEE326294EFB00DF01D1 /* NFTServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCCEE226294EFB00DF01D1 /* NFTServices.swift */; };
+		49FCCEE8262950D800DF01D1 /* NFTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCCEE7262950D800DF01D1 /* NFTViewModel.swift */; };
+		49FCCEED26296ABD00DF01D1 /* NFTSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCCEEC26296ABD00DF01D1 /* NFTSkeletonView.swift */; };
 		521754AF25DE7673009355BC /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754AE25DE7673009355BC /* TutorialViewController.swift */; };
 		521754B225DE79D1009355BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B125DE79D1009355BC /* UIColor+Extensions.swift */; };
 		521754B525DE7C5B009355BC /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521754B425DE7C5B009355BC /* UIView+Extensions.swift */; };
@@ -338,6 +341,9 @@
 		49F5FE952601EB4D00D53D82 /* SendViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SendViewController+Delegate.swift"; sourceTree = "<group>"; };
 		49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTableViewCell.swift; sourceTree = "<group>"; };
 		49FCCE022626FDB100DF01D1 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
+		49FCCEE226294EFB00DF01D1 /* NFTServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTServices.swift; sourceTree = "<group>"; };
+		49FCCEE7262950D800DF01D1 /* NFTViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTViewModel.swift; sourceTree = "<group>"; };
+		49FCCEEC26296ABD00DF01D1 /* NFTSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTSkeletonView.swift; sourceTree = "<group>"; };
 		521754AE25DE7673009355BC /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		521754B125DE79D1009355BC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		521754B425DE7C5B009355BC /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -634,6 +640,7 @@
 			isa = PBXGroup;
 			children = (
 				493502CB26243ABE004504A3 /* Controllers */,
+				49FCCEE6262950CA00DF01D1 /* View Model */,
 				493502CC26243AC6004504A3 /* Views */,
 			);
 			path = NFT;
@@ -653,6 +660,7 @@
 				493502CD26243ADC004504A3 /* NFTInfomationPetView.swift */,
 				493502D126244977004504A3 /* NFTParameterView.swift */,
 				493502D42624570D004504A3 /* NFTProgressView.swift */,
+				49FCCEEC26296ABD00DF01D1 /* NFTSkeletonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -925,6 +933,14 @@
 				49F5FE992601EC1200D53D82 /* SendTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		49FCCEE6262950CA00DF01D1 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				49FCCEE7262950D800DF01D1 /* NFTViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		521754A425DE7530009355BC /* MVVM */ = {
@@ -1249,13 +1265,14 @@
 				4951731426008D8D0063AEF7 /* CaptchaServices.swift */,
 				4963D07A25FEF8CD00720B34 /* ConfigServices.swift */,
 				525DB9F625EFD5B7001491AE /* DeviceServices.swift */,
+				49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */,
+				49FCCEE226294EFB00DF01D1 /* NFTServices.swift */,
 				49CAC10F25FB74C900577D33 /* PasscodeServices.swift */,
 				525DBAC325F17802001491AE /* QuestServices.swift */,
+				49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */,
 				49CAC10B25FB6B9A00577D33 /* TrackingServices.swift */,
 				525DB9DE25EE92EF001491AE /* TransactionServices.swift */,
 				525DB8F525E6B91E001491AE /* UserServices.swift */,
-				49ECF7B5260C3618000A8AB2 /* ReferralsServices.swift */,
-				49ECF7B9260C92FC000A8AB2 /* NewsServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2055,6 +2072,7 @@
 				49ECF7B6260C3618000A8AB2 /* ReferralsServices.swift in Sources */,
 				49CAC10825FB5C6000577D33 /* UserQuestRemote.swift in Sources */,
 				5265494A25F5395B003AE21A /* SignUpInputView.swift in Sources */,
+				49FCCEE326294EFB00DF01D1 /* NFTServices.swift in Sources */,
 				49976C3E260875520005F8F8 /* ShareCollectionViewCell.swift in Sources */,
 				525DB95425E96018001491AE /* UIFont+Extensions.swift in Sources */,
 				495173262600AA800063AEF7 /* OverviewViewController+Delegate.swift in Sources */,
@@ -2137,6 +2155,7 @@
 				494099F8260B524900F92119 /* KAIInputNumberView.swift in Sources */,
 				498E45C92604B0E400D62AAA /* VerificationViewController.swift in Sources */,
 				525DBADC25F22E9E001491AE /* NewsSuggestionCollectionViewCell.swift in Sources */,
+				49FCCEE8262950D800DF01D1 /* NFTViewModel.swift in Sources */,
 				494C0ACF25FA094800E30115 /* CardCollapseTableViewCell.swift in Sources */,
 				525DBA5725F008E7001491AE /* Data+Extensions.swift in Sources */,
 				525DBAA125F16213001491AE /* MissionTableViewCell.swift in Sources */,
@@ -2171,6 +2190,7 @@
 				525DB8E725E6B641001491AE /* UserDataSource.swift in Sources */,
 				52F37CF125E03459009F311F /* SignInInputView.swift in Sources */,
 				49ECF7BA260C92FC000A8AB2 /* NewsServices.swift in Sources */,
+				49FCCEED26296ABD00DF01D1 /* NFTSkeletonView.swift in Sources */,
 				494C0ADB25FA0E9A00E30115 /* TopupTableViewCell.swift in Sources */,
 				525DBA9425F0FDA6001491AE /* TabPageView.swift in Sources */,
 				521754BB25DE7DAE009355BC /* TutorialContentView.swift in Sources */,

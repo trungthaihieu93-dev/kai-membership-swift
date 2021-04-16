@@ -6,20 +6,34 @@
 //
 
 import UIKit
+import RxSwift
 import Lottie
 import SceneKit
+import SkeletonView
 
-class NFTViewController: BaseViewController, UIScrollViewDelegate {
+class NFTViewController: BaseViewController {
     
     // MARK: Properties
+    let viewModel = NFTViewModel()
+    
+    private let loaderView: NFTSkeletonView = {
+        let view = NFTSkeletonView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var exploitButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.contentEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
         button.setImage(UIImage(named: "ic_exploit")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.clipsToBounds = true
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
+        button.isSkeletonable = true
+        button.showAnimatedGradientSkeleton()
         button.addTarget(self, action: #selector(onPressedExploitButton), for: .touchUpInside)
         
         return button
@@ -31,8 +45,11 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         button.backgroundColor = .white
         button.contentEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
         button.setImage(UIImage(named: "ic_feeding")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.clipsToBounds = true
         button.layer.cornerRadius = 8
         button.createShadow(radius: 8)
+        button.isSkeletonable = true
+        button.showAnimatedGradientSkeleton()
         button.addTarget(self, action: #selector(onPressedFeedingButton), for: .touchUpInside)
         
         return button
@@ -42,9 +59,12 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .init(hex: "C42C15")
+        button.clipsToBounds = true
         button.layer.cornerRadius = 8
         button.layer.borderColor = UIColor.init(hex: "A8170F").cgColor
         button.layer.borderWidth = 1
+        button.isSkeletonable = true
+        button.showAnimatedGradientSkeleton()
         button.addTarget(self, action: #selector(onPressedMainFunctionButton), for: .touchUpInside)
         
         return button
@@ -53,6 +73,9 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
     private lazy var shopButton: MaterialVerticalButton = {
         let button = MaterialVerticalButton(icon: UIImage(named: "ic_shop")!, text: "Mall", font: .workSansFont(ofSize: 10, weight: .bold), foregroundColor: .white, bgColor: .init(hex: "FF8433"), useOriginalImg: true, cornerRadius: 8)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.isSkeletonable = true
+        button.showAnimatedGradientSkeleton()
         button.addTarget(self, action: #selector(onPressedShopButton), for: .touchUpInside)
         
         return button
@@ -84,7 +107,7 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         sceneView.translatesAutoresizingMaskIntoConstraints = false
         sceneView.contentMode = .scaleAspectFit
         sceneView.backgroundColor = .clear
-        //        sceneView.loops = true
+        sceneView.loops = true
         sceneView.isPlaying = true
         sceneView.autoenablesDefaultLighting = true
         sceneView.allowsCameraControl = true
@@ -106,7 +129,10 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         let view = NFTInfomationPetView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.clipsToBounds = true
         view.layer.cornerRadius = 16
+        view.isSkeletonable = true
+        view.showAnimatedGradientSkeleton()
         view.didFinishChangePetName = { [weak self] name in
             guard let this = self else { return }
             
@@ -146,7 +172,7 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupView()
-        setupDragon()
+        fetchData()
     }
     
     // MARK: Layout
@@ -161,6 +187,8 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         stackView.addArrangedSubview(feedingButton)
         stackView.addArrangedSubview(exploitButton)
         stackView.addArrangedSubview(shopButton)
+        
+//        view.addSubview(loaderView)
         
         NSLayoutConstraint.activate([
             backgroundAnimationView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -190,16 +218,23 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             stackView.widthAnchor.constraint(equalToConstant: 60),
+            
+//            loaderView.topAnchor.constraint(equalTo: view.topAnchor),
+//            loaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            loaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            loaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
         keyboardBottomAnchor = mainFuncButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25)
         keyboardBottomAnchor?.isActive = true
-        
-        progressView.configure(level: 12, currentExp: 1275, totalExp: 2000)
     }
     
     private func setupDragon() {
-        let dragonIndex: Int = 2
+        progressView.configure(level: 12, currentExp: 1275, totalExp: 2000)
+        
+        guard let scene = SCNScene(named: "Art.scnassets/Dragons/walk.scn") else { return }
+        
+        /*let dragonIndex: Int = 2
         
         let skinIndex: Int = 15
         let faceIndex: Int = 7
@@ -232,9 +267,31 @@ class NFTViewController: BaseViewController, UIScrollViewDelegate {
         
         if let body = scene.rootNode.childNode(withName: "Teech", recursively: true) {
             body.geometry?.material(named: "Teech")?.diffuse.contents = "Art.scnassets/Skins/skin_\(teechIndex).png"
-        }
+        }*/
         
         animationView.scene = scene
+    }
+    
+    // MARK: Data fetching
+    private func fetchData() {
+        viewModel.getPet().subscribe(on: MainScheduler.instance).subscribe(onNext: { [weak self] in    
+            self?.setupDragon()
+            self?.hideSkeleton()
+        }, onError: { [weak self] error in
+//            let message = (error as? APIErrorResult)?.message ?? "Get pet infomation incorrect!"
+//            AlertManagement.shared.showToast(with:  "🤔 \(message)", position: .top)
+            self?.setupDragon()
+            self?.hideSkeleton()
+        }).disposed(by: disposeBag)
+    }
+    
+    private func hideSkeleton() {
+//        self?.loaderView.removeFromSuperview()
+        exploitButton.hideSkeleton()
+        feedingButton.hideSkeleton()
+        mainFuncButton.hideSkeleton()
+        shopButton.hideSkeleton()
+        infomationPetView.hideSkeleton()
     }
 }
 
@@ -256,18 +313,18 @@ extension NFTViewController {
     }
     
     @objc private func onPressedExploitButton() {
-        
+        debugPrint("")
     }
     
     @objc private func onPressedFeedingButton() {
-        
+        debugPrint("")
     }
     
     @objc private func onPressedShopButton() {
-        
+        debugPrint("")
     }
     
     @objc private func onPressedMainFunctionButton() {
-        
+        debugPrint("")
     }
 }

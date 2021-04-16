@@ -103,7 +103,6 @@ extension UIView {
         self.layer.borderColor = color != nil ? color!.cgColor : UIColor.clear.cgColor
         self.layer.borderWidth = borderWidth
         self.layer.cornerRadius = cornerRadius
-        self.clipsToBounds = true
     }
     
     /*
